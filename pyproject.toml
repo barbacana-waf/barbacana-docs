@@ -1,0 +1,8 @@
+[project]
+name = "barbacana-docs"
+version = "0.0.0"
+description = "Documentation site for Barbacana — secure by default, simple by design."
+requires-python = ">=3.11"
+dependencies = [
+  "mkdocs-material==9.5.44",
+]

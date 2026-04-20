@@ -1,0 +1,112 @@
+site_name: Barbacana
+site_url: https://barbacana.dev
+site_description: Open-source WAF and API security gateway. Secure by default. Simple by design.
+site_author: Barbacana authors
+
+repo_url: https://github.com/barbacana-waf/barbacana
+repo_name: barbacana-waf/barbacana
+edit_uri: https://github.com/barbacana-waf/barbacana-docs/edit/main/docs/
+
+copyright: Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/logo.png
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  generator: false
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/barbacana-waf/barbacana
+      name: Barbacana on GitHub
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
+nav:
+  - Welcome: index.md
+  - Getting Started:
+      - Quickstart: getting-started/quickstart.md
+      - Installation: getting-started/installation.md
+      - Configuration: getting-started/incremental.md
+      - Troubleshooting: getting-started/troubleshooting.md
+  - Reference:
+      - Overview: reference/overview.md
+      - Routing:
+          - Routes: reference/routes.md
+          - Rewrites: reference/rewrites.md
+      - Request filtering:
+          - Accept: reference/accept.md
+          - Uploads: reference/uploads.md
+          - OpenAPI: reference/openapi.md
+      - Tuning protections:
+          - Disable protections: reference/disable.md
+          - Detect-only mode: reference/detect-only.md
+      - Response:
+          - CORS: reference/cors.md
+          - Security headers: reference/headers.md
+      - Schema: reference/schema.md
+  - Security:
+      - Overview: security/overview.md
+      - Request lifecycle: security/request-lifecycle.md
+      - Protections: security/protections.md
+      - Sensitivity: security/sensitivity.md
+      - Logs & SIEM: security/logs.md
+  - Operations:
+      - Hostnames & HTTPS: operations/hostnames.md
+      - CLI: operations/cli.md
+      - Monitoring: operations/monitoring.md
+      - Metrics: operations/metrics.md
+      - Audit log: operations/audit-log.md
