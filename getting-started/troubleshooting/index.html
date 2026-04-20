@@ -12,13 +12,13 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/getting-started/installation/">
+        <link rel="canonical" href="https://barbacana.dev/getting-started/troubleshooting/">
       
       
-        <link rel="prev" href="../quickstart/">
+        <link rel="prev" href="../incremental/">
       
       
-        <link rel="next" href="../incremental/">
+        <link rel="next" href="../../reference/overview/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Installation - Barbacana</title>
+        <title>Troubleshooting - Barbacana</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#troubleshooting-barbacana-waf" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Troubleshooting
             
           </span>
         </div>
@@ -442,30 +442,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -474,44 +454,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#container-standalone" class="md-nav__link">
-    <span class="md-ellipsis">
-      Container (standalone)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
-    <span class="md-ellipsis">
-      Docker Compose
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -542,10 +484,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -554,6 +516,197 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-confirm-the-application-works-without-the-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 — Confirm the application works without the WAF
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-check-the-logs-for-configuration-errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Check the logs for configuration errors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-traffic-reaches-the-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Verify traffic reaches the WAF
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verify-tls-and-dns-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Verify TLS and DNS configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-identify-what-is-being-blocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5 — Identify what is being blocked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5 — Identify what is being blocked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-the-audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read the audit log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-targeted-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add targeted exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope-exceptions-to-specific-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope exceptions to specific routes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-back-to-blocking-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch back to blocking mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-fix-403s-from-request-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6 — Fix 403s from request validation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6 — Fix 403s from request validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common causes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-allow-large-uploads-on-one-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: allow large uploads on one route
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-check-for-security-header-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7 — Check for security-header conflicts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7 — Check for security-header conflicts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symptoms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further reading
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1381,18 +1534,171 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#container-standalone" class="md-nav__link">
+  <a href="#step-1-confirm-the-application-works-without-the-waf" class="md-nav__link">
     <span class="md-ellipsis">
-      Container (standalone)
+      Step 1 — Confirm the application works without the WAF
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#docker-compose" class="md-nav__link">
+  <a href="#step-2-check-the-logs-for-configuration-errors" class="md-nav__link">
     <span class="md-ellipsis">
-      Docker Compose
+      Step 2 — Check the logs for configuration errors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-verify-traffic-reaches-the-waf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Verify traffic reaches the WAF
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verify-tls-and-dns-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Verify TLS and DNS configuration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-identify-what-is-being-blocked" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5 — Identify what is being blocked
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 5 — Identify what is being blocked">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-the-audit-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read the audit log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-targeted-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add targeted exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope-exceptions-to-specific-routes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope exceptions to specific routes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#switch-back-to-blocking-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      Switch back to blocking mode
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-fix-403s-from-request-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 6 — Fix 403s from request validation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 6 — Fix 403s from request validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#common-causes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common causes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-allow-large-uploads-on-one-route" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example: allow large uploads on one route
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-7-check-for-security-header-conflicts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 7 — Check for security-header conflicts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Step 7 — Check for security-header conflicts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptoms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Symptoms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnose" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diagnose
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fix" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fix
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-reading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Further reading
     </span>
   </a>
   
@@ -1416,64 +1722,252 @@
   
 
 
-<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
-<p>Barbacana ships as a single container image. Pick the runtime that matches your environment.</p>
-<p>The image: <code>ghcr.io/barbacana-waf/barbacana:latest</code>. Multi-arch (<code>amd64</code>, <code>arm64</code>), signed with cosign, ships a CycloneDX SBOM.</p>
-<h2 id="container-standalone">Container (standalone)<a class="headerlink" href="#container-standalone" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/barbacana-waf/barbacana:latest
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>serve
-</span></code></pre></div>
-<p>The image reads <code>/etc/barbacana/waf.yaml</code> by default, so you don't need to pass <code>--config</code> when you mount the file there.</p>
-<p>For trying Barbacana in front of a local upstream.</p>
-<h2 id="docker-compose">Docker Compose<a class="headerlink" href="#docker-compose" title="Permanent link">&para;</a></h2>
-<p>Barbacana ships a <code>compose.yaml</code> at the root of the source repo. It runs Barbacana with auto-TLS in front of a demo app, both on the same Docker network. Only Barbacana is published.</p>
-<div class="language-yaml highlight"><span class="filename">compose.yaml</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">barbacana</span><span class="p">:</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/barbacana-waf/barbacana:latest</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span><span class="w">      </span><span class="c1"># ACME HTTP-01 challenge + HTTP→HTTPS redirect</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span><span class="w">    </span><span class="c1"># HTTPS</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./configs/example-tls.yaml:/etc/barbacana/waf.yaml:ro</span>
-</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barbacana-data:/data/barbacana</span>
-</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>
-</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">app</span><span class="p">:</span>
-</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="c1"># Replace with your own application image.</span>
-</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginxdemos/hello:latest</span>
-</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">expose</span><span class="p">:</span>
-</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">      </span><span class="nt">NGINX_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
-</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span><span class="nt">barbacana-data</span><span class="p">:</span>
-</span></code></pre></div>
-<p>The mounted config (<code>configs/example-tls.yaml</code>) is the canonical single-host auto-TLS example:</p>
-<div class="language-yaml highlight"><span class="filename">example-tls.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api.example.com</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
-</span></code></pre></div>
-<p><code>host:</code> triggers auto-TLS for one hostname. <code>data_dir:</code> is where Barbacana persists ACME state — the <code>barbacana-data</code> named volume keeps it across restarts. The <code>app</code> service is reachable from Barbacana over Docker's internal DNS (<code>http://app:8080</code>).</p>
-<p><strong>Prerequisites for auto-TLS:</strong></p>
+<h1 id="troubleshooting-barbacana-waf">Troubleshooting Barbacana WAF<a class="headerlink" href="#troubleshooting-barbacana-waf" title="Permanent link">&para;</a></h1>
+<p>Some applications may stop working after Barbacana WAF is enabled. Common causes include misconfigured routing, false positives from protection rules, and security headers that conflict with the application's frontend code.</p>
+<p>Work through the steps below in order. Each step narrows the problem before you make any configuration changes.</p>
+<hr />
+<h2 id="step-1-confirm-the-application-works-without-the-waf">Step 1 — Confirm the application works without the WAF<a class="headerlink" href="#step-1-confirm-the-application-works-without-the-waf" title="Permanent link">&para;</a></h2>
+<p>Remove Barbacana from the request path and access the application directly.</p>
 <ul>
-<li><code>api.example.com</code> resolves publicly to the Compose host.</li>
-<li>Ports <code>80</code> and <code>443</code> are reachable from the internet (Let's Encrypt validates over HTTP-01).</li>
-<li>The <code>barbacana-data</code> volume is preserved across restarts. Without it, Barbacana re-requests certificates on every restart and you'll hit Let's Encrypt's <a href="https://letsencrypt.org/docs/rate-limits/">rate limits</a>.</li>
+<li>If the application <strong>works</strong> without the WAF, continue to Step 2.</li>
+<li>If the application <strong>does not work</strong> without the WAF, the problem is in the application itself — fix it there first.</li>
 </ul>
-<div class="admonition tip">
-<p class="admonition-title">Behind a load balancer instead?</p>
-<p>Use <code>configs/example.yaml</code> (top-level <code>port: 8080</code>, no TLS) and publish <code>8080:8080</code> instead of <code>80:80</code> / <code>443:443</code>. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a> for all three modes.</p>
-</div>
+<hr />
+<h2 id="step-2-check-the-logs-for-configuration-errors">Step 2 — Check the logs for configuration errors<a class="headerlink" href="#step-2-check-the-logs-for-configuration-errors" title="Permanent link">&para;</a></h2>
+<p>Before debugging traffic, make sure Barbacana started successfully. Barbacana writes all output — startup messages, configuration errors, and audit entries — to <strong>stdout</strong> as structured JSON. Where you read it depends on how you run Barbacana:</p>
+<table>
+<thead>
+<tr>
+<th>Deployment</th>
+<th>How to read logs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker run</code> (foreground)</td>
+<td>Logs print directly in your terminal.</td>
+</tr>
+<tr>
+<td>Docker Compose</td>
+<td><code>docker compose logs barbacana</code> (or whatever the service name is).</td>
+</tr>
+<tr>
+<td>Kubernetes</td>
+<td><code>kubectl logs &lt;pod&gt;</code> or your cluster's log shipper.</td>
+</tr>
+</tbody>
+</table>
+<p>On startup, look for error-level entries. A malformed <code>waf.yaml</code> — missing required fields, wrong types, invalid YAML syntax — will produce clear error messages in the log and Barbacana will refuse to start or start in a degraded state.</p>
+<hr />
+<h2 id="step-3-verify-traffic-reaches-the-waf">Step 3 — Verify traffic reaches the WAF<a class="headerlink" href="#step-3-verify-traffic-reaches-the-waf" title="Permanent link">&para;</a></h2>
+<p>If Barbacana starts but you see <strong>no log entries at all when you send requests</strong>, traffic is not reaching the WAF. Bypass DNS and any intermediaries by hitting the machine's IP directly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://&lt;barbacana-ip&gt;
+</span></code></pre></div>
+<p>Replace <code>&lt;barbacana-ip&gt;</code> with the IP address and port of the machine running Barbacana. If this request shows up in the logs, the WAF is reachable and the problem is upstream of it. If not, common causes include:</p>
+<ul>
+<li>The client is connecting to the wrong host or port.</li>
+<li>A load balancer or firewall sits between the client and Barbacana and is dropping or redirecting traffic.</li>
+<li>DNS does not resolve to the machine running Barbacana.</li>
+</ul>
+<p>Fix connectivity before investigating WAF rules.</p>
+<hr />
+<h2 id="step-4-verify-tls-and-dns-configuration">Step 4 — Verify TLS and DNS configuration<a class="headerlink" href="#step-4-verify-tls-and-dns-configuration" title="Permanent link">&para;</a></h2>
+<p>If you configured a <a href="../../operations/hostnames/">hostname with auto-TLS</a>, certificate provisioning requires the hostname's DNS to resolve to the machine running Barbacana. If DNS points elsewhere (or the record doesn't exist yet), the ACME challenge will fail and Barbacana will log errors indicating the certificate could not be obtained.</p>
+<p>Common symptoms:</p>
+<ul>
+<li>The browser shows a TLS/certificate error or refuses to connect on HTTPS.</li>
+<li>Barbacana logs contain messages about failed ACME challenges, DNS resolution failures, or certificate errors.</li>
+</ul>
+<p>To fix:</p>
+<ol>
+<li>Confirm the DNS A/AAAA (or CNAME) record for your hostname points to the public IP of the machine running Barbacana.</li>
+<li>Ensure port 443 (and port 80 for HTTP-01 challenges) is open and reachable from the internet.</li>
+<li>Restart or reload Barbacana so it retries certificate provisioning.</li>
+</ol>
+<p>If you are not using auto-TLS (e.g. TLS terminates at a load balancer in front of Barbacana), skip this step.</p>
+<hr />
+<h2 id="step-5-identify-what-is-being-blocked">Step 5 — Identify what is being blocked<a class="headerlink" href="#step-5-identify-what-is-being-blocked" title="Permanent link">&para;</a></h2>
+<p>Now that you know traffic reaches Barbacana and the upstream, enable <a href="../../reference/detect-only/">mode: detect_only</a> so Barbacana inspects but never blocks:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">global</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span>
+</span></code></pre></div>
+<p>Move this configuration to the <code>global</code> section — this is the baseline every route inherits. Make sure inner routes don't override it.</p>
+<p>Navigate through the application. In this mode Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of its content. If the application still does not work, the routing may be wrong. Check the <code>upstream</code> value: is the IP address (or hostname) and port correct? Can Barbacana reach that address from its network?</p>
+<p>Exercise the application thoroughly: navigate every page, submit forms, upload files, and call all API endpoints. The more interactions, the more data the <a href="../../operations/audit-log/">audit log</a> will capture.</p>
+<h3 id="read-the-audit-log">Read the audit log<a class="headerlink" href="#read-the-audit-log" title="Permanent link">&para;</a></h3>
+<p>Barbacana writes one JSON entry per inspected request to stdout. Look for entries with <code>"action": "detected"</code> — these are the requests that <em>would</em> be blocked in normal mode:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;detected&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union&quot;</span><span class="p">],</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;anomaly_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/search&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="add-targeted-exceptions">Add targeted exceptions<a class="headerlink" href="#add-targeted-exceptions" title="Permanent link">&para;</a></h3>
+<p>Follow the <strong>least-privilege principle</strong>: disable the most specific sub-protection, not the whole category.</p>
+<table>
+<thead>
+<tr>
+<th>Log shows</th>
+<th>Add to <code>disable</code></th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>["sql-injection", "sql-injection-union"]</code></td>
+<td><code>sql-injection-union</code></td>
+<td>Only disables UNION-based detection; all other SQL-injection rules stay active.</td>
+</tr>
+<tr>
+<td><code>["sql-injection"]</code></td>
+<td><em>(do not disable the entire category unless absolutely necessary)</em></td>
+<td>Disabling <code>sql-injection</code> removes <strong>all</strong> SQL-injection detection on that route.</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="../../reference/disable/">Disable protections</a> and the <a href="../../security/protections/">protection catalog</a> for the full list of names.</p>
+<h3 id="scope-exceptions-to-specific-routes">Scope exceptions to specific routes<a class="headerlink" href="#scope-exceptions-to-specific-routes" title="Permanent link">&para;</a></h3>
+<p>If different paths trigger different false positives (e.g. the UI and the API), split them into separate routes and add exceptions only where needed:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/api/*&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-injection-union</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span></code></pre></div>
+<h3 id="switch-back-to-blocking-mode">Switch back to blocking mode<a class="headerlink" href="#switch-back-to-blocking-mode" title="Permanent link">&para;</a></h3>
+<p>Once the false positives are resolved, remove <code>mode: detect_only</code> (blocking is the default), reload and verify the application works end-to-end.</p>
+<hr />
+<h2 id="step-6-fix-403s-from-request-validation">Step 6 — Fix 403s from request validation<a class="headerlink" href="#step-6-fix-403s-from-request-validation" title="Permanent link">&para;</a></h2>
+<p>If a request returns 403 but the audit log entry has <strong>no <code>matched_protections</code></strong>, the block is likely coming from request validation rather than a protection rule. Check the following configuration areas:</p>
+<h3 id="common-causes">Common causes<a class="headerlink" href="#common-causes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Config to check</th>
+<th>What to look for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File uploads rejected</td>
+<td><a href="../../reference/accept/"><code>accept.max_body_size</code></a></td>
+<td>The request body exceeds the configured limit (default varies — check your config). Increase it for routes that handle uploads.</td>
+</tr>
+<tr>
+<td>POST/PUT with unexpected content type rejected</td>
+<td><a href="../../reference/accept/"><code>accept.content_types</code></a></td>
+<td>The <code>Content-Type</code> header is not in the allowed list. Add the required type.</td>
+</tr>
+<tr>
+<td>HTTP method rejected</td>
+<td><a href="../../reference/accept/"><code>accept.methods</code></a></td>
+<td>Methods like <code>PATCH</code> or <code>DELETE</code> may not be allowed by default. Add them explicitly.</td>
+</tr>
+<tr>
+<td>API request rejected despite valid payload</td>
+<td><a href="../../reference/openapi/"><code>openapi</code></a></td>
+<td>If an OpenAPI spec is configured, requests that don't match the schema are rejected. Check the log for validation details and update the spec or the request.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="example-allow-large-uploads-on-one-route">Example: allow large uploads on one route<a class="headerlink" href="#example-allow-large-uploads-on-one-route" title="Permanent link">&para;</a></h3>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">uploads</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/upload/*&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="nt">max_body_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">50MB</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span></code></pre></div>
+<p>Always scope permissive limits to the specific route that needs them.</p>
+<hr />
+<h2 id="step-7-check-for-security-header-conflicts">Step 7 — Check for security-header conflicts<a class="headerlink" href="#step-7-check-for-security-header-conflicts" title="Permanent link">&para;</a></h2>
+<p>Barbacana <a href="../../reference/headers/">injects a few security response headers</a> by default (<code>Content-Security-Policy</code>, <code>X-Frame-Options</code>, <code>Cross-Origin-Opener-Policy</code>, and others). These can break frontend JavaScript even though no entries appear in the WAF audit log.</p>
+<h3 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Pages load and images display, but JavaScript features are partially or completely broken.</li>
+<li>The browser console shows errors such as <code>Refused to execute inline script</code>, <code>Blocked a frame with origin</code>, or <code>Cross-Origin-Opener-Policy</code> violations.</li>
+</ul>
+<h3 id="diagnose">Diagnose<a class="headerlink" href="#diagnose" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open the browser Developer Tools — <strong>Console</strong>.</li>
+<li>Look for errors referencing CSP, CORS, COOP, COEP, or <code>X-Frame-Options</code>.</li>
+<li>Map each error to the canonical <code>header-*</code> protection name:</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Browser error mentions</th>
+<th>Barbacana header key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Content-Security-Policy</td>
+<td><code>header-csp</code></td>
+</tr>
+<tr>
+<td>X-Frame-Options</td>
+<td><code>header-x-frame-options</code></td>
+</tr>
+<tr>
+<td>Cross-Origin-Opener-Policy</td>
+<td><code>header-coop</code></td>
+</tr>
+<tr>
+<td>Cross-Origin-Embedder-Policy</td>
+<td><code>header-coep</code></td>
+</tr>
+<tr>
+<td>Cross-Origin-Resource-Policy</td>
+<td><code>header-corp</code></td>
+</tr>
+<tr>
+<td>Permissions-Policy</td>
+<td><code>header-permissions-policy</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h3>
+<p><strong>Option A — Override specific headers</strong> using a custom preset:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moderate</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="nt">header-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span>
+</span></code></pre></div>
+<p><strong>Option B — Disable the offending header</strong> on that route:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">header-coop</span>
+</span></code></pre></div>
+<p>After each change, reload the page and confirm the console errors are gone.</p>
+<hr />
+<h2 id="further-reading">Further reading<a class="headerlink" href="#further-reading" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a></li>
+<li><a href="../../operations/cli/">CLI</a></li>
+<li><a href="../../reference/detect-only/">Detect-only mode</a></li>
+<li><a href="../../reference/disable/">Disable protections</a></li>
+<li><a href="../../reference/headers/">Security headers</a></li>
+<li><a href="../../reference/routes/">Routes</a></li>
+<li><a href="../../security/logs/">Logs &amp; SIEM</a></li>
+<li><a href="../../operations/audit-log/">Audit log</a></li>
+<li><a href="../../security/protections/">Protection catalog</a></li>
+</ul>
 
 
 

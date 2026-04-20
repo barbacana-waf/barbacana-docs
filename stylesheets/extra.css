@@ -1,55 +1,98 @@
 /* Barbacana brand palette
  *
- * Overrides Material's CSS custom properties to match the product palette.
- * Light theme only for v1.
+ * Sampled from the Barbacana fortress logo — white castle on royal blue.
+ * Overrides Material's CSS custom properties for both light and dark schemes.
  */
 
 :root {
-  --bb-primary:        #A41F13;
-  --bb-primary-dark:   #871910;
-  --bb-primary-muted:  rgba(164, 31, 19, 0.10);
-  --bb-bg:             #FAF5F1;
-  --bb-surface:        #E0DBD8;
-  --bb-text:           #292F36;
-  --bb-text-2:         #8F7A6E;
-  --bb-border:         rgba(143, 122, 110, 0.28);
-  --bb-border-strong:  rgba(143, 122, 110, 0.50);
+  /* Brand blues — Barbacana royal blue */
+  --bb-primary:        #1A4FBE;
+  --bb-primary-dark:   #153F97;
+  --bb-primary-light:  #4A78D2;   /* reserved for dark-scheme foregrounds */
+  --bb-primary-muted:  rgba(26, 79, 190, 0.10);
 
+  /* Severity palette (shared across schemes) */
   --bb-critical: #E24B4A;
-  --bb-high:     #D85A30;
-  --bb-medium:   #EF9F27;
-  --bb-low:      #1D9E75;
-  --bb-info:     #378ADD;
+  --bb-high:     #EB7240;
+  --bb-medium:   #F2B348;
+  --bb-low:      #3CC18D;
+  --bb-info:     #5AA3E6;
 }
 
+/* ─── Light scheme ───────────────────────────────────────── */
 [data-md-color-scheme="default"] {
+  --bb-bg:            #F6F8FC;
+  --bb-surface:       #E6ECF4;
+  --bb-text:          #14213D;
+  --bb-text-2:        #5A6B87;
+  --bb-border:        rgba(71, 96, 133, 0.28);
+  --bb-border-strong: rgba(71, 96, 133, 0.50);
+
   --md-primary-fg-color:        var(--bb-primary);
-  --md-primary-fg-color--light:  var(--bb-primary);
-  --md-primary-fg-color--dark:   var(--bb-primary-dark);
-  --md-primary-bg-color:        #FAF5F1;
-  --md-primary-bg-color--light: rgba(250, 245, 241, 0.7);
+  --md-primary-fg-color--light: var(--bb-primary);
+  --md-primary-fg-color--dark:  var(--bb-primary-dark);
+  --md-primary-bg-color:        #FFFFFF;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
 
-  --md-accent-fg-color:          var(--bb-primary-dark);
+  --md-accent-fg-color:              var(--bb-primary-dark);
   --md-accent-fg-color--transparent: var(--bb-primary-muted);
-  --md-accent-bg-color:          #FAF5F1;
-  --md-accent-bg-color--light:   rgba(250, 245, 241, 0.7);
+  --md-accent-bg-color:              #FFFFFF;
+  --md-accent-bg-color--light:       rgba(255, 255, 255, 0.7);
 
-  --md-default-bg-color:         var(--bb-bg);
-  --md-default-fg-color:         var(--bb-text);
-  --md-default-fg-color--light:  var(--bb-text-2);
-  --md-default-fg-color--lighter: rgba(143, 122, 110, 0.40);
-  --md-default-fg-color--lightest: rgba(143, 122, 110, 0.15);
+  --md-default-bg-color:           var(--bb-bg);
+  --md-default-fg-color:           var(--bb-text);
+  --md-default-fg-color--light:    var(--bb-text-2);
+  --md-default-fg-color--lighter:  rgba(90, 107, 135, 0.40);
+  --md-default-fg-color--lightest: rgba(90, 107, 135, 0.15);
 
-  --md-typeset-a-color:          var(--bb-primary);
+  --md-typeset-a-color:     var(--bb-primary);
 
-  --md-code-bg-color:            var(--bb-surface);
-  --md-code-fg-color:            var(--bb-text);
+  --md-code-bg-color:       var(--bb-surface);
+  --md-code-fg-color:       var(--bb-text);
 
-  --md-footer-bg-color:          var(--bb-text);
-  --md-footer-bg-color--dark:    #1f242a;
+  --md-footer-bg-color:       var(--bb-text);
+  --md-footer-bg-color--dark: #0B1220;
 }
 
-/* Cards / panels (used by grid cards on landing page) pick up the surface color */
+/* ─── Dark scheme (slate) ────────────────────────────────── */
+[data-md-color-scheme="slate"] {
+  --bb-bg:            #0F1724;
+  --bb-surface:       #172236;
+  --bb-text:          #E6ECF4;
+  --bb-text-2:        #8AA0BE;
+  --bb-border:        rgba(138, 160, 190, 0.22);
+  --bb-border-strong: rgba(138, 160, 190, 0.44);
+
+  /* Primary shifts lighter in dark mode so it stays legible as a link color */
+  --md-primary-fg-color:        var(--bb-primary-light);
+  --md-primary-fg-color--light: var(--bb-primary-light);
+  --md-primary-fg-color--dark:  var(--bb-primary);
+  --md-primary-bg-color:        #FFFFFF;
+  --md-primary-bg-color--light: rgba(255, 255, 255, 0.7);
+
+  --md-accent-fg-color:              var(--bb-primary-light);
+  --md-accent-fg-color--transparent: rgba(74, 120, 210, 0.15);
+  --md-accent-bg-color:              #FFFFFF;
+  --md-accent-bg-color--light:       rgba(255, 255, 255, 0.7);
+
+  --md-default-bg-color:           var(--bb-bg);
+  --md-default-fg-color:           var(--bb-text);
+  --md-default-fg-color--light:    var(--bb-text-2);
+  --md-default-fg-color--lighter:  rgba(138, 160, 190, 0.40);
+  --md-default-fg-color--lightest: rgba(138, 160, 190, 0.15);
+
+  --md-typeset-a-color:     var(--bb-primary-light);
+
+  --md-code-bg-color:       var(--bb-surface);
+  --md-code-fg-color:       var(--bb-text);
+
+  --md-footer-bg-color:       #0B1220;
+  --md-footer-bg-color--dark: #070C16;
+}
+
+/* ─── Shared components (theme-agnostic, driven by --bb-* tokens) ─── */
+
+/* Cards / panels on the landing page */
 .md-typeset .grid.cards > :is(ul, ol) > li,
 .md-typeset .grid > .card {
   background-color: var(--bb-surface);
@@ -57,7 +100,7 @@
   border-radius: 6px;
 }
 
-/* Admonitions: recolor accents using the brand severity palette */
+/* Admonitions: recolor accents with the severity palette */
 .md-typeset .admonition.danger,
 .md-typeset details.danger {
   border-color: var(--bb-critical);
@@ -78,7 +121,7 @@
 }
 .md-typeset .warning > .admonition-title,
 .md-typeset .warning > summary {
-  background-color: rgba(216, 90, 48, 0.10);
+  background-color: rgba(235, 114, 64, 0.10);
   border-color: var(--bb-high);
 }
 .md-typeset .warning > .admonition-title::before,
@@ -92,7 +135,7 @@
 }
 .md-typeset .tip > .admonition-title,
 .md-typeset .tip > summary {
-  background-color: rgba(29, 158, 117, 0.10);
+  background-color: rgba(60, 193, 141, 0.10);
   border-color: var(--bb-low);
 }
 .md-typeset .tip > .admonition-title::before,
@@ -108,7 +151,7 @@
 }
 .md-typeset :is(.info, .note) > .admonition-title,
 .md-typeset :is(.info, .note) > summary {
-  background-color: rgba(55, 138, 221, 0.10);
+  background-color: rgba(90, 163, 230, 0.10);
   border-color: var(--bb-info);
 }
 .md-typeset :is(.info, .note) > .admonition-title::before,
@@ -116,7 +159,7 @@
   background-color: var(--bb-info);
 }
 
-/* Tables: subtle borders matching the brand */
+/* Tables: subtle borders in both schemes */
 .md-typeset table:not([class]) {
   border: 1px solid var(--bb-border);
 }
