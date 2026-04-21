@@ -23,7 +23,7 @@ routes:
 ```bash
 docker run --rm -p 8080:8080 \
   -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest serve
+  ghcr.io/barbacana-waf/barbacana:latest
 ```
 
 That's it. Every protection is on by default. [Full quickstart →](getting-started/quickstart.md)

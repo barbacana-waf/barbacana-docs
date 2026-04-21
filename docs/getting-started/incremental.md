@@ -1,6 +1,6 @@
 # Incremental configuration
 
-Barbacana's config grows with your needs. Start with three lines, then add routes, limits, and policies one step at a time. Each step below is a runnable config — copy it, check it with [`barbacana validate`](../operations/cli.md#validate), and move on.
+Barbacana's config grows with your needs. Start with three lines, then add routes, limits, and policies one step at a time. Each step below is a runnable config — copy it, check it with [`barbacana --validate`](../operations/cli.md#validate-a-config), and move on.
 
 By the end you'll have the full multi-route deployment from the [project README](https://github.com/barbacana-waf/barbacana).
 

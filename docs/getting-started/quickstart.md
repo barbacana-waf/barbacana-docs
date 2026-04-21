@@ -22,7 +22,7 @@ Barbacana ships as a single container image. Pick a runtime:
     ```bash
     docker run --rm -p 8080:8080 \
       -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-      ghcr.io/barbacana-waf/barbacana:latest serve
+      ghcr.io/barbacana-waf/barbacana:latest
     ```
 
     The image reads `/etc/barbacana/waf.yaml` by default, so mounting the file at that path is enough — no `--config` flag needed.

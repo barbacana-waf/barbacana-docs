@@ -1,32 +1,50 @@
 # CLI
 
-Barbacana has five commands, all shipped inside the container image. Invoke them with `docker run … ghcr.io/barbacana-waf/barbacana:latest <command>`.
-
-| Command | Purpose |
-|---|---|
-| [`serve`](#serve) | Run the WAF |
-| [`validate`](#validate) | Check a config without starting |
-| [`defaults`](#defaults) | Print all available protections |
-| [`debug render-config`](#debug-render-config) | Show the generated low-level config |
-| [`version`](#version) | Print version info |
-
-The container reads its config from `/etc/barbacana/waf.yaml` by default — mount your file there and you can omit `--config` on most commands.
-
----
-
-## serve
-
-Run Barbacana as a WAF proxy.
+Barbacana is a single binary with one purpose: run the WAF. Auxiliary modes are flags on the same binary.
 
 ```bash
 docker run --rm -p 8080:8080 \
   -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest serve
+  ghcr.io/barbacana-waf/barbacana:latest
 ```
 
-| Flag | Required | Description |
-|---|---|---|
-| `--config` | no | Path to the YAML config file inside the container (default `/etc/barbacana/waf.yaml`) |
+The container's default ENTRYPOINT runs the server — no subcommand, no `command:` override. The image reads `/etc/barbacana/waf.yaml` by default; mount your config there or pass `--config <path>`.
+
+## Synopsis
+
+```text
+barbacana [--config <path>] [--validate | --render-config | --version] [-h]
+```
+
+| Flag | Description |
+|---|---|
+| `--config <path>` | Path to the YAML config. Default: `/etc/barbacana/waf.yaml`. Shared by every mode. |
+| `--validate` | Validate the config and exit. |
+| `--render-config` | Print the compiled low-level config and exit (read-only diagnostic). |
+| `--version` | Print version, Go version, and CRS version. |
+| `-h`, `--help` | Show usage. |
+
+`--validate`, `--render-config`, and `--version` are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.
+
+## Exit codes
+
+| Code | Meaning |
+|---|---|
+| `0` | Success — server exited cleanly, or the selected mode finished with no errors. |
+| `1` | Operational error — config invalid, file not found, rule compilation failed, listener failed, etc. |
+| `2` | Usage error — unknown flag, or more than one mode flag set. |
+
+---
+
+## Run the WAF
+
+Default behavior. No mode flag.
+
+```bash
+docker run --rm -p 8080:8080 \
+  -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
+  ghcr.io/barbacana-waf/barbacana:latest
+```
 
 Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3) or `:443` (modes 1 and 2 — see [Hostnames & HTTPS](hostnames.md)). Metrics (`metrics_port`) and health (`health_port`) are **off by default** — set them explicitly to enable. Logs structured JSON to stdout. Reloads gracefully on `SIGHUP`.
 
@@ -36,19 +54,27 @@ Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3
 {"time":"2026-04-18T09:00:00Z","level":"INFO","msg":"metrics endpoint disabled — set metrics_port to enable /metrics"}
 ```
 
+To point at a non-default config path:
+
+```bash
+docker run --rm -p 8080:8080 \
+  -v $(pwd)/waf.yaml:/cfg/waf.yaml:ro \
+  ghcr.io/barbacana-waf/barbacana:latest --config /cfg/waf.yaml
+```
+
 ---
 
-## validate
+## Validate a config
 
-Check that a config is well-formed without starting the proxy.
+Check that a config is well-formed without starting the proxy. Use it in CI before deployment.
 
 ```bash
 docker run --rm \
   -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest validate /etc/barbacana/waf.yaml
+  ghcr.io/barbacana-waf/barbacana:latest --config /etc/barbacana/waf.yaml --validate
 ```
 
-Verifies the schema, every protection name, every referenced file (OpenAPI specs), and rule compilation. Use it in CI before deployment.
+Verifies the schema, every protection name, every referenced file (OpenAPI specs), and rule compilation.
 
 ```text
 config valid
@@ -62,52 +88,28 @@ waf.yaml:22: openapi.spec "/etc/barbacana/api.yaml" not found
 2 errors
 ```
 
-Exit code is `0` on success, non-zero on any error.
+Exit code `0` on success, `1` on any validation error.
 
 ---
 
-## defaults
+## Render the compiled config
 
-Print every protection Barbacana ships with, its status, and its CWE mapping.
-
-```bash
-docker run --rm ghcr.io/barbacana-waf/barbacana:latest defaults
-```
-
-```text
-PROTECTION                    STATUS    CWE
-sql-injection                 enabled   CWE-89
-  sql-injection-union         enabled   CWE-89
-  sql-injection-boolean       enabled   CWE-89
-  ...
-xss                           enabled   CWE-79
-  ...
-```
-
-Useful when picking names for [`disable`](../reference/disable.md).
-
----
-
-## debug render-config
-
-Dump the low-level engine config that Barbacana generates from your YAML. Read-only diagnostic.
+Dump the low-level engine config that Barbacana generates from your YAML. Read-only diagnostic for support and bug reports.
 
 ```bash
 docker run --rm \
   -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest debug render-config /etc/barbacana/waf.yaml
+  ghcr.io/barbacana-waf/barbacana:latest --config /etc/barbacana/waf.yaml --render-config
 ```
 
-Prints a JSON document. Used for support and bug reports — not part of the user-facing API and may change between versions.
+Prints raw Caddy JSON. **Not a user-editable format** and not part of the user-facing API — it may change between versions. The supported way to configure Barbacana is the YAML schema; see the [config schema reference](../reference/schema.md).
 
 ---
 
-## version
-
-Print Barbacana, Go, and CRS versions.
+## Print the version
 
 ```bash
-docker run --rm ghcr.io/barbacana-waf/barbacana:latest version
+docker run --rm ghcr.io/barbacana-waf/barbacana:latest --version
 ```
 
 ```text

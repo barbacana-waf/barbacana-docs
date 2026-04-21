@@ -451,7 +451,7 @@ routes:
 
 ## Validation behaviour
 
-All validation runs during [`validate`](../operations/cli.md#validate) and on startup. Errors are emitted as a single list with file path, YAML line number, and a specific message. Example:
+All validation runs during [`--validate`](../operations/cli.md#validate-a-config) and on startup. Errors are emitted as a single list with file path, YAML line number, and a specific message. Example:
 
 ```
 waf.yaml:17: unknown protection "sql-injetcion" in route "public-api" disable list (did you mean "sql-injection"?)
