@@ -43,6 +43,12 @@ theme:
     text: Inter
     code: JetBrains Mono
 
+plugins:
+  - search
+  - blog:
+      blog_dir: blog
+      post_date_format: long
+
 extra_css:
   - stylesheets/extra.css
 
@@ -110,3 +116,4 @@ nav:
       - Monitoring: operations/monitoring.md
       - Metrics: operations/metrics.md
       - Audit log: operations/audit-log.md
+  - Blog: blog/index.md
