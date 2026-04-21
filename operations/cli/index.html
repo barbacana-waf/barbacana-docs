@@ -1258,45 +1258,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serve" class="md-nav__link">
+  <a href="#synopsis" class="md-nav__link">
     <span class="md-ellipsis">
-      serve
+      Synopsis
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#validate" class="md-nav__link">
+  <a href="#exit-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      validate
+      Exit codes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#defaults" class="md-nav__link">
+  <a href="#run-the-waf" class="md-nav__link">
     <span class="md-ellipsis">
-      defaults
+      Run the WAF
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-render-config" class="md-nav__link">
+  <a href="#validate-a-config" class="md-nav__link">
     <span class="md-ellipsis">
-      debug render-config
+      Validate a config
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#version" class="md-nav__link">
+  <a href="#render-the-compiled-config" class="md-nav__link">
     <span class="md-ellipsis">
-      version
+      Render the compiled config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#print-the-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Print the version
     </span>
   </a>
   
@@ -1408,45 +1417,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#serve" class="md-nav__link">
+  <a href="#synopsis" class="md-nav__link">
     <span class="md-ellipsis">
-      serve
+      Synopsis
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#validate" class="md-nav__link">
+  <a href="#exit-codes" class="md-nav__link">
     <span class="md-ellipsis">
-      validate
+      Exit codes
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#defaults" class="md-nav__link">
+  <a href="#run-the-waf" class="md-nav__link">
     <span class="md-ellipsis">
-      defaults
+      Run the WAF
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#debug-render-config" class="md-nav__link">
+  <a href="#validate-a-config" class="md-nav__link">
     <span class="md-ellipsis">
-      debug render-config
+      Validate a config
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#version" class="md-nav__link">
+  <a href="#render-the-compiled-config" class="md-nav__link">
     <span class="md-ellipsis">
-      version
+      Render the compiled config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#print-the-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Print the version
     </span>
   </a>
   
@@ -1471,112 +1489,117 @@
 
 
 <h1 id="cli">CLI<a class="headerlink" href="#cli" title="Permanent link">&para;</a></h1>
-<p>Barbacana has five commands, all shipped inside the container image. Invoke them with <code>docker run … ghcr.io/barbacana-waf/barbacana:latest &lt;command&gt;</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Command</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#serve"><code>serve</code></a></td>
-<td>Run the WAF</td>
-</tr>
-<tr>
-<td><a href="#validate"><code>validate</code></a></td>
-<td>Check a config without starting</td>
-</tr>
-<tr>
-<td><a href="#defaults"><code>defaults</code></a></td>
-<td>Print all available protections</td>
-</tr>
-<tr>
-<td><a href="#debug-render-config"><code>debug render-config</code></a></td>
-<td>Show the generated low-level config</td>
-</tr>
-<tr>
-<td><a href="#version"><code>version</code></a></td>
-<td>Print version info</td>
-</tr>
-</tbody>
-</table>
-<p>The container reads its config from <code>/etc/barbacana/waf.yaml</code> by default — mount your file there and you can omit <code>--config</code> on most commands.</p>
-<hr />
-<h2 id="serve">serve<a class="headerlink" href="#serve" title="Permanent link">&para;</a></h2>
-<p>Run Barbacana as a WAF proxy.</p>
+<p>Barbacana is a single binary with one purpose: run the WAF. Auxiliary modes are flags on the same binary.</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>serve
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest
+</span></code></pre></div>
+<p>The container's default ENTRYPOINT runs the server — no subcommand, no <code>command:</code> override. The image reads <code>/etc/barbacana/waf.yaml</code> by default; mount your config there or pass <code>--config &lt;path&gt;</code>.</p>
+<h2 id="synopsis">Synopsis<a class="headerlink" href="#synopsis" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>barbacana [--config &lt;path&gt;] [--validate | --render-config | --version] [-h]
 </span></code></pre></div>
 <table>
 <thead>
 <tr>
 <th>Flag</th>
-<th>Required</th>
 <th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>--config</code></td>
-<td>no</td>
-<td>Path to the YAML config file inside the container (default <code>/etc/barbacana/waf.yaml</code>)</td>
+<td><code>--config &lt;path&gt;</code></td>
+<td>Path to the YAML config. Default: <code>/etc/barbacana/waf.yaml</code>. Shared by every mode.</td>
+</tr>
+<tr>
+<td><code>--validate</code></td>
+<td>Validate the config and exit.</td>
+</tr>
+<tr>
+<td><code>--render-config</code></td>
+<td>Print the compiled low-level config and exit (read-only diagnostic).</td>
+</tr>
+<tr>
+<td><code>--version</code></td>
+<td>Print version, Go version, and CRS version.</td>
+</tr>
+<tr>
+<td><code>-h</code>, <code>--help</code></td>
+<td>Show usage.</td>
 </tr>
 </tbody>
 </table>
+<p><code>--validate</code>, <code>--render-config</code>, and <code>--version</code> are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.</p>
+<h2 id="exit-codes">Exit codes<a class="headerlink" href="#exit-codes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success — server exited cleanly, or the selected mode finished with no errors.</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>Operational error — config invalid, file not found, rule compilation failed, listener failed, etc.</td>
+</tr>
+<tr>
+<td><code>2</code></td>
+<td>Usage error — unknown flag, or more than one mode flag set.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="run-the-waf">Run the WAF<a class="headerlink" href="#run-the-waf" title="Permanent link">&para;</a></h2>
+<p>Default behavior. No mode flag.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest
+</span></code></pre></div>
 <p>Listens on the ports declared in the config. Traffic defaults to <code>:8080</code> (mode 3) or <code>:443</code> (modes 1 and 2 — see <a href="../hostnames/">Hostnames &amp; HTTPS</a>). Metrics (<code>metrics_port</code>) and health (<code>health_port</code>) are <strong>off by default</strong> — set them explicitly to enable. Logs structured JSON to stdout. Reloads gracefully on <code>SIGHUP</code>.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;barbacana started&quot;,&quot;port&quot;:8080,&quot;crs_version&quot;:&quot;4.7.0&quot;}
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;health endpoint disabled — set health_port to enable /healthz and /readyz&quot;}
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;metrics endpoint disabled — set metrics_port to enable /metrics&quot;}
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;barbacana started&quot;,&quot;port&quot;:8080,&quot;crs_version&quot;:&quot;4.7.0&quot;}
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;health endpoint disabled — set health_port to enable /healthz and /readyz&quot;}
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>{&quot;time&quot;:&quot;2026-04-18T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;metrics endpoint disabled — set metrics_port to enable /metrics&quot;}
+</span></code></pre></div>
+<p>To point at a non-default config path:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/cfg/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>--config<span class="w"> </span>/cfg/waf.yaml
 </span></code></pre></div>
 <hr />
-<h2 id="validate">validate<a class="headerlink" href="#validate" title="Permanent link">&para;</a></h2>
-<p>Check that a config is well-formed without starting the proxy.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>validate<span class="w"> </span>/etc/barbacana/waf.yaml
+<h2 id="validate-a-config">Validate a config<a class="headerlink" href="#validate-a-config" title="Permanent link">&para;</a></h2>
+<p>Check that a config is well-formed without starting the proxy. Use it in CI before deployment.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>--config<span class="w"> </span>/etc/barbacana/waf.yaml<span class="w"> </span>--validate
 </span></code></pre></div>
-<p>Verifies the schema, every protection name, every referenced file (OpenAPI specs), and rule compilation. Use it in CI before deployment.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>config valid
+<p>Verifies the schema, every protection name, every referenced file (OpenAPI specs), and rule compilation.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>config valid
 </span></code></pre></div>
 <p>On error:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>waf.yaml:14: unknown protection &quot;sql-inejction&quot; (did you mean &quot;sql-injection&quot;?)
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>waf.yaml:22: openapi.spec &quot;/etc/barbacana/api.yaml&quot; not found
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>2 errors
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>waf.yaml:14: unknown protection &quot;sql-inejction&quot; (did you mean &quot;sql-injection&quot;?)
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>waf.yaml:22: openapi.spec &quot;/etc/barbacana/api.yaml&quot; not found
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>2 errors
 </span></code></pre></div>
-<p>Exit code is <code>0</code> on success, non-zero on any error.</p>
+<p>Exit code <code>0</code> on success, <code>1</code> on any validation error.</p>
 <hr />
-<h2 id="defaults">defaults<a class="headerlink" href="#defaults" title="Permanent link">&para;</a></h2>
-<p>Print every protection Barbacana ships with, its status, and its CWE mapping.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>defaults
+<h2 id="render-the-compiled-config">Render the compiled config<a class="headerlink" href="#render-the-compiled-config" title="Permanent link">&para;</a></h2>
+<p>Dump the low-level engine config that Barbacana generates from your YAML. Read-only diagnostic for support and bug reports.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>--config<span class="w"> </span>/etc/barbacana/waf.yaml<span class="w"> </span>--render-config
 </span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>PROTECTION                    STATUS    CWE
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>sql-injection                 enabled   CWE-89
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>  sql-injection-union         enabled   CWE-89
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>  sql-injection-boolean       enabled   CWE-89
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>  ...
-</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>xss                           enabled   CWE-79
-</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>  ...
-</span></code></pre></div>
-<p>Useful when picking names for <a href="../../reference/disable/"><code>disable</code></a>.</p>
+<p>Prints raw Caddy JSON. <strong>Not a user-editable format</strong> and not part of the user-facing API — it may change between versions. The supported way to configure Barbacana is the YAML schema; see the <a href="../../reference/schema/">config schema reference</a>.</p>
 <hr />
-<h2 id="debug-render-config">debug render-config<a class="headerlink" href="#debug-render-config" title="Permanent link">&para;</a></h2>
-<p>Dump the low-level engine config that Barbacana generates from your YAML. Read-only diagnostic.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>debug<span class="w"> </span>render-config<span class="w"> </span>/etc/barbacana/waf.yaml
+<h2 id="print-the-version">Print the version<a class="headerlink" href="#print-the-version" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>--version
 </span></code></pre></div>
-<p>Prints a JSON document. Used for support and bug reports — not part of the user-facing API and may change between versions.</p>
-<hr />
-<h2 id="version">version<a class="headerlink" href="#version" title="Permanent link">&para;</a></h2>
-<p>Print Barbacana, Go, and CRS versions.</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>ghcr.io/barbacana-waf/barbacana:latest<span class="w"> </span>version
-</span></code></pre></div>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>barbacana v0.4.0
-</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>go        go1.22.3
-</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>crs       4.7.0
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>barbacana v0.4.0
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>go        go1.22.3
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>crs       4.7.0
 </span></code></pre></div>
 
 

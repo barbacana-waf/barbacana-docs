@@ -2471,7 +2471,7 @@
 </span><span id="__span-10-65"><a id="__codelineno-10-65" name="__codelineno-10-65" href="#__codelineno-10-65"></a><span class="w">      </span><span class="nt">preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api-only</span>
 </span></code></pre></div>
 <h2 id="validation-behaviour">Validation behaviour<a class="headerlink" href="#validation-behaviour" title="Permanent link">&para;</a></h2>
-<p>All validation runs during <a href="../../operations/cli/#validate"><code>validate</code></a> and on startup. Errors are emitted as a single list with file path, YAML line number, and a specific message. Example:</p>
+<p>All validation runs during <a href="../../operations/cli/#validate-a-config"><code>--validate</code></a> and on startup. Errors are emitted as a single list with file path, YAML line number, and a specific message. Example:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>waf.yaml:17: unknown protection &quot;sql-injetcion&quot; in route &quot;public-api&quot; disable list (did you mean &quot;sql-injection&quot;?)
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>waf.yaml:23: global.accept.max_body_size must be &lt;= 1GB, got 2GB
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>waf.yaml:31: route &quot;admin&quot; cors.allow_credentials is true but allow_origins contains &quot;*&quot;
