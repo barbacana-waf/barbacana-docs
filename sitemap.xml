@@ -5,6 +5,14 @@
          <lastmod>2026-04-21</lastmod>
     </url>
     <url>
+         <loc>https://barbacana.dev/blog/</loc>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+         <loc>https://barbacana.dev/blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/</loc>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
          <loc>https://barbacana.dev/getting-started/incremental/</loc>
          <lastmod>2026-04-21</lastmod>
     </url>
@@ -102,6 +110,18 @@
     </url>
     <url>
          <loc>https://barbacana.dev/security/sensitivity/</loc>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+         <loc>https://barbacana.dev/blog/archive/2026/</loc>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+         <loc>https://barbacana.dev/blog/category/security/</loc>
+         <lastmod>2026-04-21</lastmod>
+    </url>
+    <url>
+         <loc>https://barbacana.dev/blog/category/releases/</loc>
          <lastmod>2026-04-21</lastmod>
     </url>
 </urlset>
