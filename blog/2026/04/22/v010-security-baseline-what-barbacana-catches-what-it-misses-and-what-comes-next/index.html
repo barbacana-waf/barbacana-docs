@@ -240,6 +240,8 @@
         <a href="../../../../../getting-started/quickstart/" class="md-tabs__link">
           
   
+    
+  
   Getting Started
 
         </a>
@@ -257,6 +259,8 @@
       <li class="md-tabs__item">
         <a href="../../../../../reference/overview/" class="md-tabs__link">
           
+  
+    
   
   Reference
 
@@ -276,6 +280,8 @@
         <a href="../../../../../security/overview/" class="md-tabs__link">
           
   
+    
+  
   Security
 
         </a>
@@ -293,6 +299,8 @@
       <li class="md-tabs__item">
         <a href="../../../../../operations/hostnames/" class="md-tabs__link">
           
+  
+    
   
   Operations
 
@@ -394,6 +402,16 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -528,6 +546,20 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
       
       
@@ -590,6 +622,12 @@
   
   
     
+    
+      
+        
+      
+        
+      
     
     
       
@@ -682,6 +720,14 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -796,6 +842,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
       
       
@@ -887,6 +939,12 @@
   
   
     
+    
+      
+        
+      
+        
+      
     
     
       
@@ -1007,6 +1065,18 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1161,6 +1231,18 @@
   
   
     
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1541,7 +1623,7 @@
 
 
 <h1 id="v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next">v0.1.0 Security Baseline: What Barbacana Catches, What It Misses, and What Comes Next<a class="headerlink" href="#v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next" title="Permanent link">&para;</a></h1>
-<p>Barbacana v0.1.0 is out. Right after the release, two independent test suites were run to measure what the WAF catches and what it misses. For a first release, the numbers are good: 99.7% on the OWASP CRS v4 conformance tests, 100% on API Security, and 90.78% of legitimate traffic allowed through. The full results are published below, without any filtering. It is more useful to know where detection fails than to publish a clean summary.</p>
+<p>Barbacana v0.1.0 is out. Right after the release, two independent test suites were run to measure what the WAF catches and what it misses. For a first release, the numbers are good: 99.7% on the OWASP CRS v4 conformance tests, 100% on API Security (REST and SOAP), and 90.78% of legitimate traffic allowed through. The full results are published below, without any filtering. It is more useful to know where detection fails than to publish a clean summary.</p>
 <!-- more -->
 
 <h2 id="crs-conformance">CRS conformance<a class="headerlink" href="#crs-conformance" title="Permanent link">&para;</a></h2>
@@ -1691,13 +1773,13 @@
 <p>None of the numbers above account for this. The test suites ran against a deployment with no schema declared, so every request reached the rule engine. With a spec in place, many of the bypasses listed in the report would be rejected during schema validation and would never reach the rules at all. Real deployments should expect significantly better coverage than these raw numbers suggest.</p>
 <p>Path traversal is a clear example. The category shows only 40% blocked (12 of 20 payloads got through), and most of those bypasses use payloads like <code>../../etc/passwd</code> placed inside a parameter value. If the OpenAPI spec declares that parameter as a filename made of letters and digits only, the request is rejected at schema validation because <code>../</code> does not match the allowed pattern. The rule engine never sees it. The same applies to rce-urlpath, where 0 of 3 attacks were blocked: those attacks inject shell commands into the URL path itself, but as soon as the valid paths are declared in the spec, anything that does not match is rejected as an unknown route.</p>
 <h2 id="what-these-results-mean-for-the-roadmap">What these results mean for the roadmap<a class="headerlink" href="#what-these-results-mean-for-the-roadmap" title="Permanent link">&para;</a></h2>
-<p>The next step is already defined. Barbacana will continue to ship a single curated rule set, but the set will be larger. Dozens of rules from the higher detection tiers will be added on top of today's baseline. Each rule is reviewed individually and adjusted so that its pattern matches only real attack indicators. This increases detection without the sudden rise in false positives that usually comes with a higher sensitivity setting.</p>
-<p>The sub-protection catalog is also being reorganized so that its groupings match the way CRS v4.25 organizes its own rules. Several Unix-command protections will be merged into one, and the same will be done for the mail-protocol protections and for the PHP stream-wrapper protections. SSRF will be split into two separate protections. Two existing entries will be renamed to make them clearer.</p>
-<p>Other improvements are also being explored. Parameter decoding can be made smarter so that common encodings no longer hide attacks from the rules. URL path content could be inspected directly, rather than depending on OpenAPI for that coverage. For protocols, GraphQL support is planned and will rely on schema validation to reject malformed or out-of-schema operations before they reach any rule. gRPC support is also planned, although its binary format and streaming model make it harder to inspect than HTTP and JSON.</p>
-<p>All of these changes will be measured by the same two test suites, which run in CI on every release. The results stay transparent: every change will show whether detection is actually improving and whether the false-positive rate remains stable.</p>
-<p>No specific timelines are attached to any of this. What ships, and in what order, will be decided by the test data.</p>
+<p>In the short term, the curated rule set is being expanded, and sub-protection groupings are being reorganized based on the analysis of these results. Rules from the higher detection tiers are being reviewed individually and adjusted so that their patterns match only real attack indicators. The goal is to increase detection without the sudden rise in false positives that usually comes with a higher sensitivity setting.</p>
+<p>Analyzing the test data also revealed that some sub-protection groupings did not match real disable decisions. The three mail-protocol protections, for example, always trigger together on mail-server traffic, so splitting them into three separate toggles gave operators no useful control — they are being collapsed into one. Similar clustering shows up in the Unix-command and PHP stream-wrapper groupings. The security evaluation is therefore improving not only detection but also the ergonomics of tuning: when a protection does need to be disabled, the unit being disabled should reflect how attacks actually group in practice.</p>
+<p>Longer term, areas under investigation include parameter decoding (so common encodings no longer hide attacks from the rules), path content inspection (to reduce the dependency on OpenAPI for that coverage), and protocol-specific schema validation for formats like GraphQL and gRPC.</p>
+<p>All of these changes are measured by the same two test suites, which run in CI on every release. The results stay transparent: every change will show whether detection is actually improving and whether the false-positive rate remains stable. What ships, and in what order, will be decided by the test data.</p>
 <h2 id="closing">Closing<a class="headerlink" href="#closing" title="Permanent link">&para;</a></h2>
 <p>Honest numbers are more useful than inflated ones. A realistic 55% with full context says more than a marketing 99% without it.</p>
+<p>Barbacana is safe to deploy today — these detection numbers are strong enough for production use. But this is v0.1.0, not v1.0.0. The config schema, sub-protection names, and internal defaults may still change based on what the test data reveals. Adopters should pin to a specific release rather than tracking latest.</p>
 <hr />
 <p>The raw reports behind the numbers above are available for download:</p>
 <ul>
@@ -1775,7 +1857,7 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
       <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
