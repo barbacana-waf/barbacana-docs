@@ -16,7 +16,7 @@ global:
   mode: blocking             # or detect_only
   disable: []                # protections disabled everywhere
   accept: { ... }            # methods, content types, sizes
-  inspection: { ... }        # sensitivity, timeouts, limits
+  inspection: { ... }        # timeouts, limits
   multipart: { ... }         # file upload limits
   response_headers: { ... }  # injected/stripped response headers
 

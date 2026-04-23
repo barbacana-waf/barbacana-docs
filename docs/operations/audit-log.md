@@ -16,7 +16,6 @@ Barbacana writes one structured JSON entry per inspected request to stdout. Pick
   "matched_protections": ["sql-injection", "sql-injection-union"],
   "matched_rules": [942100, 942180],
   "cwe": ["CWE-89"],
-  "anomaly_score": 8,
   "action": "blocked",
   "response_code": 403
 }
@@ -36,7 +35,6 @@ Barbacana writes one structured JSON entry per inspected request to stdout. Pick
 | `matched_protections` | string[] | Categories and sub-protections that fired. Names from the [protection catalog](../security/protections.md) — stable across releases. |
 | `matched_rules` | integer[] | Underlying detection rule IDs. **May change between releases** — alert on `matched_protections`, not these. |
 | `cwe` | string[] | CWE identifiers associated with the matched protections |
-| `anomaly_score` | integer | Total anomaly score; omitted when `0`. See [sensitivity](../security/sensitivity.md) for the threshold. |
 | `action` | string | `blocked`, `detected`, or `allowed` |
 | `response_code` | integer | HTTP status returned to the client |
 

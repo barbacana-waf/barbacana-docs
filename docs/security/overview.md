@@ -29,13 +29,19 @@ Barbacana focuses on application-layer attack detection where it can give high-c
 
 Barbacana also does **not** parse SOAP, gRPC, or GraphQL semantics.
 
-## How detection works
+## Detection model
 
-Barbacana uses two complementary mechanisms:
+Every request is matched against the OWASP Core Rule Set's attack patterns. A single suspicious pattern usually isn't enough on its own — multiple matches that together indicate an attack are what trigger a block (or a log entry, in [detect-only mode](../reference/detect-only.md)). This keeps false positives low without missing combined attacks.
 
-1. **Signature matching** — every request is checked against a curated set of attack patterns from the OWASP Core Rule Set. A match contributes a score.
-2. **Anomaly scoring** — scores accumulate across patterns. When the total crosses the [sensitivity](sensitivity.md) threshold, the request is blocked (or logged, in [detect-only mode](../reference/detect-only.md)).
+The active rule set is **not user-configurable**. Barbacana picks it: the CRS baseline plus a hand-curated set of additional rules, each individually screened against benign-traffic corpora to keep false positives low. The reason there is no sensitivity knob is that turning one without traffic context tends to produce false positives, which leads operators to disable whole protection categories — leaving the application less protected than the default would have been. Making these decisions once, carefully, is the safer trade.
 
-A single suspicious pattern usually isn't enough to block. Multiple matches that together cross the threshold are. This keeps false positives low without missing combined attacks.
+The matched patterns and the block decision appear in the [audit log](../operations/audit-log.md).
 
-The matched patterns, the score, and the threshold decision all appear in the [audit log](../operations/audit-log.md).
+## What you can tune
+
+Two route-level levers handle the cases where the default isn't right for your traffic:
+
+- [`disable`](../reference/disable.md) — surgically remove a specific protection (or a whole category) on a route, by canonical name. Use this when a known false positive recurs on a known endpoint.
+- [`detect_only` mode](../reference/detect-only.md) — inspect and log every request but never block. Use this when onboarding a new route, or before raising confidence enough to switch a route to blocking.
+
+

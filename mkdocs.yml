@@ -11,6 +11,7 @@ copyright: Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0
 
 theme:
   name: material
+  custom_dir: overrides
   logo: assets/logo.png
   favicon: assets/logo.png
   icon:
@@ -19,6 +20,7 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
+    - navigation.indexes
     - navigation.top
     - search.suggest
     - search.highlight
@@ -80,6 +82,12 @@ markdown_extensions:
   - pymdownx.emoji:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - termynal:
+      include_assets: true
+      title: "bash"
+      buttons: "macos"
+      prompt_literal_start: ["$"]
+      assets_override_js: termynal-noop.js
 
 nav:
   - Welcome: index.md
@@ -108,8 +116,8 @@ nav:
       - Overview: security/overview.md
       - Request lifecycle: security/request-lifecycle.md
       - Protections: security/protections.md
-      - Sensitivity: security/sensitivity.md
       - Logs & SIEM: security/logs.md
+      - Verifying releases: security/verifying.md
   - Operations:
       - Hostnames & HTTPS: operations/hostnames.md
       - CLI: operations/cli.md

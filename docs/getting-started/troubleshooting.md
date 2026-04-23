@@ -89,7 +89,6 @@ Barbacana writes one JSON entry per inspected request to stdout. Look for entrie
 {
   "action": "detected",
   "matched_protections": ["sql-injection", "sql-injection-union"],
-  "anomaly_score": 8,
   "path": "/search",
   "method": "POST"
 }

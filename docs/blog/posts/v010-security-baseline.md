@@ -8,7 +8,7 @@ categories:
 
 # v0.1.0 Security Baseline: What Barbacana Catches, What It Misses, and What Comes Next
 
-Barbacana v0.1.0 is out. Right after the release, two independent test suites were run to measure what the WAF catches and what it misses. For a first release, the numbers are good: 99.7% on the OWASP CRS v4 conformance tests, 100% on API Security, and 90.78% of legitimate traffic allowed through. The full results are published below, without any filtering. It is more useful to know where detection fails than to publish a clean summary.
+Barbacana v0.1.0 is out. Right after the release, two independent test suites were run to measure what the WAF catches and what it misses. For a first release, the numbers are good: 99.7% on the OWASP CRS v4 conformance tests, 100% on API Security (REST and SOAP), and 90.78% of legitimate traffic allowed through. The full results are published below, without any filtering. It is more useful to know where detection fails than to publish a clean summary.
 
 <!-- more -->
 
@@ -86,19 +86,19 @@ Path traversal is a clear example. The category shows only 40% blocked (12 of 20
 
 ## What these results mean for the roadmap
 
-The next step is already defined. Barbacana will continue to ship a single curated rule set, but the set will be larger. Dozens of rules from the higher detection tiers will be added on top of today's baseline. Each rule is reviewed individually and adjusted so that its pattern matches only real attack indicators. This increases detection without the sudden rise in false positives that usually comes with a higher sensitivity setting.
+In the short term, the curated rule set is being expanded, and sub-protection groupings are being reorganized based on the analysis of these results. Rules from the higher detection tiers are being reviewed individually and adjusted so that their patterns match only real attack indicators. The goal is to increase detection without the sudden rise in false positives that usually comes with a higher sensitivity setting.
 
-The sub-protection catalog is also being reorganized so that its groupings match the way CRS v4.25 organizes its own rules. Several Unix-command protections will be merged into one, and the same will be done for the mail-protocol protections and for the PHP stream-wrapper protections. SSRF will be split into two separate protections. Two existing entries will be renamed to make them clearer.
+Analyzing the test data also revealed that some sub-protection groupings did not match real disable decisions. The three mail-protocol protections, for example, always trigger together on mail-server traffic, so splitting them into three separate toggles gave operators no useful control — they are being collapsed into one. Similar clustering shows up in the Unix-command and PHP stream-wrapper groupings. The security evaluation is therefore improving not only detection but also the ergonomics of tuning: when a protection does need to be disabled, the unit being disabled should reflect how attacks actually group in practice.
 
-Other improvements are also being explored. Parameter decoding can be made smarter so that common encodings no longer hide attacks from the rules. URL path content could be inspected directly, rather than depending on OpenAPI for that coverage. For protocols, GraphQL support is planned and will rely on schema validation to reject malformed or out-of-schema operations before they reach any rule. gRPC support is also planned, although its binary format and streaming model make it harder to inspect than HTTP and JSON.
+Longer term, areas under investigation include parameter decoding (so common encodings no longer hide attacks from the rules), path content inspection (to reduce the dependency on OpenAPI for that coverage), and protocol-specific schema validation for formats like GraphQL and gRPC.
 
-All of these changes will be measured by the same two test suites, which run in CI on every release. The results stay transparent: every change will show whether detection is actually improving and whether the false-positive rate remains stable.
-
-No specific timelines are attached to any of this. What ships, and in what order, will be decided by the test data.
+All of these changes are measured by the same two test suites, which run in CI on every release. The results stay transparent: every change will show whether detection is actually improving and whether the false-positive rate remains stable. What ships, and in what order, will be decided by the test data.
 
 ## Closing
 
 Honest numbers are more useful than inflated ones. A realistic 55% with full context says more than a marketing 99% without it.
+
+Barbacana is safe to deploy today — these detection numbers are strong enough for production use. But this is v0.1.0, not v1.0.0. The config schema, sub-protection names, and internal defaults may still change based on what the test data reveals. Adopters should pin to a specific release rather than tracking latest.
 
 ---
 

@@ -36,7 +36,7 @@ routes:
 
 `metrics_port` and `health_port` default to `0`, which means the corresponding listener is **never started**: no port is opened, no endpoint is served. Audit logs go to stdout regardless and are always on.
 
-This opt-in is deliberate. An open port is attack surface — `/metrics` exposes route IDs, protection names, and anomaly scores; `/healthz` advertises that a WAF is running. A hobbyist who forwards `:443` on their home router should not unknowingly expose two additional operational-data ports. Production deployments set both ports explicitly.
+This opt-in is deliberate. An open port is attack surface — `/metrics` exposes route IDs and protection names; `/healthz` advertises that a WAF is running. A hobbyist who forwards `:443` on their home router should not unknowingly expose two additional operational-data ports. Production deployments set both ports explicitly.
 
 When a port is `0`, the server emits an info log at startup so operators know why the endpoint is missing:
 
@@ -115,8 +115,6 @@ global:
 
   # ── How the WAF inspects ──────────────────────────────────
   inspection:
-    sensitivity: 1                   # 1-4; higher = more rules = more false positives
-    anomaly_threshold: 5             # cumulative score to trigger block
     evaluation_timeout: 50ms         # context deadline for rule evaluation
     max_inspect_size: 128KB          # bytes of non-file body evaluated by rules
     max_memory_buffer: 128KB         # spool to disk above this
@@ -167,8 +165,6 @@ global:
 | `global.accept.max_header_size` | byte size | `16KB` | `>= 4KB`, `<= 1MB` |
 | `global.accept.max_header_count` | int | `100` | `>= 10`, `<= 1000` |
 | `global.accept.require_host_header` | bool | `true` | — |
-| `global.inspection.sensitivity` | int | `1` | `>= 1`, `<= 4` |
-| `global.inspection.anomaly_threshold` | int | `5` | `>= 1` |
 | `global.inspection.evaluation_timeout` | duration | `50ms` | `>= 10ms` |
 | `global.inspection.max_inspect_size` | byte size | `128KB` | `> 0`, `<= 10MB` |
 | `global.inspection.max_memory_buffer` | byte size | `128KB` | `> 0`, `<= 10MB` |
@@ -395,8 +391,6 @@ global:
     methods: [GET, POST, PUT, DELETE]
     max_body_size: 50MB
   inspection:
-    sensitivity: 2
-    anomaly_threshold: 7
     json_depth: 15
   response_headers:
     preset: custom

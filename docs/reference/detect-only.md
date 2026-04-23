@@ -18,7 +18,6 @@ Every request is inspected normally. When a protection matches, the request is *
 {
   "action": "detected",
   "matched_protections": ["sql-injection", "sql-injection-union"],
-  "anomaly_score": 8,
   "...": "..."
 }
 ```
@@ -29,7 +28,6 @@ In normal (blocking) mode the same request would log `action: blocked` and retur
 
 - **First deployment** — turn it on, watch for a week, see what real traffic trips. Disable false positives, then switch off.
 - **A new route** — start in detect-only until you've seen production traffic.
-- **Raising sensitivity** — every time you change [sensitivity](../security/sensitivity.md), retune in detect-only.
 
 ## Per route
 

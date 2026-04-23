@@ -33,7 +33,6 @@ Barbacana exposes them on a separate HTTP server (default `:9090`, path `/metric
 
 | Name | Labels | Description |
 |---|---|---|
-| `waf_anomaly_score_histogram` | `route` | Anomaly score per request. Buckets: 1, 2, 3, 5, 10, 15, 25, 50 |
 | `waf_request_duration_overhead_seconds` | `route` | Time spent in WAF inspection per request |
 
 ## Example queries
