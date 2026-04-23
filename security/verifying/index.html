@@ -12,13 +12,13 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/security/sensitivity/">
+        <link rel="canonical" href="https://barbacana.dev/security/verifying/">
       
       
-        <link rel="prev" href="../protections/">
+        <link rel="prev" href="../logs/">
       
       
-        <link rel="next" href="../logs/">
+        <link rel="next" href="../../operations/hostnames/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Sensitivity - Barbacana</title>
+        <title>Verifying releases - Barbacana</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sensitivity" class="md-skip">
+        <a href="#verifying-a-release" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sensitivity
+              Verifying releases
             
           </span>
         </div>
@@ -1184,6 +1184,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../logs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Logs & SIEM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1200,7 +1221,7 @@
           
   
   <span class="md-ellipsis">
-    Sensitivity
+    Verifying releases
   </span>
   
 
@@ -1211,7 +1232,7 @@
         
   
   <span class="md-ellipsis">
-    Sensitivity
+    Verifying releases
   </span>
   
 
@@ -1233,54 +1254,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#levels" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Levels
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pair-sensitivity-with-anomaly_threshold" class="md-nav__link">
+  <a href="#1-verify-the-image-signature" class="md-nav__link">
     <span class="md-ellipsis">
-      Pair sensitivity with anomaly_threshold
+      1. Verify the image signature
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-raise-it" class="md-nav__link">
+  <a href="#2-verify-the-sbom-attestation" class="md-nav__link">
     <span class="md-ellipsis">
-      When to raise it
+      2. Verify the SBOM attestation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tuning-workflow-when-raising" class="md-nav__link">
+  <a href="#3-enforce-verification-at-admission-kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
-      Tuning workflow when raising
+      3. Enforce verification at admission (Kubernetes)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#known-soft-spots" class="md-nav__link">
+  <a href="#4-retrieve-the-sbom" class="md-nav__link">
     <span class="md-ellipsis">
-      Known soft spots
+      4. Retrieve the SBOM
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-we-measure-this" class="md-nav__link">
+  <a href="#5-scan-for-cves" class="md-nav__link">
     <span class="md-ellipsis">
-      How we measure this
+      5. Scan for CVEs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
     </span>
   </a>
   
@@ -1290,27 +1320,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Logs & SIEM
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1538,54 +1547,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#levels" class="md-nav__link">
+  <a href="#prerequisites" class="md-nav__link">
     <span class="md-ellipsis">
-      Levels
+      Prerequisites
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#pair-sensitivity-with-anomaly_threshold" class="md-nav__link">
+  <a href="#1-verify-the-image-signature" class="md-nav__link">
     <span class="md-ellipsis">
-      Pair sensitivity with anomaly_threshold
+      1. Verify the image signature
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#when-to-raise-it" class="md-nav__link">
+  <a href="#2-verify-the-sbom-attestation" class="md-nav__link">
     <span class="md-ellipsis">
-      When to raise it
+      2. Verify the SBOM attestation
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tuning-workflow-when-raising" class="md-nav__link">
+  <a href="#3-enforce-verification-at-admission-kubernetes" class="md-nav__link">
     <span class="md-ellipsis">
-      Tuning workflow when raising
+      3. Enforce verification at admission (Kubernetes)
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#known-soft-spots" class="md-nav__link">
+  <a href="#4-retrieve-the-sbom" class="md-nav__link">
     <span class="md-ellipsis">
-      Known soft spots
+      4. Retrieve the SBOM
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-we-measure-this" class="md-nav__link">
+  <a href="#5-scan-for-cves" class="md-nav__link">
     <span class="md-ellipsis">
-      How we measure this
+      5. Scan for CVEs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference
     </span>
   </a>
   
@@ -1609,107 +1627,304 @@
   
 
 
-<h1 id="sensitivity">Sensitivity<a class="headerlink" href="#sensitivity" title="Permanent link">&para;</a></h1>
-<p>Sensitivity controls how aggressive detection is. Higher sensitivity catches more attacks — and produces more false positives. Under the hood, it maps directly to the OWASP Core Rule Set's <a href="https://coreruleset.org/docs/concepts/paranoia_levels/">paranoia level</a> (PL).</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="nt">inspection</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="nt">sensitivity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">          </span><span class="c1"># default</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">      </span><span class="nt">anomaly_threshold</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span><span class="w">    </span><span class="c1"># default — see &quot;Pair them&quot; below</span>
+<h1 id="verifying-a-release">Verifying a release<a class="headerlink" href="#verifying-a-release" title="Permanent link">&para;</a></h1>
+<p>Every Barbacana release ships three artifacts in <code>ghcr.io</code>, all bound to the same image digest:</p>
+<ul>
+<li>A multi-arch image at <code>ghcr.io/barbacana-waf/barbacana:vX.Y.Z</code> (and <code>:latest</code>).</li>
+<li>A cosign keyless signature over the image digest.</li>
+<li>A CycloneDX SBOM attested to the same digest, stored as an OCI 1.1 referrer alongside the image.</li>
+</ul>
+<p>Edge builds at <code>ghcr.io/barbacana-waf/barbacana-edge</code> are <strong>not</strong> signed and <strong>not</strong> attested. Do not run them in production; do not apply the procedures below to them — they will fail.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Used for</th>
+<th>Install</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cosign ≥ 3.0</td>
+<td>Signature + attestation verification, SBOM download</td>
+<td><a href="https://docs.sigstore.dev/cosign/system_config/installation/">Installation</a></td>
+</tr>
+<tr>
+<td>jq</td>
+<td>SBOM extraction</td>
+<td><a href="https://jqlang.org/download/">Download</a></td>
+</tr>
+<tr>
+<td>trivy ≥ 0.50</td>
+<td>CVE scanning</td>
+<td><a href="https://trivy.dev/latest/getting-started/installation/">Installation</a></td>
+</tr>
+<tr>
+<td>grype (optional)</td>
+<td>Alternative CVE scanner</td>
+<td><a href="https://github.com/anchore/grype#installation">Installation</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-verify-the-image-signature">1. Verify the image signature<a class="headerlink" href="#1-verify-the-image-signature" title="Permanent link">&para;</a></h2>
+<p>The signature proves the image at the given reference was produced by the Barbacana release workflow on a tagged commit. It does not say anything about what is <em>inside</em> the image — that is what the SBOM attestation in step 2 is for.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cosign verify \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
 </span></code></pre></div>
-<h2 id="levels">Levels<a class="headerlink" href="#levels" title="Permanent link">&para;</a></h2>
-<p>Each level is cumulative: level 3 fires everything levels 1 and 2 fire, plus more.</p>
-<table>
-<thead>
-<tr>
-<th>Level (CRS PL)</th>
-<th>What it adds</th>
-<th>False-positive risk</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>1</strong> (default)</td>
-<td>High-confidence patterns — the classic attack shapes. Suitable for most apps without tuning.</td>
-<td>Low</td>
-</tr>
-<tr>
-<td><strong>2</strong></td>
-<td>Broader regex variants of the PL1 patterns.</td>
-<td>Moderate</td>
-</tr>
-<tr>
-<td><strong>3</strong></td>
-<td>Aggressive heuristics that catch common evasion attempts.</td>
-<td>High — expect tuning</td>
-</tr>
-<tr>
-<td><strong>4</strong></td>
-<td>Text- and structure-level anomalies. Will block borderline-legitimate input.</td>
-<td>Very high — only with extensive tuning</td>
-</tr>
-</tbody>
-</table>
-<h2 id="pair-sensitivity-with-anomaly_threshold">Pair sensitivity with <code>anomaly_threshold</code><a class="headerlink" href="#pair-sensitivity-with-anomaly_threshold" title="Permanent link">&para;</a></h2>
-<p><code>anomaly_threshold</code> is the cumulative score a request must reach to be blocked. It defaults to <code>5</code>, which is only correct at sensitivity level 1.</p>
-<p>Each higher level fires strictly more rules. With the threshold fixed, scores accumulate faster than the threshold can absorb and benign traffic trips the block. Raising sensitivity <strong>without</strong> raising the threshold can collapse the true-negative rate to near zero — in our own nightly sweep, PL4 with the default threshold blocked 100% of benign requests.</p>
-<p>When you raise sensitivity, raise the threshold to match:</p>
-<table>
-<thead>
-<tr>
-<th>Sensitivity</th>
-<th>Recommended <code>anomaly_threshold</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1</td>
-<td>5</td>
-</tr>
-<tr>
-<td>2</td>
-<td>7</td>
-</tr>
-<tr>
-<td>3</td>
-<td>9</td>
-</tr>
-<tr>
-<td>4</td>
-<td>12</td>
-</tr>
-</tbody>
-</table>
-<p>These pairings follow established CRS tuning guidance and are the values Barbacana's nightly security sweep runs against.</p>
-<h2 id="when-to-raise-it">When to raise it<a class="headerlink" href="#when-to-raise-it" title="Permanent link">&para;</a></h2>
+<p>Example run against <code>latest</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify \
+  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;},<br>  &quot;type&quot;:&quot;https://sigstore.dev/cosign/sign/v1&quot;},&quot;optional&quot;:{...}}]<br></span></div>
+
+<p>The certificate identity regex pins the signature to a workflow file in the <code>barbacana-waf/barbacana</code> repository, fired on a <code>v*</code> tag push. The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.</p>
+<p>A successful run prints a JSON array of verified signatures and exits 0.</p>
+<p>A failure means one of the following:</p>
 <ul>
-<li>Your app handles sensitive data (payments, health records, credentials).</li>
-<li>You've completed a tuning cycle at the current level — false positives are at zero on real traffic.</li>
-<li>A threat model or pen-test result indicates you need to catch more sophisticated evasion.</li>
+<li>The image at that reference is unsigned, or signed by an identity that does not match the regex (i.e. not produced by this repo's release workflow).</li>
+<li>The transparency log entry for the signature has been tampered with or removed.</li>
+<li>The image reference points to a different digest than the one that was signed (e.g. a tag was force-pushed).</li>
 </ul>
-<p>If you can't tolerate false positives and haven't tuned, <strong>stay at level 1</strong>.</p>
-<h2 id="tuning-workflow-when-raising">Tuning workflow when raising<a class="headerlink" href="#tuning-workflow-when-raising" title="Permanent link">&para;</a></h2>
-<ol>
-<li>Switch the route to <a href="../../reference/detect-only/"><code>mode: detect_only</code></a>.</li>
-<li>Raise <code>sensitivity</code> <strong>and</strong> <code>anomaly_threshold</code> together (see the pairing table above).</li>
-<li>Watch the <a href="../../operations/audit-log/">audit log</a> under real traffic for a representative period — a day, a week, whatever covers your usage patterns.</li>
-<li>For each false-positive pattern, <a href="../../reference/disable/"><code>disable</code></a> the most specific sub-protection.</li>
-<li>Switch <code>mode</code> back to blocking (the default).</li>
-</ol>
-<p>Repeat for the next level if needed.</p>
-<div class="admonition tip">
-<p class="admonition-title">Per route, not global</p>
-<p>Sensitivity is set per route. A login endpoint can run at level 3 while a forgiving file-upload endpoint stays at level 1.</p>
+<p>In all three cases, treat the image as untrusted.</p>
+<h2 id="2-verify-the-sbom-attestation">2. Verify the SBOM attestation<a class="headerlink" href="#2-verify-the-sbom-attestation" title="Permanent link">&para;</a></h2>
+<p>The attestation is a cosign-signed in-toto statement carrying a CycloneDX SBOM as its predicate. Verifying it proves the SBOM came from the same release workflow that signed the image and is bound to that image's digest.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cosign verify-attestation \
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  --type cyclonedx \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
+</span></code></pre></div>
+<p>Example run against <code>latest</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation \
+  --type cyclonedx \
+  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>{&quot;payload&quot;:&quot;eyJfdHlwZSI6Imh0dHBz[...]&quot;,&quot;payloadType&quot;:&quot;application/vnd.in-toto+json&quot;,&quot;signatures&quot;:[{&quot;sig&quot;:&quot;...&quot;}]}<br></span></div>
+
+<p>A success prints the verified in-toto envelope to stdout and exits 0. Pipe it through <code>jq</code> to inspect the predicate type and the bound subject:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cosign verify-attestation --type cyclonedx \
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z 2&gt;/dev/null \
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  | jq -r &#39;.payload&#39; | base64 -d | jq &#39;.predicateType,.subject&#39;
+</span></code></pre></div>
+<p>Example run against <code>latest</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation --type cyclonedx \
+  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  ghcr.io/barbacana-waf/barbacana:latest 2&gt;/dev/null \
+  | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'</span><span data-ty>&quot;https://cyclonedx.org/bom&quot;<br>[<br>  {<br>    &quot;name&quot;: &quot;ghcr.io/barbacana-waf/barbacana&quot;,<br>    &quot;digest&quot;: {<br>      &quot;sha256&quot;: &quot;a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;<br>    }<br>  }<br>]<br></span></div>
+
+<p>Failure modes:</p>
+<ul>
+<li><code>none of the attestations matched the predicate type: cyclonedx</code> — the image has no CycloneDX SBOM attached. Either the reference is wrong, the image was not produced by a release tag, or the attestation has been stripped from the registry.</li>
+<li>The certificate-identity check fails — same meaning as in step 1: the SBOM was attested by something other than the release workflow.</li>
+</ul>
+<p>Both verification steps should pass before trusting the SBOM in step 4.</p>
+<h2 id="3-enforce-verification-at-admission-kubernetes">3. Enforce verification at admission (Kubernetes)<a class="headerlink" href="#3-enforce-verification-at-admission-kubernetes" title="Permanent link">&para;</a></h2>
+<p>Steps 1 and 2 can be enforced automatically by a Kubernetes admission controller, so unsigned or unattested images are rejected at deploy time without any manual step. Two common options:</p>
+<ul>
+<li><a href="https://docs.sigstore.dev/policy-controller/overview/">Sigstore Policy Controller</a> — purpose-built admission webhook from the Sigstore project. Configure a <code>ClusterImagePolicy</code> with the same identity regex and OIDC issuer used in steps 1–2.</li>
+<li><a href="https://kyverno.io/docs/policy-types/verify-images/sigstore/">Kyverno</a> — general-purpose policy engine with a built-in <code>verifyImages</code> rule that calls cosign internally.</li>
+</ul>
+<p>Either lets the cluster reject any pod whose image fails the same checks performed manually above.</p>
+<h2 id="4-retrieve-the-sbom">4. Retrieve the SBOM<a class="headerlink" href="#4-retrieve-the-sbom" title="Permanent link">&para;</a></h2>
+<p>For tooling that consumes the SBOM file directly (Dependency-Track, GUAC, custom scanners), download and extract the CycloneDX predicate:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cosign download attestation \
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  --predicate-type https://cyclonedx.org/bom \
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z \
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  | jq -r &#39;.dsseEnvelope.payload&#39; | base64 -d | jq &#39;.predicate&#39; \
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  &gt; barbacana.cdx.json
+</span></code></pre></div>
+<p>Example run against <code>latest</code> (download, then inspect the resulting file):</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign download attestation \
+  --predicate-type https://cyclonedx.org/bom \
+  ghcr.io/barbacana-waf/barbacana:latest \
+  | jq -r '.dsseEnvelope.payload' | base64 -d | jq '.predicate' \
+  &gt; barbacana.cdx.json</span><span data-ty="input" data-ty-prompt="$">jq -r '.bomFormat, .specVersion, (.components | length)' barbacana.cdx.json</span><span data-ty>CycloneDX<br>1.6<br>185<br></span></div>
+
+<p>What each stage does:</p>
+<ul>
+<li><code>cosign download attestation</code> fetches the signed in-toto bundle for the CycloneDX predicate type from the registry. No network call to Rekor is made — this is a registry read.</li>
+<li><code>jq -r '.dsseEnvelope.payload'</code> extracts the base64-encoded DSSE payload (the in-toto statement).</li>
+<li><code>base64 -d | jq '.predicate'</code> decodes the statement and unwraps the CycloneDX document.</li>
+</ul>
+<p>The result is a standalone CycloneDX 1.x JSON document at <code>barbacana.cdx.json</code>.</p>
+<p><code>cosign download attestation</code> does <strong>not</strong> verify the signature — it only fetches. Always run step 2 first; only trust an SBOM whose attestation has already been verified.</p>
+<h2 id="5-scan-for-cves">5. Scan for CVEs<a class="headerlink" href="#5-scan-for-cves" title="Permanent link">&para;</a></h2>
+<p>Two equivalent paths.</p>
+<p><strong>Direct (no manual download)</strong> — trivy fetches the attestation from the registry itself:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>trivy image \
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  --sbom-sources oci \
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  --scanners vuln \
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
+</span></code></pre></div>
+<p>Example run against <code>latest</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">trivy image \
+  --sbom-sources oci \
+  --scanners vuln \
+  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty>Report Summary<br><br>┌──────────────────────────────────────────────────────┬──────────┬─────────────────┐<br>│                        Target                        │   Type   │ Vulnerabilities │<br>├──────────────────────────────────────────────────────┼──────────┼─────────────────┤<br>│ ghcr.io/barbacana-waf/barbacana:latest (debian 13.4) │  debian  │        0        │<br>├──────────────────────────────────────────────────────┼──────────┼─────────────────┤<br>│ ko-app/barbacana                                     │ gobinary │        0        │<br>└──────────────────────────────────────────────────────┴──────────┴─────────────────┘<br></span></div>
+
+<div class="admonition warning">
+<p class="admonition-title">The vulnerability count will change over time</p>
+<p>The <code>0</code> reported in the example outputs below is the result at the time the scan was captured. CVEs are disclosed against existing components continuously, so the same image will start reporting findings without anything in the image changing. </p>
 </div>
-<h2 id="known-soft-spots">Known soft spots<a class="headerlink" href="#known-soft-spots" title="Permanent link">&para;</a></h2>
-<p>At every sensitivity level, CRS's current corpus has documented gaps in two categories:</p>
+<p>Best for operators who just want a vuln report against a deployed image. <code>--sbom-sources oci</code> tells trivy to prefer the registry-attached SBOM over re-deriving one from the image layers, which is faster and produces results that match exactly what was attested.</p>
+<p><strong>From a downloaded SBOM</strong> — useful for air-gapped scanning or when the same SBOM is fed into multiple tools:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>trivy sbom barbacana.cdx.json
+</span></code></pre></div>
+<p>Example run against the SBOM extracted from <code>latest</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">trivy sbom barbacana.cdx.json</span><span data-ty>Report Summary<br><br>┌────────┬──────────┬─────────────────┐<br>│ Target │   Type   │ Vulnerabilities │<br>├────────┼──────────┼─────────────────┤<br>│        │ gobinary │        0        │<br>└────────┴──────────┴─────────────────┘<br></span></div>
+
+<p>Or with grype:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>grype sbom:./barbacana.cdx.json
+</span></code></pre></div>
+<p>Both scanners auto-detect CycloneDX format. Severity, output format, and ignore-policy flags are scanner-specific — see the respective documentation.</p>
+<p>A clean scan today does not mean the image is clean tomorrow; new CVEs are disclosed against existing components continuously. See the next section.</p>
+<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>SSTI (server-side template injection)</strong> — CRS does not yet carry broad template-engine-specific payload coverage. Raising the level does not meaningfully improve coverage.</li>
-<li><strong>XSS (reflected, in specific contexts)</strong> — the libinjection-based rules backing XSS detection are biased toward precision. Raising the level picks up some, not all, missing payloads.</li>
+<li><a href="https://docs.sigstore.dev/">Sigstore documentation</a> — background on cosign, Fulcio, Rekor, and the in-toto attestation format.</li>
+<li><a href="https://cyclonedx.org/specification/overview/">CycloneDX specification</a> — the SBOM format used in the attestation.</li>
 </ul>
-<p>These are CRS corpus gaps, not Barbacana integration gaps. They close on CRS bumps, not on sensitivity changes. If your threat model concentrates on these categories, add <a href="../../reference/openapi/">OpenAPI validation</a> and application-level escaping as complementary defenses.</p>
-<h2 id="how-we-measure-this">How we measure this<a class="headerlink" href="#how-we-measure-this" title="Permanent link">&para;</a></h2>
-<p>Every Barbacana build runs the <a href="https://github.com/wallarm/gotestwaf">gotestwaf</a> attack-simulation suite across all four sensitivity levels, each paired with its recommended threshold. The suite fires hundreds of attack and benign payloads across OWASP categories (SQLi, XSS, RCE, SSTI, XXE, LDAP, NoSQL, SSRF, path traversal) and reports the tradeoff curve: attack-block rate vs. clean-pass rate. Results are published as artifacts of the nightly <code>security-scan</code> workflow on GitHub.</p>
+<style data-termynal-inline="true">
+ :root {
+   --color-bg: #252a33;
+   --color-text: #eee;
+   --color-text-subtle: #a2a2a2;
+ }
+
+ [data-termynal] {
+   max-width: 100%;
+   overflow-x: auto;
+   background: var(--color-bg);
+   color: var(--color-text);
+   font-size: 15px;
+   font-family: 'Roboto Mono', 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+   border-radius: 4px;
+   padding: 75px 45px 35px;
+   position: relative;
+   -webkit-box-sizing: border-box;
+   box-sizing: border-box;
+ }
+
+ [data-termynal][data-ty-macos]:before {
+   content: '';
+   position: absolute;
+   top: 15px;
+   left: 15px;
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   border-radius: 50%;
+   /* A little hack to display the window buttons in one pseudo element. */
+   background: #d9515d;
+   -webkit-box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+   box-shadow: 25px 0 0 #f4c025, 50px 0 0 #3ec930;
+ }
+
+ [data-termynal][data-ty-windows]:before {
+   content: '';
+   position: absolute;
+   top: 15px;
+   left: unset;
+   right: 15px;
+   display: inline-block;
+   width: 15px;
+   height: 15px;
+   /* A little hack to display the window buttons in one pseudo element. */
+   background: #d9515d;
+   -webkit-box-shadow: -25px 0 0 #e6e6e6, -50px 0 0 #e6e6e6;
+   box-shadow: -25px 0 0 #e6e6e6, -50px 0 0 #e6e6e6;
+ }
+
+ [data-termynal]:after {
+   content: 'bash';
+   position: absolute;
+   color: var(--color-text-subtle);
+   top: 5px;
+   left: 0;
+   width: 100%;
+   text-align: center;
+ }
+
+ [data-termynal][data-ty-title]:after {
+   content: attr(data-ty-title);
+ }
+
+ button[data-terminal-control] {
+   float: right;
+   text-align: right;
+   display: block;
+   color: #aebbff;
+   background: none !important;
+   border: none;
+   padding: 0 !important;
+   cursor: pointer;
+ }
+
+ [data-ty] {
+   display: block;
+   line-height: 2;
+   white-space: pre;
+ }
+
+ [data-ty]:before {
+   /* Set up defaults and ensure empty lines are displayed. */
+   content: '';
+   display: inline-block;
+   vertical-align: middle;
+ }
+
+ [data-ty="input"]:before,
+ [data-ty-prompt]:before {
+   margin-right: 0.75em;
+   color: var(--color-text-subtle);
+ }
+
+ [data-ty="input"]:before {
+   content: '$';
+ }
+
+ [data-ty][data-ty-prompt]:before {
+   content: attr(data-ty-prompt);
+ }
+
+ [data-ty-cursor]:after {
+   content: attr(data-ty-cursor);
+   font-family: monospace;
+   margin-left: 0.5em;
+   -webkit-animation: blink 1s infinite;
+   animation: blink 1s infinite;
+ }
+
+ @-webkit-keyframes blink {
+   50% {
+     opacity: 0;
+   }
+ }
+
+ @keyframes blink {
+   50% {
+     opacity: 0;
+   }
+ }
+
+ .termynal-comment {
+   color: #4a968f;
+   font-style: italic;
+   display: block;
+ }
+
+</style>
+<script data-termynal-inline="true">
+// Termynal animation disabled. The CSS still renders the terminal chrome
+// (macOS buttons, title, dark background, monospace font) and the HTML
+// emitted by termynal.py shows all input/output spans statically.
+
+</script>
 
 
 

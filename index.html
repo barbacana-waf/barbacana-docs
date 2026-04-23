@@ -1251,11 +1251,11 @@
   
   
     <li class="md-nav__item">
-      <a href="security/sensitivity/" class="md-nav__link">
+      <a href="security/logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sensitivity
+    Logs & SIEM
   </span>
   
 
@@ -1272,11 +1272,11 @@
   
   
     <li class="md-nav__item">
-      <a href="security/logs/" class="md-nav__link">
+      <a href="security/verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logs & SIEM
+    Verifying releases
   </span>
   
 
@@ -1556,9 +1556,10 @@
 
 <h1 id="barbacana">Barbacana<a class="headerlink" href="#barbacana" title="Permanent link">&para;</a></h1>
 <p><strong>Secure by default. Simple by design.</strong></p>
-<p><a href="https://github.com/barbacana-waf/barbacana/actions"><img alt="CI" src="https://github.com/barbacana-waf/barbacana/actions/workflows/ci.yml/badge.svg" /></a></p>
+<p><a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" /></a>
+<a href="https://github.com/barbacana-waf/barbacana/releases"><img alt="Release" src="https://img.shields.io/github/v/release/barbacana-waf/barbacana" /></a></p>
 <p>Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your code.</p>
-<p>In independent testing, v0.1.0 blocks 82% of non-encoded attacks while letting 91% of legitimate traffic pass — <a href="blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">full analysis</a>.</p>
+<p>In independent testing, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. <a href="blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">See the full analysis</a>.</p>
 <p><img alt="How a WAF works" src="assets/architecture-layout.jpg" /></p>
 <h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>

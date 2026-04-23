@@ -1188,9 +1188,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-detection-works" class="md-nav__link">
+  <a href="#detection-model" class="md-nav__link">
     <span class="md-ellipsis">
-      How detection works
+      Detection model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-tune" class="md-nav__link">
+    <span class="md-ellipsis">
+      What you can tune
     </span>
   </a>
   
@@ -1254,11 +1263,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../sensitivity/" class="md-nav__link">
+      <a href="../logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sensitivity
+    Logs & SIEM
   </span>
   
 
@@ -1275,11 +1284,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
+      <a href="../verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logs & SIEM
+    Verifying releases
   </span>
   
 
@@ -1529,9 +1538,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#how-detection-works" class="md-nav__link">
+  <a href="#detection-model" class="md-nav__link">
     <span class="md-ellipsis">
-      How detection works
+      Detection model
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-you-can-tune" class="md-nav__link">
+    <span class="md-ellipsis">
+      What you can tune
     </span>
   </a>
   
@@ -1611,14 +1629,16 @@
 <li><strong>IP reputation / threat intel</strong> — enrich audit logs in your SIEM</li>
 </ul>
 <p>Barbacana also does <strong>not</strong> parse SOAP, gRPC, or GraphQL semantics.</p>
-<h2 id="how-detection-works">How detection works<a class="headerlink" href="#how-detection-works" title="Permanent link">&para;</a></h2>
-<p>Barbacana uses two complementary mechanisms:</p>
-<ol>
-<li><strong>Signature matching</strong> — every request is checked against a curated set of attack patterns from the OWASP Core Rule Set. A match contributes a score.</li>
-<li><strong>Anomaly scoring</strong> — scores accumulate across patterns. When the total crosses the <a href="../sensitivity/">sensitivity</a> threshold, the request is blocked (or logged, in <a href="../../reference/detect-only/">detect-only mode</a>).</li>
-</ol>
-<p>A single suspicious pattern usually isn't enough to block. Multiple matches that together cross the threshold are. This keeps false positives low without missing combined attacks.</p>
-<p>The matched patterns, the score, and the threshold decision all appear in the <a href="../../operations/audit-log/">audit log</a>.</p>
+<h2 id="detection-model">Detection model<a class="headerlink" href="#detection-model" title="Permanent link">&para;</a></h2>
+<p>Every request is matched against the OWASP Core Rule Set's attack patterns. A single suspicious pattern usually isn't enough on its own — multiple matches that together indicate an attack are what trigger a block (or a log entry, in <a href="../../reference/detect-only/">detect-only mode</a>). This keeps false positives low without missing combined attacks.</p>
+<p>The active rule set is <strong>not user-configurable</strong>. Barbacana picks it: the CRS baseline plus a hand-curated set of additional rules, each individually screened against benign-traffic corpora to keep false positives low. The reason there is no sensitivity knob is that turning one without traffic context tends to produce false positives, which leads operators to disable whole protection categories — leaving the application less protected than the default would have been. Making these decisions once, carefully, is the safer trade.</p>
+<p>The matched patterns and the block decision appear in the <a href="../../operations/audit-log/">audit log</a>.</p>
+<h2 id="what-you-can-tune">What you can tune<a class="headerlink" href="#what-you-can-tune" title="Permanent link">&para;</a></h2>
+<p>Two route-level levers handle the cases where the default isn't right for your traffic:</p>
+<ul>
+<li><a href="../../reference/disable/"><code>disable</code></a> — surgically remove a specific protection (or a whole category) on a route, by canonical name. Use this when a known false positive recurs on a known endpoint.</li>
+<li><a href="../../reference/detect-only/"><code>detect_only</code> mode</a> — inspect and log every request but never block. Use this when onboarding a new route, or before raising confidence enough to switch a route to blocking.</li>
+</ul>
 
 
 

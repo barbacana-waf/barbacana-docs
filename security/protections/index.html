@@ -18,7 +18,7 @@
         <link rel="prev" href="../request-lifecycle/">
       
       
-        <link rel="next" href="../sensitivity/">
+        <link rel="next" href="../logs/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -1521,11 +1521,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../sensitivity/" class="md-nav__link">
+      <a href="../logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Sensitivity
+    Logs & SIEM
   </span>
   
 
@@ -1542,11 +1542,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
+      <a href="../verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Logs & SIEM
+    Verifying releases
   </span>
   
 
@@ -2438,12 +2438,7 @@
 <tbody>
 <tr>
 <td><code>rce-unix-command</code></td>
-<td>Unix command injection (cat, ls, wget, curl, nc, etc.)</td>
-<td>CWE-78</td>
-</tr>
-<tr>
-<td><code>rce-unix-command-evasion</code></td>
-<td>Unix command injection with pipes or evasion</td>
+<td>Unix command injection (cat, ls, wget, curl, nc, etc.) including pipe/evasion variants</td>
 <td>CWE-78</td>
 </tr>
 <tr>
@@ -2497,7 +2492,7 @@
 <td>CVE-2014-6271</td>
 </tr>
 <tr>
-<td><code>rce-file-upload</code></td>
+<td><code>rce-executable-upload</code></td>
 <td>Restricted script/executable file upload attempt</td>
 <td>CWE-434</td>
 </tr>
@@ -2507,18 +2502,8 @@
 <td>CWE-78</td>
 </tr>
 <tr>
-<td><code>rce-smtp-command</code></td>
-<td>SMTP command injection in body</td>
-<td>CWE-77</td>
-</tr>
-<tr>
-<td><code>rce-imap-command</code></td>
-<td>IMAP command injection in body</td>
-<td>CWE-77</td>
-</tr>
-<tr>
-<td><code>rce-pop3-command</code></td>
-<td>POP3 command injection in body</td>
+<td><code>rce-mail-protocol-injection</code></td>
+<td>Mail-protocol command injection (SMTP/IMAP/POP3) via CRLF-prefixed command in parameter</td>
 <td>CWE-77</td>
 </tr>
 </tbody>
@@ -2555,13 +2540,8 @@
 <td>CWE-94</td>
 </tr>
 <tr>
-<td><code>php-io-stream</code></td>
-<td>PHP I/O stream access (<code>php://input</code>, <code>php://filter</code>, etc.)</td>
-<td>CWE-94</td>
-</tr>
-<tr>
-<td><code>php-wrapper</code></td>
-<td>PHP stream wrappers (<code>data://</code>, <code>expect://</code>, <code>phar://</code>, <code>ssh2://</code>, etc.)</td>
+<td><code>php-stream-wrapper</code></td>
+<td>PHP stream I/O wrapper access: <code>php://input</code>, <code>php://filter</code>, <code>data://</code>, <code>phar://</code>, <code>expect://</code>, <code>ssh2://</code></td>
 <td>CWE-94</td>
 </tr>
 <tr>
@@ -2576,7 +2556,7 @@
 </tr>
 <tr>
 <td><code>php-function-low-value</code></td>
-<td>Low-value PHP functions (higher false-positive rate, paranoia-gated)</td>
+<td>Low-value PHP functions (higher false-positive rate)</td>
 <td>CWE-94</td>
 </tr>
 <tr>
@@ -2613,8 +2593,13 @@
 <td>CWE-400</td>
 </tr>
 <tr>
-<td><code>ssrf</code></td>
-<td>Server-Side Request Forgery: cloud metadata URLs, IP-as-URL, scheme-less internal hostnames</td>
+<td><code>ssrf-cloud-metadata</code></td>
+<td>Cloud-provider metadata-service URL: <code>169.254.169.254</code>, <code>metadata.google.internal</code>, etc.</td>
+<td>CWE-918</td>
+</tr>
+<tr>
+<td><code>ssrf-url-scheme</code></td>
+<td>Server-side request forgery via IP-as-URL or internal-scheme reference in parameter</td>
 <td>CWE-918</td>
 </tr>
 <tr>
@@ -2789,8 +2774,8 @@
 <td>CWE-89</td>
 </tr>
 <tr>
-<td><code>sql-injection-mongodb</code></td>
-<td>MongoDB operator injection (<code>$where</code>, <code>$ne</code>, <code>$gt</code>, etc.)</td>
+<td><code>sql-injection-nosql</code></td>
+<td>NoSQL operator injection (<code>$where</code>, <code>$ne</code>, <code>$gt</code>, etc.)</td>
 <td>CWE-943</td>
 </tr>
 <tr>
