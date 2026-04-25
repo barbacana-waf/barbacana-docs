@@ -18,7 +18,7 @@
         <link rel="prev" href="../incremental/">
       
       
-        <link rel="next" href="../../reference/overview/">
+        <link rel="next" href="../troubleshooting-cors/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Troubleshooting - Barbacana</title>
+        <title>Troubleshooting Barbacana WAF - Barbacana</title>
       
     
     
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Troubleshooting
+              Troubleshooting Barbacana WAF
             
           </span>
         </div>
@@ -523,6 +523,59 @@
   
   
   
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Troubleshooting
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Troubleshooting
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
     <li class="md-nav__item md-nav__item--active">
       
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
@@ -535,7 +588,7 @@
           
   
   <span class="md-ellipsis">
-    Troubleshooting
+    Troubleshooting Barbacana WAF
   </span>
   
 
@@ -546,7 +599,7 @@
         
   
   <span class="md-ellipsis">
-    Troubleshooting
+    Troubleshooting Barbacana WAF
   </span>
   
 
@@ -741,6 +794,56 @@
     </ul>
   
 </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-cors/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CORS errors
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting-inline-scripts/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inline scripts (CSP)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -2014,6 +2117,12 @@
 <hr />
 <h2 id="step-7-check-for-security-header-conflicts">Step 7 — Check for security-header conflicts<a class="headerlink" href="#step-7-check-for-security-header-conflicts" title="Permanent link">&para;</a></h2>
 <p>Barbacana <a href="../../reference/headers/">injects a few security response headers</a> by default (<code>Content-Security-Policy</code>, <code>X-Frame-Options</code>, <code>Cross-Origin-Opener-Policy</code>, and others). These can break frontend JavaScript even though no entries appear in the WAF audit log.</p>
+<p>Two issues hit nearly every SPA the first time it is put behind Barbacana — each has a dedicated page:</p>
+<ul>
+<li><strong><a href="../troubleshooting-cors/">Fixing CORS errors</a></strong> — browser console says <em>"blocked by CORS policy"</em> or the <code>OPTIONS</code> preflight is failing. CORS is <strong>off by default</strong> in Barbacana and must be enabled per route.</li>
+<li><strong><a href="../troubleshooting-inline-scripts/">Fixing inline-script CSP errors</a></strong> — browser console says <em>"Refused to execute inline script"</em>. The default CSP blocks inline <code>&lt;script&gt;</code>, inline handlers, and inline <code>&lt;style&gt;</code>.</li>
+</ul>
+<p>The rest of this step covers the general header-conflict workflow.</p>
 <h3 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Pages load and images display, but JavaScript features are partially or completely broken.</li>
