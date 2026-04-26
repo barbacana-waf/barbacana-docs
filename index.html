@@ -1658,8 +1658,8 @@
 <p><strong>Secure by default. Simple by design.</strong></p>
 <p><a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" /></a>
 <a href="https://github.com/barbacana-waf/barbacana/releases"><img alt="Release" src="https://img.shields.io/github/v/release/barbacana-waf/barbacana" /></a></p>
-<p>Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your code.</p>
-<p>In independent testing, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. <a href="blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">See the full analysis</a>.</p>
+<p>Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.</p>
+<p>In tests with <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a>, a 3rd party open-source WAF benchmark, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. <a href="blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">See the full analysis</a>.</p>
 <p><img alt="How a WAF works" src="assets/architecture-layout.jpg" /></p>
 <h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
@@ -1673,7 +1673,7 @@
 </span></code></pre></div>
 <p>That's it. Every protection is on by default. <a href="getting-started/quickstart/">Full quickstart →</a></p>
 <h2 id="why-barbacana">Why Barbacana<a class="headerlink" href="#why-barbacana" title="Permanent link">&para;</a></h2>
-<p>Most WAFs need deep security expertise, a full platform, or a cloud subscription. Barbacana gives you production-grade protection with a YAML file, human-readable protection names, and a single binary.</p>
+<p>Most WAFs need deep security expertise, a full platform, or a cloud subscription. Barbacana gives you production-grade protection with one YAML file, human-readable protection names, and a single container image.</p>
 <p>You disable <code>sql-injection-union</code> on a noisy route — not <code>SecRuleRemoveById 942100</code>.</p>
 <div class="grid cards">
 <ul>
@@ -1690,10 +1690,10 @@
 <li>
 <p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13c.34 0 .67.04 1 .09V10a2 2 0 0 0-2-2h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6a2 2 0 0 0-2 2v10c0 1.11.89 2 2 2h7.81c-.51-.88-.81-1.9-.81-3 0-3.31 2.69-6 6-6M9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9zm3 11a2 2 0 1 1 2-2c0 1.11-.89 2-2 2m10.5.25L17.75 22 15 19l1.16-1.16 1.59 1.59 3.59-3.59z"/></svg></span> <strong>Auto-TLS</strong></p>
 <hr />
-<p>Add a hostname. Certificates provision and renew automatically.</p>
+<p>Add a hostname. Certificates are provisioned and renewed automatically.</p>
 </li>
 <li>
-<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15l-1.89 1.07L16 8.61l1.96-1.11zM6.04 7.5 12 10.85l1.96-1.1-5.88-3.4zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg></span> <strong>Single binary</strong></p>
+<p><span class="twemoji lg middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15l-1.89 1.07L16 8.61l1.96-1.11zM6.04 7.5 12 10.85l1.96-1.1-5.88-3.4zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg></span> <strong>Single Image</strong></p>
 <hr />
 <p>One container image, one config file. No platform to operate.</p>
 </li>
@@ -1710,7 +1710,7 @@
 </ul>
 </div>
 <h2 id="built-on">Built on<a class="headerlink" href="#built-on" title="Permanent link">&para;</a></h2>
-<p>Barbacana wraps <a href="https://caddyserver.com">Caddy</a> (HTTP, TLS, reverse proxy), <a href="https://coraza.io">Coraza</a> (WAF engine), and the <a href="https://coreruleset.org">OWASP CRS v4</a> (detection rules) — so you don't have to learn any of them. Two decades of community work make this project possible. Thank you to their maintainers and contributors.</p>
+<p>Barbacana wraps <a href="https://caddyserver.com">Caddy</a> (HTTP, TLS, reverse proxy), <a href="https://coraza.io">Coraza</a> (WAF engine), and the <a href="https://coreruleset.org">OWASP CRS v4</a> (detection rules) — two decades of work by the security community made this project possible. Thank you to their maintainers and contributors.</p>
 
 
 

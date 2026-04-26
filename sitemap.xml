@@ -2,134 +2,134 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://barbacana.dev/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/blog/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/incremental/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/installation/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/quickstart/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/troubleshooting-cors/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/troubleshooting-inline-scripts/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/getting-started/troubleshooting/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/operations/audit-log/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/operations/cli/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/operations/hostnames/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/operations/metrics/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/operations/monitoring/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/accept/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/cors/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/detect-only/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/disable/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/headers/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/openapi/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/overview/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/rewrites/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/routes/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/schema/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/reference/uploads/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/security/logs/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/security/overview/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/security/protections/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/security/request-lifecycle/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/security/verifying/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/blog/archive/2026/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/blog/category/security/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
     <url>
          <loc>https://barbacana.dev/blog/category/releases/</loc>
-         <lastmod>2026-04-25</lastmod>
+         <lastmod>2026-04-26</lastmod>
     </url>
 </urlset>
