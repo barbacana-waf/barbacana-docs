@@ -164,6 +164,13 @@ Always scope permissive limits to the specific route that needs them.
 
 Barbacana [injects a few security response headers](../reference/headers.md) by default (`Content-Security-Policy`, `X-Frame-Options`, `Cross-Origin-Opener-Policy`, and others). These can break frontend JavaScript even though no entries appear in the WAF audit log.
 
+Two issues hit nearly every SPA the first time it is put behind Barbacana — each has a dedicated page:
+
+- **[Fixing CORS errors](troubleshooting-cors.md)** — browser console says *"blocked by CORS policy"* or the `OPTIONS` preflight is failing. CORS is **off by default** in Barbacana and must be enabled per route.
+- **[Fixing inline-script CSP errors](troubleshooting-inline-scripts.md)** — browser console says *"Refused to execute inline script"*. The default CSP blocks inline `<script>`, inline handlers, and inline `<style>`.
+
+The rest of this step covers the general header-conflict workflow.
+
 ### Symptoms
 
 - Pages load and images display, but JavaScript features are partially or completely broken.

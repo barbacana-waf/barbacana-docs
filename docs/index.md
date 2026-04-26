@@ -10,9 +10,9 @@ hide:
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/barbacana-waf/barbacana)](https://github.com/barbacana-waf/barbacana/releases)
 
-Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your code.
+Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.
 
-In independent testing, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. [See the full analysis](blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/).
+In tests with [GoTestWAF](https://github.com/wallarm/gotestwaf), a 3rd party open-source WAF benchmark, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. [See the full analysis](blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/).
 
 ![How a WAF works](assets/architecture-layout.jpg)
 
@@ -35,7 +35,7 @@ That's it. Every protection is on by default. [Full quickstart →](getting-star
 
 ## Why Barbacana
 
-Most WAFs need deep security expertise, a full platform, or a cloud subscription. Barbacana gives you production-grade protection with a YAML file, human-readable protection names, and a single binary.
+Most WAFs need deep security expertise, a full platform, or a cloud subscription. Barbacana gives you production-grade protection with one YAML file, human-readable protection names, and a single container image.
 
 You disable `sql-injection-union` on a noisy route — not `SecRuleRemoveById 942100`.
 
@@ -57,9 +57,9 @@ You disable `sql-injection-union` on a noisy route — not `SecRuleRemoveById 94
 
     ---
 
-    Add a hostname. Certificates provision and renew automatically.
+    Add a hostname. Certificates are provisioned and renewed automatically.
 
--   :material-package-variant-closed:{ .lg .middle } __Single binary__
+-   :material-package-variant-closed:{ .lg .middle } __Single Image__
 
     ---
 
@@ -81,4 +81,4 @@ You disable `sql-injection-union` on a noisy route — not `SecRuleRemoveById 94
 
 ## Built on
 
-Barbacana wraps [Caddy](https://caddyserver.com) (HTTP, TLS, reverse proxy), [Coraza](https://coraza.io) (WAF engine), and the [OWASP CRS v4](https://coreruleset.org) (detection rules) — so you don't have to learn any of them. Two decades of community work make this project possible. Thank you to their maintainers and contributors.
+Barbacana wraps [Caddy](https://caddyserver.com) (HTTP, TLS, reverse proxy), [Coraza](https://coraza.io) (WAF engine), and the [OWASP CRS v4](https://coreruleset.org) (detection rules) — two decades of work by the security community made this project possible. Thank you to their maintainers and contributors.
