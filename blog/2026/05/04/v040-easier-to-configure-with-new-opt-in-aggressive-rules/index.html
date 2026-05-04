@@ -1591,33 +1591,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#breaking-changes" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Breaking changes
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#added" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✨ Added
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#fixed" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔧 Fixed
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#detection-request-side-unchanged-response-side-activated" class="md-nav__link">
     <span class="md-ellipsis">
       Detection: request-side unchanged, response-side activated
@@ -1774,7 +1747,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              7 min read
+                              5 min read
                             
                           </span>
                         </div>
@@ -1802,21 +1775,6 @@
 <p>This is a breaking change, but the migration is straightforward.</p>
 <!-- more -->
 
-<h2 id="breaking-changes">⚠️ Breaking changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Protection names changed across the whole catalog.</strong> The old flat list (<code>sql-injection</code>, <code>lfi</code>, <code>rce</code>, <code>xss-libinjection</code>, …) is replaced by a three-level tree with operator-facing names. Every entry in <code>disable:</code> and every Prometheus <code>protection=</code> label needs to be renamed. The validator rejects unknown names at startup with a Levenshtein "did you mean?" suggestion, so most typos surface immediately. See the <a href="#before-after-rename-map-selection">rename map</a> below.</li>
-<li><strong>Six response headers are now off by default:</strong> <code>Content-Security-Policy</code>, <code>Cross-Origin-Opener-Policy</code>, <code>Cross-Origin-Embedder-Policy</code>, <code>Cross-Origin-Resource-Policy</code>, <code>Permissions-Policy</code>, and <code>Cache-Control</code>. They share one problem: a weak default value is worse than no header, and tuned values are app-specific. Add them back to <code>enable:</code> (or supply tuned values via <code>inject:</code>) only after deciding what value the app actually needs.</li>
-<li><strong>Two HTTP-compliance protections are now off by default:</strong> <code>http-compliance-accept-header</code> and <code>http-compliance-user-agent-header</code>. An empty <code>Accept</code> or a missing <code>User-Agent</code> is normal for <code>curl</code>, internal service-to-service calls, and SDK clients — flagging them only signals that a request is automated, not that it is an attack.</li>
-</ul>
-<h2 id="added">✨ Added<a class="headerlink" href="#added" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Three-level catalog with plain-language names.</strong> L1 family → L2 bucket → leaf. Both <code>disable:</code> and the new <code>enable:</code> list accept any of the three levels, and <strong>the most specific wins</strong>: a leaf in <code>enable:</code> overrides its family in <code>disable:</code>, and a leaf in <code>disable:</code> overrides its family in <code>enable:</code>. Each leaf carries a short <em>what it does</em>, <em>why disable</em>, <em>why enable</em> note. Run <code>barbacana --catalog</code> on the binary to print the whole tree as markdown, or <code>barbacana --catalog-leaf &lt;leaf&gt;</code> to read a single leaf.</li>
-<li><strong><code>enable:</code> list for opt-in aggressive variants.</strong> Error-prone variants are turned off by default but can be enabled per route. Examples: <code>sql-injection-quotes-in-text</code> catches real auth-bypass attacks but flags every <code>O'Brien</code> in a customer list; <code>command-injection-english-words</code> triggers on plain text containing <code>echo</code>, <code>curl</code>, or <code>bash</code>; <code>cross-site-scripting-angular-templates</code> is only useful when the server renders Angular templates. Default behavior stays conservative; the high-recall variants are available where they pay off.</li>
-</ul>
-<h2 id="fixed">🔧 Fixed<a class="headerlink" href="#fixed" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Response-side detection now actually runs.</strong> Earlier versions shipped several default-on response-side protections in the catalog — <code>web-shell-detection</code>, every <code>sql-data-leakage-*</code> vendor variant, <code>ruby-data-leakage-version-info</code>, and others. The catalog said they were active. They were never running, because no response-phase pipeline existed. v0.4.0 adds the pipeline and those rules now fire as the catalog has always claimed they would. Operators upgrading from v0.3.x should expect new entries in audit logs and metrics: web-shell signatures (rules <code>955100</code>–<code>955400</code>, 27 known shell families), SQL error patterns from MySQL/MSSQL/PostgreSQL/Oracle/DB2/MS Access/Sybase, and PHP/Ruby/Java/IIS version-info leaks in response bodies and headers. If a route surfaces noise from a vendor that does not match its actual backend (for example, MSSQL error patterns on a MySQL-only app), turn off the unused vendor leaf with <code>disable: [sql-data-leakage-mssql]</code>.</li>
-</ul>
 <h2 id="detection-request-side-unchanged-response-side-activated">Detection: request-side unchanged, response-side activated<a class="headerlink" href="#detection-request-side-unchanged-response-side-activated" title="Permanent link">&para;</a></h2>
 <p>A release that mostly renames and reorganizes should not change request-side behavior. The <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a> attack suite was run against v0.4.0 with the default config — no <code>enable:</code> overrides, so the new opt-in aggressive protections stay off — and compared to v0.3.2.</p>
 <table>
