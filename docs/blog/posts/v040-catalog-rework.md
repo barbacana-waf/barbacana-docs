@@ -14,21 +14,6 @@ This is a breaking change, but the migration is straightforward.
 
 <!-- more -->
 
-## ⚠️ Breaking changes
-
-- **Protection names changed across the whole catalog.** The old flat list (`sql-injection`, `lfi`, `rce`, `xss-libinjection`, …) is replaced by a three-level tree with operator-facing names. Every entry in `disable:` and every Prometheus `protection=` label needs to be renamed. The validator rejects unknown names at startup with a Levenshtein "did you mean?" suggestion, so most typos surface immediately. See the [rename map](#before-after-rename-map-selection) below.
-- **Six response headers are now off by default:** `Content-Security-Policy`, `Cross-Origin-Opener-Policy`, `Cross-Origin-Embedder-Policy`, `Cross-Origin-Resource-Policy`, `Permissions-Policy`, and `Cache-Control`. They share one problem: a weak default value is worse than no header, and tuned values are app-specific. Add them back to `enable:` (or supply tuned values via `inject:`) only after deciding what value the app actually needs.
-- **Two HTTP-compliance protections are now off by default:** `http-compliance-accept-header` and `http-compliance-user-agent-header`. An empty `Accept` or a missing `User-Agent` is normal for `curl`, internal service-to-service calls, and SDK clients — flagging them only signals that a request is automated, not that it is an attack.
-
-## ✨ Added
-
-- **Three-level catalog with plain-language names.** L1 family → L2 bucket → leaf. Both `disable:` and the new `enable:` list accept any of the three levels, and **the most specific wins**: a leaf in `enable:` overrides its family in `disable:`, and a leaf in `disable:` overrides its family in `enable:`. Each leaf carries a short *what it does*, *why disable*, *why enable* note. Run `barbacana --catalog` on the binary to print the whole tree as markdown, or `barbacana --catalog-leaf <leaf>` to read a single leaf.
-- **`enable:` list for opt-in aggressive variants.** Error-prone variants are turned off by default but can be enabled per route. Examples: `sql-injection-quotes-in-text` catches real auth-bypass attacks but flags every `O'Brien` in a customer list; `command-injection-english-words` triggers on plain text containing `echo`, `curl`, or `bash`; `cross-site-scripting-angular-templates` is only useful when the server renders Angular templates. Default behavior stays conservative; the high-recall variants are available where they pay off.
-
-## 🔧 Fixed
-
-- **Response-side detection now actually runs.** Earlier versions shipped several default-on response-side protections in the catalog — `web-shell-detection`, every `sql-data-leakage-*` vendor variant, `ruby-data-leakage-version-info`, and others. The catalog said they were active. They were never running, because no response-phase pipeline existed. v0.4.0 adds the pipeline and those rules now fire as the catalog has always claimed they would. Operators upgrading from v0.3.x should expect new entries in audit logs and metrics: web-shell signatures (rules `955100`–`955400`, 27 known shell families), SQL error patterns from MySQL/MSSQL/PostgreSQL/Oracle/DB2/MS Access/Sybase, and PHP/Ruby/Java/IIS version-info leaks in response bodies and headers. If a route surfaces noise from a vendor that does not match its actual backend (for example, MSSQL error patterns on a MySQL-only app), turn off the unused vendor leaf with `disable: [sql-data-leakage-mssql]`.
-
 ## Detection: request-side unchanged, response-side activated
 
 A release that mostly renames and reorganizes should not change request-side behavior. The [GoTestWAF](https://github.com/wallarm/gotestwaf) attack suite was run against v0.4.0 with the default config — no `enable:` overrides, so the new opt-in aggressive protections stay off — and compared to v0.3.2.
