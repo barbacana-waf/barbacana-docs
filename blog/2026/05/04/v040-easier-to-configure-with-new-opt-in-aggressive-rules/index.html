@@ -1591,6 +1591,42 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#what-changed-in-the-catalog" class="md-nav__link">
+    <span class="md-ellipsis">
+      What changed in the catalog
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggressive-rule-variants-are-now-opt-in" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggressive rule variants are now opt-in
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#six-security-headers-are-now-off-by-default" class="md-nav__link">
+    <span class="md-ellipsis">
+      Six security headers are now off by default
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#response-side-detection-now-actually-runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Response-side detection now actually runs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#detection-request-side-unchanged-response-side-activated" class="md-nav__link">
     <span class="md-ellipsis">
       Detection: request-side unchanged, response-side activated
@@ -1747,7 +1783,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              5 min read
+                              8 min read
                             
                           </span>
                         </div>
@@ -1775,6 +1811,81 @@
 <p>This is a breaking change, but the migration is straightforward.</p>
 <!-- more -->
 
+<h2 id="what-changed-in-the-catalog">What changed in the catalog<a class="headerlink" href="#what-changed-in-the-catalog" title="Permanent link">&para;</a></h2>
+<p>The old catalog was flat: one category like <code>sql-injection</code>, with about 15 sub-protections under it. The names came from CRS authors (<code>xss-libinjection</code>) or used short jargon (<code>lfi</code>, <code>rfi</code>, <code>rce</code>). They rarely told an operator what a rule did, or when to turn it off.</p>
+<p>The new catalog has <strong>three levels</strong>, and the names are written for the person running the WAF:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sql                                       (L1 family)
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── sql-injection                         (L2 bucket)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── sql-injection-union-select        (leaf)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── sql-injection-time-based          (leaf)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── sql-injection-quotes-in-text      (leaf, off-by-default)
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └── … 22 more
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>└── sql-data-leakage                      (L2 bucket)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├── sql-data-leakage-mysql            (leaf)
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    └── … 15 vendor-specific protections
+</span></code></pre></div>
+<p>Both <code>disable:</code> and the new <code>enable:</code> list accept any of the three levels. The rule is simple: <strong>the most specific wins</strong>. A leaf in <code>enable:</code> overrides its family in <code>disable:</code>, and a leaf in <code>disable:</code> overrides its family in <code>enable:</code>. One rule, no surprises.</p>
+<p>Each leaf has a short <em>what it does</em>, <em>why disable</em>, and <em>why enable</em> note written for an operator. Run <code>barbacana --catalog-leaf &lt;leaf&gt;</code> on the binary to read them, or <code>barbacana --catalog</code> to print the whole tree as markdown.</p>
+<h2 id="aggressive-rule-variants-are-now-opt-in">Aggressive rule variants are now opt-in<a class="headerlink" href="#aggressive-rule-variants-are-now-opt-in" title="Permanent link">&para;</a></h2>
+<p>Before v0.4.0, false-positive-prone variants were bundled with their cleaner counterparts under one switch. Disabling <code>sql-injection</code> to silence false positives on <code>O'Brien</code>-style names also turned off time-based and union-select detection. There was no way to address the false positive without losing the rest of the category.</p>
+<p>In v0.4.0, the error-prone variants are <strong>turned off by default, but can be enabled</strong>, each with a <code>Why enable</code> note. Examples:</p>
+<ul>
+<li><code>sql-injection-quotes-in-text</code> — catches real auth-bypass attacks, but also flags every <code>O'Brien</code> in a customer list.</li>
+<li><code>command-injection-english-words</code> — triggers on plain text containing <code>echo</code>, <code>curl</code>, or <code>bash</code>.</li>
+<li><code>cross-site-scripting-angular-templates</code> — only useful when the server renders Angular templates.</li>
+</ul>
+<p>Turn them on per route with <code>enable: [&lt;leaf-name&gt;]</code>. The <code>enable:</code> list is the opposite of <code>disable:</code> — same shape, same precedence rule. Default behavior is conservative; the high-recall variants are available where they pay off.</p>
+<h2 id="six-security-headers-are-now-off-by-default">Six security headers are now off by default<a class="headerlink" href="#six-security-headers-are-now-off-by-default" title="Permanent link">&para;</a></h2>
+<p>CSP, COOP, COEP, CORP, Permissions-Policy, and Cache-Control are no longer added by default. They share one problem: they break most of the apps they protect, and a weak default value is worse than no header. Consumers' feedback was clear — web apps broke, and the cause was hard to find. The table below explains why each header flipped.</p>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Why off by default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content-Security-Policy</code></td>
+<td>Inline scripts, third-party origins, and frame ancestors are different in every app. A weak default CSP is worse than no CSP.</td>
+</tr>
+<tr>
+<td><code>Cross-Origin-Opener-Policy</code></td>
+<td>Strict values break OAuth popup flows and <code>window.opener</code> integrations.</td>
+</tr>
+<tr>
+<td><code>Cross-Origin-Embedder-Policy</code></td>
+<td>Requires every cross-origin resource to opt in via CORP/CORS — most apps break immediately.</td>
+</tr>
+<tr>
+<td><code>Cross-Origin-Resource-Policy</code></td>
+<td>The safe default value gives no real protection. Stricter values block legitimate embedding.</td>
+</tr>
+<tr>
+<td><code>Permissions-Policy</code></td>
+<td>Any policy strong enough to be useful also blocks legitimate features (camera, microphone, payment).</td>
+</tr>
+<tr>
+<td><code>Cache-Control</code></td>
+<td>Cache policy depends on the route. It belongs in the app or CDN, not in the WAF.</td>
+</tr>
+</tbody>
+</table>
+<p>Two HTTP-compliance protections are also off by default now: <code>http-compliance-accept-header</code> and <code>http-compliance-user-agent-header</code>. An empty <code>Accept</code> or a missing <code>User-Agent</code> is normal for <code>curl</code>, internal service-to-service calls, and SDK clients. Flagging them only signals that a request is automated, not that it is an attack.</p>
+<p>The five strict-default headers (<code>HSTS</code>, <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Referrer-Policy</code>, <code>X-DNS-Prefetch-Control</code>) are still added by default. The eleven leaky-header strippers (<code>Server</code>, <code>X-Powered-By</code>, …) still strip by default.</p>
+<h2 id="response-side-detection-now-actually-runs">Response-side detection now actually runs<a class="headerlink" href="#response-side-detection-now-actually-runs" title="Permanent link">&para;</a></h2>
+<p>This behavior change is a bug fix.</p>
+<p>Earlier versions shipped several default-on response-side protections in the catalog — <code>web-shell-detection</code>, every <code>sql-data-leakage-*</code> vendor variant, <code>ruby-data-leakage-version-info</code>, and others. The catalog said they were active. They were never running, because no response-phase pipeline existed. This is now fixed.</p>
+<p>v0.4.0 adds the response-phase pipeline. Those rules now fire as the catalog has always claimed they would. Operators upgrading from v0.3.x and earlier should expect to see new entries in audit logs and metrics:</p>
+<ul>
+<li>Web-shell signatures matching response bodies (rules <code>955100</code>–<code>955400</code>, 27 known shell families).</li>
+<li>SQL error patterns from MySQL, MSSQL, PostgreSQL, Oracle, DB2, MS Access, Sybase, etc.</li>
+<li>PHP, Ruby, Java, IIS version-info leaks in response bodies and headers.</li>
+</ul>
+<p>Nothing in the catalog changed for these protections — only the runtime caught up to it. If a route surfaces noise from a vendor that does not match its actual backend (for example, MSSQL error patterns on a MySQL-only app), turn off the unused vendor leaf:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">disable</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-data-leakage-mssql</span>
+</span></code></pre></div>
 <h2 id="detection-request-side-unchanged-response-side-activated">Detection: request-side unchanged, response-side activated<a class="headerlink" href="#detection-request-side-unchanged-response-side-activated" title="Permanent link">&para;</a></h2>
 <p>A release that mostly renames and reorganizes should not change request-side behavior. The <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a> attack suite was run against v0.4.0 with the default config — no <code>enable:</code> overrides, so the new opt-in aggressive protections stay off — and compared to v0.3.2.</p>
 <table>
