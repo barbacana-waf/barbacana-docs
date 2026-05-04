@@ -14,6 +14,76 @@ This is a breaking change, but the migration is straightforward.
 
 <!-- more -->
 
+## What changed in the catalog
+
+The old catalog was flat: one category like `sql-injection`, with about 15 sub-protections under it. The names came from CRS authors (`xss-libinjection`) or used short jargon (`lfi`, `rfi`, `rce`). They rarely told an operator what a rule did, or when to turn it off.
+
+The new catalog has **three levels**, and the names are written for the person running the WAF:
+
+```
+sql                                       (L1 family)
+├── sql-injection                         (L2 bucket)
+│   ├── sql-injection-union-select        (leaf)
+│   ├── sql-injection-time-based          (leaf)
+│   ├── sql-injection-quotes-in-text      (leaf, off-by-default)
+│   └── … 22 more
+└── sql-data-leakage                      (L2 bucket)
+    ├── sql-data-leakage-mysql            (leaf)
+    └── … 15 vendor-specific protections
+```
+
+Both `disable:` and the new `enable:` list accept any of the three levels. The rule is simple: **the most specific wins**. A leaf in `enable:` overrides its family in `disable:`, and a leaf in `disable:` overrides its family in `enable:`. One rule, no surprises.
+
+Each leaf has a short *what it does*, *why disable*, and *why enable* note written for an operator. Run `barbacana --catalog-leaf <leaf>` on the binary to read them, or `barbacana --catalog` to print the whole tree as markdown.
+
+## Aggressive rule variants are now opt-in
+
+Before v0.4.0, false-positive-prone variants were bundled with their cleaner counterparts under one switch. Disabling `sql-injection` to silence false positives on `O'Brien`-style names also turned off time-based and union-select detection. There was no way to address the false positive without losing the rest of the category.
+
+In v0.4.0, the error-prone variants are **turned off by default, but can be enabled**, each with a `Why enable` note. Examples:
+
+- `sql-injection-quotes-in-text` — catches real auth-bypass attacks, but also flags every `O'Brien` in a customer list.
+- `command-injection-english-words` — triggers on plain text containing `echo`, `curl`, or `bash`.
+- `cross-site-scripting-angular-templates` — only useful when the server renders Angular templates.
+
+Turn them on per route with `enable: [<leaf-name>]`. The `enable:` list is the opposite of `disable:` — same shape, same precedence rule. Default behavior is conservative; the high-recall variants are available where they pay off.
+
+## Six security headers are now off by default
+
+CSP, COOP, COEP, CORP, Permissions-Policy, and Cache-Control are no longer added by default. They share one problem: they break most of the apps they protect, and a weak default value is worse than no header. Consumers' feedback was clear — web apps broke, and the cause was hard to find. The table below explains why each header flipped.
+
+| Header | Why off by default |
+|---|---|
+| `Content-Security-Policy` | Inline scripts, third-party origins, and frame ancestors are different in every app. A weak default CSP is worse than no CSP. |
+| `Cross-Origin-Opener-Policy` | Strict values break OAuth popup flows and `window.opener` integrations. |
+| `Cross-Origin-Embedder-Policy` | Requires every cross-origin resource to opt in via CORP/CORS — most apps break immediately. |
+| `Cross-Origin-Resource-Policy` | The safe default value gives no real protection. Stricter values block legitimate embedding. |
+| `Permissions-Policy` | Any policy strong enough to be useful also blocks legitimate features (camera, microphone, payment). |
+| `Cache-Control` | Cache policy depends on the route. It belongs in the app or CDN, not in the WAF. |
+
+Two HTTP-compliance protections are also off by default now: `http-compliance-accept-header` and `http-compliance-user-agent-header`. An empty `Accept` or a missing `User-Agent` is normal for `curl`, internal service-to-service calls, and SDK clients. Flagging them only signals that a request is automated, not that it is an attack.
+
+The five strict-default headers (`HSTS`, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `X-DNS-Prefetch-Control`) are still added by default. The eleven leaky-header strippers (`Server`, `X-Powered-By`, …) still strip by default.
+
+## Response-side detection now actually runs
+
+This behavior change is a bug fix.
+
+Earlier versions shipped several default-on response-side protections in the catalog — `web-shell-detection`, every `sql-data-leakage-*` vendor variant, `ruby-data-leakage-version-info`, and others. The catalog said they were active. They were never running, because no response-phase pipeline existed. This is now fixed.
+
+v0.4.0 adds the response-phase pipeline. Those rules now fire as the catalog has always claimed they would. Operators upgrading from v0.3.x and earlier should expect to see new entries in audit logs and metrics:
+
+- Web-shell signatures matching response bodies (rules `955100`–`955400`, 27 known shell families).
+- SQL error patterns from MySQL, MSSQL, PostgreSQL, Oracle, DB2, MS Access, Sybase, etc.
+- PHP, Ruby, Java, IIS version-info leaks in response bodies and headers.
+
+Nothing in the catalog changed for these protections — only the runtime caught up to it. If a route surfaces noise from a vendor that does not match its actual backend (for example, MSSQL error patterns on a MySQL-only app), turn off the unused vendor leaf:
+
+```yaml
+disable:
+  - sql-data-leakage-mssql
+```
+
 ## Detection: request-side unchanged, response-side activated
 
 A release that mostly renames and reorganizes should not change request-side behavior. The [GoTestWAF](https://github.com/wallarm/gotestwaf) attack suite was run against v0.4.0 with the default config — no `enable:` overrides, so the new opt-in aggressive protections stay off — and compared to v0.3.2.
