@@ -6,6 +6,9 @@ Every Barbacana release ships three artifacts in `ghcr.io`, all bound to the sam
 - A cosign keyless signature over the image digest.
 - A CycloneDX SBOM attested to the same digest, stored as an OCI 1.1 referrer alongside the image.
 
+!!! note "Canonical registry"
+    `ghcr.io/barbacana-waf/barbacana` is the canonical signed registry. A convenience mirror at `docker.io/barbacana/barbacana` carries identical image bits (same digest) but does not carry the cosign signature or SBOM attestation. For deployments that verify signatures, pull from ghcr.io.
+
 Edge builds at `ghcr.io/barbacana-waf/barbacana-edge` are **not** signed and **not** attested. Do not run them in production; do not apply the procedures below to them — they will fail.
 
 ## Prerequisites

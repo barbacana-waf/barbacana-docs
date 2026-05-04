@@ -88,7 +88,7 @@ Barbacana writes one JSON entry per inspected request to stdout. Look for entrie
 ```json
 {
   "action": "detected",
-  "matched_protections": ["sql-injection", "sql-injection-union"],
+  "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"],
   "path": "/search",
   "method": "POST"
 }
@@ -96,14 +96,14 @@ Barbacana writes one JSON entry per inspected request to stdout. Look for entrie
 
 ### Add targeted exceptions
 
-Follow the **least-privilege principle**: disable the most specific sub-protection, not the whole category.
+Follow the **least-privilege principle**: disable the most specific leaf, not the whole bucket or family.
 
 | Log shows | Add to `disable` | Why |
 |---|---|---|
-| `["sql-injection", "sql-injection-union"]` | `sql-injection-union` | Only disables UNION-based detection; all other SQL-injection rules stay active. |
-| `["sql-injection"]` | *(do not disable the entire category unless absolutely necessary)* | Disabling `sql-injection` removes **all** SQL-injection detection on that route. |
+| `["sql", "sql-injection", "sql-injection-union-select"]` | `sql-injection-union-select` | Only disables UNION-based detection; all other SQL-injection rules stay active. |
+| `["sql", "sql-injection"]` | *(prefer the most specific leaf if you can identify it)* | Disabling `sql-injection` removes every SQLi technique on the route. Disabling `sql` removes data-leakage detection too. |
 
-See [Disable protections](../reference/disable.md) and the [protection catalog](../security/protections.md) for the full list of names.
+See [Tuning protections](../reference/disable.md) and the [protection catalog](../reference/catalog.md) for the full list of names.
 
 ### Scope exceptions to specific routes
 
@@ -116,7 +116,7 @@ routes:
       paths: ["/api/*"]
     upstream: http://app:8000
     disable:
-      - sql-injection-union
+      - sql-injection-union-select
 
   - id: frontend
     upstream: http://app:8000
@@ -162,7 +162,7 @@ Always scope permissive limits to the specific route that needs them.
 
 ## Step 7 — Check for security-header conflicts
 
-Barbacana [injects a few security response headers](../reference/headers.md) by default (`Content-Security-Policy`, `X-Frame-Options`, `Cross-Origin-Opener-Policy`, and others). These can break frontend JavaScript even though no entries appear in the WAF audit log.
+Barbacana [injects security response headers](../reference/headers.md) on every response. By default in v0.4.0+ that's `X-Frame-Options`, `X-Content-Type-Options`, `Strict-Transport-Security`, `Referrer-Policy`, and `X-DNS-Prefetch-Control` — the five whose strict defaults are safe for most apps. The other six (`Content-Security-Policy`, COOP, COEP, CORP, `Permissions-Policy`, `Cache-Control`) are opt-in and only active if you've added them to `enable:`. Any of them can break frontend JavaScript even though no entries appear in the WAF audit log.
 
 Two issues hit nearly every SPA the first time it is put behind Barbacana — each has a dedicated page:
 
@@ -180,28 +180,27 @@ The rest of this step covers the general header-conflict workflow.
 
 1. Open the browser Developer Tools — **Console**.
 2. Look for errors referencing CSP, CORS, COOP, COEP, or `X-Frame-Options`.
-3. Map each error to the canonical `header-*` protection name:
+3. Map each error to the canonical leaf name:
 
-| Browser error mentions | Barbacana header key |
+| Browser error mentions | Barbacana leaf |
 |---|---|
-| Content-Security-Policy | `header-csp` |
-| X-Frame-Options | `header-x-frame-options` |
-| Cross-Origin-Opener-Policy | `header-coop` |
-| Cross-Origin-Embedder-Policy | `header-coep` |
-| Cross-Origin-Resource-Policy | `header-corp` |
-| Permissions-Policy | `header-permissions-policy` |
+| Content-Security-Policy | `response-headers-add-csp` |
+| X-Frame-Options | `response-headers-add-frame-options` |
+| Cross-Origin-Opener-Policy | `response-headers-add-coop` |
+| Cross-Origin-Embedder-Policy | `response-headers-add-coep` |
+| Cross-Origin-Resource-Policy | `response-headers-add-corp` |
+| Permissions-Policy | `response-headers-add-permissions-policy` |
 
 ### Fix
 
-**Option A — Override specific headers** using a custom preset:
+**Option A — Override specific headers** via `inject:`:
 
 ```yaml
 routes:
   - upstream: http://app:8000
     response_headers:
-      preset: moderate
       inject:
-        header-csp: "default-src 'self'; script-src 'self' 'unsafe-inline'"
+        response-headers-add-csp: "default-src 'self'; script-src 'self' 'unsafe-inline'"
 ```
 
 **Option B — Disable the offending header** on that route:
@@ -210,7 +209,7 @@ routes:
 routes:
   - upstream: http://app:8000
     disable:
-      - header-coop
+      - response-headers-add-coop
 ```
 
 After each change, reload the page and confirm the console errors are gone.
@@ -227,4 +226,4 @@ After each change, reload the page and confirm the console errors are gone.
 - [Routes](../reference/routes.md)
 - [Logs & SIEM](../security/logs.md)
 - [Audit log](../operations/audit-log.md)
-- [Protection catalog](../security/protections.md)
+- [Protection catalog](../reference/catalog.md)

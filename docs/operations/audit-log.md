@@ -13,8 +13,8 @@ Barbacana writes one structured JSON entry per inspected request to stdout. Pick
   "host": "api.example.com",
   "path": "/api/v1/search",
   "route_id": "api",
-  "matched_protections": ["sql-injection", "sql-injection-union"],
-  "matched_rules": [942100, 942180],
+  "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"],
+  "matched_rules": [942270, 942361],
   "cwe": ["CWE-89"],
   "action": "blocked",
   "response_code": 403
@@ -32,7 +32,7 @@ Barbacana writes one structured JSON entry per inspected request to stdout. Pick
 | `host` | string | `Host` header on the request |
 | `path` | string | Request path before [rewrite](../reference/rewrites.md) |
 | `route_id` | string | `id` of the matched route, or auto-generated if not set |
-| `matched_protections` | string[] | Categories and sub-protections that fired. Names from the [protection catalog](../security/protections.md) — stable across releases. |
+| `matched_protections` | string[] | Names of every L1 family, L2 bucket, and leaf that fired. Names from the [protection catalog](../reference/catalog.md) — stable across releases. Each leaf is credited at most once even when multiple detection backends (native + CRS) match it. |
 | `matched_rules` | integer[] | Underlying detection rule IDs. **May change between releases** — alert on `matched_protections`, not these. |
 | `cwe` | string[] | CWE identifiers associated with the matched protections |
 | `action` | string | `blocked`, `detected`, or `allowed` |

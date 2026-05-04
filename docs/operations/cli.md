@@ -13,7 +13,7 @@ The container's default ENTRYPOINT runs the server — no subcommand, no `comman
 ## Synopsis
 
 ```text
-barbacana [--config <path>] [--validate | --render-config | --version] [-h]
+barbacana [--config <path>] [--validate | --render-config | --catalog <subcommand> | --version] [-h]
 ```
 
 | Flag | Description |
@@ -21,10 +21,12 @@ barbacana [--config <path>] [--validate | --render-config | --version] [-h]
 | `--config <path>` | Path to the YAML config. Default: `/etc/barbacana/waf.yaml`. Shared by every mode. |
 | `--validate` | Validate the config and exit. |
 | `--render-config` | Print the compiled low-level config and exit (read-only diagnostic). |
+| `--catalog list` | Print the full protection catalog as Markdown to stdout. |
+| `--catalog show <leaf-name>` | Print one leaf's full rationale (default state, CWE, rule IDs, why-disable, why-enable). |
 | `--version` | Print version, Go version, and CRS version. |
 | `-h`, `--help` | Show usage. |
 
-`--validate`, `--render-config`, and `--version` are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.
+`--validate`, `--render-config`, `--catalog`, and `--version` are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.
 
 ## Exit codes
 
@@ -103,6 +105,37 @@ docker run --rm \
 ```
 
 Prints raw Caddy JSON. **Not a user-editable format** and not part of the user-facing API — it may change between versions. The supported way to configure Barbacana is the YAML schema; see the [config schema reference](../reference/schema.md).
+
+---
+
+## Inspect the protection catalog
+
+Print the full catalog of protections this binary enforces, in Markdown. Useful for verifying which leaves your installed version ships with — versions can drift from the docs site if you don't upgrade in lockstep.
+
+```bash
+docker run --rm ghcr.io/barbacana-waf/barbacana:latest --catalog list > catalog.md
+```
+
+Or look up a single leaf's full rationale (what it does, why disable, why enable, CWE, rule IDs):
+
+```bash
+docker run --rm ghcr.io/barbacana-waf/barbacana:latest --catalog show response-headers-add-csp
+```
+
+```text
+response-headers-add-csp  (default: off)
+CWE: CWE-79, CWE-1021
+Rule IDs: native
+
+What it does: Inject Content-Security-Policy header using the value from
+route.csp.policy. Primary mitigation against XSS that bypasses output encoding.
+
+Why enable: Off by default because no CSP value strict enough to matter works
+across apps without per-app tuning. Enable in conjunction with a route-level
+csp.policy config field. Without csp.policy set, enabling this leaf is a no-op.
+```
+
+The names printed by `--catalog list` and `--catalog show` are exactly what you put under `disable:` / `enable:` in your config and what appears in `matched_protections` in the [audit log](audit-log.md).
 
 ---
 

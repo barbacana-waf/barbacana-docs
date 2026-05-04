@@ -13,7 +13,7 @@ Barbacana exposes them on a separate HTTP server (default `:9090`, path `/metric
 | Name | Labels | Description |
 |---|---|---|
 | `waf_requests_total` | `route`, `action` | All requests by action (`blocked`, `detected`, `allowed`) |
-| `waf_requests_blocked_total` | `route`, `protection` | Requests blocked or detected, broken down by sub-protection |
+| `waf_requests_blocked_total` | `route`, `protection` | Requests blocked or detected, broken down by leaf name (e.g. `sql-injection-union-select`, `command-injection-unix-commands`) |
 | `waf_openapi_validation_total` | `route`, `result` | OpenAPI validation outcomes (`pass`, `fail`) |
 | `waf_evaluation_timeout_total` | `route` | Inspection that exceeded the per-request timeout |
 | `waf_body_spooled_total` | `route` | Requests whose body had to spool to disk (large bodies) |

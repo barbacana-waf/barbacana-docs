@@ -102,6 +102,7 @@ Global defines defaults applied to every route unless the route overrides.
 global:
   mode: blocking                     # "blocking" (default) or "detect_only"
   disable: []                        # canonical protection names disabled everywhere
+  enable: []                         # opt-in protections to turn on everywhere
 
   # ── What the route accepts ────────────────────────────────
   accept:
@@ -139,17 +140,15 @@ global:
     http2_max_concurrent_streams: 100
     http2_max_continuation_frames: 32
     http2_max_decoded_header_bytes: 65536
-    parameter_pollution: reject      # reject | first | last
 
   # ── What the response carries ─────────────────────────────
   response_headers:
-    preset: moderate                 # strict | moderate | api-only | custom; default: moderate
     inject: {}                       # overrides per header (see protections catalog)
     strip_extra: []                  # additional response headers to strip
 
   # ── API contract ──────────────────────────────────────────
   openapi:
-    shadow_api_logging: true         # log undeclared paths even when openapi-path is disabled
+    shadow_api_logging: true         # log undeclared paths even when openapi-path-not-in-spec is disabled
 ```
 
 ### Global field reference
@@ -157,7 +156,8 @@ global:
 | Path | Type | Default | Validation |
 |---|---|---|---|
 | `global.mode` | enum | `blocking` | one of `blocking`, `detect_only` |
-| `global.disable` | []string | `[]` | every entry must resolve to a registered canonical name (category or sub-protection) |
+| `global.disable` | []string | `[]` | every entry must resolve to a registered canonical name (L1 family, L2 bucket, or leaf) |
+| `global.enable` | []string | `[]` | every entry must resolve to a registered canonical name; takes precedence over `disable` for more-specific names |
 | `global.accept.methods` | []string | standard 7 | each must be a valid HTTP method |
 | `global.accept.content_types` | []string | `[]` (all) | each must be valid MIME type syntax |
 | `global.accept.max_body_size` | byte size | `10MB` | `> 0`, `<= 1GB` |
@@ -182,9 +182,7 @@ global:
 | `global.protocol.http2_max_concurrent_streams` | int | `100` | `>= 1` |
 | `global.protocol.http2_max_continuation_frames` | int | `32` | `>= 1` |
 | `global.protocol.http2_max_decoded_header_bytes` | int | `65536` | `>= 4096` |
-| `global.protocol.parameter_pollution` | enum | `reject` | one of `reject`, `first`, `last` |
-| `global.response_headers.preset` | enum | `moderate` | one of `strict`, `moderate`, `api-only`, `custom` |
-| `global.response_headers.inject` | map[string]string | `{}` | keys must be canonical `header-*` names from the [protection catalog](../security/protections.md) |
+| `global.response_headers.inject` | map[string]string | `{}` | keys must be canonical `response-headers-add-*` names from the [protection catalog](catalog.md) |
 | `global.response_headers.strip_extra` | []string | `[]` | valid HTTP header names |
 | `global.openapi.shadow_api_logging` | bool | `true` | — |
 
@@ -210,6 +208,7 @@ routes:
     mode: blocking                   # override global; optional ("blocking" or "detect_only")
 
     disable: []                      # canonical protection names disabled for this route only
+    enable: []                       # opt-in protections to turn on for this route only
 
     accept:                          # any subset; unspecified fields inherit from global
       content_types: [application/json]
@@ -218,26 +217,28 @@ routes:
 
     inspection: {}                   # any subset; unspecified fields inherit from global
     multipart: {}                    # any subset; gated by accept.content_types
-    protocol: {}                     # limited per-route overrides (parameter_pollution only)
 
     response_headers:
-      preset: strict                 # override global preset
       inject:
-        header-csp: "default-src 'self'; script-src 'self' https://cdn.example.com"
+        response-headers-add-csp: "default-src 'self'; script-src 'self' https://cdn.example.com"
       strip_extra: []
 
     openapi:
       spec: /etc/barbacana/specs/public-api.yaml  # path relative to config or absolute
       strict: true                   # if true, enforce; if false, detect_only regardless of route
-      disable: []                    # openapi-* sub-protections to skip
+      disable: []                    # openapi-* leaves to skip
 
     cors:                            # CORS is opt-in per route
-      allow_origins: ["https://app.example.com"]
+      allow_origins: ["https://app.example.com"]   # required when cors block is present
       allow_methods: [GET, POST]
       allow_headers: [Authorization, Content-Type]
       expose_headers: []
       allow_credentials: false
       max_age: 600
+
+    error_response:                  # optional; custom body for blocked requests
+      body: |
+        {"error":"blocked","request_id":"{{.RequestID}}","ts":"{{.Timestamp}}"}
 ```
 
 ### Route field reference
@@ -254,35 +255,38 @@ routes:
 | `routes[].rewrite.add_prefix` | string | none | must start with `/` |
 | `routes[].rewrite.path` | string | none | must start with `/`; if set, `strip_prefix` and `add_prefix` are ignored |
 | `routes[].mode` | string | inherit from global | one of `blocking`, `detect_only` |
-| `routes[].disable` | []string | `[]` | canonical names (category or sub-protection) |
+| `routes[].disable` | []string | `[]` | canonical names (L1 family, L2 bucket, or leaf) |
+| `routes[].enable` | []string | `[]` | canonical names; more-specific entries override `disable` |
 | `routes[].accept.*` | | inherit from global | see global field reference |
 | `routes[].inspection.*` | | inherit from global | see global field reference |
 | `routes[].multipart.*` | | inherit from global | see global field reference |
-| `routes[].response_headers.preset` | enum | inherit | `strict`, `moderate`, `api-only`, `custom` |
-| `routes[].response_headers.inject` | map | inherit (merged key-wise) | keys are canonical `header-*` names |
-| `routes[].openapi.spec` | filepath | none (feature off) | file must exist and parse as OpenAPI 3.x |
+| `routes[].response_headers.inject` | map | inherit (merged key-wise) | keys are canonical `response-headers-add-*` names |
+| `routes[].openapi` | object | none (feature off) | when present, `spec` is required |
+| `routes[].openapi.spec` | filepath | — | required when the `openapi:` block is present; file must exist and parse as OpenAPI 3.x |
 | `routes[].openapi.strict` | bool | `true` | — |
-| `routes[].openapi.disable` | []string | `[]` | `openapi-*` sub-protection names |
-| `routes[].cors.allow_origins` | []string | — (CORS off) | origins or `*` (never `*` with credentials) |
+| `routes[].openapi.disable` | []string | `[]` | `openapi-*` leaf names |
+| `routes[].cors` | object | none (CORS off) | when present, `allow_origins` is required |
+| `routes[].cors.allow_origins` | []string | — | required when the `cors:` block is present; origins or `*` (never `*` with credentials) |
 | `routes[].cors.allow_methods` | []string | `[GET]` | valid HTTP methods |
 | `routes[].cors.allow_headers` | []string | `[]` | valid header names |
 | `routes[].cors.expose_headers` | []string | `[]` | valid header names |
 | `routes[].cors.allow_credentials` | bool | `false` | if `true`, `allow_origins` must not contain `*` |
 | `routes[].cors.max_age` | int (seconds) | `600` | `>= 0`, `<= 86400` |
+| `routes[].error_response.body` | string | none (default JSON body) | Go `text/template`; only `{{.RequestID}}` and `{{.Timestamp}}` are exposed |
 
-## The `disable` list
+## The `disable` and `enable` lists
 
-Accepted values are the canonical names from the [protection catalog](../security/protections.md) — both category names and sub-protection names. Examples:
+Both lists accept canonical names from the [protection catalog](catalog.md) — at any of the three levels (L1 family, L2 bucket, leaf). Examples:
 
-- `sql-injection` — disables the entire category (and every `sql-injection-*` sub-protection)
-- `sql-injection-auth-bypass` — disables only that technique
-- `header-csp` — skips CSP header injection for the route
-- `strip-server` — keeps the upstream's `Server` header
-- `openapi-body` — skips body-schema validation but keeps path/method/param validation
+- `sql-injection` — L2; disables every SQLi technique on this route
+- `sql-injection-union-select` — leaf; disables only that technique
+- `response-headers-add-csp` — leaf; skips CSP header injection (or, in `enable:`, opts in)
+- `response-headers-remove-server` — leaf; keeps the upstream's `Server` header
+- `openapi-body-mismatch` — leaf; skips body-schema validation but keeps path/method/param validation
 
 Validation rejects any entry that does not resolve to a registered canonical name. The error message lists the misspelled entry and a suggestion if one is close (Levenshtein ≤ 2).
 
-`route.disable` is **additive** to `global.disable`. A protection disabled globally cannot be re-enabled on a specific route.
+Route-level `disable:`/`enable:` is **merged** with `global` lists into a single effective set per route. Resolution rule: **more specific wins.** A leaf in `enable:` overrides its L2 or L1 in `disable:`, and the reverse for `disable:`. See the [Tuning protections](disable.md) page for worked examples.
 
 ## Content-type gating
 
@@ -323,7 +327,7 @@ routes:
   - upstream: http://app:8000
 ```
 
-Everything else is defaulted. `port` defaults to `8080` because no `host` is set and no route uses `match.hosts`. `metrics_port` and `health_port` stay at `0` (disabled) — audit logs on stdout are the only observability. Every protection is active in blocking mode. Security headers injected with the `moderate` preset. All canonical strip headers removed. All content types accepted. All parsers active.
+Everything else is defaulted. `port` defaults to `8080` because no `host` is set and no route uses `match.hosts`. `metrics_port` and `health_port` stay at `0` (disabled) — audit logs on stdout are the only observability. Every protection is active in blocking mode. The five default-on security headers are injected with their built-in values. All canonical strip headers removed. All content types accepted. All parsers active.
 
 ## Example 2: multi-route with per-team overrides (Mode 1, single host auto-TLS)
 
@@ -356,8 +360,13 @@ routes:
     upstream: http://admin-backend:8000
     accept:
       content_types: [application/json]
+    enable:
+      - response-headers-add-csp
+      - response-headers-add-coep
     response_headers:
-      preset: strict
+      inject:
+        response-headers-add-csp: "default-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests"
+        response-headers-add-coep: "require-corp"
     cors:
       allow_origins: ["https://example.com"]
       allow_credentials: true
@@ -370,8 +379,8 @@ routes:
       strip_prefix: /legacy
       add_prefix: /app
     disable:
-      - php-injection                # legacy app trips on its own PHP-ish params
-      - null-byte-injection          # legacy binary protocol uses \x00 markers
+      - php-injection                # legacy app trips on its own PHP-ish params (L2)
+      - http-compliance-null-bytes   # legacy binary protocol uses \x00 markers
     mode: detect_only                # keep logging but don't break the legacy app
 ```
 
@@ -393,10 +402,9 @@ global:
   inspection:
     json_depth: 15
   response_headers:
-    preset: custom
     inject:
-      header-csp: "default-src 'self' https://assets.example.com"
-      header-hsts: "max-age=31536000"
+      response-headers-add-csp: "default-src 'self' https://assets.example.com"
+      response-headers-add-hsts: "max-age=31536000"
     strip_extra:
       - X-Custom-Backend-Id
 
@@ -438,9 +446,12 @@ routes:
     accept:
       content_types: [application/json, application/x-www-form-urlencoded]
     disable:
-      - header-csp                   # webhooks never render HTML
+      - response-headers-add-csp     # webhooks never render HTML
+    enable:
+      - response-headers-add-cache-control
     response_headers:
-      preset: api-only
+      inject:
+        response-headers-add-cache-control: "no-store"
 ```
 
 ## Validation behaviour

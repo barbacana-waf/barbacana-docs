@@ -1,6 +1,7 @@
 ---
 hide:
   - navigation
+  - toc
 ---
 
 # Barbacana
@@ -33,52 +34,80 @@ docker run --rm -p 8080:8080 \
 
 That's it. Every protection is on by default. [Full quickstart →](getting-started/quickstart.md)
 
-## Why Barbacana
+## Beyond the defaults
 
-Most WAFs need deep security expertise, a full platform, or a cloud subscription. Barbacana gives you production-grade protection with one YAML file, human-readable protection names, and a single container image.
+The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.
 
-You disable `sql-injection-union` on a noisy route — not `SecRuleRemoveById 942100`.
+<div class="feature-row" markdown>
+<div class="feature-text" markdown>
+:material-tune-variant:{ .feature-icon }
 
-<div class="grid cards" markdown>
+### Tune by name, not by rule ID
 
--   :material-shield-lock:{ .lg .middle } __Secure by default__
+Silence a false positive on one route without weakening the rest of the WAF. Protections have human-readable names — never `SecRuleRemoveById 942270`.
+</div>
+<div class="feature-code" markdown>
+```yaml
+routes:
+  - match:
+      paths: ["/search"]
+    upstream: http://search:8000
+    disable:
+      - sql-injection-union-select
+```
+</div>
+</div>
 
-    ---
+<div class="feature-row" markdown>
+<div class="feature-text" markdown>
+:material-lock-check:{ .feature-icon }
 
-    Every protection on from the first request. No rules to download, no policies to write.
+### HTTPS, no certificates to manage
 
--   :material-file-code:{ .lg .middle } __Simple YAML__
+Add a hostname. Barbacana provisions and renews Let's Encrypt certificates automatically, redirects `:80` to `:443`, and uses a local CA for `.localhost` development.
+</div>
+<div class="feature-code" markdown>
+```yaml
+version: v1alpha1
+host: api.example.com
+data_dir: /data/barbacana
+routes:
+  - upstream: http://app:8080
+```
+</div>
+</div>
 
-    ---
+<div class="feature-row" markdown>
+<div class="feature-text" markdown>
+:material-shield-search:{ .feature-icon }
 
-    No rule syntax, no DSL. Three lines of YAML protect a route.
+### Ship safely with detect-only
 
--   :material-lock-check:{ .lg .middle } __Auto-TLS__
+Roll out a new route in observe mode first. Every request is inspected and logged, but matches are forwarded instead of blocked — read the audit log, then flip the switch.
+</div>
+<div class="feature-code" markdown>
+```yaml
+routes:
+  - upstream: http://api:8000
+    detect_only: true
+```
+</div>
+</div>
 
-    ---
+<p class="trust-strip" markdown>
+:material-package-variant-closed: Single image &middot;
+:material-format-list-checks: 500+ OWASP CRS rules &middot;
+:material-license: Apache 2.0
+</p>
 
-    Add a hostname. Certificates are provisioned and renewed automatically.
-
--   :material-package-variant-closed:{ .lg .middle } __Single Image__
-
-    ---
-
-    One container image, one config file. No platform to operate.
-
--   :material-format-list-checks:{ .lg .middle } __500+ OWASP rules__
-
-    ---
-
-    Backed by the OWASP Core Rule Set, exposed as named protections.
-
--   :material-chart-line:{ .lg .middle } __Measured detection__
-
-    ---
-
-    Every release is tested against OWASP CRS and GoTestWAF. Results published in full.
-
+<div class="cta-row" markdown>
+[:material-rocket-launch: &nbsp; **Full quickstart**](getting-started/quickstart.md){ .md-button .md-button--primary }
+[:material-format-list-checks: &nbsp; **Protection catalog**](reference/catalog.md){ .md-button }
+[:material-shield-half-full: &nbsp; **Security model**](security/overview.md){ .md-button }
 </div>
 
 ## Built on
 
-Barbacana wraps [Caddy](https://caddyserver.com) (HTTP, TLS, reverse proxy), [Coraza](https://coraza.io) (WAF engine), and the [OWASP CRS v4](https://coreruleset.org) (detection rules) — two decades of work by the security community made this project possible. Thank you to their maintainers and contributors.
+Barbacana wraps [Caddy](https://caddyserver.com) (HTTP, TLS, reverse proxy), [Coraza](https://coraza.io) (WAF engine), and the [OWASP CRS v4](https://coreruleset.org) (detection rules) — two decades of work by the security community made this project possible. Big thanks to their maintainers and contributors.
+
+Barbacana also runs `ghcr.io/barbacana-waf/barbacana` as the main image registry, with an identical mirror at `docker.io/barbacana/barbacana`.

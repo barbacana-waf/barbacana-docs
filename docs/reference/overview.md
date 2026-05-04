@@ -14,7 +14,8 @@ health_port: 8081            # opt-in (default: 0 = disabled)
 # ── Defaults applied to every route ─────────────────────
 global:
   mode: blocking             # or detect_only
-  disable: []                # protections disabled everywhere
+  disable: []                # protections turned off everywhere
+  enable: []                 # off-by-default protections turned on everywhere
   accept: { ... }            # methods, content types, sizes
   inspection: { ... }        # timeouts, limits
   multipart: { ... }         # file upload limits
@@ -35,6 +36,10 @@ routes:
 - **Server-wide** keys decide *how* Barbacana listens: one host with auto-TLS, multiple hosts, or plain HTTP behind a load balancer. They also control opt-in observability ports. See [Hostnames & HTTPS](../operations/hostnames.md).
 - **Global defaults** are the baseline every route inherits. Everything here is already secure out of the box — you only add entries when you want to tighten a default (smaller `max_body_size`) or disable a protection fleet-wide.
 - **Routes** are the unit of ownership. Each route matches requests by host and/or path, sends them to an upstream, and can override any `global.*` block for that route alone. `route.disable` is **additive** to `global.disable`.
+
+## Tuning protections with `disable:` and `enable:`
+
+Both `global` and each route accept a `disable:` list (turn protections off) and an `enable:` list (turn off-by-default protections on). Each entry is a canonical name from the [protection catalog](catalog.md) — at any of the three levels: an L1 family (`sql`), an L2 bucket (`sql-injection`), or a single leaf (`sql-injection-union-select`). Resolution rule: **more specific wins**, so a leaf in `enable:` overrides its family in `disable:`, and the other way around. See [Disable protections](disable.md) for worked examples.
 
 ## The four kinds of configuration
 

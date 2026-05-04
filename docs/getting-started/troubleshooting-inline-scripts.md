@@ -1,6 +1,9 @@
 # Fixing inline-script CSP errors
 
-Barbacana injects a strict `Content-Security-Policy` by default:
+!!! info "CSP is opt-in"
+    As of v0.4.0 Barbacana **no longer injects a CSP by default.** A fresh install will not produce the errors below unless you've explicitly enabled `response-headers-add-csp`. This page is for teams who have opted in (`enable: [response-headers-add-csp]`) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.
+
+If you choose to enable CSP, Barbacana injects a strict policy:
 
 ```
 default-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests
@@ -9,6 +12,10 @@ default-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
 `default-src 'self'` blocks every inline `<script>` block, every inline event handler (`onclick="…"`), every `<style>` block, every `javascript:` URL, and every external script not served from the page's own origin. That is intentional — inline scripts are the primary vector for stored XSS, and CSP is the most effective mitigation.
 
 If your app relies on inline scripts (server-rendered templates, legacy code, third-party widgets), the CSP must be loosened — but **not by adding `'unsafe-inline'` everywhere.** Try the options below in order.
+
+## Recommended on-ramp: report-only
+
+Before enabling enforcing CSP in production, send the policy in **`Content-Security-Policy-Report-Only`** mode from your application for a week or two. The browser logs every violation but doesn't block execution. You'll see exactly which inline blocks, third-party origins, and `data:` URLs need allow-listing before turning enforcement on. Barbacana doesn't synthesize a report-only policy itself — emit it from your app, then graduate to `enable: [response-headers-add-csp]` once the violation log is clean.
 
 ## Symptoms
 
@@ -55,13 +62,21 @@ Modern build tools (Vite, webpack, esbuild) emit external bundles by default —
 
 If you can modify the HTML but can't avoid inline scripts (server-rendered apps), allow them by **nonce** or **hash** instead of opening the entire `'unsafe-inline'` door.
 
-**Nonce approach.** The application generates a random per-response nonce, adds it to every inline script tag (`<script nonce="abc123">…</script>`), and reflects it in the CSP it sends. Barbacana doesn't generate the nonce — your application does. To let the upstream's CSP through unchanged on a route, disable Barbacana's CSP injection:
+**Nonce approach.** The application generates a random per-response nonce, adds it to every inline script tag (`<script nonce="abc123">…</script>`), and reflects it in the CSP it sends. Barbacana doesn't generate the nonce — your application does. Don't enable Barbacana's CSP injection at all in this case; just let the upstream's CSP through:
+
+```yaml
+routes:
+  - upstream: http://app:8000
+    # response-headers-add-csp is off by default — no extra config needed
+```
+
+If you have CSP injection enabled globally and want to opt this route out:
 
 ```yaml
 routes:
   - upstream: http://app:8000
     disable:
-      - header-csp
+      - response-headers-add-csp
 ```
 
 Your application is now responsible for sending a correct CSP on every response from that route.
@@ -71,10 +86,11 @@ Your application is now responsible for sending a correct CSP on every response 
 ```yaml
 routes:
   - upstream: http://app:8000
+    enable:
+      - response-headers-add-csp
     response_headers:
-      preset: moderate
       inject:
-        header-csp: "default-src 'self'; script-src 'self' 'sha256-AbC...='"
+        response-headers-add-csp: "default-src 'self'; script-src 'self' 'sha256-AbC...='"
 ```
 
 ## Option 3 — Allow `'unsafe-inline'` (last resort)
@@ -84,10 +100,11 @@ Only do this if the app is internal, the threat model accepts the trade-off, or 
 ```yaml
 routes:
   - upstream: http://app:8000
+    enable:
+      - response-headers-add-csp
     response_headers:
-      preset: moderate
       inject:
-        header-csp: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+        response-headers-add-csp: "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
 ```
 
 This **disables CSP-based XSS protection** for inline scripts on that route. Scope it to the specific route that needs it; never apply it globally.
@@ -98,7 +115,7 @@ If the error names an external URL rather than `inline`, list that origin in `sc
 
 ```yaml
 inject:
-  header-csp: "default-src 'self'; script-src 'self' https://cdn.example.com"
+  response-headers-add-csp: "default-src 'self'; script-src 'self' https://cdn.example.com"
 ```
 
 The same pattern works for `style-src`, `img-src`, `connect-src`, `font-src`, etc.
@@ -113,5 +130,5 @@ After every CSP change:
 
 ## Related
 
-- [Security headers reference](../reference/headers.md) — full list of headers Barbacana injects and how presets work.
-- [Protection catalog](../security/protections.md) — every `header-*` key you can `inject` or `disable`.
+- [Security headers reference](../reference/headers.md) — full list of headers Barbacana injects and how to override values.
+- [Protection catalog](../reference/catalog.md) — every `response-headers-add-*` key you can `inject`, `enable`, or `disable`.

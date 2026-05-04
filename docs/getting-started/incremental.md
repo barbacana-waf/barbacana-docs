@@ -20,7 +20,7 @@ Three lines. Barbacana:
 - Listens on **`:8080`** — the default when neither `host` nor `port` is set (Mode 3: plain HTTP behind a load balancer — see [Hostnames & HTTPS](../operations/hostnames.md)).
 - Forwards every inspected request to `http://app:8000`.
 - Runs in **blocking mode** by default. SQL injection, XSS, RCE, path traversal, protocol smuggling, and hundreds more are stopped; malicious requests never reach your upstream.
-- Injects the `moderate` [security-headers](../reference/headers.md) preset into every response and strips backend-leaking headers (`Server`, `X-Powered-By`, …).
+- Injects the five default-on [security headers](../reference/headers.md) (HSTS, `X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`, `X-DNS-Prefetch-Control`) into every response and strips backend-leaking headers (`Server`, `X-Powered-By`, …).
 
 Good for local testing and for deployments where TLS terminates at a load balancer in front of Barbacana.
 
@@ -126,13 +126,13 @@ Undeclared endpoints, wrong parameter types, and invalid bodies are all blocked 
 
 ## Step 6 — Silence a specific false positive
 
-One of your endpoints accepts search input that looks like a SQL `UNION` to the CRS. The [audit log](../operations/audit-log.md) tells you exactly which sub-protection is firing:
+One of your endpoints accepts search input that looks like a SQL `UNION` to the CRS. The [audit log](../operations/audit-log.md) tells you exactly which leaf is firing:
 
 ```json
-{ "action": "blocked", "matched_protections": ["sql-injection", "sql-injection-union"], "route": "api" }
+{ "action": "blocked", "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"], "route": "api" }
 ```
 
-Turn off just that sub-protection — only on this route:
+Turn off just that leaf — only on this route:
 
 ```yaml hl_lines="12-13"
 - id: api
@@ -147,10 +147,10 @@ Turn off just that sub-protection — only on this route:
   openapi:
     spec: /specs/api.yaml
   disable:
-    - sql-injection-union
+    - sql-injection-union-select
 ```
 
-All other SQL-injection detections (`sql-injection-auth`, `sql-injection-boolean`, …) stay active. Always disable the **most specific** name in the log, never the whole category. See [Disable protections](../reference/disable.md) and the [protection catalog](../security/protections.md).
+All other SQL-injection leaves (`sql-injection-login-bypass`, `sql-injection-if-statements`, …) stay active. Always disable the **most specific** name in the log, never the whole bucket or family. See [Tuning protections](../reference/disable.md) and the [protection catalog](../reference/catalog.md).
 
 ---
 
@@ -196,7 +196,7 @@ routes:
     openapi:
       spec: /specs/api.yaml
     disable:
-      - sql-injection-union
+      - sql-injection-union-select
 
   - id: uploads
     match:
@@ -275,17 +275,18 @@ See [CORS](../reference/cors.md).
 
 ### Stricter headers on a sensitive route
 
-Override the default `moderate` preset with `strict` and a custom CSP for an admin route:
+Enable CSP and inject a tuned value on an admin route:
 
 ```yaml
 - id: admin
   match:
     paths: ["/admin/*"]
   upstream: http://admin:8000
+  enable:
+    - response-headers-add-csp
   response_headers:
-    preset: strict
     inject:
-      header-csp: "default-src 'self'; frame-ancestors 'none'"
+      response-headers-add-csp: "default-src 'self'; frame-ancestors 'none'"
 ```
 
 See [Security headers](../reference/headers.md).

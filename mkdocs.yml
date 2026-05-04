@@ -92,6 +92,7 @@ markdown_extensions:
 nav:
   - Welcome: index.md
   - Getting Started:
+      - Why Barbacana?: getting-started/why-barbacana.md
       - Quickstart: getting-started/quickstart.md
       - Installation: getting-started/installation.md
       - Configuration: getting-started/incremental.md
@@ -110,15 +111,16 @@ nav:
           - OpenAPI: reference/openapi.md
       - Tuning protections:
           - Disable protections: reference/disable.md
+          - Enable protections: reference/enable.md
           - Detect-only mode: reference/detect-only.md
       - Response:
           - CORS: reference/cors.md
           - Security headers: reference/headers.md
+      - Protection catalog: reference/catalog.md
       - Schema: reference/schema.md
   - Security:
       - Overview: security/overview.md
       - Request lifecycle: security/request-lifecycle.md
-      - Protections: security/protections.md
       - Logs & SIEM: security/logs.md
       - Verifying releases: security/verifying.md
   - Operations:

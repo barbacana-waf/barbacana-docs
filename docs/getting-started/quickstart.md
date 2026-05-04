@@ -4,6 +4,8 @@ Protect an app in three lines of YAML.
 
 ## 1. Write a config
 
+Save the following as `waf.yaml` in your working directory:
+
 ```yaml title="waf.yaml"
 version: v1alpha1
 
@@ -11,7 +13,7 @@ routes:
   - upstream: http://your-app:8000
 ```
 
-Barbacana listens on `:8080` and forwards safe requests to `your-app:8000`. Blocking mode is the default — SQL injection, XSS, RCE, path traversal, protocol attacks, and hundreds more are blocked automatically, and security response headers are injected.
+Barbacana will listen on `:8080` and forward safe requests to `your-app:8000`. Blocking mode is the default — SQL injection, XSS, RCE, path traversal, protocol attacks, and hundreds more are blocked automatically, and security response headers are injected.
 
 ## 2. Run it
 

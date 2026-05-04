@@ -1,6 +1,6 @@
-# Disable protections
+# Disabling protections
 
-Every protection is on by default. To turn one off, name it.
+`disable:` turns a protection **off** on a route. The typical use is silencing a false positive without weakening the rest of the WAF.
 
 ```yaml
 routes:
@@ -8,34 +8,46 @@ routes:
       paths: ["/search"]
     upstream: http://search:8000
     disable:
-      - sql-injection-union   # false positive: search field uses UNION literally
+      - sql-injection-union-select   # search field accepts the UNION keyword literally
 ```
 
-## Categories vs sub-protections
+`disable:` accepts canonical names from the [WAF Protection Catalog](catalog.md) at any of the three levels:
 
-- **Category** — disable the whole class. `sql-injection` turns off all SQL-injection detection on this route.
-- **Sub-protection** — disable one technique. `sql-injection-union` turns off only UNION-based detection; everything else stays on.
+| Level | Example | Effect when listed |
+|---|---|---|
+| **L1 family** | `sql` | Whole family — every SQL leaf, both injection and data leakage |
+| **L2 bucket** | `sql-injection` | One bucket — every SQLi technique, but not response-side leakage |
+| **Leaf** | `sql-injection-union-select` | One detection technique only |
 
-Always prefer the most specific name that fixes your false positive.
+Always prefer the most specific name that solves the problem. After a false positive, copy the leaf name straight from `matched_protections` in the [audit log](../operations/audit-log.md).
+
+## Precedence — most specific wins
+
+When `enable:` and `disable:` reference overlapping levels, the **more specific name wins**. A leaf in `enable:` overrides its L2 or L1 in `disable:`, and the reverse for `disable:`.
 
 ```yaml
 disable:
-  - sql-injection-union   # specific technique
-  - data-leakage-php      # specific category (no sub-protections)
+  - sql                              # turn off the whole SQL family…
+enable:
+  - sql-injection-union-select       # …except this one technique stays on
 ```
 
-## Finding the right name
-
-- See the full [protection catalog](../security/protections.md).
-- After a false-positive request, check the [audit log](../operations/audit-log.md): `matched_protections` lists exactly the names you can put under `disable`.
+The two lists are not adversarial — they describe one effective set per route.
 
 ## Workflow for a false positive
 
-1. Run in [`detect_only: true`](detect-only.md) so the request is logged but not blocked.
+1. Run the affected route in [`detect_only: true`](detect-only.md) so the request is logged but not blocked.
 2. Reproduce the false positive.
-3. Read `matched_protections` from the audit log.
-4. Add the most specific name to `disable`.
-5. Switch back to blocking.
+3. Read `matched_protections` from the audit log — those are the names you can put under `disable:`.
+4. Find the leaf in the [WAF Protection Catalog](catalog.md). The **When to toggle** column shows the rationale (and warns when disabling would lose meaningful coverage).
+5. Add the most specific name (leaf > L2 > L1) to `disable:`.
+6. Switch back to blocking.
 
 !!! warning "Disable narrows your protection"
-    Every name in `disable` is a class of attacks no longer detected on that route. Disable on a single route, not globally, and revisit periodically.
+    Every name in `disable:` is a class of attacks no longer detected on that route. Disable on a single route, not globally, and revisit periodically.
+
+## See also
+
+- [WAF Protection Catalog](catalog.md) — every leaf, default state, and toggle rationale.
+- [Enabling protections](enable.md) — the opposite list, for opting into off-by-default leaves.
+- `barbacana --catalog show <leaf-name>` — print the rationale for one leaf at the CLI.

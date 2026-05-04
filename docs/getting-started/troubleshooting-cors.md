@@ -2,6 +2,9 @@
 
 CORS — Cross-Origin Resource Sharing — is a browser-side check. When JavaScript loaded from `https://app.example.com` calls `https://api.example.com`, the browser refuses to expose the response unless the API returns the right `Access-Control-Allow-*` headers. **Barbacana's CORS support is disabled by default**, so until you enable it the browser will block every cross-origin call.
 
+!!! info "v0.4.0 also stopped injecting COOP/COEP/CORP by default"
+    Cross-origin embedding errors that were caused by Barbacana injecting `Cross-Origin-Opener-Policy`, `Cross-Origin-Embedder-Policy`, or `Cross-Origin-Resource-Policy` on pre-v0.4.0 installs no longer fire on a fresh install — those leaves are now opt-in (`response-headers-add-coop`, `…-coep`, `…-corp`). They're still good practice once tuned; see the [security headers reference](../reference/headers.md).
+
 ## Symptoms
 
 The browser **Console** shows one of:

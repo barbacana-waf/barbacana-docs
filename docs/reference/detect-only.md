@@ -17,7 +17,7 @@ Every request is inspected normally. When a protection matches, the request is *
 ```json title="audit log entry"
 {
   "action": "detected",
-  "matched_protections": ["sql-injection", "sql-injection-union"],
+  "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"],
   "...": "..."
 }
 ```

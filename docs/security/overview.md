@@ -15,7 +15,7 @@ What Barbacana protects against, what it doesn't, and how it decides.
 | Data leakage | Stack traces, debug pages, database error messages in responses |
 | Contract violations | Requests that don't conform to your [OpenAPI spec](../reference/openapi.md) |
 
-For the exhaustive list with names you can [`disable`](../reference/disable.md), see the [protection catalog](protections.md).
+For the exhaustive list with names you can [`disable`](../reference/disable.md), see the [protection catalog](../reference/catalog.md).
 
 ## What Barbacana does NOT protect against
 
