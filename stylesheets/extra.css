@@ -90,14 +90,116 @@
   --md-footer-bg-color--dark: #070C16;
 }
 
+/* ─── Header logo ─────────────────────────────────────────
+ * The logo asset is a blue hex with a white castle. The header
+ * background is also royal blue, so the hex disappears and only
+ * the small castle silhouette is left. Give the logo a white
+ * rounded chip so the full mark is visible against the header.
+ */
+.md-header__button.md-logo {
+  margin: .2rem;
+  padding: .2rem;
+}
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 1.8rem;
+  width: 1.8rem;
+  background: #ffffff;
+  padding: 3px;
+  border-radius: 8px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.6);
+}
+
 /* ─── Shared components (theme-agnostic, driven by --bb-* tokens) ─── */
 
-/* Cards / panels on the landing page */
+/* Cards / panels (kept for any future use elsewhere) */
 .md-typeset .grid.cards > :is(ul, ol) > li,
 .md-typeset .grid > .card {
   background-color: var(--bb-surface);
   border: 1px solid var(--bb-border);
   border-radius: 6px;
+}
+
+/* ─── Landing-page feature rows ───────────────────────────
+ * Two-column row: prose on the left, a config snippet on the
+ * right. Stacks on narrow screens. Replaces a card grid that
+ * couldn't show what each feature actually does.
+ */
+.md-typeset .feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid var(--bb-border);
+}
+.md-typeset .feature-row:first-of-type {
+  border-top: none;
+}
+@media screen and (max-width: 60em) {
+  .md-typeset .feature-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem 0;
+  }
+}
+.md-typeset .feature-text > h3 {
+  margin: .2rem 0 .5rem;
+  font-weight: 700;
+  font-size: 1.4rem;
+  letter-spacing: -0.01em;
+}
+.md-typeset .feature-text > p {
+  color: var(--bb-text-2);
+  margin: 0;
+}
+.md-typeset .feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 8px;
+  background: var(--bb-primary-muted);
+  color: var(--bb-primary);
+  margin-bottom: .4rem;
+}
+.md-typeset .feature-icon svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: currentColor;
+}
+.md-typeset .feature-code .highlight,
+.md-typeset .feature-code pre {
+  margin: 0;
+}
+.md-typeset .feature-code > .highlight > pre > code,
+.md-typeset .feature-code pre > code {
+  border-radius: 10px;
+}
+
+/* Small credibility line under the feature rows */
+.md-typeset .trust-strip {
+  text-align: center;
+  color: var(--bb-text-2);
+  font-size: 0.78rem;
+  margin: 2rem 0 0;
+}
+.md-typeset .trust-strip .twemoji {
+  vertical-align: -0.18em;
+  margin-right: 0.25em;
+}
+
+/* Closing CTA row — three buttons, centered, before "Built on" */
+.md-typeset .cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin: 2rem 0 3rem;
+}
+.md-typeset .cta-row .md-button {
+  margin: 0;
 }
 
 /* Admonitions: recolor accents with the severity palette */

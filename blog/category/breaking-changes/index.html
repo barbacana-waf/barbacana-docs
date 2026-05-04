@@ -12,7 +12,7 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/blog/category/security/">
+        <link rel="canonical" href="https://barbacana.dev/blog/category/breaking-changes/">
       
       
       
@@ -22,7 +22,7 @@
     
     
       
-        <title>security - Barbacana</title>
+        <title>breaking-changes - Barbacana</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#security" class="md-skip">
+        <a href="#breaking-changes" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              security
+              breaking-changes
             
           </span>
         </div>
@@ -1584,7 +1584,7 @@
   <div class="md-content" data-md-component="content">
     <div class="md-content__inner">
       <header class="md-typeset">
-        <h1 id="security">security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h1>
+        <h1 id="breaking-changes">breaking-changes<a class="headerlink" href="#breaking-changes" title="Permanent link">&para;</a></h1>
       </header>
       
         <article class="md-post md-post--excerpt">
@@ -1601,19 +1601,19 @@
     <div class="md-post__meta md-meta">
       <ul class="md-meta__list">
         <li class="md-meta__item">
-          <time datetime="2026-04-22 00:00:00">April 22, 2026</time></li>
+          <time datetime="2026-05-04 00:00:00">May 4, 2026</time></li>
         
           <li class="md-meta__item">
             in
             
-              <a href="./" class="md-meta__link">security</a>, 
-              <a href="../releases/" class="md-meta__link">releases</a></li>
+              <a href="../releases/" class="md-meta__link">releases</a>, 
+              <a href="./" class="md-meta__link">breaking-changes</a></li>
         
         
           
           <li class="md-meta__item">
             
-              6 min read
+              7 min read
             
           </li>
         
@@ -1622,12 +1622,13 @@
     </div>
   </header>
   <div class="md-post__content md-typeset">
-    <h2 id="v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next"><a class="toclink" href="../../2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">v0.1.0 Security Baseline: What Barbacana Catches, What It Misses, and What Comes Next</a></h2>
-<p>Barbacana v0.1.0 is out. Right after the release, two independent test suites were run to measure what the WAF catches and what it misses. For a first release, the numbers are good: 99.7% on the OWASP CRS v4 conformance tests, 100% on API Security (REST and SOAP), and 90.78% of legitimate traffic allowed through. The full results are published below, without any filtering. It is more useful to know where detection fails than to publish a clean summary.</p>
+    <h2 id="v040-easier-to-configure-with-new-opt-in-aggressive-rules"><a class="toclink" href="../../2026/05/04/v040-easier-to-configure-with-new-opt-in-aggressive-rules/">v0.4.0: Easier to configure, with new opt-in aggressive rules</a></h2>
+<p>This release makes Barbacana easier to configure. Protection names are rewritten in plain language, the rule catalog is reorganized into a three-level tree, and aggressive rules with high false-positive rates move to a new opt-in <code>enable:</code> list. A few security headers that were breaking apps in surprising ways are now off by default. A latent bug that prevented response-side detection from running is fixed. Detection rates on the request side are practically unchanged.</p>
+<p>This is a breaking change, but the migration is straightforward.</p>
 
     
       <nav class="md-post__action">
-        <a href="../../2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">
+        <a href="../../2026/05/04/v040-easier-to-configure-with-new-opt-in-aggressive-rules/">
           Continue reading
         </a>
       </nav>

@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/quickstart/" class="md-tabs__link">
+        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
           
   
     
@@ -414,6 +414,8 @@
       
         
       
+        
+      
     
     
       
@@ -448,6 +450,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/why-barbacana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Barbacana?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -541,10 +564,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -555,8 +578,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -650,6 +673,8 @@
   
     
     
+      
+        
       
         
       
@@ -1004,6 +1029,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authoring-an-openapi-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authoring an OpenAPI spec
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1029,6 +1063,8 @@
   
     
     
+      
+        
       
         
       
@@ -1084,6 +1120,27 @@
   
   <span class="md-ellipsis">
     Disable protections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../enable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enable protections
   </span>
   
 
@@ -1230,6 +1287,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protection catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../schema/" class="md-nav__link">
         
   
@@ -1259,8 +1337,6 @@
   
     
     
-      
-        
       
         
       
@@ -1338,27 +1414,6 @@
   
   <span class="md-ellipsis">
     Request lifecycle
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../security/protections/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Protections
   </span>
   
 
@@ -1667,6 +1722,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#authoring-an-openapi-spec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authoring an OpenAPI spec
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1712,15 +1776,24 @@
 <p><code>strict: false</code> is the OpenAPI-level equivalent of <a href="../detect-only/"><code>detect_only</code></a>: violations are logged but the request is forwarded. Use it while onboarding a spec.</p>
 <h2 id="shadow-api-discovery">Shadow API discovery<a class="headerlink" href="#shadow-api-discovery" title="Permanent link">&para;</a></h2>
 <p>Even with <code>strict: false</code>, undeclared paths are logged. This surfaces <em>shadow APIs</em> — endpoints in production that no one wrote down.</p>
-<p>Search the audit log for OpenAPI entries with <code>matched_protections</code> containing <code>openapi-path</code> to find them.</p>
+<p>Search the audit log for OpenAPI entries with <code>matched_protections</code> containing <code>openapi-path-not-in-spec</code> to find them.</p>
 <h2 id="disabling-individual-checks">Disabling individual checks<a class="headerlink" href="#disabling-individual-checks" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">openapi</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">spec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/barbacana/api.yaml</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">strict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">disable</span><span class="p">:</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openapi-body</span><span class="w">       </span><span class="c1"># don&#39;t validate request body schemas</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">openapi-body-mismatch</span><span class="w">    </span><span class="c1"># don&#39;t validate request body schemas</span>
 </span></code></pre></div>
-<p>See the <a href="../../security/protections/">protection catalog</a> for the full <code>openapi-*</code> list.</p>
+<p>See the <a href="../catalog/">protection catalog</a> for the full <code>openapi-*</code> list.</p>
+<h2 id="authoring-an-openapi-spec">Authoring an OpenAPI spec<a class="headerlink" href="#authoring-an-openapi-spec" title="Permanent link">&para;</a></h2>
+<p>If you don't already have a spec for your API, these are the canonical starting points:</p>
+<ul>
+<li><a href="https://spec.openapis.org/oas/v3.1.0">OpenAPI Specification 3.1</a> — the source-of-truth document; Barbacana also accepts 3.0.</li>
+<li><a href="https://swagger.io/docs/specification/v3_0/about/">Swagger "Getting Started"</a> — practical walkthrough of the spec with examples.</li>
+<li><a href="https://editor.swagger.io/">Swagger Editor</a> — browser-based editor with live validation; good for hand-writing or iterating on a spec.</li>
+<li><a href="https://openapi.tools/#converters">Generating specs from code</a> — list of generators for Go, Python, Node, Java, etc., if you'd rather derive the spec from your handlers than maintain it separately.</li>
+</ul>
+<p>Whichever route you take, point <code>openapi.spec</code> at the resulting <code>.yaml</code> or <code>.json</code> file. Barbacana parses both.</p>
 
 
 

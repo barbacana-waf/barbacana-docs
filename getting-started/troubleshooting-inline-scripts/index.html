@@ -243,7 +243,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../quickstart/" class="md-tabs__link">
+        <a href="../why-barbacana/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -451,6 +453,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-barbacana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Barbacana?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -547,10 +570,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -561,8 +584,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -661,6 +684,15 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-on-ramp-report-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended on-ramp: report-only
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#symptoms" class="md-nav__link">
@@ -766,6 +798,8 @@
   
     
     
+      
+        
       
         
       
@@ -1067,6 +1101,8 @@
       
         
       
+        
+      
     
     
       
@@ -1114,6 +1150,27 @@
   
   <span class="md-ellipsis">
     Disable protections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/enable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enable protections
   </span>
   
 
@@ -1257,6 +1314,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protection catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/schema/" class="md-nav__link">
         
   
@@ -1286,8 +1364,6 @@
   
     
     
-      
-        
       
         
       
@@ -1365,27 +1441,6 @@
   
   <span class="md-ellipsis">
     Request lifecycle
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../security/protections/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Protections
   </span>
   
 
@@ -1659,6 +1714,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#recommended-on-ramp-report-only" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recommended on-ramp: report-only
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#symptoms" class="md-nav__link">
     <span class="md-ellipsis">
       Symptoms
@@ -1749,11 +1813,17 @@
 
 
 <h1 id="fixing-inline-script-csp-errors">Fixing inline-script CSP errors<a class="headerlink" href="#fixing-inline-script-csp-errors" title="Permanent link">&para;</a></h1>
-<p>Barbacana injects a strict <code>Content-Security-Policy</code> by default:</p>
+<div class="admonition info">
+<p class="admonition-title">CSP is opt-in</p>
+<p>As of v0.4.0 Barbacana <strong>no longer injects a CSP by default.</strong> A fresh install will not produce the errors below unless you've explicitly enabled <code>response-headers-add-csp</code>. This page is for teams who have opted in (<code>enable: [response-headers-add-csp]</code>) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.</p>
+</div>
+<p>If you choose to enable CSP, Barbacana injects a strict policy:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>default-src &#39;self&#39;; frame-ancestors &#39;none&#39;; base-uri &#39;self&#39;; form-action &#39;self&#39;; upgrade-insecure-requests
 </span></code></pre></div>
 <p><code>default-src 'self'</code> blocks every inline <code>&lt;script&gt;</code> block, every inline event handler (<code>onclick="…"</code>), every <code>&lt;style&gt;</code> block, every <code>javascript:</code> URL, and every external script not served from the page's own origin. That is intentional — inline scripts are the primary vector for stored XSS, and CSP is the most effective mitigation.</p>
 <p>If your app relies on inline scripts (server-rendered templates, legacy code, third-party widgets), the CSP must be loosened — but <strong>not by adding <code>'unsafe-inline'</code> everywhere.</strong> Try the options below in order.</p>
+<h2 id="recommended-on-ramp-report-only">Recommended on-ramp: report-only<a class="headerlink" href="#recommended-on-ramp-report-only" title="Permanent link">&para;</a></h2>
+<p>Before enabling enforcing CSP in production, send the policy in <strong><code>Content-Security-Policy-Report-Only</code></strong> mode from your application for a week or two. The browser logs every violation but doesn't block execution. You'll see exactly which inline blocks, third-party origins, and <code>data:</code> URLs need allow-listing before turning enforcement on. Barbacana doesn't synthesize a report-only policy itself — emit it from your app, then graduate to <code>enable: [response-headers-add-csp]</code> once the violation log is clean.</p>
 <h2 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h2>
 <p>The page renders but JavaScript doesn't run, or specific widgets stay blank. The browser <strong>Console</strong> shows:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Refused to execute inline script because it violates the following
@@ -1794,35 +1864,42 @@
 <p>Modern build tools (Vite, webpack, esbuild) emit external bundles by default — most refactoring is a question of stripping inline blocks from server-rendered HTML templates.</p>
 <h2 id="option-2-allow-specific-inline-scripts-via-nonce-or-hash">Option 2 — Allow specific inline scripts via nonce or hash<a class="headerlink" href="#option-2-allow-specific-inline-scripts-via-nonce-or-hash" title="Permanent link">&para;</a></h2>
 <p>If you can modify the HTML but can't avoid inline scripts (server-rendered apps), allow them by <strong>nonce</strong> or <strong>hash</strong> instead of opening the entire <code>'unsafe-inline'</code> door.</p>
-<p><strong>Nonce approach.</strong> The application generates a random per-response nonce, adds it to every inline script tag (<code>&lt;script nonce="abc123"&gt;…&lt;/script&gt;</code>), and reflects it in the CSP it sends. Barbacana doesn't generate the nonce — your application does. To let the upstream's CSP through unchanged on a route, disable Barbacana's CSP injection:</p>
+<p><strong>Nonce approach.</strong> The application generates a random per-response nonce, adds it to every inline script tag (<code>&lt;script nonce="abc123"&gt;…&lt;/script&gt;</code>), and reflects it in the CSP it sends. Barbacana doesn't generate the nonce — your application does. Don't enable Barbacana's CSP injection at all in this case; just let the upstream's CSP through:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">header-csp</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1"># response-headers-add-csp is off by default — no extra config needed</span>
+</span></code></pre></div>
+<p>If you have CSP injection enabled globally and want to opt this route out:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response-headers-add-csp</span>
 </span></code></pre></div>
 <p>Your application is now responsible for sending a correct CSP on every response from that route.</p>
 <p><strong>Hash approach.</strong> For static inline blocks, compute the SHA-256 of the script body (the browser usually prints the expected hash directly in the console error) and inject a custom CSP:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moderate</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">        </span><span class="nt">header-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;sha256-AbC...=&#39;&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">enable</span><span class="p">:</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response-headers-add-csp</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">        </span><span class="nt">response-headers-add-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;sha256-AbC...=&#39;&quot;</span>
 </span></code></pre></div>
 <h2 id="option-3-allow-unsafe-inline-last-resort">Option 3 — Allow <code>'unsafe-inline'</code> (last resort)<a class="headerlink" href="#option-3-allow-unsafe-inline-last-resort" title="Permanent link">&para;</a></h2>
 <p>Only do this if the app is internal, the threat model accepts the trade-off, or you're in a temporary unblock-and-fix-later situation:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moderate</span>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">        </span><span class="nt">header-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;;</span><span class="nv"> </span><span class="s">style-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">enable</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response-headers-add-csp</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">        </span><span class="nt">response-headers-add-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;;</span><span class="nv"> </span><span class="s">style-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span>
 </span></code></pre></div>
 <p>This <strong>disables CSP-based XSS protection</strong> for inline scripts on that route. Scope it to the specific route that needs it; never apply it globally.</p>
 <h2 id="allowing-an-external-script-source">Allowing an external script source<a class="headerlink" href="#allowing-an-external-script-source" title="Permanent link">&para;</a></h2>
 <p>If the error names an external URL rather than <code>inline</code>, list that origin in <code>script-src</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">inject</span><span class="p">:</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">header-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">https://cdn.example.com&quot;</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">inject</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">response-headers-add-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">https://cdn.example.com&quot;</span>
 </span></code></pre></div>
 <p>The same pattern works for <code>style-src</code>, <code>img-src</code>, <code>connect-src</code>, <code>font-src</code>, etc.</p>
 <h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link">&para;</a></h2>
@@ -1834,8 +1911,8 @@
 </ol>
 <h2 id="related">Related<a class="headerlink" href="#related" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="../../reference/headers/">Security headers reference</a> — full list of headers Barbacana injects and how presets work.</li>
-<li><a href="../../security/protections/">Protection catalog</a> — every <code>header-*</code> key you can <code>inject</code> or <code>disable</code>.</li>
+<li><a href="../../reference/headers/">Security headers reference</a> — full list of headers Barbacana injects and how to override values.</li>
+<li><a href="../../reference/catalog/">Protection catalog</a> — every <code>response-headers-add-*</code> key you can <code>inject</code>, <code>enable</code>, or <code>disable</code>.</li>
 </ul>
 
 

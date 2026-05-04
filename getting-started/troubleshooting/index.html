@@ -243,7 +243,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../quickstart/" class="md-tabs__link">
+        <a href="../why-barbacana/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -451,6 +453,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-barbacana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Barbacana?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -547,10 +570,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -561,8 +584,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -878,6 +901,8 @@
       
         
       
+        
+      
     
     
       
@@ -1166,6 +1191,8 @@
       
         
       
+        
+      
     
     
       
@@ -1213,6 +1240,27 @@
   
   <span class="md-ellipsis">
     Disable protections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/enable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enable protections
   </span>
   
 
@@ -1356,6 +1404,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protection catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/schema/" class="md-nav__link">
         
   
@@ -1385,8 +1454,6 @@
   
     
     
-      
-        
       
         
       
@@ -1464,27 +1531,6 @@
   
   <span class="md-ellipsis">
     Request lifecycle
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../security/protections/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Protections
   </span>
   
 
@@ -2022,13 +2068,13 @@
 <p>Barbacana writes one JSON entry per inspected request to stdout. Look for entries with <code>"action": "detected"</code> — these are the requests that <em>would</em> be blocked in normal mode:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;detected&quot;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union&quot;</span><span class="p">],</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">],</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/search&quot;</span><span class="p">,</span>
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
 </span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
 </span></code></pre></div>
 <h3 id="add-targeted-exceptions">Add targeted exceptions<a class="headerlink" href="#add-targeted-exceptions" title="Permanent link">&para;</a></h3>
-<p>Follow the <strong>least-privilege principle</strong>: disable the most specific sub-protection, not the whole category.</p>
+<p>Follow the <strong>least-privilege principle</strong>: disable the most specific leaf, not the whole bucket or family.</p>
 <table>
 <thead>
 <tr>
@@ -2039,18 +2085,18 @@
 </thead>
 <tbody>
 <tr>
-<td><code>["sql-injection", "sql-injection-union"]</code></td>
-<td><code>sql-injection-union</code></td>
+<td><code>["sql", "sql-injection", "sql-injection-union-select"]</code></td>
+<td><code>sql-injection-union-select</code></td>
 <td>Only disables UNION-based detection; all other SQL-injection rules stay active.</td>
 </tr>
 <tr>
-<td><code>["sql-injection"]</code></td>
-<td><em>(do not disable the entire category unless absolutely necessary)</em></td>
-<td>Disabling <code>sql-injection</code> removes <strong>all</strong> SQL-injection detection on that route.</td>
+<td><code>["sql", "sql-injection"]</code></td>
+<td><em>(prefer the most specific leaf if you can identify it)</em></td>
+<td>Disabling <code>sql-injection</code> removes every SQLi technique on the route. Disabling <code>sql</code> removes data-leakage detection too.</td>
 </tr>
 </tbody>
 </table>
-<p>See <a href="../../reference/disable/">Disable protections</a> and the <a href="../../security/protections/">protection catalog</a> for the full list of names.</p>
+<p>See <a href="../../reference/disable/">Tuning protections</a> and the <a href="../../reference/catalog/">protection catalog</a> for the full list of names.</p>
 <h3 id="scope-exceptions-to-specific-routes">Scope exceptions to specific routes<a class="headerlink" href="#scope-exceptions-to-specific-routes" title="Permanent link">&para;</a></h3>
 <p>If different paths trigger different false positives (e.g. the UI and the API), split them into separate routes and add exceptions only where needed:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">routes</span><span class="p">:</span>
@@ -2059,7 +2105,7 @@
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/api/*&quot;</span><span class="p p-Indicator">]</span>
 </span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-injection-union</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-injection-union-select</span>
 </span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
 </span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
 </span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
@@ -2116,7 +2162,7 @@
 <p>Always scope permissive limits to the specific route that needs them.</p>
 <hr />
 <h2 id="step-7-check-for-security-header-conflicts">Step 7 — Check for security-header conflicts<a class="headerlink" href="#step-7-check-for-security-header-conflicts" title="Permanent link">&para;</a></h2>
-<p>Barbacana <a href="../../reference/headers/">injects a few security response headers</a> by default (<code>Content-Security-Policy</code>, <code>X-Frame-Options</code>, <code>Cross-Origin-Opener-Policy</code>, and others). These can break frontend JavaScript even though no entries appear in the WAF audit log.</p>
+<p>Barbacana <a href="../../reference/headers/">injects security response headers</a> on every response. By default in v0.4.0+ that's <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Strict-Transport-Security</code>, <code>Referrer-Policy</code>, and <code>X-DNS-Prefetch-Control</code> — the five whose strict defaults are safe for most apps. The other six (<code>Content-Security-Policy</code>, COOP, COEP, CORP, <code>Permissions-Policy</code>, <code>Cache-Control</code>) are opt-in and only active if you've added them to <code>enable:</code>. Any of them can break frontend JavaScript even though no entries appear in the WAF audit log.</p>
 <p>Two issues hit nearly every SPA the first time it is put behind Barbacana — each has a dedicated page:</p>
 <ul>
 <li><strong><a href="../troubleshooting-cors/">Fixing CORS errors</a></strong> — browser console says <em>"blocked by CORS policy"</em> or the <code>OPTIONS</code> preflight is failing. CORS is <strong>off by default</strong> in Barbacana and must be enabled per route.</li>
@@ -2132,56 +2178,55 @@
 <ol>
 <li>Open the browser Developer Tools — <strong>Console</strong>.</li>
 <li>Look for errors referencing CSP, CORS, COOP, COEP, or <code>X-Frame-Options</code>.</li>
-<li>Map each error to the canonical <code>header-*</code> protection name:</li>
+<li>Map each error to the canonical leaf name:</li>
 </ol>
 <table>
 <thead>
 <tr>
 <th>Browser error mentions</th>
-<th>Barbacana header key</th>
+<th>Barbacana leaf</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Content-Security-Policy</td>
-<td><code>header-csp</code></td>
+<td><code>response-headers-add-csp</code></td>
 </tr>
 <tr>
 <td>X-Frame-Options</td>
-<td><code>header-x-frame-options</code></td>
+<td><code>response-headers-add-frame-options</code></td>
 </tr>
 <tr>
 <td>Cross-Origin-Opener-Policy</td>
-<td><code>header-coop</code></td>
+<td><code>response-headers-add-coop</code></td>
 </tr>
 <tr>
 <td>Cross-Origin-Embedder-Policy</td>
-<td><code>header-coep</code></td>
+<td><code>response-headers-add-coep</code></td>
 </tr>
 <tr>
 <td>Cross-Origin-Resource-Policy</td>
-<td><code>header-corp</code></td>
+<td><code>response-headers-add-corp</code></td>
 </tr>
 <tr>
 <td>Permissions-Policy</td>
-<td><code>header-permissions-policy</code></td>
+<td><code>response-headers-add-permissions-policy</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="fix">Fix<a class="headerlink" href="#fix" title="Permanent link">&para;</a></h3>
-<p><strong>Option A — Override specific headers</strong> using a custom preset:</p>
+<p><strong>Option A — Override specific headers</strong> via <code>inject:</code>:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">response_headers</span><span class="p">:</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">preset</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">moderate</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">        </span><span class="nt">header-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">      </span><span class="nt">inject</span><span class="p">:</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">        </span><span class="nt">response-headers-add-csp</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;default-src</span><span class="nv"> </span><span class="s">&#39;self&#39;;</span><span class="nv"> </span><span class="s">script-src</span><span class="nv"> </span><span class="s">&#39;self&#39;</span><span class="nv"> </span><span class="s">&#39;unsafe-inline&#39;&quot;</span>
 </span></code></pre></div>
 <p><strong>Option B — Disable the offending header</strong> on that route:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">header-coop</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">response-headers-add-coop</span>
 </span></code></pre></div>
 <p>After each change, reload the page and confirm the console errors are gone.</p>
 <hr />
@@ -2195,7 +2240,7 @@
 <li><a href="../../reference/routes/">Routes</a></li>
 <li><a href="../../security/logs/">Logs &amp; SIEM</a></li>
 <li><a href="../../operations/audit-log/">Audit log</a></li>
-<li><a href="../../security/protections/">Protection catalog</a></li>
+<li><a href="../../reference/catalog/">Protection catalog</a></li>
 </ul>
 
 

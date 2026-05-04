@@ -243,7 +243,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../quickstart/" class="md-tabs__link">
+        <a href="../why-barbacana/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -451,6 +453,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../why-barbacana/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Why Barbacana?
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -547,10 +570,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -561,8 +584,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_4">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_5">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -748,6 +771,8 @@
   
     
     
+      
+        
       
         
       
@@ -1049,6 +1074,8 @@
       
         
       
+        
+      
     
     
       
@@ -1096,6 +1123,27 @@
   
   <span class="md-ellipsis">
     Disable protections
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reference/enable/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Enable protections
   </span>
   
 
@@ -1239,6 +1287,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../reference/catalog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Protection catalog
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../reference/schema/" class="md-nav__link">
         
   
@@ -1268,8 +1337,6 @@
   
     
     
-      
-        
       
         
       
@@ -1347,27 +1414,6 @@
   
   <span class="md-ellipsis">
     Request lifecycle
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../security/protections/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Protections
   </span>
   
 
@@ -1714,6 +1760,10 @@
 
 <h1 id="fixing-cors-errors">Fixing CORS errors<a class="headerlink" href="#fixing-cors-errors" title="Permanent link">&para;</a></h1>
 <p>CORS — Cross-Origin Resource Sharing — is a browser-side check. When JavaScript loaded from <code>https://app.example.com</code> calls <code>https://api.example.com</code>, the browser refuses to expose the response unless the API returns the right <code>Access-Control-Allow-*</code> headers. <strong>Barbacana's CORS support is disabled by default</strong>, so until you enable it the browser will block every cross-origin call.</p>
+<div class="admonition info">
+<p class="admonition-title">v0.4.0 also stopped injecting COOP/COEP/CORP by default</p>
+<p>Cross-origin embedding errors that were caused by Barbacana injecting <code>Cross-Origin-Opener-Policy</code>, <code>Cross-Origin-Embedder-Policy</code>, or <code>Cross-Origin-Resource-Policy</code> on pre-v0.4.0 installs no longer fire on a fresh install — those leaves are now opt-in (<code>response-headers-add-coop</code>, <code>…-coep</code>, <code>…-corp</code>). They're still good practice once tuned; see the <a href="../../reference/headers/">security headers reference</a>.</p>
+</div>
 <h2 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h2>
 <p>The browser <strong>Console</strong> shows one of:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Access to fetch at &#39;https://api.example.com/users&#39; from origin
