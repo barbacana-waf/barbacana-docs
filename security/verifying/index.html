@@ -1454,6 +1454,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#6-verify-the-binaries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Verify the binaries (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     <span class="md-ellipsis">
       Reference
@@ -1747,6 +1756,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#6-verify-the-binaries-optional" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Verify the binaries (optional)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#reference" class="md-nav__link">
     <span class="md-ellipsis">
       Reference
@@ -1820,21 +1838,21 @@
 <h2 id="1-verify-the-image-signature">1. Verify the image signature<a class="headerlink" href="#1-verify-the-image-signature" title="Permanent link">&para;</a></h2>
 <p>The signature proves the image at the given reference was produced by the Barbacana release workflow on a tagged commit. It does not say anything about what is <em>inside</em> the image — that is what the SBOM attestation in step 2 is for.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cosign verify \
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
 </span></code></pre></div>
 <p>Example run against <code>latest</code>:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;},<br>  &quot;type&quot;:&quot;https://sigstore.dev/cosign/sign/v1&quot;},&quot;optional&quot;:{...}}]<br></span></div>
 
-<p>The certificate identity regex pins the signature to a workflow file in the <code>barbacana-waf/barbacana</code> repository, fired on a <code>v*</code> tag push. The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.</p>
+<p>The certificate identity pins the signature to <code>release.yml</code> in the <code>barbacana-waf/barbacana</code> repository, run via <code>workflow_dispatch</code> on master (the release workflow creates the version tag at the end of its own run, so the OIDC subject embeds <code>@refs/heads/master</code>, not the eventual tag). The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.</p>
 <p>A successful run prints a JSON array of verified signatures and exits 0.</p>
 <p>A failure means one of the following:</p>
 <ul>
-<li>The image at that reference is unsigned, or signed by an identity that does not match the regex (i.e. not produced by this repo's release workflow).</li>
+<li>The image at that reference is unsigned, or signed by an identity that does not match (i.e. not produced by this repo's release workflow).</li>
 <li>The transparency log entry for the signature has been tampered with or removed.</li>
 <li>The image reference points to a different digest than the one that was signed (e.g. a tag was force-pushed).</li>
 </ul>
@@ -1843,27 +1861,27 @@
 <p>The attestation is a cosign-signed in-toto statement carrying a CycloneDX SBOM as its predicate. Verifying it proves the SBOM came from the same release workflow that signed the image and is bound to that image's digest.</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cosign verify-attestation \
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  --type cyclonedx \
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
 </span></code></pre></div>
 <p>Example run against <code>latest</code>:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation \
   --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>{&quot;payload&quot;:&quot;eyJfdHlwZSI6Imh0dHBz[...]&quot;,&quot;payloadType&quot;:&quot;application/vnd.in-toto+json&quot;,&quot;signatures&quot;:[{&quot;sig&quot;:&quot;...&quot;}]}<br></span></div>
 
 <p>A success prints the verified in-toto envelope to stdout and exits 0. Pipe it through <code>jq</code> to inspect the predicate type and the bound subject:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cosign verify-attestation --type cyclonedx \
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  --certificate-identity-regexp=&#39;https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*&#39; \
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z 2&gt;/dev/null \
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  | jq -r &#39;.payload&#39; | base64 -d | jq &#39;.predicateType,.subject&#39;
 </span></code></pre></div>
 <p>Example run against <code>latest</code>:</p>
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest 2&gt;/dev/null \
   | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'</span><span data-ty>&quot;https://cyclonedx.org/bom&quot;<br>[<br>  {<br>    &quot;name&quot;: &quot;ghcr.io/barbacana-waf/barbacana&quot;,<br>    &quot;digest&quot;: {<br>      &quot;sha256&quot;: &quot;a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;<br>    }<br>  }<br>]<br></span></div>
@@ -1877,7 +1895,7 @@
 <h2 id="3-enforce-verification-at-admission-kubernetes">3. Enforce verification at admission (Kubernetes)<a class="headerlink" href="#3-enforce-verification-at-admission-kubernetes" title="Permanent link">&para;</a></h2>
 <p>Steps 1 and 2 can be enforced automatically by a Kubernetes admission controller, so unsigned or unattested images are rejected at deploy time without any manual step. Two common options:</p>
 <ul>
-<li><a href="https://docs.sigstore.dev/policy-controller/overview/">Sigstore Policy Controller</a> — purpose-built admission webhook from the Sigstore project. Configure a <code>ClusterImagePolicy</code> with the same identity regex and OIDC issuer used in steps 1–2.</li>
+<li><a href="https://docs.sigstore.dev/policy-controller/overview/">Sigstore Policy Controller</a> — purpose-built admission webhook from the Sigstore project. Configure a <code>ClusterImagePolicy</code> with the same certificate identity and OIDC issuer used in steps 1–2.</li>
 <li><a href="https://kyverno.io/docs/policy-types/verify-images/sigstore/">Kyverno</a> — general-purpose policy engine with a built-in <code>verifyImages</code> rule that calls cosign internally.</li>
 </ul>
 <p>Either lets the cluster reject any pod whose image fails the same checks performed manually above.</p>
@@ -1934,6 +1952,20 @@
 </span></code></pre></div>
 <p>Both scanners auto-detect CycloneDX format. Severity, output format, and ignore-policy flags are scanner-specific — see the respective documentation.</p>
 <p>A clean scan today does not mean the image is clean tomorrow; new CVEs are disclosed against existing components continuously. See the next section.</p>
+<h2 id="6-verify-the-binaries-optional">6. Verify the binaries (optional)<a class="headerlink" href="#6-verify-the-binaries-optional" title="Permanent link">&para;</a></h2>
+<p>The container image is the recommended distribution form. For users who download the binary archives directly from a GitHub Release, each release attaches a cosign-signed <code>checksums.txt.bundle</code> and a SLSA3 provenance file (<code>barbacana.intoto.jsonl</code>).</p>
+<p>Verify the checksums file (the SHA-256 entries inside cover every archive):</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cosign verify-blob \
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  --bundle checksums.txt.bundle \
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  checksums.txt
+</span></code></pre></div>
+<p>Or verify a specific archive against its SLSA3 provenance with <a href="https://github.com/slsa-framework/slsa-verifier">slsa-verifier</a>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>slsa-verifier verify-artifact barbacana_X.Y.Z_linux_amd64.tar.gz \
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  --provenance-path barbacana.intoto.jsonl \
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  --source-uri github.com/barbacana-waf/barbacana
+</span></code></pre></div>
 <h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="https://docs.sigstore.dev/">Sigstore documentation</a> — background on cosign, Fulcio, Rekor, and the in-toto attestation format.</li>

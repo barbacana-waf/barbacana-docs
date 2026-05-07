@@ -12,26 +12,26 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/">
+        <link rel="canonical" href="https://barbacana.dev/blog/2026/05/07/v050-base64-decoding-and-a-new-xss-detector/">
+      
+      
+        <link rel="prev" href="../../04/v040-easier-to-configure-with-new-opt-in-aggressive-rules/">
       
       
       
-        <link rel="next" href="getting-started/why-barbacana/">
-      
-      
-      <link rel="icon" href="assets/logo.png">
+      <link rel="icon" href="../../../../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Barbacana</title>
+        <title>v0.5.0: Base64 decoding and a new XSS detector - Barbacana</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#barbacana" class="md-skip">
+        <a href="#v050-base64-decoding-and-a-new-xss-detector" class="md-skip">
           Skip to content
         </a>
       
@@ -92,9 +92,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Barbacana" class="md-header__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../../../../.." title="Barbacana" class="md-header__button md-logo" aria-label="Barbacana" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../../../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -111,7 +111,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Welcome
+              v0.5.0: Base64 decoding and a new XSS detector
             
           </span>
         </div>
@@ -218,11 +218,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="." class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -241,7 +239,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../../../../getting-started/why-barbacana/" class="md-tabs__link">
           
   
     
@@ -261,7 +259,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="reference/overview/" class="md-tabs__link">
+        <a href="../../../../../reference/overview/" class="md-tabs__link">
           
   
     
@@ -281,7 +279,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="security/overview/" class="md-tabs__link">
+        <a href="../../../../../security/overview/" class="md-tabs__link">
           
   
     
@@ -301,7 +299,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="operations/hostnames/" class="md-tabs__link">
+        <a href="../../../../../operations/hostnames/" class="md-tabs__link">
           
   
     
@@ -317,9 +315,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="blog/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
         
   
     
@@ -355,9 +355,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Barbacana" class="md-nav__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../../../../.." title="Barbacana" class="md-nav__button md-logo" aria-label="Barbacana" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../../../../../assets/logo.png" alt="logo">
 
     </a>
     Barbacana
@@ -381,30 +381,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Welcome
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -413,86 +393,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#quickstart" class="md-nav__link">
-    <span class="md-ellipsis">
-      Quickstart
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#beyond-the-defaults" class="md-nav__link">
-    <span class="md-ellipsis">
-      Beyond the defaults
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Beyond the defaults">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tune-by-name-not-by-rule-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tune by name, not by rule ID
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#https-no-certificates-to-manage" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTPS, no certificates to manage
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ship-safely-with-detect-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ship safely with detect-only
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#built-on" class="md-nav__link">
-    <span class="md-ellipsis">
-      Built on
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -558,7 +458,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/why-barbacana/" class="md-nav__link">
+      <a href="../../../../../getting-started/why-barbacana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -579,7 +479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/quickstart/" class="md-nav__link">
+      <a href="../../../../../getting-started/quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -600,7 +500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/installation/" class="md-nav__link">
+      <a href="../../../../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -621,7 +521,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/incremental/" class="md-nav__link">
+      <a href="../../../../../getting-started/incremental/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -692,7 +592,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/troubleshooting/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -713,7 +613,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/troubleshooting-cors/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting-cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -734,7 +634,7 @@
   
   
     <li class="md-nav__item">
-      <a href="getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -828,7 +728,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/overview/" class="md-nav__link">
+      <a href="../../../../../reference/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -897,7 +797,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/routes/" class="md-nav__link">
+      <a href="../../../../../reference/routes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -918,7 +818,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/rewrites/" class="md-nav__link">
+      <a href="../../../../../reference/rewrites/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -997,7 +897,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/accept/" class="md-nav__link">
+      <a href="../../../../../reference/accept/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1018,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/uploads/" class="md-nav__link">
+      <a href="../../../../../reference/uploads/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1039,7 +939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/openapi/" class="md-nav__link">
+      <a href="../../../../../reference/openapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1118,7 +1018,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/disable/" class="md-nav__link">
+      <a href="../../../../../reference/disable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1139,7 +1039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/enable/" class="md-nav__link">
+      <a href="../../../../../reference/enable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1160,7 +1060,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/detect-only/" class="md-nav__link">
+      <a href="../../../../../reference/detect-only/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1237,7 +1137,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/cors/" class="md-nav__link">
+      <a href="../../../../../reference/cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1258,7 +1158,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/headers/" class="md-nav__link">
+      <a href="../../../../../reference/headers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1287,7 +1187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/catalog/" class="md-nav__link">
+      <a href="../../../../../reference/catalog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1308,7 +1208,7 @@
   
   
     <li class="md-nav__item">
-      <a href="reference/schema/" class="md-nav__link">
+      <a href="../../../../../reference/schema/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1388,7 +1288,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security/overview/" class="md-nav__link">
+      <a href="../../../../../security/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1409,7 +1309,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security/request-lifecycle/" class="md-nav__link">
+      <a href="../../../../../security/request-lifecycle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1430,7 +1330,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security/logs/" class="md-nav__link">
+      <a href="../../../../../security/logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1451,7 +1351,7 @@
   
   
     <li class="md-nav__item">
-      <a href="security/verifying/" class="md-nav__link">
+      <a href="../../../../../security/verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1533,7 +1433,7 @@
   
   
     <li class="md-nav__item">
-      <a href="operations/hostnames/" class="md-nav__link">
+      <a href="../../../../../operations/hostnames/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1554,7 +1454,7 @@
   
   
     <li class="md-nav__item">
-      <a href="operations/cli/" class="md-nav__link">
+      <a href="../../../../../operations/cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1575,7 +1475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="operations/monitoring/" class="md-nav__link">
+      <a href="../../../../../operations/monitoring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1596,7 +1496,7 @@
   
   
     <li class="md-nav__item">
-      <a href="operations/metrics/" class="md-nav__link">
+      <a href="../../../../../operations/metrics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1617,7 +1517,7 @@
   
   
     <li class="md-nav__item">
-      <a href="operations/audit-log/" class="md-nav__link">
+      <a href="../../../../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1642,12 +1542,14 @@
       
   
   
+    
+  
   
     
   
   
-    <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1670,7 +1572,7 @@
               
                 
               
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" hidden>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -1689,60 +1591,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#quickstart" class="md-nav__link">
+  <a href="#base64-decoding" class="md-nav__link">
     <span class="md-ellipsis">
-      Quickstart
+      Base64 decoding
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#beyond-the-defaults" class="md-nav__link">
+  <a href="#xss-function-call-evasion" class="md-nav__link">
     <span class="md-ellipsis">
-      Beyond the defaults
+      XSS function-call evasion
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Beyond the defaults">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#tune-by-name-not-by-rule-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      Tune by name, not by rule ID
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#https-no-certificates-to-manage" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTTPS, no certificates to manage
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#ship-safely-with-detect-only" class="md-nav__link">
-    <span class="md-ellipsis">
-      Ship safely with detect-only
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#built-on" class="md-nav__link">
+  <a href="#the-gotestwaf-numbers" class="md-nav__link">
     <span class="md-ellipsis">
-      Built on
+      The GoTestWAF numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-did-not-move" class="md-nav__link">
+    <span class="md-ellipsis">
+      What did not move
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#false-positives-stayed-flat" class="md-nav__link">
+    <span class="md-ellipsis">
+      False positives stayed flat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crs-conformance-still-997" class="md-nav__link">
+    <span class="md-ellipsis">
+      CRS conformance still 99.7%
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusions
     </span>
   </a>
   
@@ -1757,113 +1662,264 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-  
-  
-
-
-<h1 id="barbacana">Barbacana<a class="headerlink" href="#barbacana" title="Permanent link">&para;</a></h1>
-<p><strong>Secure by default. Simple by design.</strong></p>
-<p><a href="LICENSE"><img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue.svg" /></a>
-<a href="https://github.com/barbacana-waf/barbacana/releases"><img alt="Release" src="https://img.shields.io/github/v/release/barbacana-waf/barbacana" /></a></p>
-<p>Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.</p>
-<p><img alt="How a WAF works" src="assets/architecture-layout.jpg" /></p>
-<h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://your-app:8000</span>
-</span></code></pre></div>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-p<span class="w"> </span><span class="m">8080</span>:8080<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest
-</span></code></pre></div>
-<p>That's it. Every protection is on by default. <a href="getting-started/quickstart/">Full quickstart →</a></p>
-<p>And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored <strong>93.65%</strong> on <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a>, an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes <strong>99.75%</strong> of <a href="https://github.com/coreruleset/go-ftw">go-ftw</a>, the official test suite from the OWASP CRS authors.</p>
-<h2 id="beyond-the-defaults">Beyond the defaults<a class="headerlink" href="#beyond-the-defaults" title="Permanent link">&para;</a></h2>
-<p>The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.</p>
-<div class="feature-row">
-<div class="feature-text">
-<p><span class="twemoji feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8 13c-1.86 0-3.41 1.28-3.86 3H2v2h2.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22v-2H11.86c-.45-1.72-2-3-3.86-3m0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2M19.86 6c-.45-1.72-2-3-3.86-3s-3.41 1.28-3.86 3H2v2h10.14c.45 1.72 2 3 3.86 3s3.41-1.28 3.86-3H22V6zM16 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2"/></svg></span></p>
-<h3 id="tune-by-name-not-by-rule-id">Tune by name, not by rule ID<a class="headerlink" href="#tune-by-name-not-by-rule-id" title="Permanent link">&para;</a></h3>
-<p>Silence a false positive on one route without weakening the rest of the WAF. Protections have human-readable names — never <code>SecRuleRemoveById 942270</code>.</p>
-</div>
-<div class="feature-code">
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/search&quot;</span><span class="p p-Indicator">]</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://search:8000</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sql-injection-union-select</span>
-</span></code></pre></div>
-</div>
-</div>
-<div class="feature-row">
-<div class="feature-text">
-<p><span class="twemoji feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13c.34 0 .67.04 1 .09V10a2 2 0 0 0-2-2h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6a2 2 0 0 0-2 2v10c0 1.11.89 2 2 2h7.81c-.51-.88-.81-1.9-.81-3 0-3.31 2.69-6 6-6M9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9zm3 11a2 2 0 1 1 2-2c0 1.11-.89 2-2 2m10.5.25L17.75 22 15 19l1.16-1.16 1.59 1.59 3.59-3.59z"/></svg></span></p>
-<h3 id="https-no-certificates-to-manage">HTTPS, no certificates to manage<a class="headerlink" href="#https-no-certificates-to-manage" title="Permanent link">&para;</a></h3>
-<p>Add a hostname. Barbacana provisions and renews Let's Encrypt certificates automatically, redirects <code>:80</code> to <code>:443</code>, and uses a local CA for <code>.localhost</code> development.</p>
-</div>
-<div class="feature-code">
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api.example.com</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
-</span></code></pre></div>
-</div>
-</div>
-<div class="feature-row">
-<div class="feature-text">
-<p><span class="twemoji feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3m5.86 10.31C16.23 21.22 14.28 22.45 12 23c-2.56-.61-4.7-2.07-6.42-4.37C3.86 16.34 3 13.8 3 11V5l9-4 9 4v6c0 2.39-.64 4.61-1.92 6.67l-2.91-2.91c.52-.79.83-1.76.83-2.76a5 5 0 0 0-5-5 5 5 0 0 0-5 5 5 5 0 0 0 5 5c1 0 1.97-.31 2.76-.83z"/></svg></span></p>
-<h3 id="ship-safely-with-detect-only">Ship safely with detect-only<a class="headerlink" href="#ship-safely-with-detect-only" title="Permanent link">&para;</a></h3>
-<p>Roll out a new route in observe mode first. Every request is inspected and logged, but matches are forwarded instead of blocked — read the audit log, then flip the switch.</p>
-</div>
-<div class="feature-code">
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">detect_only</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-</span></code></pre></div>
-</div>
-</div>
-<p class="trust-strip">
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 16.5c0 .38-.21.71-.53.88l-7.9 4.44c-.16.12-.36.18-.57.18s-.41-.06-.57-.18l-7.9-4.44A.99.99 0 0 1 3 16.5v-9c0-.38.21-.71.53-.88l7.9-4.44c.16-.12.36-.18.57-.18s.41.06.57.18l7.9 4.44c.32.17.53.5.53.88zM12 4.15l-1.89 1.07L16 8.61l1.96-1.11zM6.04 7.5 12 10.85l1.96-1.1-5.88-3.4zM5 15.91l6 3.38v-6.71L5 9.21zm14 0v-6.7l-6 3.37v6.71z"/></svg></span> Single image &middot;
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 5h6v6H3zm2 2v2h2V7zm6 0h10v2H11zm0 8h10v2H11zm-6 5-3.5-3.5 1.41-1.41L5 17.17l4.59-4.58L11 14z"/></svg></span> 500+ OWASP CRS rules &middot;
-<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 10a3.04 3.04 0 0 1 3-3 3.04 3.04 0 0 1 3 3 3.04 3.04 0 0 1-3 3 3.04 3.04 0 0 1-3-3m3 9 4 1v-3.08A7.54 7.54 0 0 1 12 18a7.54 7.54 0 0 1-4-1.08V20m4-16a5.78 5.78 0 0 0-4.24 1.74A5.78 5.78 0 0 0 6 10a5.78 5.78 0 0 0 1.76 4.23A5.78 5.78 0 0 0 12 16a5.78 5.78 0 0 0 4.24-1.77A5.78 5.78 0 0 0 18 10a5.78 5.78 0 0 0-1.76-4.26A5.78 5.78 0 0 0 12 4m8 6a8 8 0 0 1-.57 2.8A7.8 7.8 0 0 1 18 15.28V23l-6-2-6 2v-7.72A7.9 7.9 0 0 1 4 10a7.68 7.68 0 0 1 2.33-5.64A7.73 7.73 0 0 1 12 2a7.73 7.73 0 0 1 5.67 2.36A7.68 7.68 0 0 1 20 10"/></svg></span> Apache 2.0
-</p>
-<div class="cta-row">
-<p><a class="md-button md-button--primary" href="getting-started/quickstart/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m13.13 22.19-1.63-3.83c1.57-.58 3.04-1.36 4.4-2.27zM5.64 12.5l-3.83-1.63 6.1-2.77C7 9.46 6.22 10.93 5.64 12.5M21.61 2.39S16.66.269 11 5.93c-2.19 2.19-3.5 4.6-4.35 6.71-.28.75-.09 1.57.46 2.13l2.13 2.12c.55.56 1.37.74 2.12.46A19.1 19.1 0 0 0 18.07 13c5.66-5.66 3.54-10.61 3.54-10.61m-7.07 7.07c-.78-.78-.78-2.05 0-2.83s2.05-.78 2.83 0c.77.78.78 2.05 0 2.83s-2.05.78-2.83 0m-5.66 7.07-1.41-1.41zM6.24 22l3.64-3.64c-.34-.09-.67-.24-.97-.45L4.83 22zM2 22h1.41l4.77-4.76-1.42-1.41L2 20.59zm0-2.83 4.09-4.08c-.21-.3-.36-.62-.45-.97L2 17.76z"/></svg></span> &nbsp; <strong>Full quickstart</strong></a>
-<a class="md-button" href="reference/catalog/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 5h6v6H3zm2 2v2h2V7zm6 0h10v2H11zm0 8h10v2H11zm-6 5-3.5-3.5 1.41-1.41L5 17.17l4.59-4.58L11 14z"/></svg></span> &nbsp; <strong>Protection catalog</strong></a>
-<a class="md-button" href="security/overview/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg></span> &nbsp; <strong>Security model</strong></a></p>
-</div>
-<h2 id="built-on">Built on<a class="headerlink" href="#built-on" title="Permanent link">&para;</a></h2>
-<p>Barbacana wraps <a href="https://caddyserver.com">Caddy</a> (HTTP, TLS, reverse proxy), <a href="https://coraza.io">Coraza</a> (WAF engine), and the <a href="https://coreruleset.org">OWASP CRS v4</a> (detection rules) — two decades of work by the security community made this project possible. Big thanks to their maintainers and contributors.</p>
-<p>Barbacana also runs <code>ghcr.io/barbacana-waf/barbacana</code> as the main image registry, with an identical mirror at <code>docker.io/barbacana/barbacana</code>.</p>
-
-
-
-
-
-
-
-  
-  
-
-
-
-
-  
-
-
-
-                
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
             </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://github.com/barbacana-waf.png" alt="Barbacana">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Barbacana
+                        
+                      </strong>
+                      <br>
+                      Project maintainer
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-05-07 00:00:00" class="md-ellipsis">May 7, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/releases/">releases</a>, 
+                              <a href="../../../../category/detection/">detection</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              5 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+  
+
+
+<h1 id="v050-base64-decoding-and-a-new-xss-detector">v0.5.0: Base64 decoding and a new XSS detector<a class="headerlink" href="#v050-base64-decoding-and-a-new-xss-detector" title="Permanent link">&para;</a></h1>
+<p>v0.5.0 closes the largest detection gap in the v0.1.0 baseline — base64-encoded payloads — and adds three native rules for an XSS evasion shape no upstream CRS rule covers. <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a> moves from <strong>86.16% to 93.65% overall</strong>, with the false-positive rate unchanged at 90.78%. CRS conformance under <a href="https://github.com/coreruleset/go-ftw">go-ftw</a> holds at <strong>99.75%</strong> (4,726 of 4,738 tests pass).</p>
+<!-- more -->
+
+<p>GoTestWAF is an open-source WAF benchmark maintained by Wallarm. It sends a fixed set of attack payloads — grouped by OWASP category, with an additional community-contributed test set — plus a corpus of legitimate-traffic requests, and reports both the share of attacks the WAF blocked and the share of legitimate requests it allowed through. The headline overall score combines the two.</p>
+<h2 id="base64-decoding">Base64 decoding<a class="headerlink" href="#base64-decoding" title="Permanent link">&para;</a></h2>
+<p>The <a href="../../../04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/">v0.1.0 baseline post</a> named the single biggest miss: 71% of bypassed payloads had been base64-encoded by the test suite, so the rules never saw the actual attack. v0.5.0 adds the missing stage. The pipeline scans the URL path, query parameters, and the request body for runs of base64-alphabet characters, decodes the printable ones, and feeds them to CRS as synthetic ARGS. The original request bytes are never modified — the upstream still receives what the client sent.</p>
+<p>Each surface can be disabled independently for routes that carry base64 that could be flagged by the WAF (JWT-bearing endpoints, signed-payload APIs, inline-image uploads):</p>
+<ul>
+<li><code>base64-decoding-path</code> — segments of the URL path</li>
+<li><code>base64-decoding-parameters</code> — query-parameter values</li>
+<li><code>base64-decoding-body</code> — runs found in the buffered body</li>
+</ul>
+<p>A fourth leaf, <code>base64-decoding-flood</code>, blocks requests with more than 50 successful decodes — bounding worst-case work and catching obvious DoS attempts.</p>
+<h2 id="xss-function-call-evasion">XSS function-call evasion<a class="headerlink" href="#xss-function-call-evasion" title="Permanent link">&para;</a></h2>
+<p>A new leaf — <code>cross-site-scripting-function-call-evasion</code> — covers a shape no upstream CRS rule catches at any paranoia level: function-call wrappers around dangerous JavaScript globals.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>alert.call(null, 1)   // Function.prototype.call
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>(alert)(1)            // grouping-paren wrap
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>alert?.(1)            // optional-chaining call
+</span></code></pre></div>
+<p>Three Barbacana-owned Coraza rules in the 210000 ID range catch all three shapes. They scan the same surfaces as the CRS PL1 XSS baseline (cookies, User-Agent, ARGS, REQUEST_FILENAME, XML) and contribute to the same anomaly score, so they compose with the rest of the engine without any extra wiring.</p>
+<h2 id="the-gotestwaf-numbers">The GoTestWAF numbers<a class="headerlink" href="#the-gotestwaf-numbers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th style="text-align: right;">v0.4.0</th>
+<th style="text-align: right;">v0.5.0</th>
+<th style="text-align: right;">Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Overall score</td>
+<td style="text-align: right;">86.16%</td>
+<td style="text-align: right;">93.65%</td>
+<td style="text-align: right;">+7.49pp</td>
+</tr>
+<tr>
+<td>Application security (attacks blocked)</td>
+<td style="text-align: right;">53.86%</td>
+<td style="text-align: right;">83.81%</td>
+<td style="text-align: right;">+29.95pp</td>
+</tr>
+<tr>
+<td>API security (attacks blocked)</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">—</td>
+</tr>
+<tr>
+<td>Legitimate traffic allowed through</td>
+<td style="text-align: right;">90.78%</td>
+<td style="text-align: right;">90.78%</td>
+<td style="text-align: right;">—</td>
+</tr>
+</tbody>
+</table>
+<p>OWASP categories with significant movement:</p>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th style="text-align: right;">v0.4.0</th>
+<th style="text-align: right;">v0.5.0</th>
+<th style="text-align: right;">Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>xss-scripting</td>
+<td style="text-align: right;">40.18%</td>
+<td style="text-align: right;">97.77%</td>
+<td style="text-align: right;">+57.59pp</td>
+</tr>
+<tr>
+<td>ss-include</td>
+<td style="text-align: right;">50.00%</td>
+<td style="text-align: right;">100%</td>
+<td style="text-align: right;">+50.00pp</td>
+</tr>
+<tr>
+<td>sql-injection</td>
+<td style="text-align: right;">47.92%</td>
+<td style="text-align: right;">81.25%</td>
+<td style="text-align: right;">+33.33pp</td>
+</tr>
+<tr>
+<td>mail-injection</td>
+<td style="text-align: right;">33.33%</td>
+<td style="text-align: right;">66.67%</td>
+<td style="text-align: right;">+33.33pp</td>
+</tr>
+<tr>
+<td>sst-injection</td>
+<td style="text-align: right;">25.00%</td>
+<td style="text-align: right;">58.33%</td>
+<td style="text-align: right;">+33.33pp</td>
+</tr>
+<tr>
+<td>nosql-injection</td>
+<td style="text-align: right;">38.00%</td>
+<td style="text-align: right;">62.00%</td>
+<td style="text-align: right;">+24.00pp</td>
+</tr>
+<tr>
+<td>path-traversal</td>
+<td style="text-align: right;">40.00%</td>
+<td style="text-align: right;">60.00%</td>
+<td style="text-align: right;">+20.00pp</td>
+</tr>
+<tr>
+<td>shell-injection</td>
+<td style="text-align: right;">40.63%</td>
+<td style="text-align: right;">59.38%</td>
+<td style="text-align: right;">+18.75pp</td>
+</tr>
+</tbody>
+</table>
+<p>Splitting the lift between the two changes: base64 decoding alone reaches 92.06% overall, and <code>xss-scripting</code> lands at 79.91%. Adding the function-call evasion rules pushes <code>xss-scripting</code> from 79.91% to 97.77% and the overall score to 93.65%. Base64 decoding drives most of every other category's movement — the rules were already there; they finally see the payloads.</p>
+<h2 id="what-did-not-move">What did not move<a class="headerlink" href="#what-did-not-move" title="Permanent link">&para;</a></h2>
+<p><code>ldap-injection</code> (33.33%), <code>rce-urlparam</code> (33.33%), and <code>rce-urlpath</code> (0/3) are unchanged. All three hit the same structural limitation called out in the baseline post: the engine does not inspect the segments of the URL path. An OpenAPI spec closes that gap on a per-route basis — schema validation rejects unknown paths and parameter shapes before the rule engine runs.</p>
+<h2 id="false-positives-stayed-flat">False positives stayed flat<a class="headerlink" href="#false-positives-stayed-flat" title="Permanent link">&para;</a></h2>
+<p>The base64 stage decodes opportunistically — it scans for runs of base64-alphabet characters, accepts only printable UTF-8 decodes, and emits synthetic ARGS instead of rewriting the request. The legitimate-traffic corpus is unchanged from v0.4.0: still 13 of 141 false-positive matches (90.78%), all from the same English-keyword overlap pattern documented in the baseline post.</p>
+<h2 id="crs-conformance-still-997">CRS conformance still 99.7%<a class="headerlink" href="#crs-conformance-still-997" title="Permanent link">&para;</a></h2>
+<p>The OWASP CRS regression suite (<a href="https://github.com/coreruleset/go-ftw">go-ftw</a>) checks every detection rule against the attack it is designed to catch. Run against v0.5.0:</p>
+<ul>
+<li><strong>4,738</strong> tests run (corpus grew by 27 since v0.1.0)</li>
+<li><strong>4,726</strong> passed</li>
+<li><strong>12</strong> failed (one fewer than v0.1.0)</li>
+<li><strong>0</strong> skipped</li>
+</ul>
+<p>That is <strong>99.75% conformance</strong>. The remaining failures are the same set documented in the v0.1.0 baseline — none of the new rules in v0.5.0 introduce a regression, and the base64 stage does not affect any of the upstream CRS test cases (it operates before the rule engine and only emits synthetic ARGS that did not previously exist).</p>
+<h2 id="conclusions">Conclusions<a class="headerlink" href="#conclusions" title="Permanent link">&para;</a></h2>
+<p>Two changes, two clean wins. Base64 decoding fixed the biggest miss from the v0.1.0 baseline — application-layer coverage went from 53.86% to 83.81%, the overall score from 86.16% to 93.65% — and the XSS function-call evasion rules took <code>xss-scripting</code> from 40.18% to 97.77%. The most important number is the one that did <em>not</em> move: the false-positive rate stayed flat at 90.78%. Catching more real attacks without blocking real requests is the goal of every release.</p>
+<p>This requires a deep analysis and security expertise, so consumers can benefit from it without requiring none of them. This is what Barbacana is built for: strong defaults you can use without being a security expert. The numbers above show the approach works — at least against the GoTestWAF corpus.</p>
+<p>GoTestWAF has been a good way to find gaps and measure each change. Adding more WAF benchmarks is on the roadmap, both to double-check the results and to surface new ideas. Bug reports, feedback, and feature requests are very welcome — open an issue or start a discussion on <a href="https://github.com/barbacana-waf/barbacana">GitHub</a>.</p>
+<hr />
+<p>The raw reports behind the numbers above are available for download:</p>
+<ul>
+<li><a href="../../../../assets/gotestwaf-v0.5.0-report.pdf">GoTestWAF report (PDF)</a> — full attack-simulation results for v0.5.0.</li>
+<li><a href="../../../../assets/ftw-v0.5.0-summary.txt">go-ftw report (text)</a> — full per-test CRS conformance output for v0.5.0.</li>
+</ul>
+<p><em>AI assistance was used to analyze the GoTestWAF report data and co-wrote this post; the final text was fully reviewed by a human.</em></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
@@ -1913,10 +1969,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>
