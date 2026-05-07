@@ -13,8 +13,6 @@ hide:
 
 Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.
 
-In tests with [GoTestWAF](https://github.com/wallarm/gotestwaf), a 3rd party open-source WAF benchmark, v0.1.0 blocked 82% of attacks that arrived in plain or URL-encoded form, and allowed 91% of legitimate traffic through. [See the full analysis](blog/2026/04/22/v010-security-baseline-what-barbacana-catches-what-it-misses-and-what-comes-next/).
-
 ![How a WAF works](assets/architecture-layout.jpg)
 
 ## Quickstart
@@ -33,6 +31,8 @@ docker run --rm -p 8080:8080 \
 ```
 
 That's it. Every protection is on by default. [Full quickstart →](getting-started/quickstart.md)
+
+And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored **93.65%** on [GoTestWAF](https://github.com/wallarm/gotestwaf), an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes **99.75%** of [go-ftw](https://github.com/coreruleset/go-ftw), the official test suite from the OWASP CRS authors.
 
 ## Beyond the defaults
 

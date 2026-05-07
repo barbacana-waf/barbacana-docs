@@ -26,7 +26,7 @@ The signature proves the image at the given reference was produced by the Barbac
 
 ```
 cosign verify \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:vX.Y.Z
 ```
@@ -37,7 +37,7 @@ Example run against `latest`:
 
 ```console
 $ cosign verify \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest
 
@@ -52,13 +52,13 @@ The following checks were performed on each of these signatures:
   "type":"https://sigstore.dev/cosign/sign/v1"},"optional":{...}}]
 ```
 
-The certificate identity regex pins the signature to a workflow file in the `barbacana-waf/barbacana` repository, fired on a `v*` tag push. The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.
+The certificate identity pins the signature to `release.yml` in the `barbacana-waf/barbacana` repository, run via `workflow_dispatch` on master (the release workflow creates the version tag at the end of its own run, so the OIDC subject embeds `@refs/heads/master`, not the eventual tag). The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.
 
 A successful run prints a JSON array of verified signatures and exits 0.
 
 A failure means one of the following:
 
-- The image at that reference is unsigned, or signed by an identity that does not match the regex (i.e. not produced by this repo's release workflow).
+- The image at that reference is unsigned, or signed by an identity that does not match (i.e. not produced by this repo's release workflow).
 - The transparency log entry for the signature has been tampered with or removed.
 - The image reference points to a different digest than the one that was signed (e.g. a tag was force-pushed).
 
@@ -71,7 +71,7 @@ The attestation is a cosign-signed in-toto statement carrying a CycloneDX SBOM a
 ```
 cosign verify-attestation \
   --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:vX.Y.Z
 ```
@@ -83,7 +83,7 @@ Example run against `latest`:
 ```console
 $ cosign verify-attestation \
   --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest
 
@@ -100,7 +100,7 @@ A success prints the verified in-toto envelope to stdout and exits 0. Pipe it th
 
 ```
 cosign verify-attestation --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:vX.Y.Z 2>/dev/null \
   | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'
@@ -112,7 +112,7 @@ Example run against `latest`:
 
 ```console
 $ cosign verify-attestation --type cyclonedx \
-  --certificate-identity-regexp='https://github.com/barbacana-waf/barbacana/\.github/workflows/.+@refs/tags/v.*' \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest 2>/dev/null \
   | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'
@@ -138,7 +138,7 @@ Both verification steps should pass before trusting the SBOM in step 4.
 
 Steps 1 and 2 can be enforced automatically by a Kubernetes admission controller, so unsigned or unattested images are rejected at deploy time without any manual step. Two common options:
 
-- [Sigstore Policy Controller](https://docs.sigstore.dev/policy-controller/overview/) — purpose-built admission webhook from the Sigstore project. Configure a `ClusterImagePolicy` with the same identity regex and OIDC issuer used in steps 1–2.
+- [Sigstore Policy Controller](https://docs.sigstore.dev/policy-controller/overview/) — purpose-built admission webhook from the Sigstore project. Configure a `ClusterImagePolicy` with the same certificate identity and OIDC issuer used in steps 1–2.
 - [Kyverno](https://kyverno.io/docs/policy-types/verify-images/sigstore/) — general-purpose policy engine with a built-in `verifyImages` rule that calls cosign internally.
 
 Either lets the cluster reject any pod whose image fails the same checks performed manually above.
@@ -249,6 +249,28 @@ grype sbom:./barbacana.cdx.json
 Both scanners auto-detect CycloneDX format. Severity, output format, and ignore-policy flags are scanner-specific — see the respective documentation.
 
 A clean scan today does not mean the image is clean tomorrow; new CVEs are disclosed against existing components continuously. See the next section.
+
+## 6. Verify the binaries (optional)
+
+The container image is the recommended distribution form. For users who download the binary archives directly from a GitHub Release, each release attaches a cosign-signed `checksums.txt.bundle` and a SLSA3 provenance file (`barbacana.intoto.jsonl`).
+
+Verify the checksums file (the SHA-256 entries inside cover every archive):
+
+```
+cosign verify-blob \
+  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
+  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
+  --bundle checksums.txt.bundle \
+  checksums.txt
+```
+
+Or verify a specific archive against its SLSA3 provenance with [slsa-verifier](https://github.com/slsa-framework/slsa-verifier):
+
+```
+slsa-verifier verify-artifact barbacana_X.Y.Z_linux_amd64.tar.gz \
+  --provenance-path barbacana.intoto.jsonl \
+  --source-uri github.com/barbacana-waf/barbacana
+```
 
 ## Reference
 

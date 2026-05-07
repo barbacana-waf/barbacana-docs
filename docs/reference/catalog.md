@@ -238,6 +238,7 @@ XSS vectors in JS output context — javascript: URIs, JS keywords, AngularJS te
 |---|---|---|---|---|---|
 | `cross-site-scripting-javascript-urls` | on | CWE-79 | 941140 | Detects javascript: URI-scheme attribute values — classic XSS vector via <a href="javascript:...">. | Disable if input legitimately contains javascript: URLs — for example, a URL-archival site. |
 | `cross-site-scripting-javascript-keywords` | on | CWE-79 | 941210, 941370, 941390, 941400 | Detects JS globals, methods, and function-without-parens shapes (alert, document.cookie, eval). | Disable if input legitimately contains JS keywords — for example, a JS-discussion site or tutorial platform. |
+| `cross-site-scripting-function-call-evasion` | on | CWE-79 | 210001, 210002, 210003 | Catches XSS payloads that invoke dangerous JS functions through evasion shapes no upstream CRS rule covers: Function.prototype.call/apply/bind invocations (alert.call(null,1)), grouping-paren wraps ((alert)(1)), and optional-chaining calls (alert?.(...)). Implemented as Barbacana-owned Coraza SecRules in the 210000 ID range. | Disable on routes whose inputs legitimately contain JavaScript code that calls these globals via .call/.apply/.bind — for example, a JS sandbox playground. |
 | `cross-site-scripting-angular-templates` | off | CWE-79, CWE-1336 | 941380 | AngularJS client-side template injection ({{constructor.constructor('alert(1)')()}}-style). | Enable on routes that render Angular templates server-side. |
 
 ### cross-site-scripting-encoding-tricks
@@ -647,4 +648,17 @@ Native response-body inspection. Open-redirect detection and OpenAPI response-sh
 |---|---|---|---|---|---|
 | `response-inspection-open-redirects` | on | CWE-601 | native | Detects Location headers pointing off-domain — fingerprint of open-redirect vulnerabilities. | Disable for routes that intentionally redirect off-domain — for example, auth providers. |
 | `response-inspection-openapi-validation` | on | CWE-20 | native | Validates response shape against the route's OpenAPI spec. | Disable when responses don't always conform to the OpenAPI spec strictly. |
+
+## base64-decoding
+
+Native base64-decoding stage. Surfaces base64-encoded payloads hidden in the URL path, query parameters, and request body, then feeds the decoded values to CRS as additional ARGS so attack rules evaluate them alongside the raw request. The original request is never modified — the upstream sees the bytes the client sent.
+
+**L1-level disable:** *Safe to disable when no clients legitimately send base64-encoded data and you've confirmed the latency overhead is unwelcome. Most apps benefit from it being on.*
+
+| ID | Default | CWE | Rule IDs | What it does | When to toggle |
+|---|---|---|---|---|---|
+| `base64-decoding-path` | on | CWE-20 | native | Splits the normalized URL path on `/` and decodes each segment that looks like base64. Decoded values are emitted as synthetic PATH args so CRS rules see SQLi, XSS, etc. hidden inside path segments. | Disable for routes whose path segments legitimately contain base64-shaped tokens (e.g. opaque IDs the app issues itself) and where false-positive risk outweighs the coverage gain. |
+| `base64-decoding-parameters` | on | CWE-20 | native | Decodes each query-parameter value that looks like base64. Decoded values are emitted as synthetic GET args under the original parameter name so CRS rules see attacks hidden inside parameters. | Disable for routes whose query parameters legitimately carry base64 (e.g. an `?image=` parameter on an inline-image API) where the decoded payload would predictably trip CRS. |
+| `base64-decoding-body` | on | CWE-20 | native | Scans the buffered request body for runs of base64-alphabet characters and decodes each one. Decoded values are emitted as synthetic POST args. Content-type-agnostic: works for JSON, XML, form-encoded, and plain bodies. | Disable for endpoints where bodies legitimately embed base64 (file-upload metadata, signed payloads, multipart inline images) and the false-positive cost is real. |
+| `base64-decoding-flood` | on | CWE-400 | native | Blocks requests that contain more than 50 successfully-decoded base64 values across the path, parameters, and body. Bounds the cost of the decoding stage and catches obvious decoder-flood DoS attempts. | Disable only on routes that legitimately receive many small base64-encoded values per request (rare) and where the per-request decoding work is acceptable. |
 
