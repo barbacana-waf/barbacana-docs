@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://barbacana.dev/operations/audit-log/">
       
       
-        <link rel="prev" href="../metrics/">
+        <link rel="prev" href="../dashboard/">
       
       
-        <link rel="next" href="../../blog/">
+        <link rel="next" href="../tracing/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../hostnames/" class="md-tabs__link">
+        <a href="../overview/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -450,6 +452,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -564,10 +587,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -578,8 +601,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1393,6 +1416,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1428,6 +1457,27 @@
             Operations
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1517,6 +1567,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -1566,27 +1637,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#two-schemas-no-flat-shape" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Two schemas, no flat shape
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fields" class="md-nav__link">
+  <a href="#ocsf-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Fields
+      OCSF example
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocked-vs-detected" class="md-nav__link">
+  <a href="#ecs-example" class="md-nav__link">
     <span class="md-ellipsis">
-      blocked vs detected
+      ECS example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-find-each-piece-of-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to find each piece of information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vendor-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      The vendor namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocked-vs-detected-vs-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocked vs detected vs allowed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace correlation
     </span>
   </a>
   
@@ -1601,10 +1708,40 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#migration-from-the-previous-flat-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration from the previous flat shape
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1666,27 +1803,63 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
+  <a href="#two-schemas-no-flat-shape" class="md-nav__link">
     <span class="md-ellipsis">
-      Example
+      Two schemas, no flat shape
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#fields" class="md-nav__link">
+  <a href="#ocsf-example" class="md-nav__link">
     <span class="md-ellipsis">
-      Fields
+      OCSF example
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#blocked-vs-detected" class="md-nav__link">
+  <a href="#ecs-example" class="md-nav__link">
     <span class="md-ellipsis">
-      blocked vs detected
+      ECS example
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-find-each-piece-of-information" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to find each piece of information
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-vendor-namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      The vendor namespace
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blocked-vs-detected-vs-allowed" class="md-nav__link">
+    <span class="md-ellipsis">
+      blocked vs detected vs allowed
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace correlation
     </span>
   </a>
   
@@ -1696,6 +1869,15 @@
   <a href="#one-entry-per-request" class="md-nav__link">
     <span class="md-ellipsis">
       One entry per request
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#migration-from-the-previous-flat-shape" class="md-nav__link">
+    <span class="md-ellipsis">
+      Migration from the previous flat shape
     </span>
   </a>
   
@@ -1721,106 +1903,244 @@
 
 <h1 id="audit-log">Audit log<a class="headerlink" href="#audit-log" title="Permanent link">&para;</a></h1>
 <p>Barbacana writes one structured JSON entry per inspected request to stdout. Pick it up with any log shipper.</p>
-<h2 id="example">Example<a class="headerlink" href="#example" title="Permanent link">&para;</a></h2>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-18T09:14:32.481923Z&quot;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01HV7C9GZX4Q2A1F8Y3K5MN6P0&quot;</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;source_ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;203.0.113.42&quot;</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">&quot;host&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api.example.com&quot;</span><span class="p">,</span>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/api/v1/search&quot;</span><span class="p">,</span>
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">&quot;route_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="p">,</span>
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">],</span>
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">942270</span><span class="p">,</span><span class="w"> </span><span class="mi">942361</span><span class="p">],</span>
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">&quot;cwe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CWE-89&quot;</span><span class="p">],</span>
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span>
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">  </span><span class="nt">&quot;response_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span>
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
-</span></code></pre></div>
-<h2 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">&para;</a></h2>
+<p>Stdout emission is <strong>always on</strong> — there is no off switch and no per-route override. What you choose with <code>audit_log.format</code> is the <em>wire schema</em> of the JSON document.</p>
+<h2 id="two-schemas-no-flat-shape">Two schemas, no flat shape<a class="headerlink" href="#two-schemas-no-flat-shape" title="Permanent link">&para;</a></h2>
+<p>Audit logs ship in one of two industry-standard schemas:</p>
 <table>
 <thead>
 <tr>
-<th>Field</th>
-<th>Type</th>
-<th>Description</th>
+<th><code>audit_log.format</code></th>
+<th>Wire schema</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>timestamp</code></td>
-<td>string (RFC 3339, nanoseconds)</td>
-<td>When the request was inspected</td>
+<td><code>ocsf</code> (default)</td>
+<td>OCSF v1.2.0 — Open Cybersecurity Schema Framework, HTTP Activity event class (<code>class_uid: 4002</code>)</td>
 </tr>
 <tr>
-<td><code>request_id</code></td>
-<td>string</td>
-<td>Unique per request; propagated as <code>X-Request-Id</code> to the upstream</td>
-</tr>
-<tr>
-<td><code>source_ip</code></td>
-<td>string</td>
-<td>Remote client IP (after any configured trusted proxies)</td>
-</tr>
-<tr>
-<td><code>method</code></td>
-<td>string</td>
-<td>HTTP method</td>
-</tr>
-<tr>
-<td><code>host</code></td>
-<td>string</td>
-<td><code>Host</code> header on the request</td>
-</tr>
-<tr>
-<td><code>path</code></td>
-<td>string</td>
-<td>Request path before <a href="../../reference/rewrites/">rewrite</a></td>
-</tr>
-<tr>
-<td><code>route_id</code></td>
-<td>string</td>
-<td><code>id</code> of the matched route, or auto-generated if not set</td>
-</tr>
-<tr>
-<td><code>matched_protections</code></td>
-<td>string[]</td>
-<td>Names of every L1 family, L2 bucket, and leaf that fired. Names from the <a href="../../reference/catalog/">protection catalog</a> — stable across releases. Each leaf is credited at most once even when multiple detection backends (native + CRS) match it.</td>
-</tr>
-<tr>
-<td><code>matched_rules</code></td>
-<td>integer[]</td>
-<td>Underlying detection rule IDs. <strong>May change between releases</strong> — alert on <code>matched_protections</code>, not these.</td>
-</tr>
-<tr>
-<td><code>cwe</code></td>
-<td>string[]</td>
-<td>CWE identifiers associated with the matched protections</td>
-</tr>
-<tr>
-<td><code>action</code></td>
-<td>string</td>
-<td><code>blocked</code>, <code>detected</code>, or <code>allowed</code></td>
-</tr>
-<tr>
-<td><code>response_code</code></td>
-<td>integer</td>
-<td>HTTP status returned to the client</td>
+<td><code>ecs</code></td>
+<td>ECS 8.x — Elastic Common Schema</td>
 </tr>
 </tbody>
 </table>
-<h2 id="blocked-vs-detected"><code>blocked</code> vs <code>detected</code><a class="headerlink" href="#blocked-vs-detected" title="Permanent link">&para;</a></h2>
+<p>The format is process-wide and decided once at startup. Switching formats requires a config reload; one running process never mixes the two.</p>
+<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">audit_log</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ocsf</span><span class="w">       </span><span class="c1"># default; or &quot;ecs&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span></code></pre></div>
+<p>Pick <code>ocsf</code> if you do not already have schema-aware dashboards — it is the default for a reason and most modern SIEMs ingest it natively. Pick <code>ecs</code> if you ship logs to an Elastic stack (Elasticsearch, Kibana, Filebeat, Logstash) with existing ECS pipelines or detection rules.</p>
+<h2 id="ocsf-example">OCSF example<a class="headerlink" href="#ocsf-example" title="Permanent link">&para;</a></h2>
+<p>Blocked SQL injection, OCSF v1.2.0:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;class_uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4002</span><span class="p">,</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;class_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;HTTP Activity&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;category_uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">&quot;category_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Network Activity&quot;</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">&quot;activity_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="nt">&quot;type_uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">400206</span><span class="p">,</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">&quot;severity_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">  </span><span class="nt">&quot;time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1768378331482</span><span class="p">,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">&quot;disposition&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Blocked&quot;</span><span class="p">,</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">  </span><span class="nt">&quot;disposition_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Failure&quot;</span><span class="p">,</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">  </span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">,</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">  </span><span class="nt">&quot;risk_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">  </span><span class="nt">&quot;http_request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v1/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url_string&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/v1/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;hostname&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api.example.com&quot;</span><span class="p">},</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01HX4Y...&quot;</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span><span class="nt">&quot;src_endpoint&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;203.0.113.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">54321</span><span class="p">},</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span><span class="nt">&quot;metadata&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.2.0&quot;</span><span class="p">,</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nt">&quot;product&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barbacana&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;vendor_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barbacana&quot;</span><span class="p">},</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="nt">&quot;trace_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4bf92f3577b34da6a3ce929d0e0e4736&quot;</span><span class="p">,</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">    </span><span class="nt">&quot;span_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00f067aa0ba902b7&quot;</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="w">  </span><span class="nt">&quot;attacks&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="w">      </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">,</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="w">      </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="w">      </span><span class="nt">&quot;classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">&quot;taxonomy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CWE&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CWE-89&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;category_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;CWE-89&quot;</span><span class="p">}]</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="w">  </span><span class="nt">&quot;firewall_rule&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;uid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;match_details&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;942110&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">},</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="w">  </span><span class="nt">&quot;barbacana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="w">    </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">],</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="w">    </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;942110&quot;</span><span class="p">],</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="w">    </span><span class="nt">&quot;cwe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CWE-89&quot;</span><span class="p">]</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="ecs-example">ECS example<a class="headerlink" href="#ecs-example" title="Permanent link">&para;</a></h2>
+<p>The same event in ECS 8.x:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;@timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2026-04-14T10:32:11.482000000Z&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;ecs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;8.11.0&quot;</span><span class="p">},</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;event&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;kind&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;alert&quot;</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;intrusion_detection&quot;</span><span class="p">],</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;block&quot;</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">&quot;outcome&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;failure&quot;</span><span class="p">,</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;dataset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barbacana.audit&quot;</span><span class="p">,</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="nt">&quot;module&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;barbacana&quot;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="nt">&quot;rule&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;ruleset&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;owasp-crs&quot;</span><span class="p">,</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">,</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="w">    </span><span class="nt">&quot;category&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">,</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="w">    </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;942100&quot;</span><span class="p">,</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="w">    </span><span class="nt">&quot;reference&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;942110&quot;</span><span class="p">]</span>
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="w">  </span><span class="nt">&quot;vulnerability&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;classification&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CWE-89&quot;</span><span class="p">]},</span>
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="w">  </span><span class="nt">&quot;client&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;ip&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;203.0.113.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;203.0.113.7&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">54321</span><span class="p">},</span>
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="w">  </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/v1/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;full&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/v1/users&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;domain&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api.example.com&quot;</span><span class="p">},</span>
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="w">  </span><span class="nt">&quot;http&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">},</span><span class="w"> </span><span class="nt">&quot;response&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">403</span><span class="p">}},</span>
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="w">  </span><span class="nt">&quot;user_agent&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;original&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">},</span>
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="w">  </span><span class="nt">&quot;risk&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;static_score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">},</span>
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="w">  </span><span class="nt">&quot;labels&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;01HX4Y...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;route_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;public-api&quot;</span><span class="p">},</span>
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="w">  </span><span class="nt">&quot;trace&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;4bf92f3577b34da6a3ce929d0e0e4736&quot;</span><span class="p">},</span>
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="w">  </span><span class="nt">&quot;span&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;00f067aa0ba902b7&quot;</span><span class="p">},</span>
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="w">  </span><span class="nt">&quot;barbacana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="w">    </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">],</span>
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="w">    </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;942110&quot;</span><span class="p">],</span>
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="w">    </span><span class="nt">&quot;cwe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CWE-89&quot;</span><span class="p">]</span>
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="where-to-find-each-piece-of-information">Where to find each piece of information<a class="headerlink" href="#where-to-find-each-piece-of-information" title="Permanent link">&para;</a></h2>
+<p>The two schemas place the same facts in different fields. The vendor namespace <code>barbacana.*</code> is identical on both formats.</p>
 <table>
 <thead>
 <tr>
-<th><code>action</code></th>
+<th>You want…</th>
+<th>OCSF path</th>
+<th>ECS path</th>
+<th>Vendor (both)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Timestamp</td>
+<td><code>time</code> (epoch ms)</td>
+<td><code>@timestamp</code> (RFC 3339)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Request ID</td>
+<td><code>http_request.uid</code></td>
+<td><code>labels.request_id</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Route ID</td>
+<td>(in metadata)</td>
+<td><code>labels.route_id</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Source IP</td>
+<td><code>src_endpoint.ip</code></td>
+<td><code>client.ip</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Method</td>
+<td><code>http_request.http_method</code></td>
+<td><code>http.request.method</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Path</td>
+<td><code>http_request.url.path</code></td>
+<td><code>url.path</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Host</td>
+<td><code>http_request.url.hostname</code></td>
+<td><code>url.domain</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Response code</td>
+<td><code>status_code</code></td>
+<td><code>http.response.status_code</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Disposition (block / detect / allow)</td>
+<td><code>disposition</code>, <code>disposition_id</code></td>
+<td><code>event.action</code>, <code>event.outcome</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Anomaly score</td>
+<td><code>risk_score</code></td>
+<td><code>risk.static_score</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Matched protections</td>
+<td><code>attacks[].name</code> / <code>attacks[].category</code></td>
+<td><code>rule.name</code> / <code>rule.category</code></td>
+<td><code>barbacana.matched_protections</code></td>
+</tr>
+<tr>
+<td>Underlying rule IDs</td>
+<td><code>firewall_rule.match_details</code></td>
+<td><code>rule.reference</code></td>
+<td><code>barbacana.matched_rules</code></td>
+</tr>
+<tr>
+<td>CWE classifications</td>
+<td><code>attacks[].classification[]</code></td>
+<td><code>vulnerability.classification[]</code></td>
+<td><code>barbacana.cwe</code></td>
+</tr>
+<tr>
+<td>Trace ID</td>
+<td><code>metadata.trace_id</code></td>
+<td><code>trace.id</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td>Span ID</td>
+<td><code>metadata.span_id</code></td>
+<td><code>span.id</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>The schema-standard fields are the source of truth for SIEM dashboards and detection rules. The vendor <code>barbacana.*</code> namespace mirrors <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> verbatim — so the same <code>jq</code> and <code>grep</code> workflows that worked against the previous flat shape continue to work on either format.</p>
+<h2 id="the-vendor-namespace">The vendor namespace<a class="headerlink" href="#the-vendor-namespace" title="Permanent link">&para;</a></h2>
+<p>Both OCSF and ECS permit additional top-level attributes outside the standard schema. Barbacana uses that allowance to emit a flat <code>barbacana</code> object on every audit document:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">&quot;barbacana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection-auth-bypass&quot;</span><span class="p">],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">&quot;matched_rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;942100&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;942110&quot;</span><span class="p">],</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">&quot;cwe&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;CWE-89&quot;</span><span class="p">]</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>It is not a substitute for the schema-mapped fields — SIEM rules should target the standard locations. It exists so that ad-hoc shell pipelines stay readable:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>barbacana<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span><span class="s1">&#39;.barbacana.matched_protections[]?&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span><span class="p">|</span><span class="w"> </span>uniq<span class="w"> </span>-c<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rn
+</span></code></pre></div>
+<h2 id="blocked-vs-detected-vs-allowed"><code>blocked</code> vs <code>detected</code> vs <code>allowed</code><a class="headerlink" href="#blocked-vs-detected-vs-allowed" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Disposition</th>
 <th>Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>blocked</code></td>
-<td>Request matched a protection and was rejected. Upstream never saw it. <code>response_code</code> is typically <code>403</code>.</td>
+<td>Request matched a protection and was rejected. Upstream never saw it. Status code is typically <code>403</code>.</td>
 </tr>
 <tr>
 <td><code>detected</code></td>
@@ -1828,12 +2148,29 @@
 </tr>
 <tr>
 <td><code>allowed</code></td>
-<td>No protection matched. Forwarded normally. (Allowed entries are omitted by default unless audit verbosity is raised.)</td>
+<td>No protection matched. Forwarded normally. Allowed entries are omitted by default unless audit verbosity is raised.</td>
 </tr>
 </tbody>
 </table>
+<p>In OCSF, this maps to <code>disposition</code> / <code>disposition_id</code> (<code>Blocked</code> = <code>2</code>, <code>Allowed</code> = <code>1</code>). In ECS, the same fact is encoded as <code>event.action</code> (<code>block</code> / <code>detect</code> / <code>allow</code>) with <code>event.outcome</code> (<code>failure</code> for blocks, <code>success</code> for allows).</p>
+<h2 id="trace-correlation">Trace correlation<a class="headerlink" href="#trace-correlation" title="Permanent link">&para;</a></h2>
+<p>When <a href="../tracing/">distributed tracing</a> is enabled, every audit document carries the active span's trace and span IDs:</p>
+<ul>
+<li><strong>OCSF</strong>: <code>metadata.trace_id</code>, <code>metadata.span_id</code> (32-hex and 16-hex W3C trace context IDs)</li>
+<li><strong>ECS</strong>: native top-level <code>trace.id</code> and <code>span.id</code> fields</li>
+</ul>
+<p>When tracing is disabled, neither formatter emits the keys — they are absent rather than present-and-empty. This means a single <code>request_id</code> in the audit log lines up directly with the matching trace in Jaeger, Tempo, or any other OTLP-compatible backend.</p>
 <h2 id="one-entry-per-request">One entry per request<a class="headerlink" href="#one-entry-per-request" title="Permanent link">&para;</a></h2>
-<p>Even when many protections match a single request, you get <strong>one log line</strong> with <code>matched_protections</code> and <code>matched_rules</code> as arrays. Do not expect a line per protection.</p>
+<p>Even when many protections match a single request, you get <strong>one log line</strong> with <code>barbacana.matched_protections</code> (and the schema-standard equivalents) as arrays. There is no line-per-protection mode.</p>
+<p>In blocking mode, the audit document is emitted at the moment a stage halts the pipeline. The fields aggregate every match accumulated up to that point. In <code>detect_only</code> mode, audit emission happens once at the end of all stages and aggregates everything matched across the request.</p>
+<h2 id="migration-from-the-previous-flat-shape">Migration from the previous flat shape<a class="headerlink" href="#migration-from-the-previous-flat-shape" title="Permanent link">&para;</a></h2>
+<p>Earlier Barbacana releases emitted a single flat object with <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> at the document root. That shape has been removed. To migrate:</p>
+<ol>
+<li><strong>Set <code>audit_log.format</code> explicitly.</strong> OCSF is the default; if you have an existing Elastic ingest pipeline, set <code>format: ecs</code>.</li>
+<li><strong>Update SIEM detection rules and dashboards</strong> to read from the OCSF or ECS field names per the table above. The schema-standard locations are the recommended target.</li>
+<li><strong>Existing <code>jq</code>/<code>grep</code> workflows</strong> that read <code>.matched_protections</code>, <code>.matched_rules</code>, or <code>.cwe</code> should be repointed to <code>.barbacana.matched_protections</code>, <code>.barbacana.matched_rules</code>, <code>.barbacana.cwe</code>. The values are byte-for-byte the same.</li>
+</ol>
+<p>There is no <code>legacy</code> format value; the previous shape is not preserved at the document root on either format.</p>
 <p>For shipping to a SIEM, see <a href="../../security/logs/">Logs &amp; SIEM</a>.</p>
 
 

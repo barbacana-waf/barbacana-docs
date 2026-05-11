@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../operations/hostnames/" class="md-tabs__link">
+        <a href="../../operations/overview/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -450,6 +452,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -564,10 +587,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -578,8 +601,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1372,6 +1395,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#in-this-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      In this section
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1470,6 +1502,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1504,6 +1542,27 @@
             Operations
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1596,11 +1655,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../operations/dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Audit log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
   </span>
   
 
@@ -1701,6 +1802,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#in-this-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      In this section
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1720,6 +1830,7 @@
 
 
 <h1 id="security-overview">Security overview<a class="headerlink" href="#security-overview" title="Permanent link">&para;</a></h1>
+<p>This section is for security engineers and analysts evaluating Barbacana's threat model, understanding its detection logic, and wiring its output into a detection and response stack.</p>
 <p>What Barbacana protects against, what it doesn't, and how it decides.</p>
 <h2 id="what-barbacana-protects-against">What Barbacana protects against<a class="headerlink" href="#what-barbacana-protects-against" title="Permanent link">&para;</a></h2>
 <table>
@@ -1785,6 +1896,29 @@
 <li><a href="../../reference/disable/"><code>disable</code></a> — surgically remove a specific protection (or a whole category) on a route, by canonical name. Use this when a known false positive recurs on a known endpoint.</li>
 <li><a href="../../reference/detect-only/"><code>detect_only</code> mode</a> — inspect and log every request but never block. Use this when onboarding a new route, or before raising confidence enough to switch a route to blocking.</li>
 </ul>
+<h2 id="in-this-section">In this section<a class="headerlink" href="#in-this-section" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Page</th>
+<th>What it covers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../request-lifecycle/">Request lifecycle</a></td>
+<td>The ordered sequence of inspection stages every request passes through, and why the order matters</td>
+</tr>
+<tr>
+<td><a href="../logs/">Logs &amp; SIEM</a></td>
+<td>How to consume audit log output in a SIEM, severity derivation, schema selection, what not to do</td>
+</tr>
+<tr>
+<td><a href="../verifying/">Verifying releases</a></td>
+<td>Supply-chain verification: how to confirm the image and binary you're running match the published release</td>
+</tr>
+</tbody>
+</table>
 
 
 

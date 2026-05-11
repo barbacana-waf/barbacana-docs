@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../operations/hostnames/" class="md-tabs__link">
+        <a href="../../operations/overview/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -450,6 +452,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -564,10 +587,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -578,8 +601,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1388,9 +1411,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#field-mapping-ecs-ocsf" class="md-nav__link">
+  <a href="#pick-a-schema-by-where-you-ship-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Field mapping (ECS / OCSF)
+      Pick a schema by where you ship logs
     </span>
   </a>
   
@@ -1400,6 +1423,15 @@
   <a href="#severity-guidance" class="md-nav__link">
     <span class="md-ellipsis">
       Severity guidance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-aware-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace-aware correlation
     </span>
   </a>
   
@@ -1470,6 +1502,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1504,6 +1542,27 @@
             Operations
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1596,11 +1655,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../operations/dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Audit log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
   </span>
   
 
@@ -1675,9 +1776,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#field-mapping-ecs-ocsf" class="md-nav__link">
+  <a href="#pick-a-schema-by-where-you-ship-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Field mapping (ECS / OCSF)
+      Pick a schema by where you ship logs
     </span>
   </a>
   
@@ -1687,6 +1788,15 @@
   <a href="#severity-guidance" class="md-nav__link">
     <span class="md-ellipsis">
       Severity guidance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-aware-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace-aware correlation
     </span>
   </a>
   
@@ -1721,129 +1831,95 @@
 
 <h1 id="logs-siem">Logs &amp; SIEM<a class="headerlink" href="#logs-siem" title="Permanent link">&para;</a></h1>
 <p>Barbacana writes structured JSON audit entries to stdout — one entry per inspected request. Pick them up with any standard log shipper and feed them to your SIEM or D&amp;R platform.</p>
-<p>For the field reference, see <a href="../../operations/audit-log/">audit log</a>.</p>
+<p>For the field reference and full document examples, see <a href="../../operations/audit-log/">audit log</a>.</p>
 <h2 id="log-shape">Log shape<a class="headerlink" href="#log-shape" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Format</strong>: JSON, one entry per line</li>
+<li><strong>Format</strong>: JSON, one entry per line, one entry per inspected request — never one per matched protection</li>
+<li><strong>Schema</strong>: OCSF v1.2.0 by default, switchable to ECS 8.x via <code>audit_log.format</code></li>
 <li><strong>Destination</strong>: stdout (Barbacana writes nothing to disk)</li>
-<li><strong>Granularity</strong>: one entry per request, never per matched protection</li>
 <li><strong>Compatible shippers</strong>: Fluent Bit, Vector, Filebeat, Promtail, Fluentd, the Datadog/Splunk forwarders — no plugin required</li>
 </ul>
-<h2 id="field-mapping-ecs-ocsf">Field mapping (ECS / OCSF)<a class="headerlink" href="#field-mapping-ecs-ocsf" title="Permanent link">&para;</a></h2>
-<p>If you normalize logs into Elastic Common Schema or OCSF, here's how Barbacana fields map:</p>
+<p>Both schemas also emit a vendor <code>barbacana.*</code> namespace carrying <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> verbatim, for ad-hoc shell pipelines that pre-date schema-aware tooling.</p>
+<h2 id="pick-a-schema-by-where-you-ship-logs">Pick a schema by where you ship logs<a class="headerlink" href="#pick-a-schema-by-where-you-ship-logs" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Barbacana field</th>
-<th>ECS field</th>
-<th>OCSF field</th>
+<th>Your SIEM / log platform</th>
+<th>Recommended <code>audit_log.format</code></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>timestamp</code></td>
-<td><code>@timestamp</code></td>
-<td><code>time</code></td>
+<td>Elastic stack (Elasticsearch / Kibana / Filebeat / Logstash) with existing ECS dashboards</td>
+<td><code>ecs</code></td>
 </tr>
 <tr>
-<td><code>request_id</code></td>
-<td><code>event.id</code></td>
-<td><code>metadata.uid</code></td>
+<td>Splunk, Sumo Logic, Datadog, Chronicle, Sentinel, OpenSearch, custom OCSF pipelines</td>
+<td><code>ocsf</code> (default)</td>
 </tr>
 <tr>
-<td><code>source_ip</code></td>
-<td><code>source.ip</code></td>
-<td><code>src_endpoint.ip</code></td>
+<td>Loki / Grafana Explore (no schema enforcement)</td>
+<td>either — <code>ocsf</code> is the default</td>
 </tr>
 <tr>
-<td><code>host</code></td>
-<td><code>url.domain</code></td>
-<td><code>http_request.url.hostname</code></td>
-</tr>
-<tr>
-<td><code>path</code></td>
-<td><code>url.path</code></td>
-<td><code>http_request.url.path</code></td>
-</tr>
-<tr>
-<td><code>method</code></td>
-<td><code>http.request.method</code></td>
-<td><code>http_request.http_method</code></td>
-</tr>
-<tr>
-<td><code>response_code</code></td>
-<td><code>http.response.status_code</code></td>
-<td><code>http_response.code</code></td>
-</tr>
-<tr>
-<td><code>route_id</code></td>
-<td><code>service.name</code></td>
-<td><code>metadata.product.feature.name</code></td>
-</tr>
-<tr>
-<td><code>matched_protections</code></td>
-<td><code>rule.category</code></td>
-<td><code>rule.category</code></td>
-</tr>
-<tr>
-<td><code>matched_rules</code></td>
-<td><code>rule.id</code></td>
-<td><code>rule.uid</code></td>
-</tr>
-<tr>
-<td><code>cwe</code></td>
-<td><code>vulnerability.classification</code></td>
-<td><code>vulnerabilities.cwe.uid</code></td>
-</tr>
-<tr>
-<td><code>anomaly_score</code></td>
-<td><code>event.risk_score</code></td>
-<td><code>risk_score</code></td>
-</tr>
-<tr>
-<td><code>action</code></td>
-<td><code>event.outcome</code></td>
-<td><code>disposition</code></td>
+<td>In-house / homegrown ingest</td>
+<td><code>ocsf</code> (modern industry standard)</td>
 </tr>
 </tbody>
 </table>
+<p>The output is already in the schema your platform expects, so no normalization layer is required. If you previously maintained Logstash or Vector mappings to translate Barbacana's flat fields into ECS, those translation rules should now be empty passthroughs.</p>
 <h2 id="severity-guidance">Severity guidance<a class="headerlink" href="#severity-guidance" title="Permanent link">&para;</a></h2>
-<p>Barbacana doesn't write a severity field — derive it in your SIEM:</p>
+<p>Barbacana does not write a severity field — derive it in your SIEM from the disposition and the anomaly score. For OCSF the score lives at <code>risk_score</code>; for ECS at <code>risk.static_score</code>.</p>
 <table>
 <thead>
 <tr>
-<th>Condition</th>
+<th>Condition (OCSF)</th>
+<th>Equivalent (ECS)</th>
 <th>Suggested severity</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>action: blocked</code> and <code>anomaly_score &gt;= 25</code></td>
+<td><code>disposition_id == 2</code> and <code>risk_score &gt;= 25</code></td>
+<td><code>event.action == "block"</code> and <code>risk.static_score &gt;= 25</code></td>
 <td><strong>Critical</strong></td>
 </tr>
 <tr>
-<td><code>action: blocked</code></td>
+<td><code>disposition_id == 2</code></td>
+<td><code>event.action == "block"</code></td>
 <td><strong>High</strong></td>
 </tr>
 <tr>
-<td><code>action: detected</code> and <code>anomaly_score &gt;= 15</code></td>
+<td>disposition <code>Detected</code> and <code>risk_score &gt;= 15</code></td>
+<td><code>event.action == "detect"</code> and <code>risk.static_score &gt;= 15</code></td>
 <td><strong>Medium</strong></td>
 </tr>
 <tr>
-<td><code>action: detected</code></td>
+<td>disposition <code>Detected</code></td>
+<td><code>event.action == "detect"</code></td>
 <td><strong>Low</strong></td>
 </tr>
 <tr>
-<td><code>action: allowed</code></td>
+<td><code>disposition_id == 1</code> (allowed)</td>
+<td><code>event.action == "allow"</code></td>
 <td><strong>Info</strong> (most platforms drop these by default)</td>
 </tr>
 </tbody>
 </table>
+<h2 id="trace-aware-correlation">Trace-aware correlation<a class="headerlink" href="#trace-aware-correlation" title="Permanent link">&para;</a></h2>
+<p>When <a href="../../operations/tracing/">distributed tracing</a> is enabled, every audit document carries the active trace and span IDs:</p>
+<ul>
+<li><strong>OCSF</strong>: <code>metadata.trace_id</code> (32 hex), <code>metadata.span_id</code> (16 hex)</li>
+<li><strong>ECS</strong>: native top-level <code>trace.id</code> and <code>span.id</code></li>
+</ul>
+<p>Use these to pivot from a SIEM detection straight to the matching trace in Jaeger, Tempo, or your OTLP backend. A single <code>http_request.uid</code> (OCSF) or <code>labels.request_id</code> (ECS) value pins to exactly one trace.</p>
 <h2 id="what-not-to-do">What not to do<a class="headerlink" href="#what-not-to-do" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Don't parse the human-readable message</strong> — there isn't one. Parse the JSON fields.</li>
-<li><strong>Don't rely on log line ordering</strong> across pods or replicas. Correlate by <code>request_id</code>.</li>
-<li><strong>Don't alert on <code>matched_rules</code> IDs</strong> — these come from the underlying rule set and can change between Barbacana releases. Alert on <code>matched_protections</code> names, which are stable.</li>
+<li><strong>Don't rely on log line ordering</strong> across pods or replicas. Correlate by request ID, not by sequence.</li>
+<li><strong>Don't alert on rule IDs</strong> — <code>firewall_rule.match_details</code> (OCSF) or <code>rule.reference</code> (ECS) come from the underlying rule set and can change between Barbacana releases. Alert on the protection names (<code>attacks[].name</code> in OCSF, <code>rule.name</code> in ECS, or <code>barbacana.matched_protections</code> on either format), which are stable.</li>
+<li><strong>Don't alert on the vendor <code>barbacana.*</code> namespace as the source of truth.</strong> It exists for shell pipelines and migration parity. SIEM detection rules should target the schema-standard fields.</li>
+<li><strong>Don't expect the previous flat field shape.</strong> <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> no longer appear at the document root — they live under <code>barbacana.*</code> and inside the schema-mapped locations.</li>
 </ul>
 
 

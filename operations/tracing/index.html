@@ -12,13 +12,13 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/getting-started/installation/">
+        <link rel="canonical" href="https://barbacana.dev/operations/tracing/">
       
       
-        <link rel="prev" href="../quickstart/">
+        <link rel="prev" href="../audit-log/">
       
       
-        <link rel="next" href="../incremental/">
+        <link rel="next" href="../../blog/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Installation - Barbacana</title>
+        <title>Tracing - Barbacana</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#installation" class="md-skip">
+        <a href="#distributed-tracing" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Tracing
             
           </span>
         </div>
@@ -237,13 +237,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -299,11 +297,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../operations/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
     
@@ -401,10 +401,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -423,22 +421,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -449,7 +446,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -463,7 +460,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../getting-started/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -484,7 +481,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../why-barbacana/" class="md-nav__link">
+      <a href="../../getting-started/why-barbacana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -505,7 +502,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../quickstart/" class="md-nav__link">
+      <a href="../../getting-started/quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -523,30 +520,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -555,53 +532,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#step-1-docker-run-against-a-local-upstream" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 1 — docker run against a local upstream
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-2-docker-compose-plain-http" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 2 — Docker Compose, plain HTTP
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-3-docker-compose-with-auto-tls" class="md-nav__link">
-    <span class="md-ellipsis">
-      Step 3 — Docker Compose with auto-TLS
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -614,7 +544,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../incremental/" class="md-nav__link">
+      <a href="../../getting-started/incremental/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -648,13 +578,10 @@
       
       
         
-          
-          
-        
       
     
     
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
@@ -663,7 +590,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -688,7 +615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting/" class="md-nav__link">
+      <a href="../../getting-started/troubleshooting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -709,7 +636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting-cors/" class="md-nav__link">
+      <a href="../../getting-started/troubleshooting-cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../troubleshooting-inline-scripts/" class="md-nav__link">
+      <a href="../../getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1472,8 +1399,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -1496,21 +1425,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
-        
-          
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -1521,7 +1451,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             Operations
@@ -1535,7 +1465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1556,7 +1486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/hostnames/" class="md-nav__link">
+      <a href="../hostnames/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1577,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/cli/" class="md-nav__link">
+      <a href="../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1598,7 +1528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/monitoring/" class="md-nav__link">
+      <a href="../monitoring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1619,7 +1549,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/metrics/" class="md-nav__link">
+      <a href="../metrics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1640,7 +1570,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/dashboard/" class="md-nav__link">
+      <a href="../dashboard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1661,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/audit-log/" class="md-nav__link">
+      <a href="../audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1679,10 +1609,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../operations/tracing/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tracing
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1691,6 +1641,122 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#why-turn-it-on" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why turn it on
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#enabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Enabling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuration-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuration reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticated-collectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticated collectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variable-fallbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variable fallbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-propagation-to-your-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace propagation to your server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit log correlation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-not-exported-as-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is not exported as traces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sampling-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling and cost
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabling
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1752,27 +1818,96 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#step-1-docker-run-against-a-local-upstream" class="md-nav__link">
+  <a href="#why-turn-it-on" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 1 — docker run against a local upstream
+      Why turn it on
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-docker-compose-plain-http" class="md-nav__link">
+  <a href="#enabling" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 2 — Docker Compose, plain HTTP
+      Enabling
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-docker-compose-with-auto-tls" class="md-nav__link">
+  <a href="#configuration-reference" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 3 — Docker Compose with auto-TLS
+      Configuration reference
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuration reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authenticated-collectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Authenticated collectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#environment-variable-fallbacks" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment variable fallbacks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trace-propagation-to-your-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trace propagation to your server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#audit-log-correlation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Audit log correlation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-not-exported-as-traces" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is not exported as traces
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sampling-and-cost" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling and cost
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disabling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Disabling
     </span>
   </a>
   
@@ -1796,100 +1931,143 @@
   
 
 
-<h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
-<p>Barbacana ships as a single container image. The sections below walk from the simplest possible run through to a TLS-terminating Compose stack — each step builds on the previous one.</p>
-<p>The image: <code>ghcr.io/barbacana-waf/barbacana:latest</code>. Multi-arch (<code>amd64</code>, <code>arm64</code>), signed with cosign, ships a CycloneDX SBOM.</p>
-<p><code>ghcr.io/barbacana-waf/barbacana</code> is the canonical registry. A convenience mirror at <code>docker.io/barbacana/barbacana</code> carries identical image bits.</p>
-<h2 id="step-1-docker-run-against-a-local-upstream">Step 1 — <code>docker run</code> against a local upstream<a class="headerlink" href="#step-1-docker-run-against-a-local-upstream" title="Permanent link">&para;</a></h2>
-<p>Smallest viable setup: one config file, one <code>docker run</code>. Use this to try Barbacana in front of an app already running on your host.</p>
-<blockquote>
-<p><strong>Assumes:</strong> your app is listening on port <code>8000</code> on your machine. Adjust the port if it isn't.</p>
-</blockquote>
-<p>Create <code>waf.yaml</code> in your working directory:</p>
+<h1 id="distributed-tracing">Distributed tracing<a class="headerlink" href="#distributed-tracing" title="Permanent link">&para;</a></h1>
+<p>Barbacana exports OpenTelemetry traces over OTLP. Trace context is propagated to your upstream via the W3C <code>traceparent</code> header, so a single distributed trace continues from your client, through the WAF, into your application — without any transport wrapping or shim.</p>
+<div class="admonition warning">
+<p class="admonition-title">Off by default</p>
+<p>Tracing is opt-in. With the <code>tracing</code> block absent or <code>enabled: false</code>, no exporter is created and <strong>no OTLP traffic ever leaves the process</strong>. Barbacana running without an OTel collector configured makes zero network calls for tracing.</p>
+</div>
+<h2 id="why-turn-it-on">Why turn it on<a class="headerlink" href="#why-turn-it-on" title="Permanent link">&para;</a></h2>
+<p>A trace shows where time goes inside a request. With Barbacana in front of your server you usually want to answer one of three questions:</p>
+<ol>
+<li><strong>Is the WAF the bottleneck?</strong> A trace exposes WAF overhead per stage versus upstream time, so you can rule the WAF in or out at a glance.</li>
+<li><strong>Why was a request slow?</strong> Pivot from a slow audit log entry straight to its trace using the trace ID embedded in the audit document.</li>
+<li><strong>Did the WAF block this?</strong> A trace tagged with <code>waf.action=blocked</code> and <code>waf.protection=&lt;name&gt;</code> makes a missing upstream call self-explanatory.</li>
+</ol>
+<h2 id="enabling">Enabling<a class="headerlink" href="#enabling" title="Permanent link">&para;</a></h2>
+<p>Two pieces are required: a <code>tracing:</code> block in <code>waf.yaml</code>, and a reachable OTLP collector.</p>
 <div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:8000</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">tracing</span><span class="p">:</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">otel-collector:4317</span><span class="w">     </span><span class="c1"># gRPC default port; use 4318 for HTTP/protobuf</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grpc</span><span class="w">                    </span><span class="c1"># grpc (default) or http</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                    </span><span class="c1"># in-cluster, plain text; flip to false for TLS</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span></code></pre></div>
-<p>Then:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>ghcr.io/barbacana-waf/barbacana:latest
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>docker<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--network<span class="w"> </span>host<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest
-</span></code></pre></div>
-<p><code>--network host</code> lets the container reach <code>localhost:8000</code> on your machine and publishes Barbacana directly on the host's <code>:8080</code> (no <code>-p</code> flag needed). Supported on Linux Docker Engine and Docker Desktop 4.34+.</p>
-<p>The image reads <code>/etc/barbacana/waf.yaml</code> by default, so no <code>--config</code> flag is needed. Send requests to <code>http://localhost:8080</code>; they're inspected and forwarded to your upstream.</p>
-<h2 id="step-2-docker-compose-plain-http">Step 2 — Docker Compose, plain HTTP<a class="headerlink" href="#step-2-docker-compose-plain-http" title="Permanent link">&para;</a></h2>
-<p>Once the basics work, run the upstream alongside Barbacana on a private Docker network. No TLS yet — useful when something else (a load balancer, an ingress controller) terminates HTTPS in front of you.</p>
-<p>Reuse the same <code>waf.yaml</code>, but point the upstream at the Compose service name:</p>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
-</span></code></pre></div>
-<p>Then:</p>
-<div class="language-yaml highlight"><span class="filename">compose.yaml</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">barbacana</span><span class="p">:</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/barbacana-waf/barbacana:latest</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080:8080&quot;</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./waf.yaml:/etc/barbacana/waf.yaml:ro</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="nt">app</span><span class="p">:</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginxdemos/hello:latest</span>
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="nt">expose</span><span class="p">:</span>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">      </span><span class="nt">NGINX_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span></code></pre></div>
-<p><code>docker compose up</code> and hit <code>http://localhost:8080</code>. <code>app</code> is reachable to Barbacana over Docker's internal DNS but is not published to the host.</p>
-<h2 id="step-3-docker-compose-with-auto-tls">Step 3 — Docker Compose with auto-TLS<a class="headerlink" href="#step-3-docker-compose-with-auto-tls" title="Permanent link">&para;</a></h2>
-<p>For a public deployment, let Barbacana terminate TLS via Let's Encrypt. Two changes to the previous step: add <code>host:</code> and <code>data_dir:</code> to the config, and publish <code>:80</code>/<code>:443</code> instead of <code>:8080</code>.</p>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api.example.com</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
-</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
-</span></code></pre></div>
-<div class="language-yaml highlight"><span class="filename">compose.yaml</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">services</span><span class="p">:</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">barbacana</span><span class="p">:</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ghcr.io/barbacana-waf/barbacana:latest</span>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
-</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;80:80&quot;</span><span class="w">      </span><span class="c1"># ACME HTTP-01 challenge + HTTP→HTTPS redirect</span>
-</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;443:443&quot;</span><span class="w">    </span><span class="c1"># HTTPS</span>
-</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./waf.yaml:/etc/barbacana/waf.yaml:ro</span>
-</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">barbacana-data:/data/barbacana</span>
-</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">    </span><span class="nt">depends_on</span><span class="p">:</span>
-</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app</span>
-</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
-</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">  </span><span class="nt">app</span><span class="p">:</span>
-</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginxdemos/hello:latest</span>
-</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="nt">expose</span><span class="p">:</span>
-</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
-</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">      </span><span class="nt">NGINX_PORT</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;8080&quot;</span>
-</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
-</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>
-</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="nt">volumes</span><span class="p">:</span>
-</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">  </span><span class="nt">barbacana-data</span><span class="p">:</span>
-</span></code></pre></div>
-<p><code>host:</code> triggers auto-TLS for one hostname. <code>data_dir:</code> is where Barbacana persists ACME state — the <code>barbacana-data</code> named volume keeps it across restarts.</p>
-<p><strong>Prerequisites for auto-TLS:</strong></p>
+<p>The following picture shows a Jaeger trace view of a single Barbacana request, with the <code>barbacana.evaluate</code> parent span and stage-level child spans:</p>
+<p><img alt="Jaeger trace view of a single Barbacana request, showing the barbacana.evaluate parent span and stage-level child spans for request validation, protocol hardening, body decompression, body parsing, multipart, CORS, OpenAPI, base64 decoding, CRS, and the upstream call" src="../../assets/trace-jaeger.png" /></p>
+<p>Any OTLP-compatible collector works. The most common targets:</p>
 <ul>
-<li>DNS for <code>api.example.com</code> resolves publicly to the machine running Barbacana — Let's Encrypt connects to that hostname to validate the certificate, so the A/AAAA record must point at this host's public IP.</li>
-<li>Ports <code>80</code> and <code>443</code> are open on that machine and reachable from the internet (firewall, security group, and any upstream router/NAT must forward them). <code>80</code> is required for the ACME HTTP-01 challenge; <code>443</code> serves HTTPS traffic afterward.</li>
-<li>The <code>barbacana-data</code> volume is preserved across restarts. Without it, Barbacana re-requests certificates on every restart and you'll hit Let's Encrypt's <a href="https://letsencrypt.org/docs/rate-limits/">rate limits</a>.</li>
+<li><strong>Jaeger</strong> v1.35 or newer (native OTLP gRPC on <code>:4317</code>, HTTP on <code>:4318</code>)</li>
+<li><strong>Grafana Tempo</strong></li>
+<li><strong>OpenTelemetry Collector</strong> (forwards to whatever your stack uses — Datadog, Honeycomb, Splunk Observability, New Relic, …)</li>
 </ul>
-<p>For multi-host setups and the full picture of the three deployment modes, see <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a>.</p>
+<h2 id="configuration-reference">Configuration reference<a class="headerlink" href="#configuration-reference" title="Permanent link">&para;</a></h2>
+<p>See <a href="../../reference/schema/#tracing">config schema → Tracing</a> for the full field table. The shape:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">tracing</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">           </span><span class="c1"># default; flip to true to ship traces</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">grpc</span><span class="w">           </span><span class="c1"># grpc (default) or http (== http/protobuf)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">             </span><span class="c1"># falls back to OTEL_EXPORTER_OTLP_ENDPOINT</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">           </span><span class="c1"># default; set false to require TLS to the collector</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="nt">headers</span><span class="p">:</span><span class="w">                 </span><span class="c1"># optional, e.g. for auth</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">authorization</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Api-Token</span><span class="nv"> </span><span class="s">&lt;secret&gt;&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">  </span><span class="nt">timeout</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">              </span><span class="c1"># optional, e.g. 5s</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">  </span><span class="nt">service</span><span class="p">:</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">               </span><span class="c1"># defaults to &quot;barbacana&quot; when empty</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="w">            </span><span class="c1"># defaults to the build&#39;s internal version when empty</span>
+</span></code></pre></div>
+<h3 id="authenticated-collectors">Authenticated collectors<a class="headerlink" href="#authenticated-collectors" title="Permanent link">&para;</a></h3>
+<p>If your collector requires an auth header (Honeycomb, Grafana Cloud, vendor-hosted Tempo), put it in <code>tracing.headers</code>:</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">tracing</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http</span><span class="w">                                 </span><span class="c1"># most hosted vendors require HTTP/protobuf</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">endpoint</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://api.honeycomb.io</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">insecure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">headers</span><span class="p">:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">x-honeycomb-team</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;your-api-key&gt;&quot;</span>
+</span></code></pre></div>
+<h3 id="environment-variable-fallbacks">Environment variable fallbacks<a class="headerlink" href="#environment-variable-fallbacks" title="Permanent link">&para;</a></h3>
+<p>A subset of the standard OTLP exporter environment variables are honoured when the corresponding YAML field is empty:</p>
+<table>
+<thead>
+<tr>
+<th>Env var</th>
+<th>YAML field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OTEL_EXPORTER_OTLP_ENDPOINT</code></td>
+<td><code>tracing.endpoint</code></td>
+</tr>
+<tr>
+<td><code>OTEL_EXPORTER_OTLP_HEADERS</code></td>
+<td><code>tracing.headers</code></td>
+</tr>
+<tr>
+<td><code>OTEL_EXPORTER_OTLP_TIMEOUT</code></td>
+<td><code>tracing.timeout</code></td>
+</tr>
+<tr>
+<td><code>OTEL_RESOURCE_ATTRIBUTES</code></td>
+<td>resource attributes other than <code>service.name</code> and <code>service.version</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>YAML wins when both are set.</strong> Other OTel environment variables (including <code>OTEL_SERVICE_NAME</code>, <code>OTEL_EXPORTER_OTLP_PROTOCOL</code>, <code>OTEL_TRACES_SAMPLER</code>, and <code>OTEL_TRACES_SAMPLER_ARG</code>) are not currently consulted — set the matching YAML fields, or use <code>tracing.protocol</code> / <code>tracing.service.name</code> instead.</p>
+<h2 id="trace-propagation-to-your-server">Trace propagation to your server<a class="headerlink" href="#trace-propagation-to-your-server" title="Permanent link">&para;</a></h2>
+<p>Barbacana extracts the incoming <code>traceparent</code> and <code>tracestate</code> headers, opens its own server span as a child, and re-injects the active context back into the outgoing request to your server. Caddy's reverse proxy forwards request headers as-is, so your server sees a continued trace context with the WAF span as parent.</p>
+<p>Concretely:</p>
+<ul>
+<li>A client that already speaks W3C trace context (Browser RUM, OTel SDK in another service) keeps the same trace ID end to end.</li>
+<li>A client without trace context starts the trace at the WAF; your server still sees a <code>traceparent</code> header pointing at the WAF span.</li>
+<li>You do <strong>not</strong> need an OTel SDK in your server to benefit. The trace continues to your server's transport even if the server itself does not emit spans — and if it does, they nest naturally under the WAF span.</li>
+</ul>
+<h2 id="audit-log-correlation">Audit log correlation<a class="headerlink" href="#audit-log-correlation" title="Permanent link">&para;</a></h2>
+<p>When tracing is enabled, every audit log entry carries the active span's IDs:</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>Trace ID field</th>
+<th>Span ID field</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OCSF (default)</td>
+<td><code>metadata.trace_id</code></td>
+<td><code>metadata.span_id</code></td>
+</tr>
+<tr>
+<td>ECS</td>
+<td><code>trace.id</code> (top level)</td>
+<td><code>span.id</code> (top level)</td>
+</tr>
+</tbody>
+</table>
+<p>When tracing is disabled, the trace and span keys are absent from the audit document — the formatter does not emit them as empty strings.</p>
+<p>See <a href="../audit-log/#trace-correlation">audit log → Trace correlation</a> for full document examples.</p>
+<h2 id="what-is-not-exported-as-traces">What is not exported as traces<a class="headerlink" href="#what-is-not-exported-as-traces" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Metrics.</strong> Metrics are exposed via Prometheus scrape on <code>/metrics</code>. Barbacana intentionally does <strong>not</strong> export OTel metrics over OTLP — running both creates a double-counting risk. Use <a href="../metrics/">Prometheus</a> for time-series.</li>
+<li><strong>Audit logs.</strong> Logs are written to stdout in OCSF or ECS JSON. They are correlated with traces via the embedded trace ID, but they are not transmitted over OTLP.</li>
+<li><strong>Caddy's bundled <code>http.handlers.tracing</code> module.</strong> Barbacana installs its own OTel global TracerProvider; running Caddy's separate tracing module on top would double-export every span. The Caddy module is intentionally unused.</li>
+</ul>
+<h2 id="sampling-and-cost">Sampling and cost<a class="headerlink" href="#sampling-and-cost" title="Permanent link">&para;</a></h2>
+<p>Barbacana currently uses the OTel SDK's default sampler — <code>ParentBased(AlwaysSample)</code>. Concretely:</p>
+<ul>
+<li>Every request that arrives without an inbound trace context is sampled and exported.</li>
+<li>Every request that arrives with an inbound <code>traceparent</code> honours the upstream client's sampling decision (<code>sampled</code> flag → exported, unsampled → dropped).</li>
+</ul>
+<p>There is no in-process knob to switch sampler or ratio today. For high-volume internet-facing deployments, the only sustainable approach is <strong>tail sampling at the collector layer</strong> — the OpenTelemetry Collector's <code>tail_sampling</code> processor lets you keep all errors and a percentage of normal traffic without changing Barbacana's config. For low-volume deployments the default is fine.</p>
+<h2 id="disabling">Disabling<a class="headerlink" href="#disabling" title="Permanent link">&para;</a></h2>
+<p>Remove the <code>tracing:</code> block, or set <code>enabled: false</code>, and reload. The exporter is drained synchronously, the TracerProvider is replaced with the no-op, and no further OTLP traffic leaves the process.</p>
 
 
 

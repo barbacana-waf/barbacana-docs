@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#overview" class="md-skip">
+        <a href="#reference" class="md-skip">
           Skip to content
         </a>
       
@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../operations/hostnames/" class="md-tabs__link">
+        <a href="../../operations/overview/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -450,6 +452,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -564,10 +587,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -578,8 +601,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1473,6 +1496,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1507,6 +1536,27 @@
             Operations
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1599,11 +1649,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../operations/dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Audit log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
   </span>
   
 
@@ -1713,7 +1805,8 @@
   
 
 
-<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
+<p>This section is for engineers with a config file open who need the exact field name, accepted values, or default. It assumes you already know what you want to configure — link to Getting Started or Operations if you need the conceptual background.</p>
 <p>Barbacana is configured with a single YAML file. The schema has three levels: server-wide settings at the top, a <code>global</code> block of defaults for every route, and a <code>routes</code> list where each route can override those defaults.</p>
 <div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span><span class="w">            </span><span class="c1"># required, always v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1773,17 +1866,22 @@
 </tr>
 <tr>
 <td><strong>Tuning protections</strong></td>
-<td>Turning off false positives, onboarding gradually</td>
-<td><a href="../disable/">Disable protections</a>, <a href="../detect-only/">Detect-only mode</a></td>
+<td>Turning off false positives, turning on extra rules, onboarding gradually</td>
+<td><a href="../disable/">Disable</a>, <a href="../enable/">Enable</a>, <a href="../detect-only/">Detect-only mode</a></td>
 </tr>
 <tr>
 <td><strong>Response</strong></td>
 <td>What headers go back to the client</td>
 <td><a href="../cors/">CORS</a>, <a href="../headers/">Security headers</a></td>
 </tr>
+<tr>
+<td><strong>Catalog &amp; schema</strong></td>
+<td>Every protection name you can reference; every field and its default</td>
+<td><a href="../catalog/">Protection catalog</a>, <a href="../schema/">Full schema</a></td>
+</tr>
 </tbody>
 </table>
-<p>For the exhaustive list of every key, default, and validation rule, see the <a href="../schema/">config schema reference</a>. For end-to-end YAML you can copy, see the <a href="../../getting-started/incremental/">configuration walkthrough</a>.</p>
+<p>For end-to-end YAML you can copy, see the <a href="../../getting-started/incremental/">configuration walkthrough</a>.</p>
 
 
 

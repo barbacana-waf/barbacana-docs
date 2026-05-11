@@ -18,7 +18,7 @@
         <link rel="prev" href="../logs/">
       
       
-        <link rel="next" href="../../operations/hostnames/">
+        <link rel="next" href="../../operations/overview/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -241,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/why-barbacana/" class="md-tabs__link">
+        <a href="../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -303,7 +303,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../operations/hostnames/" class="md-tabs__link">
+        <a href="../../operations/overview/" class="md-tabs__link">
           
   
     
@@ -416,6 +416,8 @@
       
         
       
+        
+      
     
     
       
@@ -450,6 +452,27 @@
             Getting Started
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -564,10 +587,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
         
           
-          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -578,8 +601,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_5">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1506,6 +1529,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1540,6 +1569,27 @@
             Operations
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -1632,11 +1682,53 @@
   
   
     <li class="md-nav__item">
+      <a href="../../operations/dashboard/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Grafana dashboard
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     Audit log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/tracing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tracing
   </span>
   
 
@@ -1846,10 +1938,10 @@
 <div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify \
   --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;},<br>  &quot;type&quot;:&quot;https://sigstore.dev/cosign/sign/v1&quot;},&quot;optional&quot;:{...}}]<br></span></div>
+  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;},<br>  &quot;type&quot;:&quot;https://cyclonedx.org/bom&quot;},&quot;optional&quot;:{}},<br> {&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;},<br>  &quot;type&quot;:&quot;https://sigstore.dev/cosign/sign/v1&quot;},&quot;optional&quot;:{}}]<br></span></div>
 
 <p>The certificate identity pins the signature to <code>release.yml</code> in the <code>barbacana-waf/barbacana</code> repository, run via <code>workflow_dispatch</code> on master (the release workflow creates the version tag at the end of its own run, so the OIDC subject embeds <code>@refs/heads/master</code>, not the eventual tag). The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.</p>
-<p>A successful run prints a JSON array of verified signatures and exits 0.</p>
+<p>A successful run prints a JSON array of verified signed items and exits 0. With cosign v3 defaults, the array has <strong>two entries</strong> at the same digest: the image signature (<code>type: https://sigstore.dev/cosign/sign/v1</code>) and the CycloneDX SBOM attestation (<code>type: https://cyclonedx.org/bom</code>). Both are checked against the same certificate identity, so a tampered or missing attestation will fail this step too — you don't need to wait for step 2 to catch it.</p>
 <p>A failure means one of the following:</p>
 <ul>
 <li>The image at that reference is unsigned, or signed by an identity that does not match (i.e. not produced by this repo's release workflow).</li>
@@ -1884,7 +1976,7 @@
   --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
   --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
   ghcr.io/barbacana-waf/barbacana:latest 2&gt;/dev/null \
-  | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'</span><span data-ty>&quot;https://cyclonedx.org/bom&quot;<br>[<br>  {<br>    &quot;name&quot;: &quot;ghcr.io/barbacana-waf/barbacana&quot;,<br>    &quot;digest&quot;: {<br>      &quot;sha256&quot;: &quot;a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51&quot;<br>    }<br>  }<br>]<br></span></div>
+  | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'</span><span data-ty>&quot;https://cyclonedx.org/bom&quot;<br>[<br>  {<br>    &quot;name&quot;: &quot;ghcr.io/barbacana-waf/barbacana&quot;,<br>    &quot;digest&quot;: {<br>      &quot;sha256&quot;: &quot;3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;<br>    }<br>  }<br>]<br></span></div>
 
 <p>Failure modes:</p>
 <ul>
@@ -1912,7 +2004,7 @@
   --predicate-type https://cyclonedx.org/bom \
   ghcr.io/barbacana-waf/barbacana:latest \
   | jq -r '.dsseEnvelope.payload' | base64 -d | jq '.predicate' \
-  &gt; barbacana.cdx.json</span><span data-ty="input" data-ty-prompt="$">jq -r '.bomFormat, .specVersion, (.components | length)' barbacana.cdx.json</span><span data-ty>CycloneDX<br>1.6<br>185<br></span></div>
+  &gt; barbacana.cdx.json</span><span data-ty="input" data-ty-prompt="$">jq -r '.bomFormat, .specVersion, (.components | length)' barbacana.cdx.json</span><span data-ty>CycloneDX<br>1.6<br>183<br></span></div>
 
 <p>What each stage does:</p>
 <ul>
