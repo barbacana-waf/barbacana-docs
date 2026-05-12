@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#security-overview" class="md-skip">
+        <a href="#security" class="md-skip">
           Skip to content
         </a>
       
@@ -1360,24 +1360,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-barbacana-protects-against" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      What Barbacana protects against
+      Key concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attack-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attack coverage
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-barbacana-does-not-protect-against" class="md-nav__link">
-    <span class="md-ellipsis">
-      What Barbacana does NOT protect against
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#detection-model" class="md-nav__link">
     <span class="md-ellipsis">
       Detection model
@@ -1385,13 +1386,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-can-tune" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tuning" class="md-nav__link">
     <span class="md-ellipsis">
-      What you can tune
+      Tuning
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1399,6 +1405,15 @@
   <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
       In this section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to start
     </span>
   </a>
   
@@ -1767,24 +1782,25 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-barbacana-protects-against" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      What Barbacana protects against
+      Key concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#attack-coverage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attack coverage
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-barbacana-does-not-protect-against" class="md-nav__link">
-    <span class="md-ellipsis">
-      What Barbacana does NOT protect against
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#detection-model" class="md-nav__link">
     <span class="md-ellipsis">
       Detection model
@@ -1792,13 +1808,18 @@
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#what-you-can-tune" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#tuning" class="md-nav__link">
     <span class="md-ellipsis">
-      What you can tune
+      Tuning
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1806,6 +1827,15 @@
   <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
       In this section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to start
     </span>
   </a>
   
@@ -1829,10 +1859,10 @@
   
 
 
-<h1 id="security-overview">Security overview<a class="headerlink" href="#security-overview" title="Permanent link">&para;</a></h1>
-<p>This section is for security engineers and analysts evaluating Barbacana's threat model, understanding its detection logic, and wiring its output into a detection and response stack.</p>
-<p>What Barbacana protects against, what it doesn't, and how it decides.</p>
-<h2 id="what-barbacana-protects-against">What Barbacana protects against<a class="headerlink" href="#what-barbacana-protects-against" title="Permanent link">&para;</a></h2>
+<h1 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h1>
+<p>This section covers Barbacana's threat model, detection logic, and how to feed its output into a detection and response stack.</p>
+<h2 id="key-concepts">Key concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
+<h3 id="attack-coverage">Attack coverage<a class="headerlink" href="#attack-coverage" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
 <tr>
@@ -1876,7 +1906,6 @@
 </tbody>
 </table>
 <p>For the exhaustive list with names you can <a href="../../reference/disable/"><code>disable</code></a>, see the <a href="../../reference/catalog/">protection catalog</a>.</p>
-<h2 id="what-barbacana-does-not-protect-against">What Barbacana does NOT protect against<a class="headerlink" href="#what-barbacana-does-not-protect-against" title="Permanent link">&para;</a></h2>
 <p>Barbacana focuses on application-layer attack detection where it can give high-confidence results. It does <strong>not</strong> do:</p>
 <ul>
 <li><strong>DDoS protection</strong> — use a CDN or scrubbing service</li>
@@ -1886,11 +1915,11 @@
 <li><strong>IP reputation / threat intel</strong> — enrich audit logs in your SIEM</li>
 </ul>
 <p>Barbacana also does <strong>not</strong> parse SOAP, gRPC, or GraphQL semantics.</p>
-<h2 id="detection-model">Detection model<a class="headerlink" href="#detection-model" title="Permanent link">&para;</a></h2>
+<h3 id="detection-model">Detection model<a class="headerlink" href="#detection-model" title="Permanent link">&para;</a></h3>
 <p>Every request is matched against the OWASP Core Rule Set's attack patterns. A single suspicious pattern usually isn't enough on its own — multiple matches that together indicate an attack are what trigger a block (or a log entry, in <a href="../../reference/detect-only/">detect-only mode</a>). This keeps false positives low without missing combined attacks.</p>
 <p>The active rule set is <strong>not user-configurable</strong>. Barbacana picks it: the CRS baseline plus a hand-curated set of additional rules, each individually screened against benign-traffic corpora to keep false positives low. The reason there is no sensitivity knob is that turning one without traffic context tends to produce false positives, which leads operators to disable whole protection categories — leaving the application less protected than the default would have been. Making these decisions once, carefully, is the safer trade.</p>
 <p>The matched patterns and the block decision appear in the <a href="../../operations/audit-log/">audit log</a>.</p>
-<h2 id="what-you-can-tune">What you can tune<a class="headerlink" href="#what-you-can-tune" title="Permanent link">&para;</a></h2>
+<h3 id="tuning">Tuning<a class="headerlink" href="#tuning" title="Permanent link">&para;</a></h3>
 <p>Two route-level levers handle the cases where the default isn't right for your traffic:</p>
 <ul>
 <li><a href="../../reference/disable/"><code>disable</code></a> — surgically remove a specific protection (or a whole category) on a route, by canonical name. Use this when a known false positive recurs on a known endpoint.</li>
@@ -1919,6 +1948,10 @@
 </tr>
 </tbody>
 </table>
+<h2 id="where-to-start">Where to start<a class="headerlink" href="#where-to-start" title="Permanent link">&para;</a></h2>
+<p>Evaluating attack coverage → review <a href="#attack-coverage">Attack coverage</a> above, then the <a href="../../reference/catalog/">protection catalog</a>.</p>
+<p>Connecting audit logs to a SIEM → <a href="../logs/">Logs &amp; SIEM</a>.</p>
+<p>Verifying a release before deployment → <a href="../verifying/">Verifying releases</a>.</p>
 
 
 

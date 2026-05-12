@@ -2033,7 +2033,7 @@
 </tbody>
 </table>
 <h3 id="why-six-are-off-by-default">Why six are off by default<a class="headerlink" href="#why-six-are-off-by-default" title="Permanent link">&para;</a></h3>
-<p>Each default-off header shares the same property: any value strict enough to actually protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.</p>
+<p>Each default-off header shares the same property: any value strict enough to protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.</p>
 <ul>
 <li><strong>CSP</strong> — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a route-level <code>csp.policy</code> value before enabling.</li>
 <li><strong>COOP / COEP / CORP</strong> — strict cross-origin isolation breaks OAuth popups, cross-origin embedding, <code>window.opener</code> integrations, and any cross-origin asset that hasn't opted in via CORP/CORS.</li>

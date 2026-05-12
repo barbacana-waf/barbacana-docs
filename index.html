@@ -1964,7 +1964,7 @@
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/waf.yaml:/etc/barbacana/waf.yaml:ro<span class="w"> </span><span class="se">\</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span>ghcr.io/barbacana-waf/barbacana:latest
 </span></code></pre></div>
-<p>That's it. Every protection is on by default. <a href="getting-started/quickstart/">Full quickstart →</a></p>
+<p>Every protection is on by default. <a href="getting-started/quickstart/">Full quickstart →</a></p>
 <p>And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored <strong>93.65%</strong> on <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a>, an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes <strong>99.75%</strong> of <a href="https://github.com/coreruleset/go-ftw">go-ftw</a>, the official test suite from the OWASP CRS authors.</p>
 <h2 id="beyond-the-defaults">Beyond the defaults<a class="headerlink" href="#beyond-the-defaults" title="Permanent link">&para;</a></h2>
 <p>The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.</p>
@@ -1972,7 +1972,7 @@
 <div class="feature-text">
 <p><span class="twemoji feature-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m10 17-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9m-6-8L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5z"/></svg></span></p>
 <h3 id="182-protections-on-by-default-30-more-opt-in">182 protections on by default, 30 more opt-in<a class="headerlink" href="#182-protections-on-by-default-30-more-opt-in" title="Permanent link">&para;</a></h3>
-<p>All 182 named protections activate the moment you start Barbacana — no config required. A further 30 are available as opt-in: aggressive detection variants that need per-app tuning. For example, <code>sql-injection-comments-in-json</code> detects MySQL space-obfuscationm, but can easily block ordinary JSON when active. The <a href="reference/catalog/">protection catalog</a> details each protection, why they should be on or off, and how to tune them.</p>
+<p>182 protections activate the moment you start Barbacana — no config required. A further 30 are available as opt-in: aggressive detection variants that need per-app tuning. For example, <code>sql-injection-comments-in-json</code> detects MySQL space-obfuscation, but can block ordinary JSON when active. The <a href="reference/catalog/">protection catalog</a> details each protection, why they should be on or off, and how to tune them.</p>
 </div>
 <div class="feature-code">
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">routes</span><span class="p">:</span>
@@ -2103,7 +2103,7 @@
 <a class="md-button" href="security/overview/"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 11c0 5.55-3.84 10.74-9 12-5.16-1.26-9-6.45-9-12V5l9-4 9 4zm-9 10c3.75-1 7-5.46 7-9.78V6.3l-7-3.12z"/></svg></span> &nbsp; <strong>Security model</strong></a></p>
 </div>
 <h2 id="built-on">Built on<a class="headerlink" href="#built-on" title="Permanent link">&para;</a></h2>
-<p>Barbacana wraps <a href="https://caddyserver.com">Caddy</a> (HTTP, TLS, reverse proxy), <a href="https://coraza.io">Coraza</a> (WAF engine), and the <a href="https://coreruleset.org">OWASP CRS v4</a> (detection rules) — two decades of work by the security community made this project possible. Big thanks to their maintainers and contributors.</p>
+<p>Barbacana wraps <a href="https://caddyserver.com">Caddy</a> (HTTP, TLS, reverse proxy), <a href="https://coraza.io">Coraza</a> (WAF engine), and the <a href="https://coreruleset.org">OWASP CRS v4</a> (detection rules) — two decades of work by the security community made this project possible. Thanks to their maintainers and contributors.</p>
 <p>Barbacana also runs <code>ghcr.io/barbacana-waf/barbacana</code> as the main image registry, with an identical mirror at <code>docker.io/barbacana/barbacana</code>.</p>
 
 

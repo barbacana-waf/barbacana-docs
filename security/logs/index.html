@@ -1411,9 +1411,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pick-a-schema-by-where-you-ship-logs" class="md-nav__link">
+  <a href="#pick-a-schema-based-on-where-you-ship-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Pick a schema by where you ship logs
+      Pick a schema based on where you ship logs
     </span>
   </a>
   
@@ -1776,9 +1776,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pick-a-schema-by-where-you-ship-logs" class="md-nav__link">
+  <a href="#pick-a-schema-based-on-where-you-ship-logs" class="md-nav__link">
     <span class="md-ellipsis">
-      Pick a schema by where you ship logs
+      Pick a schema based on where you ship logs
     </span>
   </a>
   
@@ -1830,7 +1830,7 @@
 
 
 <h1 id="logs-siem">Logs &amp; SIEM<a class="headerlink" href="#logs-siem" title="Permanent link">&para;</a></h1>
-<p>Barbacana writes structured JSON audit entries to stdout — one entry per inspected request. Pick them up with any standard log shipper and feed them to your SIEM or D&amp;R platform.</p>
+<p>Barbacana writes structured JSON audit entries to stdout — one entry per inspected request. Pick them up with any standard log shipper and feed them to your Security Information and Event Management (SIEM) or detection and response (D&amp;R) platform.</p>
 <p>For the field reference and full document examples, see <a href="../../operations/audit-log/">audit log</a>.</p>
 <h2 id="log-shape">Log shape<a class="headerlink" href="#log-shape" title="Permanent link">&para;</a></h2>
 <ul>
@@ -1840,7 +1840,7 @@
 <li><strong>Compatible shippers</strong>: Fluent Bit, Vector, Filebeat, Promtail, Fluentd, the Datadog/Splunk forwarders — no plugin required</li>
 </ul>
 <p>Both schemas also emit a vendor <code>barbacana.*</code> namespace carrying <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> verbatim, for ad-hoc shell pipelines that pre-date schema-aware tooling.</p>
-<h2 id="pick-a-schema-by-where-you-ship-logs">Pick a schema by where you ship logs<a class="headerlink" href="#pick-a-schema-by-where-you-ship-logs" title="Permanent link">&para;</a></h2>
+<h2 id="pick-a-schema-based-on-where-you-ship-logs">Pick a schema based on where you ship logs<a class="headerlink" href="#pick-a-schema-based-on-where-you-ship-logs" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>

@@ -1932,15 +1932,15 @@
 
 
 <h1 id="distributed-tracing">Distributed tracing<a class="headerlink" href="#distributed-tracing" title="Permanent link">&para;</a></h1>
-<p>Barbacana exports OpenTelemetry traces over OTLP. Trace context is propagated to your upstream via the W3C <code>traceparent</code> header, so a single distributed trace continues from your client, through the WAF, into your application — without any transport wrapping or shim.</p>
+<p>Barbacana exports OpenTelemetry traces using the OpenTelemetry Protocol (OTLP). Trace context is propagated to your upstream via the W3C <code>traceparent</code> header, so a single distributed trace continues from your client, through the WAF, into your application — without any transport wrapping or shim.</p>
 <div class="admonition warning">
 <p class="admonition-title">Off by default</p>
 <p>Tracing is opt-in. With the <code>tracing</code> block absent or <code>enabled: false</code>, no exporter is created and <strong>no OTLP traffic ever leaves the process</strong>. Barbacana running without an OTel collector configured makes zero network calls for tracing.</p>
 </div>
 <h2 id="why-turn-it-on">Why turn it on<a class="headerlink" href="#why-turn-it-on" title="Permanent link">&para;</a></h2>
-<p>A trace shows where time goes inside a request. With Barbacana in front of your server you usually want to answer one of three questions:</p>
+<p>A trace shows where time is spent in a request. With Barbacana in front of your server you usually want to answer one of three questions:</p>
 <ol>
-<li><strong>Is the WAF the bottleneck?</strong> A trace exposes WAF overhead per stage versus upstream time, so you can rule the WAF in or out at a glance.</li>
+<li><strong>Is the WAF the bottleneck?</strong> A trace exposes WAF overhead per stage versus upstream time, so you can determine whether the WAF is the bottleneck.</li>
 <li><strong>Why was a request slow?</strong> Pivot from a slow audit log entry straight to its trace using the trace ID embedded in the audit document.</li>
 <li><strong>Did the WAF block this?</strong> A trace tagged with <code>waf.action=blocked</code> and <code>waf.protection=&lt;name&gt;</code> makes a missing upstream call self-explanatory.</li>
 </ol>

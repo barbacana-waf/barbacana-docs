@@ -709,9 +709,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recommended-on-ramp-report-only" class="md-nav__link">
+  <a href="#recommended-starting-point-report-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended on-ramp: report-only
+      Recommended starting point: report-only
     </span>
   </a>
   
@@ -1806,9 +1806,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recommended-on-ramp-report-only" class="md-nav__link">
+  <a href="#recommended-starting-point-report-only" class="md-nav__link">
     <span class="md-ellipsis">
-      Recommended on-ramp: report-only
+      Recommended starting point: report-only
     </span>
   </a>
   
@@ -1907,14 +1907,14 @@
 <h1 id="fixing-inline-script-csp-errors">Fixing inline-script CSP errors<a class="headerlink" href="#fixing-inline-script-csp-errors" title="Permanent link">&para;</a></h1>
 <div class="admonition info">
 <p class="admonition-title">CSP is opt-in</p>
-<p>As of v0.4.0 Barbacana <strong>no longer injects a CSP by default.</strong> A fresh install will not produce the errors below unless you've explicitly enabled <code>response-headers-add-csp</code>. This page is for teams who have opted in (<code>enable: [response-headers-add-csp]</code>) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.</p>
+<p>As of v0.4.0 Barbacana <strong>no longer injects a Content Security Policy (CSP) by default.</strong> A fresh install will not produce the errors below unless you've explicitly enabled <code>response-headers-add-csp</code>. This page is for teams who have opted in (<code>enable: [response-headers-add-csp]</code>) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.</p>
 </div>
 <p>If you choose to enable CSP, Barbacana injects a strict policy:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>default-src &#39;self&#39;; frame-ancestors &#39;none&#39;; base-uri &#39;self&#39;; form-action &#39;self&#39;; upgrade-insecure-requests
 </span></code></pre></div>
 <p><code>default-src 'self'</code> blocks every inline <code>&lt;script&gt;</code> block, every inline event handler (<code>onclick="…"</code>), every <code>&lt;style&gt;</code> block, every <code>javascript:</code> URL, and every external script not served from the page's own origin. That is intentional — inline scripts are the primary vector for stored XSS, and CSP is the most effective mitigation.</p>
 <p>If your app relies on inline scripts (server-rendered templates, legacy code, third-party widgets), the CSP must be loosened — but <strong>not by adding <code>'unsafe-inline'</code> everywhere.</strong> Try the options below in order.</p>
-<h2 id="recommended-on-ramp-report-only">Recommended on-ramp: report-only<a class="headerlink" href="#recommended-on-ramp-report-only" title="Permanent link">&para;</a></h2>
+<h2 id="recommended-starting-point-report-only">Recommended starting point: report-only<a class="headerlink" href="#recommended-starting-point-report-only" title="Permanent link">&para;</a></h2>
 <p>Before enabling enforcing CSP in production, send the policy in <strong><code>Content-Security-Policy-Report-Only</code></strong> mode from your application for a week or two. The browser logs every violation but doesn't block execution. You'll see exactly which inline blocks, third-party origins, and <code>data:</code> URLs need allow-listing before turning enforcement on. Barbacana doesn't synthesize a report-only policy itself — emit it from your app, then graduate to <code>enable: [response-headers-add-csp]</code> once the violation log is clean.</p>
 <h2 id="symptoms">Symptoms<a class="headerlink" href="#symptoms" title="Permanent link">&para;</a></h2>
 <p>The page renders but JavaScript doesn't run, or specific widgets stay blank. The browser <strong>Console</strong> shows:</p>
@@ -1953,7 +1953,7 @@
 <li>Replace inline event handlers (<code>onclick="doThing()"</code>) with <code>addEventListener</code> in those files.</li>
 <li>Move inline styles to external CSS files.</li>
 </ol>
-<p>Modern build tools (Vite, webpack, esbuild) emit external bundles by default — most refactoring is a question of stripping inline blocks from server-rendered HTML templates.</p>
+<p>Modern build tools (Vite, webpack, esbuild) emit external bundles by default — most refactoring involves stripping inline blocks from server-rendered HTML templates.</p>
 <h2 id="option-2-allow-specific-inline-scripts-via-nonce-or-hash">Option 2 — Allow specific inline scripts via nonce or hash<a class="headerlink" href="#option-2-allow-specific-inline-scripts-via-nonce-or-hash" title="Permanent link">&para;</a></h2>
 <p>If you can modify the HTML but can't avoid inline scripts (server-rendered apps), allow them by <strong>nonce</strong> or <strong>hash</strong> instead of opening the entire <code>'unsafe-inline'</code> door.</p>
 <p><strong>Nonce approach.</strong> The application generates a random per-response nonce, adds it to every inline script tag (<code>&lt;script nonce="abc123"&gt;…&lt;/script&gt;</code>), and reflects it in the CSP it sends. Barbacana doesn't generate the nonce — your application does. Don't enable Barbacana's CSP injection at all in this case; just let the upstream's CSP through:</p>

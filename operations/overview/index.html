@@ -1511,9 +1511,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      Core principles
+      Key concepts
     </span>
   </a>
   
@@ -1523,6 +1523,15 @@
   <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
       In this section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to start
     </span>
   </a>
   
@@ -1740,9 +1749,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      Core principles
+      Key concepts
     </span>
   </a>
   
@@ -1752,6 +1761,15 @@
   <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
       In this section
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-to-start" class="md-nav__link">
+    <span class="md-ellipsis">
+      Where to start
     </span>
   </a>
   
@@ -1776,8 +1794,8 @@
 
 
 <h1 id="operations">Operations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h1>
-<p>This section is for the platform or SRE engineer deploying Barbacana into a real environment and keeping it healthy in production. It assumes familiarity with TLS/ACME, Prometheus, OpenTelemetry, and container orchestration.</p>
-<h2 id="core-principles">Core principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
+<p>This section covers deployment, observability, and day-to-day operation of Barbacana in production. Topics span TLS provisioning, health endpoints, metrics, distributed tracing, and the structured audit log.</p>
+<h2 id="key-concepts">Key concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
 <p><strong>TLS is provisioned automatically.</strong> Set a public hostname and Barbacana requests a Let's Encrypt certificate via ACME, renews it before expiry, and handles the HTTP→HTTPS redirect. No certificate management, no reload on renewal. For <code>.localhost</code> hostnames a local CA is used instead — no public ACME requests needed in development. See <a href="../hostnames/">Hostnames &amp; HTTPS</a>.</p>
 <p><strong>Observability is opt-in.</strong> Metrics (<code>metrics_port</code>), health endpoints (<code>health_port</code>), and distributed tracing (<code>tracing.enabled</code>) are all off by default. Each is a one-field change to enable. The off-by-default stance keeps the network surface minimal for deployments that don't need them.</p>
 <p><strong>The audit log is always on.</strong> One structured JSON entry per inspected request, written to stdout, no off switch. Schema: OCSF v1.2.0 by default, ECS 8.x available. Pick it up with any standard log shipper — Fluent Bit, Vector, Filebeat — and no normalization layer is required. See <a href="../audit-log/">Audit log</a>.</p>
@@ -1821,6 +1839,10 @@
 </tr>
 </tbody>
 </table>
+<h2 id="where-to-start">Where to start<a class="headerlink" href="#where-to-start" title="Permanent link">&para;</a></h2>
+<p>Starting a new deployment → <a href="../hostnames/">Hostnames &amp; HTTPS</a>.</p>
+<p>Adding metrics or health checks → <a href="../metrics/">Metrics</a> and <a href="../monitoring/">Monitoring</a>.</p>
+<p>Setting up distributed tracing → <a href="../tracing/">Tracing</a>.</p>
 
 
 

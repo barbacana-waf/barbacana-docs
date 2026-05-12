@@ -1867,7 +1867,7 @@
 </span></code></pre></div>
 <p><code>strict: false</code> is the OpenAPI-level equivalent of <a href="../detect-only/"><code>detect_only</code></a>: violations are logged but the request is forwarded. Use it while onboarding a spec.</p>
 <h2 id="shadow-api-discovery">Shadow API discovery<a class="headerlink" href="#shadow-api-discovery" title="Permanent link">&para;</a></h2>
-<p>Even with <code>strict: false</code>, undeclared paths are logged. This surfaces <em>shadow APIs</em> — endpoints in production that no one wrote down.</p>
+<p>Even with <code>strict: false</code>, undeclared paths are logged. This surfaces <em>shadow APIs</em> — endpoints in production that are not declared in the spec.</p>
 <p>Search the audit log for OpenAPI entries with <code>matched_protections</code> containing <code>openapi-path-not-in-spec</code> to find them.</p>
 <h2 id="disabling-individual-checks">Disabling individual checks<a class="headerlink" href="#disabling-individual-checks" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">openapi</span><span class="p">:</span>

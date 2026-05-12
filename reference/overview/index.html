@@ -800,27 +800,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-the-three-levels-fit-together" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      How the three levels fit together
+      Key concepts
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tuning-protections-with-disable-and-enable" class="md-nav__link">
+  <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
-      Tuning protections with disable: and enable:
+      In this section
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-four-kinds-of-configuration" class="md-nav__link">
+  <a href="#where-to-start" class="md-nav__link">
     <span class="md-ellipsis">
-      The four kinds of configuration
+      Where to start
     </span>
   </a>
   
@@ -1761,27 +1761,27 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#how-the-three-levels-fit-together" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      How the three levels fit together
+      Key concepts
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#tuning-protections-with-disable-and-enable" class="md-nav__link">
+  <a href="#in-this-section" class="md-nav__link">
     <span class="md-ellipsis">
-      Tuning protections with disable: and enable:
+      In this section
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-four-kinds-of-configuration" class="md-nav__link">
+  <a href="#where-to-start" class="md-nav__link">
     <span class="md-ellipsis">
-      The four kinds of configuration
+      Where to start
     </span>
   </a>
   
@@ -1806,7 +1806,8 @@
 
 
 <h1 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h1>
-<p>This section is for engineers with a config file open who need the exact field name, accepted values, or default. It assumes you already know what you want to configure — link to Getting Started or Operations if you need the conceptual background.</p>
+<p>This section provides the complete field-by-field configuration reference. If you need conceptual background, see <a href="../../getting-started/overview/">Getting Started</a> or <a href="../../operations/overview/">Operations</a>.</p>
+<h2 id="key-concepts">Key concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
 <p>Barbacana is configured with a single YAML file. The schema has three levels: server-wide settings at the top, a <code>global</code> block of defaults for every route, and a <code>routes</code> list where each route can override those defaults.</p>
 <div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span><span class="w">            </span><span class="c1"># required, always v1alpha1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -1835,16 +1836,11 @@
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> content_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">application/json</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
 </span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">xss-ie-filter</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
-<h2 id="how-the-three-levels-fit-together">How the three levels fit together<a class="headerlink" href="#how-the-three-levels-fit-together" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Server-wide</strong> keys decide <em>how</em> Barbacana listens: one host with auto-TLS, multiple hosts, or plain HTTP behind a load balancer. They also control opt-in observability ports. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a>.</li>
-<li><strong>Global defaults</strong> are the baseline every route inherits. Everything here is already secure out of the box — you only add entries when you want to tighten a default (smaller <code>max_body_size</code>) or disable a protection fleet-wide.</li>
-<li><strong>Routes</strong> are the unit of ownership. Each route matches requests by host and/or path, sends them to an upstream, and can override any <code>global.*</code> block for that route alone. <code>route.disable</code> is <strong>additive</strong> to <code>global.disable</code>.</li>
-</ul>
-<h2 id="tuning-protections-with-disable-and-enable">Tuning protections with <code>disable:</code> and <code>enable:</code><a class="headerlink" href="#tuning-protections-with-disable-and-enable" title="Permanent link">&para;</a></h2>
-<p>Both <code>global</code> and each route accept a <code>disable:</code> list (turn protections off) and an <code>enable:</code> list (turn off-by-default protections on). Each entry is a canonical name from the <a href="../catalog/">protection catalog</a> — at any of the three levels: an L1 family (<code>sql</code>), an L2 bucket (<code>sql-injection</code>), or a single leaf (<code>sql-injection-union-select</code>). Resolution rule: <strong>more specific wins</strong>, so a leaf in <code>enable:</code> overrides its family in <code>disable:</code>, and the other way around. See <a href="../disable/">Disable protections</a> for worked examples.</p>
-<h2 id="the-four-kinds-of-configuration">The four kinds of configuration<a class="headerlink" href="#the-four-kinds-of-configuration" title="Permanent link">&para;</a></h2>
-<p>The rest of this section is grouped around the four things a route actually does:</p>
+<p><strong>Server-wide settings</strong> decide how Barbacana listens: one host with auto-TLS, multiple hosts, or plain HTTP behind a load balancer. They also control opt-in observability ports. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a>.</p>
+<p><strong>Global defaults</strong> are the baseline every route inherits. Everything here is already secure out of the box — you only add entries when you want to tighten a default (smaller <code>max_body_size</code>) or disable a protection fleet-wide.</p>
+<p><strong>Routes</strong> are the unit of ownership. Each route matches requests by host and/or path, sends them to an upstream, and can override any <code>global.*</code> block for that route alone. <code>route.disable</code> is <strong>additive</strong> to <code>global.disable</code>.</p>
+<p><strong>Protection tuning</strong> uses <code>disable:</code> and <code>enable:</code> lists at global or route level. Each entry is a canonical name from the <a href="../catalog/">protection catalog</a> — at any of the three levels: an L1 family (<code>sql</code>), an L2 bucket (<code>sql-injection</code>), or a single leaf (<code>sql-injection-union-select</code>). More specific wins: a leaf in <code>enable:</code> overrides its family in <code>disable:</code>. See <a href="../disable/">Disable protections</a> for worked examples.</p>
+<h2 id="in-this-section">In this section<a class="headerlink" href="#in-this-section" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
@@ -1881,7 +1877,10 @@
 </tr>
 </tbody>
 </table>
-<p>For end-to-end YAML you can copy, see the <a href="../../getting-started/incremental/">configuration walkthrough</a>.</p>
+<h2 id="where-to-start">Where to start<a class="headerlink" href="#where-to-start" title="Permanent link">&para;</a></h2>
+<p>Need end-to-end YAML you can copy → <a href="../../getting-started/incremental/">configuration walkthrough</a>.</p>
+<p>Looking up a specific field → use the table above to find the right page.</p>
+<p>Full schema dump → <a href="../schema/">Full schema</a>.</p>
 
 
 

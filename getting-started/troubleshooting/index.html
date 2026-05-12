@@ -2255,7 +2255,7 @@
 <hr />
 <h2 id="step-7-check-for-security-header-conflicts">Step 7 — Check for security-header conflicts<a class="headerlink" href="#step-7-check-for-security-header-conflicts" title="Permanent link">&para;</a></h2>
 <p>Barbacana <a href="../../reference/headers/">injects security response headers</a> on every response. By default in v0.4.0+ that's <code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Strict-Transport-Security</code>, <code>Referrer-Policy</code>, and <code>X-DNS-Prefetch-Control</code> — the five whose strict defaults are safe for most apps. The other six (<code>Content-Security-Policy</code>, COOP, COEP, CORP, <code>Permissions-Policy</code>, <code>Cache-Control</code>) are opt-in and only active if you've added them to <code>enable:</code>. Any of them can break frontend JavaScript even though no entries appear in the WAF audit log.</p>
-<p>Two issues hit nearly every SPA the first time it is put behind Barbacana — each has a dedicated page:</p>
+<p>Two issues hit nearly every single-page application (SPA) the first time it is put behind Barbacana — each has a dedicated page:</p>
 <ul>
 <li><strong><a href="../troubleshooting-cors/">Fixing CORS errors</a></strong> — browser console says <em>"blocked by CORS policy"</em> or the <code>OPTIONS</code> preflight is failing. CORS is <strong>off by default</strong> in Barbacana and must be enabled per route.</li>
 <li><strong><a href="../troubleshooting-inline-scripts/">Fixing inline-script CSP errors</a></strong> — browser console says <em>"Refused to execute inline script"</em>. The default CSP blocks inline <code>&lt;script&gt;</code>, inline handlers, and inline <code>&lt;style&gt;</code>.</li>

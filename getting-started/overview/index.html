@@ -509,9 +509,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      Core principles
+      Key concepts
     </span>
   </a>
   
@@ -1752,9 +1752,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-principles" class="md-nav__link">
+  <a href="#key-concepts" class="md-nav__link">
     <span class="md-ellipsis">
-      Core principles
+      Key concepts
     </span>
   </a>
   
@@ -1798,7 +1798,7 @@
 
 <h1 id="getting-started">Getting Started<a class="headerlink" href="#getting-started" title="Permanent link">&para;</a></h1>
 <p>This section takes you from zero to a working Barbacana deployment in front of your application. No prior WAF knowledge required.</p>
-<h2 id="core-principles">Core principles<a class="headerlink" href="#core-principles" title="Permanent link">&para;</a></h2>
+<h2 id="key-concepts">Key concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
 <p><strong>Defaults are on.</strong> The minimal config is three lines of YAML — one route, one upstream. Every protection activates immediately: SQL injection, XSS, command injection, path traversal, and hundreds more. Nothing to enable.</p>
 <p><strong>Config grows with you.</strong> Add a hostname for auto-TLS, an OpenAPI spec for schema validation, <code>accept</code> rules to restrict methods and content types, or per-route <code>disable</code> entries to silence false positives. Each piece is independent — add the ones you need, in any order.</p>
 <p><strong>False positives are fixable without weakening the WAF.</strong> Every protection has a human-readable name. Disabling <code>sql-injection-union-select</code> on <code>/search</code> leaves every other rule on every other route untouched.</p>
