@@ -14,7 +14,7 @@ The piece `' OR '1'='1` is a well-known **SQL injection**. It tries to fool the 
 
 Of course, the same piece of text could also be a real input in some apps — for example, a search box on a site about logic or SQL itself. When a rule blocks a real, safe request like this, it is called a **false positive**. Barbacana lets you turn off rules that don't fit your app, or run them in detect-only mode so they only log instead of blocking. 
 
-Barbacana comes with rules for hundreds of patterns like this one — not only SQL injection, but also cross-site scripting, command injection, path traversal, and many more. These rules are not invented from scratch: they come from the [OWASP Core Rule Set (CRS)](https://coreruleset.org/), the result of more than two decades of work by security researchers around the world. Barbacana uses these rules out of the box, so you just need to put it in front of your application and it hardens automatically.
+Barbacana comes with rules for hundreds of patterns like this one — not only SQL injection, but also cross-site scripting, command injection, path traversal, and many more. These rules are not invented from scratch: they come from the [OWASP Core Rule Set (CRS)](https://coreruleset.org/), the result of more than two decades of work by security researchers around the world. Barbacana uses these rules out of the box. Put it in front of your application and it hardens automatically.
 
 ## What Barbacana does
 

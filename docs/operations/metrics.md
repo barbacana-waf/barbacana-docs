@@ -7,6 +7,9 @@ Barbacana exposes them on a separate HTTP server (default `:9090`, path `/metric
 !!! warning "Off by default"
     `metrics_port` defaults to `0`, which disables the metrics server entirely. Set it to a real port to opt in. This keeps the network surface minimal for deployments that don't need metrics endpoint.
 
+!!! tip "Ready-made dashboard"
+    These metrics are designed around the [Barbacana Grafana dashboard](dashboard.md) — one JSON, one import, one URL to bookmark. The catalog below is the underlying surface; the dashboard is the recommended way to consume it.
+
 
 ## Counters
 

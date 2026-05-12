@@ -34,7 +34,7 @@ openapi:
 
 ## Shadow API discovery
 
-Even with `strict: false`, undeclared paths are logged. This surfaces *shadow APIs* — endpoints in production that no one wrote down.
+Even with `strict: false`, undeclared paths are logged. This surfaces *shadow APIs* — endpoints in production that are not declared in the spec.
 
 Search the audit log for OpenAPI entries with `matched_protections` containing `openapi-path-not-in-spec` to find them.
 

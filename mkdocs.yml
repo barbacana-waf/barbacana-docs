@@ -92,6 +92,7 @@ markdown_extensions:
 nav:
   - Welcome: index.md
   - Getting Started:
+      - Overview: getting-started/overview.md
       - Why Barbacana?: getting-started/why-barbacana.md
       - Quickstart: getting-started/quickstart.md
       - Installation: getting-started/installation.md
@@ -124,9 +125,12 @@ nav:
       - Logs & SIEM: security/logs.md
       - Verifying releases: security/verifying.md
   - Operations:
+      - Overview: operations/overview.md
       - Hostnames & HTTPS: operations/hostnames.md
       - CLI: operations/cli.md
       - Monitoring: operations/monitoring.md
       - Metrics: operations/metrics.md
+      - Grafana dashboard: operations/dashboard.md
       - Audit log: operations/audit-log.md
+      - Tracing: operations/tracing.md
   - Blog: blog/index.md

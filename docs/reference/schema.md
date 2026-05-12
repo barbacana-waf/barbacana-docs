@@ -12,6 +12,12 @@ data_dir: "/data/barbacana"    # optional, default "/data/barbacana"
 metrics_port: 9090             # optional, default 0 (disabled)
 health_port: 8081              # optional, default 0 (disabled)
 
+audit_log:                     # optional; controls the wire schema of stdout audit entries
+  format: ocsf                 # "ocsf" (default) or "ecs"
+
+tracing:                       # optional; off entirely when block absent or enabled: false
+  enabled: false
+
 global:
   # defaults applied to every route unless the route overrides
 
@@ -29,6 +35,8 @@ routes:
 | `data_dir` | no | `/data/barbacana` | directory must be writable; stores TLS certificates and ACME state — mount as a persistent volume in containers |
 | `metrics_port` | no | `0` (disabled) | integer 0–65535; `0` disables the listener; when non-zero, must differ from `port` and `health_port` |
 | `health_port` | no | `0` (disabled) | integer 0–65535; `0` disables the listener; when non-zero, must differ from `port` and `metrics_port` |
+| `audit_log` | no | `format: ocsf` | see ["Audit log" section](#audit-log) below |
+| `tracing` | no | disabled | see ["Tracing" section](#tracing) below |
 | `global` | no | see below | — |
 | `routes` | yes | — | at least one route |
 
@@ -298,6 +306,59 @@ Route-level `disable:`/`enable:` is **merged** with `global` lists into a single
 - The `multipart` section is only active if `content_types` includes `multipart/form-data`.
 
 This is both a security control (rejecting unexpected content types) and a performance optimization (skipping unnecessary parsers).
+
+## Audit log
+
+Stdout emission of audit events is **unconditional** — there is no off switch. The `audit_log` block selects the wire schema only.
+
+```yaml
+audit_log:
+  format: ocsf            # default; or "ecs"
+```
+
+| Field | Default | Valid values |
+|---|---|---|
+| `audit_log.format` | `ocsf` | `ocsf`, `ecs` |
+
+The choice is process-wide and applies to every audit document for the lifetime of the process. Switching formats at runtime requires a config reload; one running process never mixes the two.
+
+`ocsf` emits OCSF v1.2.0 (HTTP Activity event class, `class_uid: 4002`). `ecs` emits ECS 8.x. Both formats also carry a vendor `barbacana.*` namespace with `matched_protections`, `matched_rules`, and `cwe` — see the [audit log reference](../operations/audit-log.md) for full document examples and the field-mapping table.
+
+## Tracing
+
+Distributed tracing is opt-in. With the block absent or `enabled: false`, no exporter is created and no OTLP traffic ever leaves the process.
+
+```yaml
+tracing:
+  enabled: false           # default; flip to true to ship traces
+  protocol: grpc           # grpc (default) or http (== http/protobuf)
+  endpoint: ""             # falls back to OTEL_EXPORTER_OTLP_ENDPOINT
+  insecure: true           # default; set false to require TLS to the collector
+  headers:                 # optional, e.g. authentication
+    authorization: "Api-Token <secret>"
+  timeout: ""              # optional, e.g. 5s; >= 100ms when set
+
+  service:
+    name: ""               # defaults to "barbacana" when empty
+    namespace: ""
+    version: ""            # defaults to the build's internal version when empty
+```
+
+| Field | Default | Validation |
+|---|---|---|
+| `tracing.enabled` | `false` | bool |
+| `tracing.protocol` | `grpc` | one of `grpc`, `http`, `http/protobuf` |
+| `tracing.endpoint` | `""` (use env) | non-empty wins over `OTEL_EXPORTER_OTLP_ENDPOINT`; empty defers to env |
+| `tracing.insecure` | `true` | bool |
+| `tracing.headers` | none | `string → string` map |
+| `tracing.timeout` | none | duration string parseable by Go's `time.ParseDuration`; `>= 100ms` when set |
+| `tracing.service.name` | `"barbacana"` | string |
+| `tracing.service.namespace` | none | string |
+| `tracing.service.version` | from build | string |
+
+A subset of the standard OTLP exporter env vars are honoured as fallback when the corresponding YAML field is empty: `OTEL_EXPORTER_OTLP_ENDPOINT`, `OTEL_EXPORTER_OTLP_HEADERS`, `OTEL_EXPORTER_OTLP_TIMEOUT`, and `OTEL_RESOURCE_ATTRIBUTES` (for any attribute other than `service.name` and `service.version`). **YAML wins when both are set.** `OTEL_SERVICE_NAME`, `OTEL_EXPORTER_OTLP_PROTOCOL`, `OTEL_TRACES_SAMPLER`, and `OTEL_TRACES_SAMPLER_ARG` are not currently consulted — use the matching YAML fields. The default sampler is `ParentBased(AlwaysSample)`; for high-volume deployments, do tail sampling at your OTLP collector layer.
+
+When tracing is enabled, audit log entries also carry the active trace and span IDs so SIEM events can be pivoted to the corresponding distributed trace. See [tracing](../operations/tracing.md) for the span model and a worked Jaeger example.
 
 ## Route matching precedence
 

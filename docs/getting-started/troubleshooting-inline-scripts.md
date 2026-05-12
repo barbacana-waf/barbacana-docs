@@ -1,7 +1,7 @@
 # Fixing inline-script CSP errors
 
 !!! info "CSP is opt-in"
-    As of v0.4.0 Barbacana **no longer injects a CSP by default.** A fresh install will not produce the errors below unless you've explicitly enabled `response-headers-add-csp`. This page is for teams who have opted in (`enable: [response-headers-add-csp]`) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.
+    As of v0.4.0 Barbacana **no longer injects a Content Security Policy (CSP) by default.** A fresh install will not produce the errors below unless you've explicitly enabled `response-headers-add-csp`. This page is for teams who have opted in (`enable: [response-headers-add-csp]`) — or whose upstream sends its own CSP — and need to reconcile the policy with inline scripts.
 
 If you choose to enable CSP, Barbacana injects a strict policy:
 
@@ -13,7 +13,7 @@ default-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';
 
 If your app relies on inline scripts (server-rendered templates, legacy code, third-party widgets), the CSP must be loosened — but **not by adding `'unsafe-inline'` everywhere.** Try the options below in order.
 
-## Recommended on-ramp: report-only
+## Recommended starting point: report-only
 
 Before enabling enforcing CSP in production, send the policy in **`Content-Security-Policy-Report-Only`** mode from your application for a week or two. The browser logs every violation but doesn't block execution. You'll see exactly which inline blocks, third-party origins, and `data:` URLs need allow-listing before turning enforcement on. Barbacana doesn't synthesize a report-only policy itself — emit it from your app, then graduate to `enable: [response-headers-add-csp]` once the violation log is clean.
 
@@ -56,7 +56,7 @@ If you control the application, this is the most secure outcome — no CSP chang
 2. Replace inline event handlers (`onclick="doThing()"`) with `addEventListener` in those files.
 3. Move inline styles to external CSS files.
 
-Modern build tools (Vite, webpack, esbuild) emit external bundles by default — most refactoring is a question of stripping inline blocks from server-rendered HTML templates.
+Modern build tools (Vite, webpack, esbuild) emit external bundles by default — most refactoring involves stripping inline blocks from server-rendered HTML templates.
 
 ## Option 2 — Allow specific inline scripts via nonce or hash
 

@@ -48,13 +48,16 @@ The following checks were performed on each of these signatures:
   - The code-signing certificate was verified using trusted certificate authority certificates
 
 [{"critical":{"identity":{"docker-reference":"ghcr.io/barbacana-waf/barbacana:latest"},
-  "image":{"docker-manifest-digest":"sha256:a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51"},
-  "type":"https://sigstore.dev/cosign/sign/v1"},"optional":{...}}]
+  "image":{"docker-manifest-digest":"sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2"},
+  "type":"https://cyclonedx.org/bom"},"optional":{}},
+ {"critical":{"identity":{"docker-reference":"ghcr.io/barbacana-waf/barbacana:latest"},
+  "image":{"docker-manifest-digest":"sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2"},
+  "type":"https://sigstore.dev/cosign/sign/v1"},"optional":{}}]
 ```
 
 The certificate identity pins the signature to `release.yml` in the `barbacana-waf/barbacana` repository, run via `workflow_dispatch` on master (the release workflow creates the version tag at the end of its own run, so the OIDC subject embeds `@refs/heads/master`, not the eventual tag). The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.
 
-A successful run prints a JSON array of verified signatures and exits 0.
+A successful run prints a JSON array of verified signed items and exits 0. With cosign v3 defaults, the array has **two entries** at the same digest: the image signature (`type: https://sigstore.dev/cosign/sign/v1`) and the CycloneDX SBOM attestation (`type: https://cyclonedx.org/bom`). Both are checked against the same certificate identity, so a tampered or missing attestation will fail this step too — you don't need to wait for step 2 to catch it.
 
 A failure means one of the following:
 
@@ -121,7 +124,7 @@ $ cosign verify-attestation --type cyclonedx \
   {
     "name": "ghcr.io/barbacana-waf/barbacana",
     "digest": {
-      "sha256": "a4bad9626dffeeae0709fc50cffad6aff37ff4fd9b34c31998a49631b1da7c51"
+      "sha256": "3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2"
     }
   }
 ]
@@ -168,7 +171,7 @@ $ cosign download attestation \
 $ jq -r '.bomFormat, .specVersion, (.components | length)' barbacana.cdx.json
 CycloneDX
 1.6
-185
+183
 ```
 
 What each stage does:

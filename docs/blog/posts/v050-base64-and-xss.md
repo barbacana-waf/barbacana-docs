@@ -85,7 +85,7 @@ That is **99.75% conformance**. The remaining failures are the same set document
 
 Two changes, two clean wins. Base64 decoding fixed the biggest miss from the v0.1.0 baseline — application-layer coverage went from 53.86% to 83.81%, the overall score from 86.16% to 93.65% — and the XSS function-call evasion rules took `xss-scripting` from 40.18% to 97.77%. The most important number is the one that did *not* move: the false-positive rate stayed flat at 90.78%. Catching more real attacks without blocking real requests is the goal of every release.
 
-This requires a deep analysis and security expertise, so consumers can benefit from it without requiring none of them. This is what Barbacana is built for: strong defaults you can use without being a security expert. The numbers above show the approach works — at least against the GoTestWAF corpus.
+This is what Barbacana is built for: strong defaults that work without requiring security expertise. The numbers above show the approach works — at least against the GoTestWAF corpus. The numbers above show the approach works — at least against the GoTestWAF corpus.
 
 GoTestWAF has been a good way to find gaps and measure each change. Adding more WAF benchmarks is on the roadmap, both to double-check the results and to surface new ideas. Bug reports, feedback, and feature requests are very welcome — open an issue or start a discussion on [GitHub](https://github.com/barbacana-waf/barbacana).
 

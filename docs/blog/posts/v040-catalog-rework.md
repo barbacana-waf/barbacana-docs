@@ -50,7 +50,7 @@ Turn them on per route with `enable: [<leaf-name>]`. The `enable:` list is the o
 
 ## Six security headers are now off by default
 
-CSP, COOP, COEP, CORP, Permissions-Policy, and Cache-Control are no longer added by default. They share one problem: they break most of the apps they protect, and a weak default value is worse than no header. Consumers' feedback was clear — web apps broke, and the cause was hard to find. The table below explains why each header flipped.
+CSP, COOP, COEP, CORP, Permissions-Policy, and Cache-Control are no longer added by default. They share one problem: they break most of the apps they protect, and a weak default value is worse than no header. Operator feedback was clear — web apps broke, and the cause was hard to find. The table below explains why each header flipped.
 
 | Header | Why off by default |
 |---|---|

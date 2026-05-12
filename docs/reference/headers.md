@@ -42,7 +42,7 @@ The five marked **on** are emitted out of the box. The six marked *off* are opt-
 
 ### Why six are off by default
 
-Each default-off header shares the same property: any value strict enough to actually protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.
+Each default-off header shares the same property: any value strict enough to protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.
 
 - **CSP** — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a route-level `csp.policy` value before enabling.
 - **COOP / COEP / CORP** — strict cross-origin isolation breaks OAuth popups, cross-origin embedding, `window.opener` integrations, and any cross-origin asset that hasn't opted in via CORP/CORS.

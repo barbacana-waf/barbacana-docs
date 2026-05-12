@@ -29,7 +29,7 @@ The Network tab usually shows the request as **(failed)** or a `200`/`204` `OPTI
 
 Enable CORS on a route when:
 
-- A browser SPA hosted at one origin calls an API at a **different** origin (different host **or** different port **or** different scheme).
+- A browser single-page application (SPA) hosted at one origin calls an API at a **different** origin (different host **or** different port **or** different scheme).
 - A `<script type="module">` from one origin imports from another.
 - The `OPTIONS` preflight is failing — that is also CORS.
 
@@ -83,7 +83,7 @@ See [CORS reference](../reference/cors.md) for every field.
 | Trailing slash or scheme mismatch in `allow_origins` | Browser console shows the exact `Origin` it sent — it doesn't match the entry in your config | Use the exact origin: `https://app.example.com`. No path, no trailing slash. `http://` and `https://` are different origins. |
 | Multiple frontends, single `cors` block | Some origins work, others fail | List every browser origin in `allow_origins`, or split frontends into separate routes. |
 
-## Quick reference for SPAs
+## Quick reference for single-page applications
 
 ```yaml
 cors:

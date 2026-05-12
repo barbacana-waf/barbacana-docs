@@ -28,7 +28,7 @@ Preflight (`OPTIONS`) requests are answered automatically. Non-preflight request
 | `allow_credentials` | `false` | Allow cookies / `Authorization` from the browser |
 | `max_age` | `600` (seconds) | How long the browser may cache the preflight |
 
-## Typical SPA setup
+## Typical single-page application (SPA) setup
 
 ```yaml
 cors:
