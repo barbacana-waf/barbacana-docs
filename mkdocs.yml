@@ -96,6 +96,7 @@ nav:
       - Why Barbacana?: getting-started/why-barbacana.md
       - Quickstart: getting-started/quickstart.md
       - Installation: getting-started/installation.md
+      - Binary install: getting-started/binary.md
       - Configuration: getting-started/incremental.md
       - Troubleshooting:
           - getting-started/troubleshooting.md

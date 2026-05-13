@@ -2,6 +2,8 @@
 
 Barbacana ships as a single container image. The sections below walk from the simplest possible run through to a TLS-terminating Compose stack — each step builds on the previous one.
 
+If you do not have Docker available, see [Binary install](binary.md) to run Barbacana directly from the release binary.
+
 The image: `ghcr.io/barbacana-waf/barbacana:latest`. Multi-arch (`amd64`, `arm64`), signed with cosign, ships a CycloneDX SBOM.
 
 `ghcr.io/barbacana-waf/barbacana` is the canonical registry. A convenience mirror at `docker.io/barbacana/barbacana` carries identical image bits.
