@@ -12,13 +12,13 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/security/verifying/">
+        <link rel="canonical" href="https://barbacana.dev/getting-started/binary/">
       
       
-        <link rel="prev" href="../logs/">
+        <link rel="prev" href="../installation/">
       
       
-        <link rel="next" href="../../operations/overview/">
+        <link rel="next" href="../incremental/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Verifying releases - Barbacana</title>
+        <title>Binary install - Barbacana</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#verifying-a-release" class="md-skip">
+        <a href="#binary-install" class="md-skip">
           Skip to content
         </a>
       
@@ -113,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Verifying releases
+              Binary install
             
           </span>
         </div>
@@ -237,11 +237,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../../getting-started/overview/" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../overview/" class="md-tabs__link">
           
   
     
@@ -277,13 +279,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../security/overview/" class="md-tabs__link">
           
   
     
@@ -401,8 +401,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -423,21 +425,22 @@
     
     
       
+        
+        
+      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
-        
-          
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -448,7 +451,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -462,7 +465,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
+      <a href="../overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -483,7 +486,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/why-barbacana/" class="md-nav__link">
+      <a href="../why-barbacana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -504,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/quickstart/" class="md-nav__link">
+      <a href="../quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -525,7 +528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -543,10 +546,30 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../getting-started/binary/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Binary install
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -555,6 +578,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      Prerequisites
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-download-the-binary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1 — Download the binary
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-write-a-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2 — Write a config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-validate-the-config" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3 — Validate the config
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 4 — Run
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-verify-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 5 — Verify it works
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-as-a-linux-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Running as a Linux service
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#next" class="md-nav__link">
+    <span class="md-ellipsis">
+      Next
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -567,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/incremental/" class="md-nav__link">
+      <a href="../incremental/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -601,10 +716,13 @@
       
       
         
+          
+          
+        
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
@@ -613,7 +731,7 @@
         <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -638,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting/" class="md-nav__link">
+      <a href="../troubleshooting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -659,7 +777,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting-cors/" class="md-nav__link">
+      <a href="../troubleshooting-cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -680,7 +798,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
+      <a href="../troubleshooting-inline-scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1279,10 +1397,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1297,22 +1413,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1323,7 +1438,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -1337,7 +1452,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../security/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1358,7 +1473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../request-lifecycle/" class="md-nav__link">
+      <a href="../../security/request-lifecycle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1379,7 +1494,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
+      <a href="../../security/logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1397,30 +1512,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Verifying releases
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../security/verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1429,98 +1524,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#1-verify-the-image-signature" class="md-nav__link">
-    <span class="md-ellipsis">
-      1. Verify the image signature
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-verify-the-sbom-attestation" class="md-nav__link">
-    <span class="md-ellipsis">
-      2. Verify the SBOM attestation
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-enforce-verification-at-admission-kubernetes" class="md-nav__link">
-    <span class="md-ellipsis">
-      3. Enforce verification at admission (Kubernetes)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#4-retrieve-the-sbom" class="md-nav__link">
-    <span class="md-ellipsis">
-      4. Retrieve the SBOM
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#5-scan-for-cves" class="md-nav__link">
-    <span class="md-ellipsis">
-      5. Scan for CVEs
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#6-verify-the-binaries-optional" class="md-nav__link">
-    <span class="md-ellipsis">
-      6. Verify the binaries (optional)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reference
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1826,63 +1829,63 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#1-verify-the-image-signature" class="md-nav__link">
+  <a href="#step-1-download-the-binary" class="md-nav__link">
     <span class="md-ellipsis">
-      1. Verify the image signature
+      Step 1 — Download the binary
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#2-verify-the-sbom-attestation" class="md-nav__link">
+  <a href="#step-2-write-a-config" class="md-nav__link">
     <span class="md-ellipsis">
-      2. Verify the SBOM attestation
+      Step 2 — Write a config
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#3-enforce-verification-at-admission-kubernetes" class="md-nav__link">
+  <a href="#step-3-validate-the-config" class="md-nav__link">
     <span class="md-ellipsis">
-      3. Enforce verification at admission (Kubernetes)
+      Step 3 — Validate the config
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-retrieve-the-sbom" class="md-nav__link">
+  <a href="#step-4-run" class="md-nav__link">
     <span class="md-ellipsis">
-      4. Retrieve the SBOM
+      Step 4 — Run
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#5-scan-for-cves" class="md-nav__link">
+  <a href="#step-5-verify-it-works" class="md-nav__link">
     <span class="md-ellipsis">
-      5. Scan for CVEs
+      Step 5 — Verify it works
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#6-verify-the-binaries-optional" class="md-nav__link">
+  <a href="#running-as-a-linux-service" class="md-nav__link">
     <span class="md-ellipsis">
-      6. Verify the binaries (optional)
+      Running as a Linux service
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#reference" class="md-nav__link">
+  <a href="#next" class="md-nav__link">
     <span class="md-ellipsis">
-      Reference
+      Next
     </span>
   </a>
   
@@ -1906,185 +1909,127 @@
   
 
 
-<h1 id="verifying-a-release">Verifying a release<a class="headerlink" href="#verifying-a-release" title="Permanent link">&para;</a></h1>
-<p>Every Barbacana release ships three artifacts in <code>ghcr.io</code>, all bound to the same image digest:</p>
-<ul>
-<li>A multi-arch image at <code>ghcr.io/barbacana-waf/barbacana:vX.Y.Z</code> (and <code>:latest</code>).</li>
-<li>A cosign keyless signature over the image digest.</li>
-<li>A CycloneDX SBOM attested to the same digest, stored as an OCI 1.1 referrer alongside the image.</li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Canonical registry</p>
-<p><code>ghcr.io/barbacana-waf/barbacana</code> is the canonical signed registry. A convenience mirror at <code>docker.io/barbacana/barbacana</code> carries identical image bits (same digest) but does not carry the cosign signature or SBOM attestation. For deployments that verify signatures, pull from ghcr.io.</p>
-</div>
-<p>Edge builds at <code>ghcr.io/barbacana-waf/barbacana-edge</code> are <strong>not</strong> signed and <strong>not</strong> attested. Do not run them in production; do not apply the procedures below to them — they will fail.</p>
+<h1 id="binary-install">Binary install<a class="headerlink" href="#binary-install" title="Permanent link">&para;</a></h1>
+<p>Barbacana releases a native binary for Linux, macOS, and Windows (amd64 and arm64). Use this installation method when you do not have Docker available — for example, on a bare-metal server, a VM, or an environment where you manage Barbacana as a system service.</p>
+<p>For a container-based setup, see <a href="../installation/">Installation</a>.</p>
 <h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Used for</th>
-<th>Install</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>cosign ≥ 3.0</td>
-<td>Signature + attestation verification, SBOM download</td>
-<td><a href="https://docs.sigstore.dev/cosign/system_config/installation/">Installation</a></td>
-</tr>
-<tr>
-<td>jq</td>
-<td>SBOM extraction</td>
-<td><a href="https://jqlang.org/download/">Download</a></td>
-</tr>
-<tr>
-<td>trivy ≥ 0.50</td>
-<td>CVE scanning</td>
-<td><a href="https://trivy.dev/latest/getting-started/installation/">Installation</a></td>
-</tr>
-<tr>
-<td>grype (optional)</td>
-<td>Alternative CVE scanner</td>
-<td><a href="https://github.com/anchore/grype#installation">Installation</a></td>
-</tr>
-</tbody>
-</table>
-<h2 id="1-verify-the-image-signature">1. Verify the image signature<a class="headerlink" href="#1-verify-the-image-signature" title="Permanent link">&para;</a></h2>
-<p>The signature proves the image at the given reference was produced by the Barbacana release workflow on a tagged commit. It does not say anything about what is <em>inside</em> the image — that is what the SBOM attestation in step 2 is for.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>cosign verify \
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
-</span></code></pre></div>
-<p>Example run against <code>latest</code>:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify \
-  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>[{&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;},<br>  &quot;type&quot;:&quot;https://cyclonedx.org/bom&quot;},&quot;optional&quot;:{}},<br> {&quot;critical&quot;:{&quot;identity&quot;:{&quot;docker-reference&quot;:&quot;ghcr.io/barbacana-waf/barbacana:latest&quot;},<br>  &quot;image&quot;:{&quot;docker-manifest-digest&quot;:&quot;sha256:3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;},<br>  &quot;type&quot;:&quot;https://sigstore.dev/cosign/sign/v1&quot;},&quot;optional&quot;:{}}]<br></span></div>
-
-<p>The certificate identity pins the signature to <code>release.yml</code> in the <code>barbacana-waf/barbacana</code> repository, run via <code>workflow_dispatch</code> on master (the release workflow creates the version tag at the end of its own run, so the OIDC subject embeds <code>@refs/heads/master</code>, not the eventual tag). The OIDC issuer pins it to GitHub Actions' token endpoint. Together they prevent a signature produced by any other repo, workflow, or trigger from passing.</p>
-<p>A successful run prints a JSON array of verified signed items and exits 0. With cosign v3 defaults, the array has <strong>two entries</strong> at the same digest: the image signature (<code>type: https://sigstore.dev/cosign/sign/v1</code>) and the CycloneDX SBOM attestation (<code>type: https://cyclonedx.org/bom</code>). Both are checked against the same certificate identity, so a tampered or missing attestation will fail this step too — you don't need to wait for step 2 to catch it.</p>
-<p>A failure means one of the following:</p>
 <ul>
-<li>The image at that reference is unsigned, or signed by an identity that does not match (i.e. not produced by this repo's release workflow).</li>
-<li>The transparency log entry for the signature has been tampered with or removed.</li>
-<li>The image reference points to a different digest than the one that was signed (e.g. a tag was force-pushed).</li>
+<li>Linux, macOS, or Windows on amd64 or arm64</li>
+<li>A <code>waf.yaml</code> configuration file (see <a href="../quickstart/">Quickstart</a> for the minimal three-line config)</li>
 </ul>
-<p>In all three cases, treat the image as untrusted.</p>
-<h2 id="2-verify-the-sbom-attestation">2. Verify the SBOM attestation<a class="headerlink" href="#2-verify-the-sbom-attestation" title="Permanent link">&para;</a></h2>
-<p>The attestation is a cosign-signed in-toto statement carrying a CycloneDX SBOM as its predicate. Verifying it proves the SBOM came from the same release workflow that signed the image and is bound to that image's digest.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cosign verify-attestation \
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  --type cyclonedx \
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
+<h2 id="step-1-download-the-binary">Step 1 — Download the binary<a class="headerlink" href="#step-1-download-the-binary" title="Permanent link">&para;</a></h2>
+<p>Go to the <a href="https://github.com/barbacana-waf/barbacana/releases/latest">Releases page</a> and find the latest version. Download the archive for your platform, extract it, and place the binary on your <code>PATH</code>.</p>
+<p>Replace <code>0.6.0</code> in the commands below with the version you are installing.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Linux (amd64)</label><label for="__tabbed_1_2">Linux (arm64)</label><label for="__tabbed_1_3">macOS (Apple Silicon)</label><label for="__tabbed_1_4">macOS (Intel)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_linux_amd64.tar.gz
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>barbacana_0.6.0_linux_amd64.tar.gz
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>barbacana<span class="w"> </span>/usr/local/bin/barbacana
 </span></code></pre></div>
-<p>Example run against <code>latest</code>:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation \
-  --type cyclonedx \
-  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty><br>Verification for ghcr.io/barbacana-waf/barbacana:latest --<br>The following checks were performed on each of these signatures:<br>  - The cosign claims were validated<br>  - Existence of the claims in the transparency log was verified offline<br>  - The code-signing certificate was verified using trusted certificate authority certificates<br><br>{&quot;payload&quot;:&quot;eyJfdHlwZSI6Imh0dHBz[...]&quot;,&quot;payloadType&quot;:&quot;application/vnd.in-toto+json&quot;,&quot;signatures&quot;:[{&quot;sig&quot;:&quot;...&quot;}]}<br></span></div>
-
-<p>A success prints the verified in-toto envelope to stdout and exits 0. Pipe it through <code>jq</code> to inspect the predicate type and the bound subject:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cosign verify-attestation --type cyclonedx \
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z 2&gt;/dev/null \
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  | jq -r &#39;.payload&#39; | base64 -d | jq &#39;.predicateType,.subject&#39;
-</span></code></pre></div>
-<p>Example run against <code>latest</code>:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign verify-attestation --type cyclonedx \
-  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-  ghcr.io/barbacana-waf/barbacana:latest 2&gt;/dev/null \
-  | jq -r '.payload' | base64 -d | jq '.predicateType,.subject'</span><span data-ty>&quot;https://cyclonedx.org/bom&quot;<br>[<br>  {<br>    &quot;name&quot;: &quot;ghcr.io/barbacana-waf/barbacana&quot;,<br>    &quot;digest&quot;: {<br>      &quot;sha256&quot;: &quot;3d900fe257775b62a4179716f972991675a26faf23a1eeb10bef52410e4943f2&quot;<br>    }<br>  }<br>]<br></span></div>
-
-<p>Failure modes:</p>
-<ul>
-<li><code>none of the attestations matched the predicate type: cyclonedx</code> — the image has no CycloneDX SBOM attached. Either the reference is wrong, the image was not produced by a release tag, or the attestation has been stripped from the registry.</li>
-<li>The certificate-identity check fails — same meaning as in step 1: the SBOM was attested by something other than the release workflow.</li>
-</ul>
-<p>Both verification steps should pass before trusting the SBOM in step 4.</p>
-<h2 id="3-enforce-verification-at-admission-kubernetes">3. Enforce verification at admission (Kubernetes)<a class="headerlink" href="#3-enforce-verification-at-admission-kubernetes" title="Permanent link">&para;</a></h2>
-<p>Steps 1 and 2 can be enforced automatically by a Kubernetes admission controller, so unsigned or unattested images are rejected at deploy time without any manual step. Two common options:</p>
-<ul>
-<li><a href="https://docs.sigstore.dev/policy-controller/overview/">Sigstore Policy Controller</a> — purpose-built admission webhook from the Sigstore project. Configure a <code>ClusterImagePolicy</code> with the same certificate identity and OIDC issuer used in steps 1–2.</li>
-<li><a href="https://kyverno.io/docs/policy-types/verify-images/sigstore/">Kyverno</a> — general-purpose policy engine with a built-in <code>verifyImages</code> rule that calls cosign internally.</li>
-</ul>
-<p>Either lets the cluster reject any pod whose image fails the same checks performed manually above.</p>
-<h2 id="4-retrieve-the-sbom">4. Retrieve the SBOM<a class="headerlink" href="#4-retrieve-the-sbom" title="Permanent link">&para;</a></h2>
-<p>For tooling that consumes the SBOM file directly (Dependency-Track, GUAC, custom scanners), download and extract the CycloneDX predicate:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>cosign download attestation \
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  --predicate-type https://cyclonedx.org/bom \
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z \
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  | jq -r &#39;.dsseEnvelope.payload&#39; | base64 -d | jq &#39;.predicate&#39; \
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  &gt; barbacana.cdx.json
-</span></code></pre></div>
-<p>Example run against <code>latest</code> (download, then inspect the resulting file):</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">cosign download attestation \
-  --predicate-type https://cyclonedx.org/bom \
-  ghcr.io/barbacana-waf/barbacana:latest \
-  | jq -r '.dsseEnvelope.payload' | base64 -d | jq '.predicate' \
-  &gt; barbacana.cdx.json</span><span data-ty="input" data-ty-prompt="$">jq -r '.bomFormat, .specVersion, (.components | length)' barbacana.cdx.json</span><span data-ty>CycloneDX<br>1.6<br>183<br></span></div>
-
-<p>What each stage does:</p>
-<ul>
-<li><code>cosign download attestation</code> fetches the signed in-toto bundle for the CycloneDX predicate type from the registry. No network call to Rekor is made — this is a registry read.</li>
-<li><code>jq -r '.dsseEnvelope.payload'</code> extracts the base64-encoded DSSE payload (the in-toto statement).</li>
-<li><code>base64 -d | jq '.predicate'</code> decodes the statement and unwraps the CycloneDX document.</li>
-</ul>
-<p>The result is a standalone CycloneDX 1.x JSON document at <code>barbacana.cdx.json</code>.</p>
-<p><code>cosign download attestation</code> does <strong>not</strong> verify the signature — it only fetches. Always run step 2 first; only trust an SBOM whose attestation has already been verified.</p>
-<h2 id="5-scan-for-cves">5. Scan for CVEs<a class="headerlink" href="#5-scan-for-cves" title="Permanent link">&para;</a></h2>
-<p>Two equivalent paths.</p>
-<p><strong>Direct (no manual download)</strong> — trivy fetches the attestation from the registry itself:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>trivy image \
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  --sbom-sources oci \
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>  --scanners vuln \
-</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>  ghcr.io/barbacana-waf/barbacana:vX.Y.Z
-</span></code></pre></div>
-<p>Example run against <code>latest</code>:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">trivy image \
-  --sbom-sources oci \
-  --scanners vuln \
-  ghcr.io/barbacana-waf/barbacana:latest</span><span data-ty>Report Summary<br><br>┌──────────────────────────────────────────────────────┬──────────┬─────────────────┐<br>│                        Target                        │   Type   │ Vulnerabilities │<br>├──────────────────────────────────────────────────────┼──────────┼─────────────────┤<br>│ ghcr.io/barbacana-waf/barbacana:latest (debian 13.4) │  debian  │        0        │<br>├──────────────────────────────────────────────────────┼──────────┼─────────────────┤<br>│ ko-app/barbacana                                     │ gobinary │        0        │<br>└──────────────────────────────────────────────────────┴──────────┴─────────────────┘<br></span></div>
-
-<div class="admonition warning">
-<p class="admonition-title">The vulnerability count will change over time</p>
-<p>The <code>0</code> reported in the example outputs below is the result at the time the scan was captured. CVEs are disclosed against existing components continuously, so the same image will start reporting findings without anything in the image changing. </p>
 </div>
-<p>Best for operators who just want a vuln report against a deployed image. <code>--sbom-sources oci</code> tells trivy to prefer the registry-attached SBOM over re-deriving one from the image layers, which is faster and produces results that match exactly what was attested.</p>
-<p><strong>From a downloaded SBOM</strong> — useful for air-gapped scanning or when the same SBOM is fed into multiple tools:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>trivy sbom barbacana.cdx.json
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_linux_arm64.tar.gz
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>barbacana_0.6.0_linux_arm64.tar.gz
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>barbacana<span class="w"> </span>/usr/local/bin/barbacana
 </span></code></pre></div>
-<p>Example run against the SBOM extracted from <code>latest</code>:</p>
-<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">trivy sbom barbacana.cdx.json</span><span data-ty>Report Summary<br><br>┌────────┬──────────┬─────────────────┐<br>│ Target │   Type   │ Vulnerabilities │<br>├────────┼──────────┼─────────────────┤<br>│        │ gobinary │        0        │<br>└────────┴──────────┴─────────────────┘<br></span></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_darwin_arm64.tar.gz
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>barbacana_0.6.0_darwin_arm64.tar.gz
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>barbacana<span class="w"> </span>/usr/local/bin/barbacana
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-LO<span class="w"> </span>https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_darwin_amd64.tar.gz
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>tar<span class="w"> </span>-xzf<span class="w"> </span>barbacana_0.6.0_darwin_amd64.tar.gz
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>sudo<span class="w"> </span>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0755</span><span class="w"> </span>barbacana<span class="w"> </span>/usr/local/bin/barbacana
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<p>Confirm the binary is on your <code>PATH</code>:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">barbacana --version</span><span data-ty>barbacana v0.6.0 (973a47b)<br>go        go1.26.3<br>crs       v4.26.0<br></span></div>
 
-<p>Or with grype:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>grype sbom:./barbacana.cdx.json
+<div class="admonition tip">
+<p class="admonition-title">Verify before you run</p>
+<p>Each release attaches a signed <code>checksums.txt.bundle</code> and a SLSA3 provenance file. See <a href="../../security/verifying/#6-verify-the-binaries-optional">Verifying releases</a> to authenticate the archive before extracting it.</p>
+</div>
+<h2 id="step-2-write-a-config">Step 2 — Write a config<a class="headerlink" href="#step-2-write-a-config" title="Permanent link">&para;</a></h2>
+<p>Create <code>/etc/barbacana/waf.yaml</code>. The directory must exist before starting the binary.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>/etc/barbacana
 </span></code></pre></div>
-<p>Both scanners auto-detect CycloneDX format. Severity, output format, and ignore-policy flags are scanner-specific — see the respective documentation.</p>
-<p>A clean scan today does not mean the image is clean tomorrow; new CVEs are disclosed against existing components continuously. See the next section.</p>
-<h2 id="6-verify-the-binaries-optional">6. Verify the binaries (optional)<a class="headerlink" href="#6-verify-the-binaries-optional" title="Permanent link">&para;</a></h2>
-<p>The container image is the recommended distribution form. For users who download the binary archives directly from a GitHub Release, each release attaches a cosign-signed <code>checksums.txt.bundle</code> and a SLSA3 provenance file (<code>barbacana.intoto.jsonl</code>).</p>
-<p>Verify the checksums file (the SHA-256 entries inside cover every archive):</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>cosign verify-blob \
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  --certificate-identity=https://github.com/barbacana-waf/barbacana/.github/workflows/release.yml@refs/heads/master \
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  --certificate-oidc-issuer=https://token.actions.githubusercontent.com \
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>  --bundle checksums.txt.bundle \
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>  checksums.txt
+<div class="language-yaml highlight"><span class="filename">/etc/barbacana/waf.yaml</span><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://localhost:8000</span>
 </span></code></pre></div>
-<p>Or verify a specific archive against its SLSA3 provenance with <a href="https://github.com/slsa-framework/slsa-verifier">slsa-verifier</a>:</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>slsa-verifier verify-artifact barbacana_X.Y.Z_linux_amd64.tar.gz \
-</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>  --provenance-path barbacana.intoto.jsonl \
-</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>  --source-uri github.com/barbacana-waf/barbacana
+<p>This forwards all traffic to your app on port <code>8000</code>. Adjust the port to match your application. Point <code>upstream</code> at a hostname and port your server can reach — <code>localhost</code> works when Barbacana and your app run on the same host.</p>
+<h2 id="step-3-validate-the-config">Step 3 — Validate the config<a class="headerlink" href="#step-3-validate-the-config" title="Permanent link">&para;</a></h2>
+<p>Check the config before starting the server. <code>--validate</code> reads and compiles the full rule set; it catches schema errors, unknown protection names, missing OpenAPI specs, and rule compilation failures.</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">barbacana --config /etc/barbacana/waf.yaml --validate</span><span data-ty>config valid<br></span></div>
+
+<p>Exit code <code>0</code> means everything is valid. If the config contains errors, each one is printed and the exit code is <code>1</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>barbacana: load config: validate config /etc/barbacana/waf.yaml: routes[0]: unknown protection &quot;sql-inejction&quot; in disable list (did you mean &quot;sql-injection&quot;?)
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>routes[0]: unknown protection &quot;xss-bodX&quot; in disable list
 </span></code></pre></div>
-<h2 id="reference">Reference<a class="headerlink" href="#reference" title="Permanent link">&para;</a></h2>
+<p>Fix each reported error and re-run <code>--validate</code> until the output is <code>config valid</code>.</p>
+<h2 id="step-4-run">Step 4 — Run<a class="headerlink" href="#step-4-run" title="Permanent link">&para;</a></h2>
+<p>Start Barbacana:</p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">barbacana --config /etc/barbacana/waf.yaml</span><span data-ty>{&quot;time&quot;:&quot;2026-05-13T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;health endpoint disabled — set health_port to enable /healthz and /readyz&quot;}<br>{&quot;time&quot;:&quot;2026-05-13T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;metrics endpoint disabled — set metrics_port to enable /metrics&quot;}<br>{&quot;time&quot;:&quot;2026-05-13T09:00:00Z&quot;,&quot;level&quot;:&quot;INFO&quot;,&quot;msg&quot;:&quot;barbacana started&quot;,&quot;mode&quot;:&quot;plain-http&quot;,&quot;host&quot;:&quot;&quot;,&quot;port&quot;:8080,&quot;health_port&quot;:0,&quot;metrics_port&quot;:0,&quot;routes&quot;:1}<br></span></div>
+
+<p>Barbacana listens on <code>:8080</code> by default and logs structured JSON to stdout. Press <code>Ctrl+C</code> to stop — it shuts down gracefully.</p>
+<h2 id="step-5-verify-it-works">Step 5 — Verify it works<a class="headerlink" href="#step-5-verify-it-works" title="Permanent link">&para;</a></h2>
+<p>With Barbacana running, open a second terminal and send two requests:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>http://localhost:8080/<span class="w">                     </span><span class="c1"># forwarded to your app</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>curl<span class="w"> </span><span class="s2">&quot;http://localhost:8080/?q=1&#39; OR 1=1--&quot;</span><span class="w">     </span><span class="c1"># blocked: 403</span>
+</span></code></pre></div>
+<p>The second request is blocked and recorded in the <a href="../../operations/audit-log/">audit log</a> with <code>action: blocked</code>.</p>
+<hr />
+<h2 id="running-as-a-linux-service">Running as a Linux service<a class="headerlink" href="#running-as-a-linux-service" title="Permanent link">&para;</a></h2>
+<p>On a Linux server, run Barbacana under systemd so it starts on boot and restarts automatically after a failure.</p>
+<p><strong>Create a dedicated system user:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>sudo<span class="w"> </span>useradd<span class="w"> </span>--system<span class="w"> </span>--no-create-home<span class="w"> </span>--shell<span class="w"> </span>/sbin/nologin<span class="w"> </span>barbacana
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>sudo<span class="w"> </span>chown<span class="w"> </span>-R<span class="w"> </span>barbacana:barbacana<span class="w"> </span>/etc/barbacana
+</span></code></pre></div>
+<p><strong>Create the unit file:</strong></p>
+<div class="language-ini highlight"><span class="filename">/etc/systemd/system/barbacana.service</span><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">[Unit]</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="na">Description</span><span class="o">=</span><span class="s">Barbacana WAF</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="na">Documentation</span><span class="o">=</span><span class="s">https://barbacana.dev</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="na">After</span><span class="o">=</span><span class="s">network.target</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="k">[Service]</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="na">Type</span><span class="o">=</span><span class="s">simple</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="na">User</span><span class="o">=</span><span class="s">barbacana</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="na">ExecStart</span><span class="o">=</span><span class="s">/usr/local/bin/barbacana --config /etc/barbacana/waf.yaml</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="na">ExecReload</span><span class="o">=</span><span class="s">/bin/kill -HUP $MAINPID</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="na">Restart</span><span class="o">=</span><span class="s">on-failure</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="na">RestartSec</span><span class="o">=</span><span class="s">5</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="na">StandardOutput</span><span class="o">=</span><span class="s">journal</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="na">StandardError</span><span class="o">=</span><span class="s">journal</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="na">SyslogIdentifier</span><span class="o">=</span><span class="s">barbacana</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a>
+</span><span id="__span-9-17"><a id="__codelineno-9-17" name="__codelineno-9-17" href="#__codelineno-9-17"></a><span class="k">[Install]</span>
+</span><span id="__span-9-18"><a id="__codelineno-9-18" name="__codelineno-9-18" href="#__codelineno-9-18"></a><span class="na">WantedBy</span><span class="o">=</span><span class="s">multi-user.target</span>
+</span></code></pre></div>
+<p><code>ExecReload</code> sends <code>SIGHUP</code> to the process, which triggers a graceful config reload without dropping existing connections.</p>
+<p><strong>Enable and start the service:</strong></p>
+<div class="termy" data-termynal data-ty-macos data-ty-title="bash"><span data-ty="input" data-ty-prompt="$">sudo systemctl daemon-reload</span><span data-ty="input" data-ty-prompt="$">sudo systemctl enable barbacana</span><span data-ty>Created symlink /etc/systemd/system/multi-user.target.wants/barbacana.service → /etc/systemd/system/barbacana.service.</span><span data-ty="input" data-ty-prompt="$">sudo systemctl start barbacana</span><span data-ty="input" data-ty-prompt="$">sudo systemctl status barbacana</span><span data-ty>● barbacana.service - Barbacana WAF<br>     Loaded: loaded (/etc/systemd/system/barbacana.service; enabled; preset: enabled)<br>     Active: active (running) since Tue 2026-05-13 09:00:00 UTC; 3s ago<br>   Main PID: 1234 (barbacana)<br>      Tasks: 8 (limit: 4636)<br>     Memory: 28.4M<br>        CPU: 41ms<br>     CGroup: /system.slice/barbacana.service<br>             └─1234 /usr/local/bin/barbacana --config /etc/barbacana/waf.yaml<br></span></div>
+
+<p><strong>View live logs:</strong></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>journalctl<span class="w"> </span>-u<span class="w"> </span>barbacana<span class="w"> </span>-f
+</span></code></pre></div>
+<p><strong>Apply a config change</strong> without downtime:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>sudo<span class="w"> </span>systemctl<span class="w"> </span>reload<span class="w"> </span>barbacana
+</span></code></pre></div>
+<p>This sends <code>SIGHUP</code>, which triggers a graceful reload. In-flight requests complete normally; new requests use the updated config.</p>
+<hr />
+<h2 id="next">Next<a class="headerlink" href="#next" title="Permanent link">&para;</a></h2>
 <ul>
-<li><a href="https://docs.sigstore.dev/">Sigstore documentation</a> — background on cosign, Fulcio, Rekor, and the in-toto attestation format.</li>
-<li><a href="https://cyclonedx.org/specification/overview/">CycloneDX specification</a> — the SBOM format used in the attestation.</li>
+<li><a href="../installation/">Installation</a> — run Barbacana as a container with Docker or Docker Compose, including auto-TLS</li>
+<li><a href="../incremental/">Configuration</a> — build from a minimal config to a full production setup, step by step</li>
+<li><a href="../../reference/routes/">Routes</a> — match traffic by host, path, or both</li>
+<li><a href="../../reference/detect-only/">Detect-only mode</a> — log without blocking while you tune</li>
 </ul>
 <style data-termynal-inline="true">
  :root {

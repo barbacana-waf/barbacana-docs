@@ -18,7 +18,7 @@
         <link rel="prev" href="../quickstart/">
       
       
-        <link rel="next" href="../incremental/">
+        <link rel="next" href="../binary/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -420,6 +420,8 @@
       
         
       
+        
+      
     
     
       
@@ -614,6 +616,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../binary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Binary install
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../incremental/" class="md-nav__link">
         
   
@@ -660,10 +683,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
         
           
-          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -674,8 +697,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_6">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1798,6 +1821,7 @@
 
 <h1 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h1>
 <p>Barbacana ships as a single container image. The sections below walk from the simplest possible run through to a TLS-terminating Compose stack — each step builds on the previous one.</p>
+<p>If you do not have Docker available, see <a href="../binary/">Binary install</a> to run Barbacana directly from the release binary.</p>
 <p>The image: <code>ghcr.io/barbacana-waf/barbacana:latest</code>. Multi-arch (<code>amd64</code>, <code>arm64</code>), signed with cosign, ships a CycloneDX SBOM.</p>
 <p><code>ghcr.io/barbacana-waf/barbacana</code> is the canonical registry. A convenience mirror at <code>docker.io/barbacana/barbacana</code> carries identical image bits.</p>
 <h2 id="step-1-docker-run-against-a-local-upstream">Step 1 — <code>docker run</code> against a local upstream<a class="headerlink" href="#step-1-docker-run-against-a-local-upstream" title="Permanent link">&para;</a></h2>
