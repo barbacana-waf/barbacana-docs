@@ -59,6 +59,8 @@
     
     
     
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "15489db793944dc8a42c626a84db8287"}'></script>
+
   </head>
   
   
@@ -1588,6 +1590,8 @@
       
         
       
+        
+      
     
     
       
@@ -1782,6 +1786,27 @@
   
   <span class="md-ellipsis">
     Tracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="operations/sizing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sizing guide
   </span>
   
 
@@ -1989,6 +2014,7 @@
 </span></code></pre></div>
 <p>Every protection is on by default. <a href="getting-started/quickstart/">Full quickstart →</a></p>
 <p>And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored <strong>93.65%</strong> on <a href="https://github.com/wallarm/gotestwaf">GoTestWAF</a>, an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes <strong>99.75%</strong> of <a href="https://github.com/coreruleset/go-ftw">go-ftw</a>, the official test suite from the OWASP CRS authors.</p>
+<p>Sizing your deployment? 1 vCPU and ~130 MB of memory handles ~125 requests per second, with p99 latency under 40 ms for typical traffic. <a href="blog/2026/05/14/first-performance-benchmark/">Full benchmark details →</a></p>
 <h2 id="beyond-the-defaults">Beyond the defaults<a class="headerlink" href="#beyond-the-defaults" title="Permanent link">&para;</a></h2>
 <p>The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.</p>
 <div class="feature-row">

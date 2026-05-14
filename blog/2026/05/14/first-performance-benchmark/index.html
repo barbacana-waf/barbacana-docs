@@ -12,28 +12,26 @@
         <meta name="author" content="Barbacana authors">
       
       
-        <link rel="canonical" href="https://barbacana.dev/security/request-lifecycle/">
+        <link rel="canonical" href="https://barbacana.dev/blog/2026/05/14/first-performance-benchmark/">
       
       
-        <link rel="prev" href="../overview/">
+        <link rel="prev" href="../../07/v050-base64-decoding-and-a-new-xss-detector/">
       
       
-        <link rel="next" href="../logs/">
       
-      
-      <link rel="icon" href="../../assets/logo.png">
+      <link rel="icon" href="../../../../../assets/logo.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
     
     
       
-        <title>Request lifecycle - Barbacana</title>
+        <title>First performance benchmark - Barbacana</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.0253249f.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -52,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#request-lifecycle" class="md-skip">
+        <a href="#first-performance-benchmark" class="md-skip">
           Skip to content
         </a>
       
@@ -96,9 +94,9 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Barbacana" class="md-header__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../../../../.." title="Barbacana" class="md-header__button md-logo" aria-label="Barbacana" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="logo">
+  <img src="../../../../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -115,7 +113,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Request lifecycle
+              First performance benchmark
             
           </span>
         </div>
@@ -224,7 +222,7 @@
   
   
     <li class="md-tabs__item">
-      <a href="../.." class="md-tabs__link">
+      <a href="../../../../.." class="md-tabs__link">
         
   
     
@@ -243,7 +241,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../getting-started/overview/" class="md-tabs__link">
+        <a href="../../../../../getting-started/overview/" class="md-tabs__link">
           
   
     
@@ -263,7 +261,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../reference/overview/" class="md-tabs__link">
+        <a href="../../../../../reference/overview/" class="md-tabs__link">
           
   
     
@@ -279,13 +277,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="../overview/" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../../../../../security/overview/" class="md-tabs__link">
           
   
     
@@ -305,7 +301,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../operations/overview/" class="md-tabs__link">
+        <a href="../../../../../operations/overview/" class="md-tabs__link">
           
   
     
@@ -321,9 +317,11 @@
         
   
   
+    
   
-    <li class="md-tabs__item">
-      <a href="../../blog/" class="md-tabs__link">
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
         
   
     
@@ -346,7 +344,9 @@
           
             
               
-              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
                     
@@ -357,9 +357,9 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Barbacana" class="md-nav__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../../../../.." title="Barbacana" class="md-nav__button md-logo" aria-label="Barbacana" data-md-component="logo">
       
-  <img src="../../assets/logo.png" alt="logo">
+  <img src="../../../../../assets/logo.png" alt="logo">
 
     </a>
     Barbacana
@@ -386,7 +386,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../.." class="md-nav__link">
+      <a href="../../../../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -464,7 +464,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/overview/" class="md-nav__link">
+      <a href="../../../../../getting-started/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -485,7 +485,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/why-barbacana/" class="md-nav__link">
+      <a href="../../../../../getting-started/why-barbacana/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -506,7 +506,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/quickstart/" class="md-nav__link">
+      <a href="../../../../../getting-started/quickstart/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -527,7 +527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/installation/" class="md-nav__link">
+      <a href="../../../../../getting-started/installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -548,7 +548,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/binary/" class="md-nav__link">
+      <a href="../../../../../getting-started/binary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -569,7 +569,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/incremental/" class="md-nav__link">
+      <a href="../../../../../getting-started/incremental/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -640,7 +640,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -661,7 +661,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting-cors/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting-cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -682,7 +682,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
+      <a href="../../../../../getting-started/troubleshooting-inline-scripts/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -776,7 +776,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/overview/" class="md-nav__link">
+      <a href="../../../../../reference/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -845,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/routes/" class="md-nav__link">
+      <a href="../../../../../reference/routes/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -866,7 +866,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/rewrites/" class="md-nav__link">
+      <a href="../../../../../reference/rewrites/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -945,7 +945,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/accept/" class="md-nav__link">
+      <a href="../../../../../reference/accept/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -966,7 +966,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/uploads/" class="md-nav__link">
+      <a href="../../../../../reference/uploads/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -987,7 +987,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/openapi/" class="md-nav__link">
+      <a href="../../../../../reference/openapi/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1066,7 +1066,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/disable/" class="md-nav__link">
+      <a href="../../../../../reference/disable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1087,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/enable/" class="md-nav__link">
+      <a href="../../../../../reference/enable/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1108,7 +1108,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/detect-only/" class="md-nav__link">
+      <a href="../../../../../reference/detect-only/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1185,7 +1185,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/cors/" class="md-nav__link">
+      <a href="../../../../../reference/cors/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1206,7 +1206,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/headers/" class="md-nav__link">
+      <a href="../../../../../reference/headers/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1235,7 +1235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/catalog/" class="md-nav__link">
+      <a href="../../../../../reference/catalog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1256,7 +1256,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../reference/schema/" class="md-nav__link">
+      <a href="../../../../../reference/schema/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1281,10 +1281,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1299,22 +1297,21 @@
     
     
       
-        
-        
-      
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1325,7 +1322,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Security
@@ -1339,7 +1336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../overview/" class="md-nav__link">
+      <a href="../../../../../security/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1357,19 +1354,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../../../security/request-lifecycle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1378,7 +1366,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -1391,7 +1378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../logs/" class="md-nav__link">
+      <a href="../../../../../security/logs/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1412,7 +1399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../verifying/" class="md-nav__link">
+      <a href="../../../../../security/verifying/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1502,7 +1489,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/overview/" class="md-nav__link">
+      <a href="../../../../../operations/overview/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1523,7 +1510,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/hostnames/" class="md-nav__link">
+      <a href="../../../../../operations/hostnames/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1544,7 +1531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/cli/" class="md-nav__link">
+      <a href="../../../../../operations/cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1565,7 +1552,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/monitoring/" class="md-nav__link">
+      <a href="../../../../../operations/monitoring/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1586,7 +1573,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/metrics/" class="md-nav__link">
+      <a href="../../../../../operations/metrics/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1607,7 +1594,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/dashboard/" class="md-nav__link">
+      <a href="../../../../../operations/dashboard/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1628,7 +1615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/audit-log/" class="md-nav__link">
+      <a href="../../../../../operations/audit-log/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1649,7 +1636,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/tracing/" class="md-nav__link">
+      <a href="../../../../../operations/tracing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1670,7 +1657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../operations/sizing/" class="md-nav__link">
+      <a href="../../../../../operations/sizing/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1695,12 +1682,14 @@
       
   
   
+    
+  
   
     
   
   
-    <li class="md-nav__item">
-      <a href="../../blog/" class="md-nav__link">
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1721,6 +1710,8 @@
             
             
               
+                
+              
               <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
@@ -1733,6 +1724,137 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Setup
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-workload" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mixed workload
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methodology" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methodology
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#results" class="md-nav__link">
+    <span class="md-ellipsis">
+      Results
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Results">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#c3-standard-4-4-vcpu-compute-optimised" class="md-nav__link">
+    <span class="md-ellipsis">
+      c3-standard-4 (4 vCPU, compute-optimised)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e2-standard-8-8-vcpu-general-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      e2-standard-8 (8 vCPU, general-purpose)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#per-vcpu-scaling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Per-vCPU scaling
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#saturation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Saturation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#memory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Memory
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#attack-blocking" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attack blocking
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#profiling" class="md-nav__link">
+    <span class="md-ellipsis">
+      Profiling
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limitations
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1740,58 +1862,398 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-  
-  
-
-
-<h1 id="request-lifecycle">Request lifecycle<a class="headerlink" href="#request-lifecycle" title="Permanent link">&para;</a></h1>
-<p>Every request flows through a strict sequence of stages. In <code>blocking</code> mode, any stage can short-circuit with a 403 response — later stages are skipped. In <code>detect_only</code> mode, detections are recorded but the request continues to the upstream.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a> 1.  TLS termination                          (Caddy)
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a> 2.  HTTP/2/3 frame limits                    (Caddy)
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a> 3.  Slow request / read timeouts             (Caddy)
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a> 4.  Request size, URL, and header limits
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a> 5.  Input normalization double-encoding, path resolution, unicode NFC
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a> 6.  Protocol hardening smuggling, CRLF, null byte, method override
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a> 7.  Resource protection decompression ratio (gzip/deflate)
-</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a> 8.  Body parsing limits JSON depth/keys, XML depth/entities
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a> 9.  File upload validation file count, file size, MIME types, double extensions
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>10.  CORS preflight handling
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>11.  OpenAPI request validation
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>12.  CRS evaluation (request phases 1–2)
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>13.  Reverse proxy to upstream
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>14.  Security header stripping
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>15.  Security header injection
-</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>16.  Response to client
-</span></code></pre></div>
-<p>Key ordering decisions:</p>
-<ul>
-<li><strong>Normalization before protocol hardening and CRS</strong> — double-encoding detection reads the raw path; after canonicalisation, smuggling and CRLF detection (which operate on headers) still work, and CRS sees a single canonical form so attackers cannot evade rules via double-encoding.</li>
-<li><strong>Resource protection before body parsing</strong> — decompression ratio is checked first, so a decompression bomb never reaches the parser.</li>
-<li><strong>OpenAPI before CRS</strong> — contract violations are cheaper to evaluate and provide a strong early signal.</li>
-<li><strong>CRS immediately before the proxy</strong> — no request reaches the upstream without passing the rule engine.</li>
-<li><strong>Header stripping before injection</strong> — injected values are never removed by overlapping strip rules.</li>
-</ul>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
             </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://github.com/barbacana-waf.png" alt="Barbacana">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          Barbacana
+                        
+                      </strong>
+                      <br>
+                      Project maintainer
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2026-05-14 00:00:00" class="md-ellipsis">May 14, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            in
+                            
+                              <a href="../../../../category/performance/">performance</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              7 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+          </nav>
           
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+
+  
+  
+
+
+<h1 id="first-performance-benchmark">First performance benchmark<a class="headerlink" href="#first-performance-benchmark" title="Permanent link">&para;</a></h1>
+<p>Barbacana is an HTTP reverse proxy that runs the OWASP CRS v4 ruleset on every request. This blog entry explains how it was benchmarked on two Google Cloud instance types — c3-standard-4 (4 vCPU) and e2-standard-8 (8 vCPU) — across six load tiers from 100 to 1500 requests per second (RPS), using a mixed workload of GET, POST, file uploads, and simulated attack traffic. </p>
+<p>Per-vCPU throughput was consistent across both machines at approximately 125 RPS per vCPU. p99 latency stayed between 35 and 65 ms across the operating range, and memory remained between 119 and 137 MB until saturation. All simulated attack requests were blocked at every load level. </p>
+<p>CPU profiling confirmed the epxected outcome: the dominant cost is CRS rule evaluation; the proxy layer itself adds no measurable overhead. This post describes the methodology, results, and operational implications.</p>
+<!-- more -->
+
+<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<p>The benchmark ran on two GCP instance types. Three binaries ran on the same
+machine in each run: <strong>Barbacana</strong> (the WAF), <a href="https://k6.io/"><strong>k6</strong></a> (the load generator), and
+<strong>Caddy</strong> (a mock backend returning <code>200 OK</code> for every route).</p>
+<table>
+<thead>
+<tr>
+<th>Machine</th>
+<th>vCPU</th>
+<th>RAM</th>
+<th>Instance class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>c3-standard-4</code></td>
+<td>4</td>
+<td>16 GB</td>
+<td>compute-optimised</td>
+</tr>
+<tr>
+<td><code>e2-standard-8</code></td>
+<td>8</td>
+<td>32 GB</td>
+<td>general-purpose</td>
+</tr>
+</tbody>
+</table>
+<p>Barbacana ran with its default configuration — the same setup any user gets out
+of the box, with most protections automatically enabled.</p>
+<p>Measuring on a single machine is appropriate because the primary metric —
+<code>waf_request_duration_overhead_seconds</code> — is a histogram recorded inside
+Barbacana, covering only the WAF's own processing time. Network topology
+between the load generator and the WAF does not affect it. The mock backend
+adds no meaningful latency (same host, loopback), so end-to-end latency in
+this test approximates WAF overhead directly.</p>
+<h2 id="mixed-workload">Mixed workload<a class="headerlink" href="#mixed-workload" title="Permanent link">&para;</a></h2>
+<p>Each k6 iteration picks one request type at random:</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Weight</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET page</td>
+<td>79.5%</td>
+<td>Random path from a slug list; optional query string</td>
+</tr>
+<tr>
+<td>GET static asset</td>
+<td>10%</td>
+<td>Random path under <code>/assets/</code> — css, js, images</td>
+</tr>
+<tr>
+<td>POST JSON</td>
+<td>5%</td>
+<td><code>Content-Type: application/json</code>, random 1–5 KB body</td>
+</tr>
+<tr>
+<td>POST form</td>
+<td>4%</td>
+<td><code>Content-Type: application/x-www-form-urlencoded</code>, login fields</td>
+</tr>
+<tr>
+<td>File upload</td>
+<td>1%</td>
+<td><code>Content-Type: multipart/form-data</code>, random 100 KB–1 MB payload</td>
+</tr>
+<tr>
+<td>Attack traffic</td>
+<td>0.5%</td>
+<td>SQL injection, XSS, path traversal, command injection</td>
+</tr>
+</tbody>
+</table>
+<p>The mix reflects the request shapes a Barbacana instance would see in a typical
+production deployment: mostly page and asset fetches, some API and form traffic,
+occasional large uploads, and a small fraction of attack attempts. Inspection
+work varies by content type — the workload exercises Barbacana across the full
+range of request shapes it would encounter in practice.</p>
+<h2 id="methodology">Methodology<a class="headerlink" href="#methodology" title="Permanent link">&para;</a></h2>
+<p>Each tier ran at a constant target rate for the full measurement window — not a
+ramp, not a burst, but a steady sustained load held at exactly the specified RPS
+for 10 minutes. 60 seconds of warmup traffic preceded each measurement window
+and was discarded. Prometheus metrics were scraped from Barbacana's <code>/metrics</code>
+endpoint every 5 seconds. CPU and memory were read directly from Linux metrics 
+at <code>/proc</code> folder during the same window.</p>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
+<h3 id="c3-standard-4-4-vcpu-compute-optimised">c3-standard-4 (4 vCPU, compute-optimised)<a class="headerlink" href="#c3-standard-4-4-vcpu-compute-optimised" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>RPS</th>
+<th>p99</th>
+<th>RAM (Barbacana)</th>
+<th>CPU (Barbacana)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>36.6 ms</td>
+<td>120 MB</td>
+<td>335 m</td>
+</tr>
+<tr>
+<td>500</td>
+<td>59.1 ms</td>
+<td>125 MB</td>
+<td>2060 m</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>&gt; 500 ms (collapsed)</td>
+<td>350 MB</td>
+<td>3500 m</td>
+</tr>
+</tbody>
+</table>
+<h3 id="e2-standard-8-8-vcpu-general-purpose">e2-standard-8 (8 vCPU, general-purpose)<a class="headerlink" href="#e2-standard-8-8-vcpu-general-purpose" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>RPS</th>
+<th>p99</th>
+<th>RAM (Barbacana)</th>
+<th>CPU (Barbacana)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>40.0 ms</td>
+<td>123 MB</td>
+<td>534 m</td>
+</tr>
+<tr>
+<td>250</td>
+<td>38.9 ms</td>
+<td>119 MB</td>
+<td>880 m</td>
+</tr>
+<tr>
+<td>500</td>
+<td>41.8 ms</td>
+<td>125 MB</td>
+<td>1872 m</td>
+</tr>
+<tr>
+<td>750</td>
+<td>48.4 ms</td>
+<td>133 MB</td>
+<td>3427 m</td>
+</tr>
+<tr>
+<td>1000</td>
+<td>64.9 ms</td>
+<td>137 MB</td>
+<td>4508 m</td>
+</tr>
+<tr>
+<td>1500</td>
+<td>1976 ms (collapsed)</td>
+<td>360 MB</td>
+<td>6931 m</td>
+</tr>
+</tbody>
+</table>
+<p>The p99 (99th percentile) is the latency threshold that 99% of requests fell
+below. It measures tail behaviour rather than the average — if p99 is
+acceptable, almost every user sees acceptable latency, including during brief
+traffic spikes that push the tail higher. Latency is computed from the
+<code>waf_request_duration_overhead_seconds</code> histogram. CPU is in Kubernetes
+millicores (1000m = one full core-second per second).</p>
+<h3 id="per-vcpu-scaling">Per-vCPU scaling<a class="headerlink" href="#per-vcpu-scaling" title="Permanent link">&para;</a></h3>
+<p>Both runs converge on the same throughput per core:</p>
+<ul>
+<li>c3-standard-4: 500 RPS sustained on 4 vCPU → <strong>125 RPS per vCPU</strong></li>
+<li>e2-standard-8: 1000 RPS sustained on 8 vCPU → <strong>125 RPS per vCPU</strong></li>
+</ul>
+<p>Different CPU families, different clock speeds, different instance classes —
+the same per-vCPU result. This is the number that transfers across hardware:
+divide your target RPS by 125 to get the vCPU count you need.</p>
+<p>The e2 data shows p99 degrading smoothly from 40.0 ms at 100 RPS to 64.9 ms
+at 1000 RPS, then collapsing at 1500 RPS. There is no sudden cliff in the
+operating range — headroom above your target RPS translates directly into
+lower p99.</p>
+<h2 id="saturation">Saturation<a class="headerlink" href="#saturation" title="Permanent link">&para;</a></h2>
+<p>Every system has a load point where it can no longer keep up with incoming
+requests. Requests start queuing faster than they complete, latency climbs, and
+throughput falls below the target rate. Knowing where this threshold sits lets
+you size instances with enough margin to stay clear of it in production.</p>
+<p>On the e2-standard-8, 1500 RPS caused saturation: the load generator could not
+initialise virtual users fast enough to sustain the target rate, average latency
+climbed above 1.9 seconds, and Barbacana consumed nearly all 8 vCPU (6931m out
+of 8000m). The c3-standard-4 hit the same per-vCPU wall at 1000 RPS — 3500m
+of 4000m consumed, ~33% of iterations dropped.</p>
+<p>This is per-instance saturation under sustained load, not a machine ceiling.
+For traffic that sustains above the ~125 RPS per vCPU threshold, add instances
+behind a load balancer. The data plane is stateless — no coordination between
+instances is required. The per-instance ceiling stays the same; total
+throughput scales linearly.</p>
+<h2 id="memory">Memory<a class="headerlink" href="#memory" title="Permanent link">&para;</a></h2>
+<p>Memory across the full operating range (100–1000 RPS) stayed between 119 MB
+and 137 MB on both machines. This is validated across two hardware types: the
+baseline footprint is dominated by CRS rule loading, and per-request allocations
+are small. Memory only grows under saturation — 350 MB on the c3 and 360 MB on
+the e2 — where requests queue faster than they complete.</p>
+<h2 id="attack-blocking">Attack blocking<a class="headerlink" href="#attack-blocking" title="Permanent link">&para;</a></h2>
+<p>All ~3,900 simulated attack requests returned <code>403</code> across all tiers on both
+machines, including tiers where Barbacana was running at the edge of its
+capacity. A WAF that slows under load but never stops protecting is exactly
+the right behaviour for DDoS scenarios: sustained high traffic may push latency
+higher, but attack requests are still identified and blocked throughout. This
+protection guarantee held without exception across every tier in the benchmark.</p>
+<p>k6 reports an <code>http_req_failed</code> rate of approximately 1.2%. This is a k6
+measurement artifact: k6 counts any non-2xx response as a failure by default,
+which includes the <code>403</code> responses for blocked attacks. Separate check metrics
+in k6 confirmed that every request — including blocked attacks — behaved as
+expected.</p>
+<h2 id="profiling">Profiling<a class="headerlink" href="#profiling" title="Permanent link">&para;</a></h2>
+<p>CPU profiling records which functions consume processor time during a live run.
+It shows where the process actually spends its cycles, rather than where
+developers assumed it would. Go's built-in
+<a href="https://pkg.go.dev/net/http/pprof">pprof tool</a> was used to capture a 60-second
+profile at steady state on the e2-standard-8 at 250 RPS. Three findings:</p>
+<p><strong>CRS rule evaluation accounts for 75% of cumulative CPU.</strong>
+<code>corazawaf.(*Rule).doEvaluate</code> sits at 4.10% flat but 75.14% cumulative — it
+is the call that drives all downstream work. That work is regex matching,
+distributed across <code>regexp.(*machine).add</code> (12.90% flat), <code>.step</code> (5.03%),
+<code>.tryBacktrack</code> (4.90%), and <code>regexp/syntax.(*Inst).MatchRunePos</code> (2.57%).
+No single rule or rule group dominates; the load is spread proportionally
+across the CRS ruleset.</p>
+<p><strong>No Barbacana-specific application function exceeds 5% of flat CPU.</strong>
+The entire Caddy/Barbacana proxy stack — connection handling, routing,
+middleware, instrumented response writing — appears at 0.00–0.06% flat while
+accounting for 84–88% cumulative, meaning it orchestrates work but does none
+of its own. The proxy layer adds no measurable overhead beyond CRS rule
+evaluation.</p>
+<p>For the full CPU profile breakdown, see the
+<a href="../../../../assets/v060-profile_analysis.txt">detailed profile analysis</a>.
+To inspect the profile yourself, download the <a href="../../../../assets/v060-cpu_250.pprof">raw pprof file</a>
+and run <code>go tool pprof v060-cpu_250.pprof</code>.</p>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<p><strong>Two machine types tested, both Google Cloud.</strong> Results may differ on other
+cloud providers, bare-metal servers, or ARM instances. The per-vCPU finding
+is consistent across both tested types but has not been validated more broadly.</p>
+<p><strong>Workload mix.</strong> The mix reflects typical web traffic patterns. Workloads with
+unusually high upload ratios, large POST bodies, or heavy API traffic will shift
+the per-vCPU ceiling.</p>
+<p><strong>p99 variation.</strong> Measured on quiet, dedicated instances. On shared or noisy
+infrastructure, expect run-to-run variation, particularly at p99.</p>
+<p><strong>k6 <code>http_req_failed</code> rate.</strong> The ~1.2% figure counts <code>403</code> responses as
+failures. All requests completed with the expected status codes, confirmed by
+the separate k6 check metrics.</p>
+<h2 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h2>
+<p>Barbacana delivers ~125 RPS per vCPU with full CRS protection, p99 latency
+between 35 and 65 ms across the operating range, a stable ~130 MB memory
+footprint, and uninterrupted attack blocking under sustained load. Scale by
+adding vCPUs to a single instance or by adding replicas behind a load balancer
+— both behave linearly. For resource planning and Kubernetes manifests, see the
+<a href="../../../../../operations/sizing/">operations sizing guide</a>.</p>
+<hr />
+<p><em>AI assistance was used to structure and draft this post; the data and final
+text were reviewed by a human.</em></p>
+<p>The benchmark relied on <a href="https://k6.io/">k6</a> to generate load and validate
+blocking rates. k6 is an open-source load testing tool that made it
+straightforward to build a realistic mixed workload and collect per-request
+outcome data. Thanks to the k6 team and contributors.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
           
   <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
 
@@ -1841,10 +2303,10 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link"], "search": "../../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
     
   </body>

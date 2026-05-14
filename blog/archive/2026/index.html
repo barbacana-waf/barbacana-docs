@@ -57,6 +57,8 @@
     
     
     
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "15489db793944dc8a42c626a84db8287"}'></script>
+
   </head>
   
   
@@ -1437,6 +1439,8 @@
       
         
       
+        
+      
     
     
       
@@ -1640,6 +1644,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../operations/sizing/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sizing guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1701,6 +1726,55 @@
       <header class="md-typeset">
         <h1 id="2026">2026<a class="headerlink" href="#2026" title="Permanent link">&para;</a></h1>
       </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://github.com/barbacana-waf.png" alt="Barbacana">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2026-05-14 00:00:00">May 14, 2026</time></li>
+        
+          <li class="md-meta__item">
+            in
+            
+              <a href="../../category/performance/" class="md-meta__link">performance</a></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              7 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="first-performance-benchmark"><a class="toclink" href="../../2026/05/14/first-performance-benchmark/">First performance benchmark</a></h2>
+<p>Barbacana is an HTTP reverse proxy that runs the OWASP CRS v4 ruleset on every request. This blog entry explains how it was benchmarked on two Google Cloud instance types — c3-standard-4 (4 vCPU) and e2-standard-8 (8 vCPU) — across six load tiers from 100 to 1500 requests per second (RPS), using a mixed workload of GET, POST, file uploads, and simulated attack traffic. </p>
+<p>Per-vCPU throughput was consistent across both machines at approximately 125 RPS per vCPU. p99 latency stayed between 35 and 65 ms across the operating range, and memory remained between 119 and 137 MB until saturation. All simulated attack requests were blocked at every load level. </p>
+<p>CPU profiling confirmed the epxected outcome: the dominant cost is CRS rule evaluation; the proxy layer itself adds no measurable overhead. This post describes the methodology, results, and operational implications.</p>
+
+    
+      <nav class="md-post__action">
+        <a href="../../2026/05/14/first-performance-benchmark/">
+          Continue reading
+        </a>
+      </nav>
+    
+  </div>
+</article>
       
         <article class="md-post md-post--excerpt">
   <header class="md-post__header">
