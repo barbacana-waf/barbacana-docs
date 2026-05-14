@@ -134,4 +134,5 @@ nav:
       - Grafana dashboard: operations/dashboard.md
       - Audit log: operations/audit-log.md
       - Tracing: operations/tracing.md
+      - Sizing guide: operations/sizing.md
   - Blog: blog/index.md

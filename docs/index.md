@@ -34,6 +34,8 @@ Every protection is on by default. [Full quickstart →](getting-started/quickst
 
 And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored **93.65%** on [GoTestWAF](https://github.com/wallarm/gotestwaf), an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes **99.75%** of [go-ftw](https://github.com/coreruleset/go-ftw), the official test suite from the OWASP CRS authors.
 
+Sizing your deployment? 1 vCPU and ~130 MB of memory handles ~125 requests per second, with p99 latency under 40 ms for typical traffic. [Full benchmark details →](blog/posts/v060-performance-benchmark.md)
+
 ## Beyond the defaults
 
 The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.
