@@ -976,6 +976,8 @@
       
         
       
+        
+      
     
     
       
@@ -1068,6 +1070,27 @@
   
   <span class="md-ellipsis">
     OpenAPI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rate-limit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Rate limiting
   </span>
   
 
@@ -1874,15 +1897,16 @@
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">inspection</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">        </span><span class="c1"># timeouts, limits</span>
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">multipart</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">         </span><span class="c1"># file upload limits</span>
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">response_headers</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># injected/stripped response headers</span>
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
-</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># ── Per-route configuration ─────────────────────────────</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/api/*&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="c1"># any global.* block can be overridden here</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> content_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">application/json</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">xss-ie-filter</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">rate_limit</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="w"> </span><span class="nv">...</span><span class="w"> </span><span class="p p-Indicator">}</span><span class="w">        </span><span class="c1"># limit overuse per-IP or per-header</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="c1"># ── Per-route configuration ─────────────────────────────</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/api/*&quot;</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="c1"># any global.* block can be overridden here</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> content_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">application/json</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">xss-ie-filter</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 <p><strong>Server-wide settings</strong> decide how Barbacana listens: one host with auto-TLS, multiple hosts, or plain HTTP behind a load balancer. They also control opt-in observability ports. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a>.</p>
 <p><strong>Global defaults</strong> are the baseline every route inherits. Everything here is already secure out of the box — you only add entries when you want to tighten a default (smaller <code>max_body_size</code>) or disable a protection fleet-wide.</p>
@@ -1906,7 +1930,7 @@
 <tr>
 <td><strong>Request filtering</strong></td>
 <td>What the route accepts and how it's inspected</td>
-<td><a href="../accept/">Accept</a>, <a href="../uploads/">Uploads</a>, <a href="../openapi/">OpenAPI</a></td>
+<td><a href="../accept/">Accept</a>, <a href="../uploads/">Uploads</a>, <a href="../openapi/">OpenAPI</a>, <a href="../rate-limit/">Rate limiting</a></td>
 </tr>
 <tr>
 <td><strong>Tuning protections</strong></td>
