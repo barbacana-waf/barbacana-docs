@@ -5,13 +5,13 @@ full OWASP CRS v4 ruleset at paranoia level 1.
 
 ## At a glance
 
-| Metric | Value |
-|---|---|
-| Throughput per vCPU | ~125 RPS |
-| p99 latency (operating range) | 35–65 ms, increases with load |
-| Memory per instance | 120–140 MB (stable across load) |
-| Memory under saturation | up to 360 MB |
-| Validated on | c3-standard-4, e2-standard-8 (Google Cloud) |
+| Metric                        | Value                                       |
+| ----------------------------- | ------------------------------------------- |
+| Throughput per vCPU           | ~125 RPS                                    |
+| p99 latency (operating range) | 35–65 ms, increases with load               |
+| Memory per instance           | 120–140 MB (stable across load)             |
+| Memory under saturation       | up to 360 MB                                |
+| Validated on                  | c3-standard-4, e2-standard-8 (Google Cloud) |
 
 CPU scales linearly with vCPU count. Memory is dominated by CRS rule loading
 and stays flat across the operating range — it only grows when the instance is
@@ -32,14 +32,14 @@ Memory limits act as a safety rail — memory only grows above the baseline unde
 saturation.
 
 | Target RPS | requests.cpu | limits.cpu | requests.memory | limits.memory |
-|---|---|---|---|---|
-| 100 | 800m | 1000m | 150Mi | 300Mi |
-| 250 | 2000m | 2500m | 150Mi | 300Mi |
-| 500 | 4000m | 5000m | 150Mi | 300Mi |
-| 1000 | 8000m | 10000m | 200Mi | 400Mi |
+| ---------- | ------------ | ---------- | --------------- | ------------- |
+| 100        | 800m         | 1000m      | 150Mi           | 300Mi         |
+| 250        | 2000m        | 2500m      | 150Mi           | 300Mi         |
+| 500        | 4000m        | 5000m      | 150Mi           | 300Mi         |
+| 1000       | 8000m        | 10000m     | 200Mi           | 400Mi         |
 
 Beyond ~1000 RPS per instance, prefer adding replicas over scaling a single
-instance vertically. 
+instance vertically.
 
 ## Scaling guidance
 
@@ -50,13 +50,13 @@ instance vertically.
 
 ## Sizing for traffic volume
 
-| Sustained RPS | Single instance (vCPU) | 
-|---|---|
-| up to 125 | 1 vCPU |
-| up to 250 | 2 vCPU |
-| up to 500 | 4 vCPU |
-| up to 1,000 | 8 vCPU |
-| up to 5,000 | use replicas |
+| Sustained RPS | Single instance (vCPU) |
+| ------------- | ---------------------- |
+| up to 125     | 1 vCPU                 |
+| up to 250     | 2 vCPU                 |
+| up to 500     | 4 vCPU                 |
+| up to 1,000   | 8 vCPU                 |
+| up to 5,000   | use replicas           |
 
 
 These are conservative recommendations that leave headroom for traffic spikes.
@@ -65,7 +65,7 @@ Measure your actual traffic patterns before reducing below these values.
 ## Factors that affect the per-vCPU ceiling
 
 - **CRS rule coverage.** More rules or higher paranoia levels increase per-request
-  CPU cost. The figures above use paranoia level 1 (the default).
+  CPU cost. The figures above use the default set of protection rules.
 - **Request payload size.** Larger bodies cost more to inspect. Workloads with
   frequent large POST bodies or multi-megabyte file uploads will lower the
   ceiling.

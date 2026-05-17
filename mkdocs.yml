@@ -98,6 +98,11 @@ nav:
       - Installation: getting-started/installation.md
       - Binary install: getting-started/binary.md
       - Configuration: getting-started/incremental.md
+      - Application presets:
+          - Overview: getting-started/presets.md
+          - WordPress: getting-started/presets-wordpress.md
+          - Nextcloud: getting-started/presets-nextcloud.md
+          - Ghost: getting-started/presets-ghost.md
       - Troubleshooting:
           - getting-started/troubleshooting.md
           - CORS errors: getting-started/troubleshooting-cors.md
@@ -111,6 +116,7 @@ nav:
           - Accept: reference/accept.md
           - Uploads: reference/uploads.md
           - OpenAPI: reference/openapi.md
+          - Rate limiting: reference/rate-limit.md
       - Tuning protections:
           - Disable protections: reference/disable.md
           - Enable protections: reference/enable.md

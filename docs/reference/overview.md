@@ -24,6 +24,7 @@ global:
   inspection: { ... }        # timeouts, limits
   multipart: { ... }         # file upload limits
   response_headers: { ... }  # injected/stripped response headers
+  rate_limit: { ... }        # limit overuse per-IP or per-header
 
 # ── Per-route configuration ─────────────────────────────
 routes:
@@ -45,13 +46,13 @@ routes:
 
 ## In this section
 
-| Group | What it controls | Pages |
-|---|---|---|
-| **Routing** | How requests reach an upstream | [Routes](routes.md), [Rewrites](rewrites.md) |
-| **Request filtering** | What the route accepts and how it's inspected | [Accept](accept.md), [Uploads](uploads.md), [OpenAPI](openapi.md) |
-| **Tuning protections** | Turning off false positives, turning on extra rules, onboarding gradually | [Disable](disable.md), [Enable](enable.md), [Detect-only mode](detect-only.md) |
-| **Response** | What headers go back to the client | [CORS](cors.md), [Security headers](headers.md) |
-| **Catalog & schema** | Every protection name you can reference; every field and its default | [Protection catalog](catalog.md), [Full schema](schema.md) |
+| Group                  | What it controls                                                          | Pages                                                                                             |
+| ---------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| **Routing**            | How requests reach an upstream                                            | [Routes](routes.md), [Rewrites](rewrites.md)                                                      |
+| **Request filtering**  | What the route accepts and how it's inspected                             | [Accept](accept.md), [Uploads](uploads.md), [OpenAPI](openapi.md), [Rate limiting](rate-limit.md) |
+| **Tuning protections** | Turning off false positives, turning on extra rules, onboarding gradually | [Disable](disable.md), [Enable](enable.md), [Detect-only mode](detect-only.md)                    |
+| **Response**           | What headers go back to the client                                        | [CORS](cors.md), [Security headers](headers.md)                                                   |
+| **Catalog & schema**   | Every protection name you can reference; every field and its default      | [Protection catalog](catalog.md), [Full schema](schema.md)                                        |
 
 ## Where to start
 

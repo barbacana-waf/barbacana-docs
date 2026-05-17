@@ -3,12 +3,21 @@
 Barbacana is a single binary with one purpose: run the WAF. Auxiliary modes are flags on the same binary.
 
 ```bash
-docker run --rm -p 8080:8080 \
-  -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest
+barbacana --config /etc/barbacana/waf.yaml
 ```
 
-The container's default ENTRYPOINT runs the server — no subcommand, no `command:` override. The image reads `/etc/barbacana/waf.yaml` by default; mount your config there or pass `--config <path>`.
+The binary reads `/etc/barbacana/waf.yaml` by default — pass `--config <path>` to point at a different file. See [Binary install](../getting-started/binary.md) for download and service setup.
+
+!!! note "Running the CLI from the container"
+    Every command on this page works against the container image too. Replace `barbacana` with `docker run --rm` (add `-p 8080:8080` for the server, drop it for one-shot modes), mount your config, and append the same flags:
+
+    ```bash
+    docker run --rm \
+      -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
+      ghcr.io/barbacana-waf/barbacana:latest --validate
+    ```
+
+    The image's default ENTRYPOINT is the `barbacana` binary, so flags pass through directly. See [Installation](../getting-started/installation.md) for the container quickstart.
 
 ## Synopsis
 
@@ -43,9 +52,7 @@ barbacana [--config <path>] [--validate | --render-config | --catalog <subcomman
 Default behavior. No mode flag.
 
 ```bash
-docker run --rm -p 8080:8080 \
-  -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest
+barbacana --config /etc/barbacana/waf.yaml
 ```
 
 Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3) or `:443` (modes 1 and 2 — see [Hostnames & HTTPS](hostnames.md)). Metrics (`metrics_port`) and health (`health_port`) are **off by default** — set them explicitly to enable. Logs structured JSON to stdout. Reloads gracefully on `SIGHUP`.
@@ -56,14 +63,6 @@ Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3
 {"time":"2026-04-18T09:00:00Z","level":"INFO","msg":"metrics endpoint disabled — set metrics_port to enable /metrics"}
 ```
 
-To point at a non-default config path:
-
-```bash
-docker run --rm -p 8080:8080 \
-  -v $(pwd)/waf.yaml:/cfg/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest --config /cfg/waf.yaml
-```
-
 ---
 
 ## Validate a config
@@ -71,9 +70,7 @@ docker run --rm -p 8080:8080 \
 Check that a config is well-formed without starting the proxy. Use it in CI before deployment.
 
 ```bash
-docker run --rm \
-  -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest --config /etc/barbacana/waf.yaml --validate
+barbacana --config /etc/barbacana/waf.yaml --validate
 ```
 
 Verifies the schema, every protection name, every referenced file (OpenAPI specs), and rule compilation.
@@ -99,9 +96,7 @@ Exit code `0` on success, `1` on any validation error.
 Dump the low-level engine config that Barbacana generates from your YAML. Read-only diagnostic for support and bug reports.
 
 ```bash
-docker run --rm \
-  -v $(pwd)/waf.yaml:/etc/barbacana/waf.yaml:ro \
-  ghcr.io/barbacana-waf/barbacana:latest --config /etc/barbacana/waf.yaml --render-config
+barbacana --config /etc/barbacana/waf.yaml --render-config
 ```
 
 Prints raw Caddy JSON. **Not a user-editable format** and not part of the user-facing API — it may change between versions. The supported way to configure Barbacana is the YAML schema; see the [config schema reference](../reference/schema.md).
@@ -113,13 +108,13 @@ Prints raw Caddy JSON. **Not a user-editable format** and not part of the user-f
 Print the full catalog of protections this binary enforces, in Markdown. Useful for verifying which leaves your installed version ships with — versions can drift from the docs site if you don't upgrade in lockstep.
 
 ```bash
-docker run --rm ghcr.io/barbacana-waf/barbacana:latest --catalog list > catalog.md
+barbacana --catalog list > catalog.md
 ```
 
 Or look up a single leaf's full rationale (what it does, why disable, why enable, CWE, rule IDs):
 
 ```bash
-docker run --rm ghcr.io/barbacana-waf/barbacana:latest --catalog show response-headers-add-csp
+barbacana --catalog show response-headers-add-csp
 ```
 
 ```text
@@ -142,7 +137,7 @@ The names printed by `--catalog list` and `--catalog show` are exactly what you 
 ## Print the version
 
 ```bash
-docker run --rm ghcr.io/barbacana-waf/barbacana:latest --version
+barbacana --version
 ```
 
 ```text

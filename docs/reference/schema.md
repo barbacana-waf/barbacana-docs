@@ -157,6 +157,19 @@ global:
   # ── API contract ──────────────────────────────────────────
   openapi:
     shadow_api_logging: true         # log undeclared paths even when openapi-path-not-in-spec is disabled
+
+  # ── Rate limiting ─────────────────────────────────────────
+  # Off unless this block is present. Replaced wholesale by a route-level block.
+  rate_limit:
+    requests: 100                    # required
+    window: 1s                       # required; parsed duration, e.g. "1s", "30s", "5m"
+    source:
+      type: ip                       # "ip" or "header"
+      key: ""                        # required when type == "header"
+    backend:
+      type: memory                   # only "memory" is supported today
+      max_keys: 100000               # LRU cap on tracked keys
+      ttl: 10m                       # idle-key eviction window
 ```
 
 ### Global field reference
@@ -193,6 +206,14 @@ global:
 | `global.response_headers.inject` | map[string]string | `{}` | keys must be canonical `response-headers-add-*` names from the [protection catalog](catalog.md) |
 | `global.response_headers.strip_extra` | []string | `[]` | valid HTTP header names |
 | `global.openapi.shadow_api_logging` | bool | `true` | — |
+| `global.rate_limit` | object | none (off) | when present, `requests`, `window`, and `source.type` are required — see [Rate limiting](rate-limit.md) |
+| `global.rate_limit.requests` | int | — | `>= 1` |
+| `global.rate_limit.window` | duration | — | `>= 1s`; e.g. `1s`, `30s`, `5m` |
+| `global.rate_limit.source.type` | enum | — | one of `ip`, `header` |
+| `global.rate_limit.source.key` | string | — | required when `source.type` is `header` |
+| `global.rate_limit.backend.type` | enum | `memory` | currently must be `memory` |
+| `global.rate_limit.backend.max_keys` | int | `100000` | `>= 1` |
+| `global.rate_limit.backend.ttl` | duration | `10m` | `>= 1s` |
 
 **Byte sizes** accept suffixes: `B`, `KB`, `MB`, `GB` (powers of 1024). Bare integers are bytes.
 **Durations** use Go's `time.ParseDuration` syntax: `500ms`, `10s`, `2m`, etc.
@@ -247,6 +268,13 @@ routes:
     error_response:                  # optional; custom body for blocked requests
       body: |
         {"error":"blocked","request_id":"{{.RequestID}}","ts":"{{.Timestamp}}"}
+
+    rate_limit:                      # optional; replaces global.rate_limit entirely (no merge)
+      requests: 20
+      window: 1s
+      source:
+        type: header
+        key: X-Api-Key
 ```
 
 ### Route field reference
@@ -281,6 +309,7 @@ routes:
 | `routes[].cors.allow_credentials` | bool | `false` | if `true`, `allow_origins` must not contain `*` |
 | `routes[].cors.max_age` | int (seconds) | `600` | `>= 0`, `<= 86400` |
 | `routes[].error_response.body` | string | none (default JSON body) | Go `text/template`; only `{{.RequestID}}` and `{{.Timestamp}}` are exposed |
+| `routes[].rate_limit` | object | inherit from `global.rate_limit` (or off) | when present, **replaces** the global block — no field-level merging; see [Rate limiting](rate-limit.md) |
 
 ## The `disable` and `enable` lists
 

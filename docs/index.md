@@ -53,7 +53,7 @@ The defaults cover the happy path. When you need to tune a noisy route, terminat
 routes:
   - upstream: http://app:8000
     enable:
-      - sql-injection-comments-in-json  
+      - sql-injection-comments-in-json
 ```
 </div>
 </div>
@@ -176,7 +176,7 @@ routes:
 <div class="feature-text" markdown>
 :material-upload:{ .feature-icon }
 
-### Safe file upload endpoints
+### Protect file upload endpoints
 
 Constrain upload routes by file count, size, and MIME type. Barbacana inspects multipart requests and rejects oversized or unexpected file types before they reach your server.
 </div>
@@ -192,6 +192,29 @@ routes:
       file_limit: 20
       file_size: 2MB
       allowed_types: [image/png, image/jpeg, application/pdf]
+```
+</div>
+</div>
+
+<div class="feature-row" markdown>
+<div class="feature-text" markdown>
+:material-speedometer:{ .feature-icon }
+
+### Stop abusers, not real users
+
+Limit requests per configurable window per client IP or header you select. Stop credential brute force on `/login`, scrapers, and noisy clients before they reach your server. Excess requests get a [429 with `Retry-After`](reference/rate-limit.md); legitimate users never notice.
+</div>
+<div class="feature-code" markdown>
+```yaml
+routes:
+  - match:
+      paths: [/login]
+    upstream: http://app:8000
+    rate_limit:
+      requests: 2
+      window: 1s
+      source:
+        type: ip
 ```
 </div>
 </div>
