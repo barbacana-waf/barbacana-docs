@@ -6,7 +6,7 @@ Barbacana is configured with a single YAML file. You never write Caddy config �
 
 ```yaml
 version: v1alpha1              # schema version, required
-host: "api.example.com"        # Mode 1: single host, auto-TLS
+host: "api.example.com"        # Mode 1: single host or list of hosts, auto-TLS
 port: 8080                     # Mode 3: behind LB (mutually exclusive with host)
 data_dir: "/data/barbacana"    # optional, default "/data/barbacana"
 metrics_port: 9090             # optional, default 0 (disabled)
@@ -30,7 +30,7 @@ routes:
 | Field | Required | Default | Validation |
 |---|---|---|---|
 | `version` | yes | — | must equal `v1alpha1` |
-| `host` | no | — | valid hostname; mutually exclusive with `port` and with any route-level `match.hosts` |
+| `host` | no | — | string or list of strings; each a valid hostname; list must be non-empty with no duplicates; mutually exclusive with `port` and with any route-level `match.hosts` |
 | `port` | no | `8080` (only when no `host` and no route has `match.hosts`) | integer 1–65535; mutually exclusive with `host` and with any route-level `match.hosts` |
 | `data_dir` | no | `/data/barbacana` | directory must be writable; stores TLS certificates and ACME state — mount as a persistent volume in containers |
 | `metrics_port` | no | `0` (disabled) | integer 0–65535; `0` disables the listener; when non-zero, must differ from `port` and `health_port` |
@@ -66,6 +66,17 @@ routes:
   - upstream: http://api:8000
 ```
 
+`host` also accepts a list of hostnames. Every route then serves all of them identically — this is not per-hostname routing, just multiple aliases for the same routes. Barbacana provisions one certificate per hostname; each hostname's DNS must resolve to this instance before startup.
+
+```yaml
+version: v1alpha1
+host: [example.com, example.io]
+routes:
+  - upstream: http://api:8000
+```
+
+See [Hostnames & HTTPS](../operations/hostnames.md#choosing-between-a-host-list-and-per-route-matchhosts) for guidance on choosing a `host` list over per-route `match.hosts` (Mode 2).
+
 **Mode 2 — Multi-host, auto-TLS.** Omit `host`. Every route supplies `match.hosts`. Barbacana provisions one certificate per hostname. If any route has `match.hosts`, **every** route must have `match.hosts`. `port` must not be set.
 
 ```yaml
@@ -95,11 +106,21 @@ Every mode constraint is a hard error, not a warning. Messages name the specific
 ```
 waf.yaml:2: "host" and "port" are mutually exclusive — use "host" for auto-TLS or "port" for plain HTTP behind a load balancer
 
-waf.yaml:3: "host" and "match.hosts" on route "api" are mutually exclusive — use top-level "host" for a single hostname or "match.hosts" per route for multiple hostnames
+waf.yaml:3: "host" and "match.hosts" on route "api" are mutually exclusive — "host" takes one or more hostnames shared by all routes, while "match.hosts" splits routes across hostnames; use one or the other
 
 waf.yaml:5: "port" and "match.hosts" on route "api" are mutually exclusive — "match.hosts" requires auto-TLS; remove "port" or remove "match.hosts"
 
-waf.yaml:14: route "uploads" has no match.hosts but route "api" does — add match.hosts to route "uploads", repeating the host for multiple routes is fine, or add "host" at the top level if all routes share the same host
+waf.yaml:14: route "uploads" has no match.hosts but route "api" does — add match.hosts to route "uploads", repeating the host for multiple routes is fine, or add "host" at the top level if all routes share the same hostname(s)
+```
+
+A `host` list is validated too — an empty list, a duplicate entry, or an invalid hostname is a hard error:
+
+```
+waf.yaml:2: host: must contain at least one hostname — remove "host" entirely (or use "port") for plain HTTP
+
+waf.yaml:2: host: "example.com" is listed more than once
+
+waf.yaml:2: host: "not a hostname" is not a valid hostname
 ```
 
 ## Global section

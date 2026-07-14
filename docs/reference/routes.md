@@ -22,8 +22,8 @@ routes:
     upstream: http://api:8000
 ```
 
-!!! info "Single hostname? Use top-level `host:`"
-    For a deployment with one public hostname, the simpler form is a top-level `host: api.example.com` and routes without `match.hosts`. See [Hostnames & HTTPS](../operations/hostnames.md) for the three modes.
+!!! info "One or more equivalent hostnames? Use top-level `host:`"
+    If every hostname should serve the exact same routes, the simpler form is a top-level `host: api.example.com` — or `host: [example.com, example.io]` for several aliases — and routes without `match.hosts`. Use per-route `match.hosts` when different hostnames need different routing. See [Hostnames & HTTPS](../operations/hostnames.md) for the three modes.
 
 ## Match by path
 
