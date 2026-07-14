@@ -1728,6 +1728,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#choosing-between-a-host-list-and-per-route-matchhosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing between a host list and per-route match.hosts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites-for-auto-tls" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites for auto-TLS
@@ -1957,6 +1966,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#choosing-between-a-host-list-and-per-route-matchhosts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Choosing between a host list and per-route match.hosts
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#prerequisites-for-auto-tls" class="md-nav__link">
     <span class="md-ellipsis">
       Prerequisites for auto-TLS
@@ -2005,8 +2023,8 @@
 <tbody>
 <tr>
 <td><strong>Single-host TLS</strong></td>
-<td>Top-level <code>host: api.example.com</code></td>
-<td>Auto-TLS for one hostname on <code>:443</code>, HTTP→HTTPS redirect on <code>:80</code></td>
+<td>Top-level <code>host: api.example.com</code> (or a list of hostnames)</td>
+<td>Auto-TLS for one or more hostnames — all serving the same routes — on <code>:443</code>, HTTP→HTTPS redirect on <code>:80</code></td>
 </tr>
 <tr>
 <td><strong>Multi-host TLS</strong></td>
@@ -2026,20 +2044,34 @@
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
 </span></code></pre></div>
-<div class="language-yaml highlight"><span class="filename">Mode 2 — multiple hosts</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">api.example.com</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">www.example.com</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://web:8000</span>
+<p><code>host</code> also accepts a list, when several hostnames are aliases for the exact same routes:</p>
+<div class="language-yaml highlight"><span class="filename">Mode 1 — multiple aliases, same routes</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">example.com</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">example.io</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8080</span>
 </span></code></pre></div>
-<div class="language-yaml highlight"><span class="filename">Mode 3 — behind a load balancer</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+<p>Every route matches requests to any listed hostname identically — there's no per-hostname routing in this form. Barbacana provisions one Let's Encrypt certificate per hostname, so each hostname's DNS must resolve to this instance before startup or certificate issuance fails for that hostname. An empty list, duplicate entries, or an invalid hostname are config errors at startup.</p>
+<div class="language-yaml highlight"><span class="filename">Mode 2 — multiple hosts</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">routes</span><span class="p">:</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">api.example.com</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt"> hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">www.example.com</span><span class="p p-Indicator">]</span><span class="w"> </span><span class="p p-Indicator">}</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://web:8000</span>
+</span></code></pre></div>
+<div class="language-yaml highlight"><span class="filename">Mode 3 — behind a load balancer</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
 </span></code></pre></div>
 <p>In modes 1 and 2 Barbacana provisions certificates from Let's Encrypt automatically via ACME and renews them before expiry. In mode 3 the LB handles TLS and Barbacana speaks plain HTTP; configure the LB to send the original client IP via <code>X-Forwarded-For</code> so the <a href="../audit-log/">audit log</a> records real source IPs.</p>
+<h2 id="choosing-between-a-host-list-and-per-route-matchhosts">Choosing between a host list and per-route match.hosts<a class="headerlink" href="#choosing-between-a-host-list-and-per-route-matchhosts" title="Permanent link">&para;</a></h2>
+<p>Both give you more than one public hostname with auto-TLS. The difference is whether the hostnames route to the same place:</p>
+<ul>
+<li><strong>Top-level <code>host</code> list (Mode 1)</strong> — every hostname is an alias for the same set of routes. <code>example.com</code> and <code>example.io</code> hit the identical routing table. Use this when the hostnames are interchangeable, e.g. a primary domain and a regional alias.</li>
+<li><strong>Per-route <code>match.hosts</code> (Mode 2)</strong> — different hostnames go to different routes: <code>api.example.com</code> to the API backend, <code>admin.example.com</code> to the admin backend. Use this when hostnames need distinct routing.</li>
+</ul>
 <h2 id="prerequisites-for-auto-tls">Prerequisites for auto-TLS<a class="headerlink" href="#prerequisites-for-auto-tls" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Each hostname resolves publicly to the Barbacana host.</li>

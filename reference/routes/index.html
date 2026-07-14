@@ -2074,8 +2074,8 @@
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
 </span></code></pre></div>
 <div class="admonition info">
-<p class="admonition-title">Single hostname? Use top-level <code>host:</code></p>
-<p>For a deployment with one public hostname, the simpler form is a top-level <code>host: api.example.com</code> and routes without <code>match.hosts</code>. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a> for the three modes.</p>
+<p class="admonition-title">One or more equivalent hostnames? Use top-level <code>host:</code></p>
+<p>If every hostname should serve the exact same routes, the simpler form is a top-level <code>host: api.example.com</code> — or <code>host: [example.com, example.io]</code> for several aliases — and routes without <code>match.hosts</code>. Use per-route <code>match.hosts</code> when different hostnames need different routing. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a> for the three modes.</p>
 </div>
 <h2 id="match-by-path">Match by path<a class="headerlink" href="#match-by-path" title="Permanent link">&para;</a></h2>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">routes</span><span class="p">:</span>
