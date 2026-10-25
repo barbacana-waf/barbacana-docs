@@ -98,6 +98,7 @@ nav:
       - Installation: getting-started/installation.md
       - Binary install: getting-started/binary.md
       - Configuration: getting-started/incremental.md
+      - AI coding agents: getting-started/ai-agents.md
       - Application presets:
           - Overview: getting-started/presets.md
           - WordPress: getting-started/presets-wordpress.md

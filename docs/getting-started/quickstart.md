@@ -7,7 +7,7 @@ Protect an app in three lines of YAML.
 Save the following as `waf.yaml` in your working directory:
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://your-app:8000
@@ -55,10 +55,10 @@ Barbacana ships as a single container image. Pick a runtime:
 
 ```bash
 curl http://localhost:8080/                     # forwarded to your app
-curl "http://localhost:8080/?q=1' OR 1=1--"     # blocked: 403
+curl "http://localhost:8080/?q=1'%20OR%201=1--" # blocked: 403
 ```
 
-The second request appears in the [audit log](../operations/audit-log.md) with `action: blocked`.
+The second request appears in the [audit log](../operations/audit-log.md) with `disposition: Blocked`.
 
 ## Next
 
@@ -66,3 +66,4 @@ The second request appears in the [audit log](../operations/audit-log.md) with `
 - [Routes](../reference/routes.md) — match by host, path, or both
 - [Detect-only mode](../reference/detect-only.md) — log without blocking while you tune
 - [Disable protections](../reference/disable.md) — handle false positives by name
+- [AI coding agents](ai-agents.md) — let your coding agent install and tune Barbacana

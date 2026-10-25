@@ -5,7 +5,7 @@
 Nextcloud traffic includes standard web requests, WebDAV file sync, and CalDAV and CardDAV for calendar and contacts. The WebDAV routes require additional HTTP methods beyond the default set and accept XML request bodies.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 host: example.com
 data_dir: /data/barbacana
 
@@ -27,6 +27,7 @@ routes:
     accept:
       methods: [GET, POST, PUT, DELETE, HEAD, OPTIONS, PROPFIND, MKCOL, COPY, MOVE, LOCK, UNLOCK, PROPPATCH, REPORT]
       max_body_size: 1GB
+    disable: [resource-limits-max-inspection-size]
     mode: detect_only
 
   - id: nc-ocs
@@ -44,6 +45,8 @@ routes:
 ## Tuning notes
 
 The WebDAV route is set to detect-only because CalDAV and CardDAV payloads contain free-text fields — DESCRIPTION and SUMMARY in iCalendar, NOTE and ADR in vCard — whose content can match SQL injection and XSS rules. After collecting audit events from real sync traffic, disable specific leaves on the `nc-webdav` route.
+
+`resource-limits-max-inspection-size` is disabled because desktop and mobile clients upload files with a raw `PUT`, not as multipart. A raw body larger than `max_inspect_size` (128KB by default) would otherwise be rejected with `413`. With the leaf disabled, the first 128KB of each upload is inspected and the rest is forwarded without inspection. Browser uploads through the web interface are multipart and are not affected, because the contents of uploaded files do not count against that limit.
 
 The `max_body_size` cap of 1 GB is the maximum the schema allows. Nextcloud supports files larger than 1 GB — uploads beyond that limit will be blocked. For deployments that sync large files, consider terminating those requests at a load balancer that proxies the WebDAV path directly to Nextcloud, bypassing Barbacana for file content only.
 

@@ -31,10 +31,10 @@ On startup, look for error-level entries. A malformed `waf.yaml` — missing req
 
 ## Step 3 — Verify traffic reaches the WAF
 
-If Barbacana starts but you see **no log entries at all when you send requests**, traffic is not reaching the WAF. Bypass DNS and any intermediaries by hitting the machine's IP directly:
+Barbacana writes an audit entry only for requests that match a protection, so a normal request leaves no log line. To check that traffic reaches the WAF, bypass DNS and any intermediaries and send a request that Barbacana blocks to the machine's IP directly:
 
 ```bash
-curl -v http://<barbacana-ip>
+curl -v "http://<barbacana-ip>/?q=1'%20OR%201=1--"
 ```
 
 Replace `<barbacana-ip>` with the IP address and port of the machine running Barbacana. If this request shows up in the logs, the WAF is reachable and the problem is upstream of it. If not, common causes include:
@@ -68,7 +68,7 @@ If you are not using auto-TLS (e.g. TLS terminates at a load balancer in front o
 
 ## Step 5 — Identify what is being blocked
 
-Now that you know traffic reaches Barbacana and the upstream, enable [mode: detect_only](../reference/detect-only.md) so Barbacana inspects but never blocks:
+Now that you know traffic reaches Barbacana and the upstream, enable [mode: detect_only](../reference/detect-only.md) so Barbacana inspects requests and logs what it finds instead of blocking:
 
 ```yaml
 global:
@@ -83,14 +83,13 @@ Exercise the application thoroughly: navigate every page, submit forms, upload f
 
 ### Read the audit log
 
-Barbacana writes one JSON entry per inspected request to stdout. Look for entries with `"action": "detected"` — these are the requests that *would* be blocked in normal mode:
+Barbacana writes one JSON entry to stdout for each request that matches a protection. In detect-only mode these are the requests that *would* be blocked in blocking mode. The names to look at are in `barbacana.matched_protections`:
 
 ```json
 {
-  "action": "detected",
-  "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"],
-  "path": "/search",
-  "method": "POST"
+  "disposition": "Allowed",
+  "http_request": {"http_method": "POST", "url": {"path": "/search"}},
+  "barbacana": {"matched_protections": ["sql-injection-union-select"]}
 }
 ```
 
@@ -100,8 +99,7 @@ Follow the **least-privilege principle**: disable the most specific leaf, not th
 
 | Log shows | Add to `disable` | Why |
 |---|---|---|
-| `["sql", "sql-injection", "sql-injection-union-select"]` | `sql-injection-union-select` | Only disables UNION-based detection; all other SQL-injection rules stay active. |
-| `["sql", "sql-injection"]` | *(prefer the most specific leaf if you can identify it)* | Disabling `sql-injection` removes every SQLi technique on the route. Disabling `sql` removes data-leakage detection too. |
+| `["sql-injection-union-select"]` | `sql-injection-union-select` | Only disables UNION-based detection; all other SQL-injection rules stay active. Disabling `sql-injection` would remove every SQLi technique on the route, and `sql` would remove data-leakage detection too. |
 
 See [Tuning protections](../reference/disable.md) and the [protection catalog](../reference/catalog.md) for the full list of names.
 
@@ -128,9 +126,9 @@ Once the false positives are resolved, remove `mode: detect_only` (blocking is t
 
 ---
 
-## Step 6 — Fix 403s from request validation
+## Step 6 — Fix rejections from request validation
 
-If a request returns 403 but the audit log entry has **no `matched_protections`**, the block is likely coming from request validation rather than a protection rule. Check the following configuration areas:
+If a request is rejected with `400`, `405`, `413`, `414`, `415` or `431` and the audit log entry names a `request-validation-*` protection, the block comes from request validation rather than a detection rule. OpenAPI validation uses `404`, `405`, `415` and `422`. Check the following configuration areas:
 
 ### Common causes
 

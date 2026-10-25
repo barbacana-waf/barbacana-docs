@@ -20,7 +20,7 @@ routes:
 - `Content-Type` matches the operation
 - Request body matches the JSON schema
 
-A failing request returns `403` with `action: blocked` and the failure reason in the [audit log](../operations/audit-log.md).
+A failing request is rejected with `404` (unknown path), `405` (method), `415` (content type) or `422` (parameters or body) and the failure reason in the [audit log](../operations/audit-log.md).
 
 ## Strict vs detect-only
 

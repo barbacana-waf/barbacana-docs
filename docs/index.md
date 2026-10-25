@@ -18,7 +18,7 @@ Barbacana is an open-source WAF and API security gateway. It sits between the in
 ## Quickstart
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://your-app:8000
@@ -35,6 +35,14 @@ Every protection is on by default. [Full quickstart →](getting-started/quickst
 And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored **93.65%** on [GoTestWAF](https://github.com/wallarm/gotestwaf), an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes **99.75%** of [go-ftw](https://github.com/coreruleset/go-ftw), the official test suite from the OWASP CRS authors.
 
 Sizing your deployment? 1 vCPU and ~130 MB of memory handles ~125 requests per second, with p99 latency under 40 ms for typical traffic. [Full benchmark details →](blog/posts/v060-performance-benchmark.md)
+
+## Ask the AI to install the WAF
+
+Prefer to let an AI coding agent set it up? Install the Barbacana skills, then ask your agent to put Barbacana in front of your app. [AI coding agents →](getting-started/ai-agents.md)
+
+```bash
+npx skills add barbacana-waf/skills
+```
 
 ## Beyond the defaults
 
@@ -90,7 +98,7 @@ Roll out a new route in observe mode first. Every request is inspected and logge
 ```yaml
 routes:
   - upstream: http://api:8000
-    detect_only: true
+    mode: detect_only
 ```
 </div>
 </div>
@@ -143,7 +151,7 @@ Add a hostname. Barbacana provisions and renews Let's Encrypt certificates autom
 </div>
 <div class="feature-code" markdown>
 ```yaml
-version: v1alpha1
+version: v1beta1
 host: api.example.com
 data_dir: /data/barbacana
 routes:

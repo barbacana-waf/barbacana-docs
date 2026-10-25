@@ -65,7 +65,7 @@ Content-Type: application/json
 
 `Retry-After` is required by [RFC 6585 §4](https://datatracker.ietf.org/doc/html/rfc6585#section-4) for `429` responses. The value (in seconds) matches the configured `window` — by the time the client retries, the oldest slot in the window will have freed up. The example above uses `window: 1s`, so the response carries `Retry-After: 1`.
 
-The block is recorded in the audit log with `protection: rate-limit` and CWE references `CWE-400` (uncontrolled resource consumption) and `CWE-770` (allocation of resources without limits). See [Logs & SIEM](../security/logs.md).
+The block is recorded in the audit log with `rate-limit` in `barbacana.matched_protections` and CWE references `CWE-400` (uncontrolled resource consumption) and `CWE-770` (allocation of resources without limits). See [Logs & SIEM](../security/logs.md).
 
 ## Identifying the client
 
@@ -172,7 +172,7 @@ routes:
 
 ## Detect-only mode
 
-When the route is in `detect_only` mode (or the whole instance via `global.mode: detect_only`), a request that would have been blocked is **forwarded to the upstream** and an audit entry is emitted with `action: detected`. Use this when you need to measure traffic against a candidate rate before turning blocking on. See [Detect-only mode](detect-only.md).
+When the route is in `detect_only` mode (or the whole instance via `global.mode: detect_only`), a request that would have been blocked is **forwarded to the upstream** and an audit entry lists `rate-limit` in `barbacana.matched_protections`. Use this when you need to measure traffic against a candidate rate before turning blocking on. See [Detect-only mode](detect-only.md).
 
 
 ## Examples
@@ -182,7 +182,7 @@ When the route is in `detect_only` mode (or the whole instance via `global.mode:
 Barbacana terminates TLS, so `r.RemoteAddr` is the real client IP. Two login attempts per second per IP — enough for a real user who mistypes, far too few to brute-force a password.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 host: app.example.com
 
 routes:
@@ -200,7 +200,7 @@ routes:
 Barbacana runs behind a reverse proxy. Using `source.type: ip` would key on the load balancer's address (a single bucket for every login attempt from every user), so read the forwarded header instead.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 port: 8080
 
 routes:
@@ -249,7 +249,7 @@ routes:
 A different shape: rate-limit each authenticated tenant regardless of which IP they call from. Useful for an API where you publish per-customer quotas.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 port: 8080
 
 routes:

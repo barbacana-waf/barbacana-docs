@@ -36,7 +36,7 @@ The two lists are not adversarial — they describe one effective set per route.
 
 ## Workflow for a false positive
 
-1. Run the affected route in [`detect_only: true`](detect-only.md) so the request is logged but not blocked.
+1. Run the affected route in [`mode: detect_only`](detect-only.md) so the request is logged but not blocked.
 2. Reproduce the false positive.
 3. Read `matched_protections` from the audit log — those are the names you can put under `disable:`.
 4. Find the leaf in the [WAF Protection Catalog](catalog.md). The **When to toggle** column shows the rationale (and warns when disabling would lose meaningful coverage).
@@ -50,4 +50,4 @@ The two lists are not adversarial — they describe one effective set per route.
 
 - [WAF Protection Catalog](catalog.md) — every leaf, default state, and toggle rationale.
 - [Enabling protections](enable.md) — the opposite list, for opting into off-by-default leaves.
-- `barbacana --catalog show <leaf-name>` — print the rationale for one leaf at the CLI.
+- `barbacana --catalog-leaf <leaf-name>` — print the rationale for one leaf at the CLI.

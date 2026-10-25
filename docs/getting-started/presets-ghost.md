@@ -12,7 +12,7 @@ Ghost routes the admin area and public blog through a single Node.js process. Th
 Member login and signup are rate-limited to slow credential stuffing against subscriber accounts.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 host: example.com
 data_dir: /data/barbacana
 

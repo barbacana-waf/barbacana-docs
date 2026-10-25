@@ -22,7 +22,6 @@ For the exhaustive list with names you can [`disable`](../reference/disable.md),
 Barbacana focuses on application-layer attack detection where it can give high-confidence results. It does **not** do:
 
 - **DDoS protection** — use a CDN or scrubbing service
-- **Rate limiting** — use an API gateway or load balancer
 - **Authentication / identity** — your app or your IdP
 - **Bot detection** — use a dedicated bot-management product
 - **IP reputation / threat intel** — enrich audit logs in your SIEM

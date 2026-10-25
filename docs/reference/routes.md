@@ -5,7 +5,7 @@ A route says: *for requests matching this, forward them to this upstream — and
 ## Minimal — match everything
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://app:8000
@@ -67,7 +67,7 @@ Routes are evaluated **most-specific first**: hosts before no-host, longer paths
 | [`accept`](accept.md) | What content types, methods, and sizes to allow |
 | [`rewrite`](rewrites.md) | How to transform the path before forwarding |
 | [`disable`](disable.md) | Which protections to turn off on this route |
-| [`detect_only`](detect-only.md) | Log instead of block |
+| [`mode`](detect-only.md) | `detect_only` logs instead of blocking |
 | [`openapi`](openapi.md) | Validate against an OpenAPI spec |
 | [`cors`](cors.md) | Enable CORS |
 | `response_headers` | Override [security headers](headers.md) |

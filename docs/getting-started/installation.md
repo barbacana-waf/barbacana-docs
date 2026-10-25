@@ -17,7 +17,7 @@ Smallest viable setup: one config file, one `docker run`. Use this to try Barbac
 Create `waf.yaml` in your working directory:
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://localhost:8000
@@ -44,7 +44,7 @@ Once the basics work, run the upstream alongside Barbacana on a private Docker n
 Reuse the same `waf.yaml`, but point the upstream at the Compose service name:
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://app:8080
@@ -80,7 +80,7 @@ services:
 For a public deployment, let Barbacana terminate TLS via Let's Encrypt. Two changes to the previous step: add `host:` and `data_dir:` to the config, and publish `:80`/`:443` instead of `:8080`.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 host: api.example.com
 data_dir: /data/barbacana
 

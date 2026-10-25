@@ -8,7 +8,7 @@ This section covers deployment, observability, and day-to-day operation of Barba
 
 **Observability is opt-in.** Metrics (`metrics_port`), health endpoints (`health_port`), and distributed tracing (`tracing.enabled`) are all off by default. Each is a one-field change to enable. The off-by-default stance keeps the network surface minimal for deployments that don't need them.
 
-**The audit log is always on.** One structured JSON entry per inspected request, written to stdout, no off switch. Schema: OCSF v1.2.0 by default, ECS 8.x available. Pick it up with any standard log shipper — Fluent Bit, Vector, Filebeat — and no normalization layer is required. See [Audit log](audit-log.md).
+**The audit log is always on.** One structured JSON entry per request that matches a protection, written to stdout, no off switch. Schema: OCSF v1.2.0 by default, ECS 8.x available. Pick it up with any standard log shipper — Fluent Bit, Vector, Filebeat — and no normalization layer is required. See [Audit log](audit-log.md).
 
 **Traces carry context end to end.** When tracing is enabled, Barbacana propagates W3C `traceparent` to your upstream. The same trace ID appears in the audit log entry, the WAF span, and your application's spans — one pivot from alert to trace. See [Distributed tracing](tracing.md).
 

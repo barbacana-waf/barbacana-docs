@@ -19,6 +19,7 @@ This section takes you from zero to a working Barbacana deployment in front of y
 | [Installation](installation.md) | Docker and Docker Compose, including auto-TLS |
 | [Binary install](binary.md) | Download and run the native binary; run as a Linux systemd service |
 | [Configuration](incremental.md) | Building from a single upstream to a full production config, step by step |
+| [AI coding agents](ai-agents.md) | Skills that let an AI coding agent install, configure, tune, and operate Barbacana |
 | [Troubleshooting](troubleshooting.md) | Common problems in the first hour: unexpected blocks, CORS errors, config rejections |
 
 ## Where to start

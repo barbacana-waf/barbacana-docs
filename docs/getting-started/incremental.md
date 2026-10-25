@@ -9,7 +9,7 @@ By the end you'll have the full multi-route deployment from the [project README]
 ## Step 1 — The minimum viable WAF
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://app:8000
@@ -31,7 +31,7 @@ Good for local testing and for deployments where TLS terminates at a load balanc
 A real app has several backends. Add one route per backend, matched by path:
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - id: api
@@ -129,7 +129,7 @@ Undeclared endpoints, wrong parameter types, and invalid bodies are all blocked 
 One of your endpoints accepts search input that looks like a SQL `UNION` to the CRS. The [audit log](../operations/audit-log.md) tells you exactly which leaf is firing:
 
 ```json
-{ "action": "blocked", "matched_protections": ["sql", "sql-injection", "sql-injection-union-select"], "route": "api" }
+{ "disposition": "Blocked", "barbacana": { "matched_protections": ["sql-injection-union-select"] } }
 ```
 
 Turn off just that leaf — only on this route:
@@ -180,7 +180,7 @@ The `multipart` block is only active when `content_types` includes `multipart/fo
 When you're ready for production, add a hostname at the top level:
 
 ```yaml title="waf.yaml" hl_lines="2"
-version: v1alpha1
+version: v1beta1
 host: example.com
 
 routes:
@@ -213,7 +213,7 @@ routes:
     upstream: http://app:8000
 ```
 
-`host: example.com` switches Barbacana into **Mode 1**: HTTPS on `:443`, HTTP on `:80`, automatic HTTP→HTTPS redirect, and a Let's Encrypt certificate provisioned on first request. Certificate renewal is automatic.
+`host: example.com` switches Barbacana into **Mode 1**: HTTPS on `:443`, HTTP on `:80`, automatic HTTP→HTTPS redirect, and a Let's Encrypt certificate provisioned at startup. Certificate renewal is automatic.
 
 !!! warning "Persist `data_dir` in containers"
     ACME state (certificates, keys, account) lives in `/data/barbacana` by default. Mount it as a persistent volume — without it you re-request certificates on every restart and will hit [Let's Encrypt's rate limits](https://letsencrypt.org/docs/rate-limits/).
@@ -233,14 +233,14 @@ global:
   mode: detect_only
 ```
 
-In `detect_only`, Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of what *would* have been blocked. Study the [audit log](../operations/audit-log.md), add targeted `disable` entries, then remove the `global.mode` override (blocking is the default). See [Detect-only mode](../reference/detect-only.md).
+In `detect_only`, Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of what *would* have been blocked, except [oversized chunked bodies](../reference/detect-only.md#exception-oversized-chunked-bodies). Study the [audit log](../operations/audit-log.md), add targeted `disable` entries, then remove the `global.mode` override (blocking is the default). See [Detect-only mode](../reference/detect-only.md).
 
 ### Multi-host
 
 If you serve several hostnames from one Barbacana, omit top-level `host` and give every route its own `match.hosts`:
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 
 routes:
   - id: api

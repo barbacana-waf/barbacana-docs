@@ -70,7 +70,7 @@ sudo mkdir -p /etc/barbacana
 ```
 
 ```yaml title="/etc/barbacana/waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://localhost:8000
@@ -119,10 +119,10 @@ With Barbacana running, open a second terminal and send two requests:
 
 ```bash
 curl http://localhost:8080/                     # forwarded to your app
-curl "http://localhost:8080/?q=1' OR 1=1--"     # blocked: 403
+curl "http://localhost:8080/?q=1'%20OR%201=1--" # blocked: 403
 ```
 
-The second request is blocked and recorded in the [audit log](../operations/audit-log.md) with `action: blocked`.
+The second request is blocked and recorded in the [audit log](../operations/audit-log.md) with `disposition: Blocked`.
 
 ---
 

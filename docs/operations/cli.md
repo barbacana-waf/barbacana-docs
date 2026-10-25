@@ -22,7 +22,7 @@ The binary reads `/etc/barbacana/waf.yaml` by default — pass `--config <path>`
 ## Synopsis
 
 ```text
-barbacana [--config <path>] [--validate | --render-config | --catalog <subcommand> | --version] [-h]
+barbacana [--config <path>] [--validate | --render-config | --catalog | --catalog-leaf <id> | --version] [-h]
 ```
 
 | Flag | Description |
@@ -30,12 +30,12 @@ barbacana [--config <path>] [--validate | --render-config | --catalog <subcomman
 | `--config <path>` | Path to the YAML config. Default: `/etc/barbacana/waf.yaml`. Shared by every mode. |
 | `--validate` | Validate the config and exit. |
 | `--render-config` | Print the compiled low-level config and exit (read-only diagnostic). |
-| `--catalog list` | Print the full protection catalog as Markdown to stdout. |
-| `--catalog show <leaf-name>` | Print one leaf's full rationale (default state, CWE, rule IDs, why-disable, why-enable). |
+| `--catalog` | Print the full protection catalog as Markdown to stdout. |
+| `--catalog-leaf <id>` | Print one leaf's full rationale as Markdown (default state, CWE, rule IDs, why-disable, why-enable). |
 | `--version` | Print version, Go version, and CRS version. |
 | `-h`, `--help` | Show usage. |
 
-`--validate`, `--render-config`, `--catalog`, and `--version` are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.
+`--validate`, `--render-config`, `--catalog`, `--catalog-leaf`, and `--version` are mutually exclusive — pass at most one. Without any of them, Barbacana runs as a server.
 
 ## Exit codes
 
@@ -55,7 +55,7 @@ Default behavior. No mode flag.
 barbacana --config /etc/barbacana/waf.yaml
 ```
 
-Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3) or `:443` (modes 1 and 2 — see [Hostnames & HTTPS](hostnames.md)). Metrics (`metrics_port`) and health (`health_port`) are **off by default** — set them explicitly to enable. Logs structured JSON to stdout. Reloads gracefully on `SIGHUP`.
+Listens on the ports declared in the config. Traffic defaults to `:8080` (mode 3) or `:443` (modes 1 and 2 — see [Hostnames & HTTPS](hostnames.md)). Metrics (`metrics_port`) and health (`health_port`) are **off by default** — set them explicitly to enable. Logs structured JSON to stdout. Reloads gracefully on `SIGHUP`: route, protection, limit and mode changes take effect, and if the new config is invalid or fails to start, the running config keeps serving. `health_port`, `metrics_port`, `tracing` and `audit_log` are only read at startup; changing them needs a restart.
 
 ```text
 {"time":"2026-04-18T09:00:00Z","level":"INFO","msg":"barbacana started","port":8080,"crs_version":"4.7.0"}
@@ -108,29 +108,34 @@ Prints raw Caddy JSON. **Not a user-editable format** and not part of the user-f
 Print the full catalog of protections this binary enforces, in Markdown. Useful for verifying which leaves your installed version ships with — versions can drift from the docs site if you don't upgrade in lockstep.
 
 ```bash
-barbacana --catalog list > catalog.md
+barbacana --catalog > catalog.md
 ```
 
 Or look up a single leaf's full rationale (what it does, why disable, why enable, CWE, rule IDs):
 
 ```bash
-barbacana --catalog show response-headers-add-csp
+barbacana --catalog-leaf sql-injection-union-select
 ```
 
 ```text
-response-headers-add-csp  (default: off)
-CWE: CWE-79, CWE-1021
-Rule IDs: native
+# sql-injection-union-select
 
-What it does: Inject Content-Security-Policy header using the value from
-route.csp.policy. Primary mitigation against XSS that bypasses output encoding.
+Family: `sql` › `sql-injection`
 
-Why enable: Off by default because no CSP value strict enough to matter works
-across apps without per-app tuning. Enable in conjunction with a route-level
-csp.policy config field. Without csp.policy set, enabling this leaf is a no-op.
+- Default: `on`
+- CWE: CWE-89
+- Rule IDs: 942270, 942361
+
+## What it does
+
+Detects UNION SELECT and ALTER TABLE probe patterns.
+
+## Why disable
+
+Disable if input legitimately contains UNION/SELECT keywords — for example, a SQL-tutorial site.
 ```
 
-The names printed by `--catalog list` and `--catalog show` are exactly what you put under `disable:` / `enable:` in your config and what appears in `matched_protections` in the [audit log](audit-log.md).
+The names printed by `--catalog` and `--catalog-leaf` are exactly what you put under `disable:` / `enable:` in your config and what appears in `matched_protections` in the [audit log](audit-log.md).
 
 ---
 

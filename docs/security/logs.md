@@ -1,12 +1,12 @@
 # Logs & SIEM
 
-Barbacana writes structured JSON audit entries to stdout — one entry per inspected request. Pick them up with any standard log shipper and feed them to your Security Information and Event Management (SIEM) or detection and response (D&R) platform.
+Barbacana writes structured JSON audit entries to stdout — one entry for each request that matches a protection. Pick them up with any standard log shipper and feed them to your Security Information and Event Management (SIEM) or detection and response (D&R) platform.
 
 For the field reference and full document examples, see [audit log](../operations/audit-log.md).
 
 ## Log shape
 
-- **Format**: JSON, one entry per line, one entry per inspected request — never one per matched protection
+- **Format**: JSON, one entry per line, one entry per request that matches a protection — never one per matched protection
 - **Schema**: OCSF v1.2.0 by default, switchable to ECS 8.x via `audit_log.format`
 - **Destination**: stdout (Barbacana writes nothing to disk)
 - **Compatible shippers**: Fluent Bit, Vector, Filebeat, Promtail, Fluentd, the Datadog/Splunk forwarders — no plugin required
@@ -26,15 +26,16 @@ The output is already in the schema your platform expects, so no normalization l
 
 ## Severity guidance
 
-Barbacana does not write a severity field — derive it in your SIEM from the disposition and the anomaly score. For OCSF the score lives at `risk_score`; for ECS at `risk.static_score`.
+OCSF entries carry a coarse `severity_id` (`4` when blocked, `1` otherwise); ECS entries carry none. Derive a finer severity in your SIEM from the disposition and the anomaly score. For OCSF the score lives at `risk_score`; for ECS at `risk.static_score`.
 
 | Condition (OCSF) | Equivalent (ECS) | Suggested severity |
 |---|---|---|
 | `disposition_id == 2` and `risk_score >= 25` | `event.action == "block"` and `risk.static_score >= 25` | **Critical** |
 | `disposition_id == 2` | `event.action == "block"` | **High** |
-| disposition `Detected` and `risk_score >= 15` | `event.action == "detect"` and `risk.static_score >= 15` | **Medium** |
-| disposition `Detected` | `event.action == "detect"` | **Low** |
-| `disposition_id == 1` (allowed) | `event.action == "allow"` | **Info** (most platforms drop these by default) |
+| `disposition_id == 1` and `risk_score >= 15` | `event.action == "allow"` and `risk.static_score >= 15` | **Medium** |
+| `disposition_id == 1` | `event.action == "allow"` | **Low** |
+
+An entry with `disposition_id == 1` (`event.action == "allow"`) is a request that matched protections but was forwarded: the route is in [detect-only mode](../reference/detect-only.md), or the matches stayed below the blocking threshold. Requests that match nothing are not logged.
 
 ## Trace-aware correlation
 

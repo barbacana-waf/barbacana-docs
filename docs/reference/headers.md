@@ -44,12 +44,10 @@ The five marked **on** are emitted out of the box. The six marked *off* are opt-
 
 Each default-off header shares the same property: any value strict enough to protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.
 
-- **CSP** — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a route-level `csp.policy` value before enabling.
+- **CSP** — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a `response_headers.inject` value tuned for your app before enabling.
 - **COOP / COEP / CORP** — strict cross-origin isolation breaks OAuth popups, cross-origin embedding, `window.opener` integrations, and any cross-origin asset that hasn't opted in via CORP/CORS.
 - **Permissions-Policy** — any policy strict enough to matter blocks legitimate features (camera, microphone, geolocation, USB, payment).
 - **Cache-Control** — cache policy is route-specific. A static asset, a personalized page, and a sensitive API need three different policies; inject from your app or CDN, not the WAF.
-
-If you'd rather observe what your upstream is sending without modifying it, the catalog's response-inspection family flags missing or misconfigured headers without injecting.
 
 ## Headers stripped
 

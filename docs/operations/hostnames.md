@@ -9,7 +9,7 @@ Barbacana picks one of three configurations based on what you put in the config 
 | **Behind a load balancer** | Top-level `port: 8080` | Plain HTTP only; the LB terminates TLS |
 
 ```yaml title="Mode 1 — single host"
-version: v1alpha1
+version: v1beta1
 host: api.example.com
 data_dir: /data/barbacana
 routes:
@@ -19,7 +19,7 @@ routes:
 `host` also accepts a list, when several hostnames are aliases for the exact same routes:
 
 ```yaml title="Mode 1 — multiple aliases, same routes"
-version: v1alpha1
+version: v1beta1
 host: [example.com, example.io]
 data_dir: /data/barbacana
 routes:
@@ -29,7 +29,7 @@ routes:
 Every route matches requests to any listed hostname identically — there's no per-hostname routing in this form. Barbacana provisions one Let's Encrypt certificate per hostname, so each hostname's DNS must resolve to this instance before startup or certificate issuance fails for that hostname. An empty list, duplicate entries, or an invalid hostname are config errors at startup.
 
 ```yaml title="Mode 2 — multiple hosts"
-version: v1alpha1
+version: v1beta1
 data_dir: /data/barbacana
 routes:
   - match: { hosts: [api.example.com] }
@@ -39,7 +39,7 @@ routes:
 ```
 
 ```yaml title="Mode 3 — behind a load balancer"
-version: v1alpha1
+version: v1beta1
 port: 8080
 routes:
   - upstream: http://api:8000

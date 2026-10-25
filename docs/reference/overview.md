@@ -7,7 +7,7 @@ This section provides the complete field-by-field configuration reference. If yo
 Barbacana is configured with a single YAML file. The schema has three levels: server-wide settings at the top, a `global` block of defaults for every route, and a `routes` list where each route can override those defaults.
 
 ```yaml title="waf.yaml"
-version: v1alpha1            # required, always v1alpha1
+version: v1beta1             # required, always v1beta1
 
 # ── Server-wide ─────────────────────────────────────────
 host: api.example.com        # or port: 8080 — see Hostnames & HTTPS
@@ -33,7 +33,7 @@ routes:
     upstream: http://app:8000
     # any global.* block can be overridden here
     accept: { content_types: [application/json] }
-    disable: [xss-ie-filter]
+    disable: [sql-injection-union-select]
 ```
 
 **Server-wide settings** decide how Barbacana listens: one host with auto-TLS, multiple hosts, or plain HTTP behind a load balancer. They also control opt-in observability ports. See [Hostnames & HTTPS](../operations/hostnames.md).

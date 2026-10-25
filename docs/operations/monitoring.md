@@ -8,7 +8,7 @@ Barbacana exposes two HTTP endpoints for liveness and readiness checks.
 ## Enabling
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 port: 8080
 health_port: 8081    # /healthz, /readyz
 

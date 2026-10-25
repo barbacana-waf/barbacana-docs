@@ -18,7 +18,7 @@ A trace shows where time is spent in a request. With Barbacana in front of your 
 Two pieces are required: a `tracing:` block in `waf.yaml`, and a reachable OTLP collector.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 tracing:
   enabled: true
@@ -127,4 +127,4 @@ There is no in-process knob to switch sampler or ratio today. For high-volume in
 
 ## Disabling
 
-Remove the `tracing:` block, or set `enabled: false`, and reload. The exporter is drained synchronously, the TracerProvider is replaced with the no-op, and no further OTLP traffic leaves the process.
+Remove the `tracing:` block, or set `enabled: false`, and restart. Tracing is configured once at startup, so a reload logs a warning and keeps the current exporter. The exporter is drained synchronously, the TracerProvider is replaced with the no-op, and no further OTLP traffic leaves the process.

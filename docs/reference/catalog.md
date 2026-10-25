@@ -22,6 +22,11 @@ Both `disable:` and `enable:` accept any level. **More specific wins** — a lea
 
 The **Default** column is the out-of-the-box state. `on` leaves run on every request unless you disable them; `off` leaves are opt-in via `enable:`. The **When to toggle** column gives the per-leaf rationale: for `on` leaves it's "why disable" (legitimate inputs that would FP), and for `off` leaves it's "why enable" (the extra coverage you opt into).
 
+A few leaves start their description with a label:
+
+- **Partially enforced** — the protection works, but not fully as its name says. Usually it applies to every route through a server setting, so disabling the leaf has no effect; change the setting named in the description instead.
+- **Not enforced yet** — the protection is listed but not implemented. It has no effect, and disabling it changes nothing.
+
 Off-by-default leaves fall into two groups:
 
 - **Aggressive variants** of an on-by-default detector (e.g. `sql-injection-always-true`, `command-injection-english-words`) — they catch more attacks but produce false positives on natural-language input.
@@ -114,6 +119,18 @@ Server-side PHP code-injection patterns — open tags, function-name calls, stre
 | `php-injection-suspicious-functions-aggressive` | off | CWE-94 | 933151, 933152, 933153, 933161 | Medium-risk and low-value PHP function-name patterns (base64_decode, gzinflate, str_rot13, file-system helpers, low-value identifiers) in inputs. Aggressive variant of php-injection-dangerous-functions. | Enable in conjunction with php-injection-dangerous-functions if your app has no PHP backend and you want broader coverage. FP rate higher because function names overlap common English words; low-value patterns folded into the same aggressive variant. |
 | `php-injection-serialized-objects` | on | CWE-502 | 933170 | Detects PHP-serialized object literals (O:5:"Class":3:{...}) in request inputs — the trigger pattern for unserialize-based RCE chains (PHPGGC). | Disable if your app legitimately accepts serialized PHP objects as input — for example, a debugger interface. |
 | `php-injection-indirect-function-calls` | on | CWE-94 | 933180, 933210, 933211 | Catches indirect-call syntax $foo($bar) and variable-named function references — used in obfuscated PHP RCE payloads to evade static-name detectors. | Disable only if your app deliberately exposes PHP variable-function call syntax as data. |
+
+### php-php2shell
+
+Request-vector blocks for the PHP2Shell unauthenticated RCE disclosure. A match means the request has the attack's shape, not that exploitation occurred — patching PHP is the fix, these only remove the entry point at the edge.
+
+**L2-level disable:** *Safe to disable once every PHP behind this route is patched, or when no PHP is involved and the multipart caps get in the way of a legitimate form.*
+
+| ID | Default | CWE | Rule IDs | What it does | When to toggle |
+|---|---|---|---|---|---|
+| `php-php2shell-session-upload-progress` | on | CWE-94 | 211001 | Blocks POST requests carrying PHP's PHP_SESSION_UPLOAD_PROGRESS session-upload-progress marker field — the documented request vector for CVE-2026-109619 ("PHP2Shell"), an unauthenticated remote code execution in PHP. PHP's own documentation also flags the field as dangerous, since the names it records may contain PHP code. A block means the request has the attack's shape, not that exploitation occurred. | Disable only for routes that legitimately implement upload-progress bars with PHP's native session.upload_progress feature (rare). Disabling removes the edge block of this attack vector, not PHP's fix — patching PHP is required regardless. |
+| `php-php2shell-part-headers` | on | CWE-400, CWE-770 | 212001, 212002 | Per-request cap on multipart part headers — blocks more than 4000 header lines across all parts, or a part whose header block is too large to parse. Mitigates the header-flood vector of CVE-2026-109618 ("PHP2Shell"): PHP stores part headers in far more memory than they take on the wire, so a small request can exhaust memory_limit. The cap counts request structure, so it applies whatever the backend is; 4000 is PHP's default input ceiling (max_input_vars plus max_file_uploads, all RFC 7578 headers) with headroom. A block means the request has the attack's shape, not that exploitation occurred. | Disable only for routes that legitimately send multipart bodies with thousands of fields. Disabling removes the edge block, not PHP's fix — patching PHP is required regardless. |
+| `php-php2shell-empty-file-controls` | on | CWE-400, CWE-770 | 212003 | Per-request cap on empty file controls (file inputs submitted with no file selected) — blocks more than 20. Mitigates the empty-file-control vector of CVE-2026-109618 ("PHP2Shell"): PHP does not count these toward max_file_uploads but still allocates file metadata for each, multiplied by nested field names. The cap counts request structure, so it applies whatever the backend is; 20 is PHP's default max_file_uploads. A block means the request has the attack's shape, not that exploitation occurred. | Disable when forms legitimately have more than 20 optional file inputs that users may leave empty. Disabling removes the edge block, not PHP's fix — patching PHP is required regardless. |
 
 ### php-data-leakage
 
@@ -238,7 +255,7 @@ XSS vectors in JS output context — javascript: URIs, JS keywords, AngularJS te
 |---|---|---|---|---|---|
 | `cross-site-scripting-javascript-urls` | on | CWE-79 | 941140 | Detects javascript: URI-scheme attribute values — classic XSS vector via <a href="javascript:...">. | Disable if input legitimately contains javascript: URLs — for example, a URL-archival site. |
 | `cross-site-scripting-javascript-keywords` | on | CWE-79 | 941210, 941370, 941390, 941400 | Detects JS globals, methods, and function-without-parens shapes (alert, document.cookie, eval). | Disable if input legitimately contains JS keywords — for example, a JS-discussion site or tutorial platform. |
-| `cross-site-scripting-function-call-evasion` | on | CWE-79 | 210001, 210002, 210003 | Catches XSS payloads that invoke dangerous JS functions through evasion shapes no upstream CRS rule covers: Function.prototype.call/apply/bind invocations (alert.call(null,1)), grouping-paren wraps ((alert)(1)), and optional-chaining calls (alert?.(...)). Implemented as Barbacana-owned Coraza SecRules in the 210000 ID range. | Disable on routes whose inputs legitimately contain JavaScript code that calls these globals via .call/.apply/.bind — for example, a JS sandbox playground. |
+| `cross-site-scripting-function-call-evasion` | on | CWE-79 | 210001, 210002, 210003 | Catches XSS payloads that invoke dangerous JS functions through evasion shapes no upstream CRS rule covers: Function.prototype.call/apply/bind invocations (`alert.call(null,1)`), grouping-paren wraps (`(alert)(1)`), and optional-chaining calls (`alert?.(...)`). Implemented as Barbacana-owned Coraza SecRules in the 210000 ID range. | Disable on routes whose inputs legitimately contain JavaScript code that calls these globals via .call/.apply/.bind — for example, a JS sandbox playground. |
 | `cross-site-scripting-angular-templates` | off | CWE-79, CWE-1336 | 941380 | AngularJS client-side template injection ({{constructor.constructor('alert(1)')()}}-style). | Enable on routes that render Angular templates server-side. |
 
 ### cross-site-scripting-encoding-tricks
@@ -389,6 +406,7 @@ Header presence and shape validation — Host, Accept, User-Agent, Content-Type,
 | `http-compliance-accept-header` | off | CWE-20 | 920300, 920310, 920311, 920600 | Empty/missing Accept and illegal Accept-charset parameter detection. | Enable if your app is browser-only and your clients always send Accept. Off by default because many JSON APIs are called from curl, internal service-to-service code, mobile SDKs, and SDK-generated clients that legitimately omit Accept. The signal is "automation," not "attack." |
 | `http-compliance-user-agent-header` | off | CWE-20 | 920320, 920330 | Missing or empty User-Agent header detection. | Enable if your app expects browser traffic only. Off by default because empty User-Agent is the normal case for curl without -A, internal service-to-service calls, embedded device firmware, and historical Go http.Client. No real attack class is gated by "must have a User-Agent header." |
 | `http-compliance-content-type-header` | on | CWE-20 | 920340, 920470, 920480, 920530, 920620, 920640 | CT header policy — illegal CT values, multiple CTs, CT charset validity, CT missing on bodied requests. | Rarely worth disabling. |
+| `http-compliance-malformed-body` | on | CWE-20 | 213003 | Blocks a JSON or XML request body that does not parse as the type its Content-Type declares. Barbacana parses these bodies the way the rules expect (per key for JSON, per element for XML), and a body that fails to parse would otherwise reach the upstream without being inspected at all. | Disable for routes whose clients send non-standard JSON or XML under a JSON/XML Content-Type (for example, XML with HTML entities such as &nbsp;) and the upstream accepts it. |
 | `http-compliance-accept-encoding` | on | CWE-20 | 920520, 920521 | Accept-Encoding length cap and illegal-value detection. | Disable for clients that send long or unusual Accept-Encoding values. |
 | `http-compliance-restricted-headers` | on | CWE-20 | 920450, 920451, 920490, 920510 | Restricted-header denylist — flags headers like X-Up-Devcap-Post-Charset and Cache-Control variants that aren't in the allow-list. | Disable if you legitimately send headers in the restricted list — for example, Cache-Control with non-standard directives. |
 | `http-compliance-range-header` | on | CWE-400 | 920190, 920200, 920201, 920202, 920660 | Range header anomalies — invalid last-byte values, too many byte-ranges, obsolete Request-Range header. | Disable if upstream serves PDFs/videos with many byte-ranges. |
@@ -525,9 +543,9 @@ Native HTTP/2 frame-flood and DoS guards.
 
 | ID | Default | CWE | Rule IDs | What it does | When to toggle |
 |---|---|---|---|---|---|
-| `http2-frame-flood` | on | CWE-400 | native | Native HTTP/2 CONTINUATION-frame flood protection (CVE-2024-27316 family). | Rarely worth disabling. |
-| `http2-header-bomb` | on | CWE-400, CWE-409 | native | HPACK decompression bomb protection — caps the expansion ratio of HPACK-encoded headers. | Rarely worth disabling. |
-| `http2-max-streams` | on | CWE-400, CWE-770 | native | Per-connection HTTP/2 stream-count cap. | Disable for backends needing many concurrent HTTP/2 streams per connection. |
+| `http2-frame-flood` | on | CWE-400 | native | Partially enforced: applies to every route and cannot be disabled, and protocol.http2_max_continuation_frames is not applied yet. HTTP/2 CONTINUATION-frame flood protection (CVE-2024-27316 family), provided by the Go HTTP/2 server. | Rarely worth disabling. |
+| `http2-header-bomb` | on | CWE-400, CWE-409 | native | Partially enforced: applies to every route and cannot be disabled. HPACK decompression bomb protection — caps the decoded size of HTTP/2 request headers at protocol.http2_max_decoded_header_bytes. | Rarely worth disabling. |
+| `http2-max-streams` | on | CWE-400, CWE-770 | native | Partially enforced: applies to every route and cannot be disabled. Per-connection HTTP/2 stream-count cap, set by protocol.http2_max_concurrent_streams. | For backends needing many concurrent HTTP/2 streams per connection, raise protocol.http2_max_concurrent_streams; disabling the leaf has no effect. |
 
 ## request-validation
 
@@ -537,7 +555,7 @@ Native request-shape rules — body/url/header size, allowed methods, required h
 
 | ID | Default | CWE | Rule IDs | What it does | When to toggle |
 |---|---|---|---|---|---|
-| `request-validation-max-body-size` | on | CWE-400, CWE-770 | native | Maximum request-body size; returns 413 on violation. | Disable for routes with intentionally large bodies. |
+| `request-validation-max-body-size` | on | CWE-400, CWE-770 | native | Maximum request-body size; returns 413 on violation. | Disable for routes with intentionally large bodies. A chunked body (no Content-Length) over max_body_size is still refused, even with this disabled and in detect-only mode, because it cannot be inspected or forwarded without buffering all of it; raise accept.max_body_size instead. |
 | `request-validation-max-url-length` | on | CWE-400 | native | Maximum URL length; returns 414 on violation. | Disable for routes with very long URLs — for example, legacy GET-with-many-params APIs. |
 | `request-validation-max-header-size` | on | CWE-400 | native | Total header bytes cap; returns 431 on violation. | Disable for clients sending large auth tokens in headers. Rare. |
 | `request-validation-max-header-count` | on | CWE-400 | native | Maximum header count; returns 431 on violation. | Disable for clients sending many headers. |
@@ -545,7 +563,7 @@ Native request-shape rules — body/url/header size, allowed methods, required h
 | `request-validation-allowed-methods` | on | CWE-749 | native | Method allow-list per route from accept.methods; returns 405 on violation. | Disable to accept any HTTP method. Usually a security mistake. |
 | `request-validation-require-host-header` | on | CWE-20 | native | Host header required; returns 400 on violation. | Disable for legacy clients without Host header (HTTP/1.0 only). |
 | `request-validation-require-content-type` | on | CWE-20 | native | Content-Type required for POST/PUT/PATCH; returns 415 on violation. | Disable for routes that accept bodies without content-type. Rare. |
-| `request-validation-slow-clients` | on | CWE-400 | native | Slow-request DoS protection — drops connections that send headers/body too slowly (Slowloris). | Disable for environments with slow legitimate clients — for example, low-bandwidth IoT. |
+| `request-validation-slow-clients` | on | CWE-400 | native | Partially enforced: applies to every route and cannot be disabled, and slow bodies are not limited because protocol.slow_request_min_rate_bps is not applied yet. Slow-request DoS protection — drops connections that do not finish sending headers within protocol.slow_request_header_timeout (Slowloris). | For environments with slow legitimate clients, for example low-bandwidth IoT, raise protocol.slow_request_header_timeout; disabling the leaf has no effect. |
 
 ## json-parsing
 
@@ -567,7 +585,8 @@ Native XML body parser limits.
 | ID | Default | CWE | Rule IDs | What it does | When to toggle |
 |---|---|---|---|---|---|
 | `xml-parsing-max-depth` | on | CWE-400, CWE-674 | native | XML nesting-depth cap — defends against parser stack overflow. | Disable for deeply-nested XML schemas. Rare. |
-| `xml-parsing-entity-expansion` | on | CWE-776 | native | Billion-laughs / entity-expansion protection — caps the number of <!ENTITY>/<!DOCTYPE> directives in a request body to defend against entity-expansion DoS. XXE-proper (external SYSTEM/PUBLIC entities) is mitigated separately by Go's encoding/xml not resolving external entities; this rule covers expansion-ratio attacks only. | Rarely worth disabling — billion-laughs is a real threat. |
+| `xml-parsing-external-entities` | on | CWE-611 | native | XML external entity (XXE) payloads — an XML request body with a DOCTYPE that names an external identifier, or an entity declared with SYSTEM or PUBLIC. These are the two ways a request makes the parser read a local file or fetch a URL. Applies to bodies sent as XML (application/xml, text/xml, +xml types). | Disable only for an XML API that legitimately accepts documents with external DTD references. Most never do. |
+| `xml-parsing-entity-expansion` | on | CWE-776 | native | Billion-laughs / entity-expansion protection — caps the number of custom entities in a request body — <!ENTITY> declarations plus references to them — to defend against entity-expansion DoS. XXE-proper (external SYSTEM/PUBLIC entities) is mitigated separately by Go's encoding/xml not resolving external entities; this rule covers expansion-ratio attacks only. | Rarely worth disabling — billion-laughs is a real threat. |
 
 ## resource-limits
 
@@ -577,8 +596,8 @@ Native resource-limit protections.
 
 | ID | Default | CWE | Rule IDs | What it does | When to toggle |
 |---|---|---|---|---|---|
-| `resource-limits-max-inspection-size` | on | CWE-400 | native | Maximum bytes inspected per request — beyond this size, the body is forwarded without inspection. | Disable for very-large-body routes where partial inspection isn't acceptable. Better to turn off WAF entirely on those routes. |
-| `resource-limits-max-memory` | on | CWE-400, CWE-770 | native | In-flight memory budget cap — protects against memory exhaustion under load. | Rarely worth disabling. |
+| `resource-limits-max-inspection-size` | on | CWE-400, CWE-770 | native | Request body larger than inspection.max_inspect_size, counting what the rules read: non-file fields, part headers and the like, not the contents of uploaded files. Such a request is blocked with 413, because the rules cannot read all of it. | Disable for routes that take large non-multipart bodies, such as raw PUT file uploads. Oversized bodies are then forwarded after inspecting only their first max_inspect_size bytes; anything past that is not inspected. Raising max_inspect_size is the safer option where the bodies are small enough. |
+| `resource-limits-max-memory` | on | CWE-400, CWE-770 | native | Not enforced yet: nothing implements this cap, so it has no effect. In-flight memory budget cap — protects against memory exhaustion under load. | Rarely worth disabling. |
 | `resource-limits-decompression-ratio` | on | CWE-409 | native | Decompression-ratio cap on gzip/deflate request bodies — defends against zip-bomb. | Rarely worth disabling. |
 | `resource-limits-evaluation-timeout` | on | CWE-400, CWE-1333 | native | Per-request CRS-engine timeout — protects against ReDoS-driven CRS evaluation latency. | Rarely worth disabling. |
 
@@ -646,8 +665,8 @@ Native response-body inspection. Open-redirect detection and OpenAPI response-sh
 
 | ID | Default | CWE | Rule IDs | What it does | When to toggle |
 |---|---|---|---|---|---|
-| `response-inspection-open-redirects` | on | CWE-601 | native | Detects Location headers pointing off-domain — fingerprint of open-redirect vulnerabilities. | Disable for routes that intentionally redirect off-domain — for example, auth providers. |
-| `response-inspection-openapi-validation` | on | CWE-20 | native | Validates response shape against the route's OpenAPI spec. | Disable when responses don't always conform to the OpenAPI spec strictly. |
+| `response-inspection-open-redirects` | on | CWE-601 | native | Not enforced yet: nothing implements this check, so it has no effect. Detects Location headers pointing off-domain — fingerprint of open-redirect vulnerabilities. | Disable for routes that intentionally redirect off-domain — for example, auth providers. |
+| `response-inspection-openapi-validation` | on | CWE-20 | native | Not enforced yet: nothing implements this check, so it has no effect. Validates response shape against the route's OpenAPI spec. | Disable when responses don't always conform to the OpenAPI spec strictly. |
 
 ## base64-decoding
 
@@ -659,6 +678,5 @@ Native base64-decoding stage. Surfaces base64-encoded payloads hidden in the URL
 |---|---|---|---|---|---|
 | `base64-decoding-path` | on | CWE-20 | native | Splits the normalized URL path on `/` and decodes each segment that looks like base64. Decoded values are emitted as synthetic PATH args so CRS rules see SQLi, XSS, etc. hidden inside path segments. | Disable for routes whose path segments legitimately contain base64-shaped tokens (e.g. opaque IDs the app issues itself) and where false-positive risk outweighs the coverage gain. |
 | `base64-decoding-parameters` | on | CWE-20 | native | Decodes each query-parameter value that looks like base64. Decoded values are emitted as synthetic GET args under the original parameter name so CRS rules see attacks hidden inside parameters. | Disable for routes whose query parameters legitimately carry base64 (e.g. an `?image=` parameter on an inline-image API) where the decoded payload would predictably trip CRS. |
-| `base64-decoding-body` | on | CWE-20 | native | Scans the buffered request body for runs of base64-alphabet characters and decodes each one. Decoded values are emitted as synthetic POST args. Content-type-agnostic: works for JSON, XML, form-encoded, and plain bodies. | Disable for endpoints where bodies legitimately embed base64 (file-upload metadata, signed payloads, multipart inline images) and the false-positive cost is real. |
+| `base64-decoding-body` | on | CWE-20 | native | Scans the buffered request body for runs of base64-alphabet characters and decodes each one. Decoded values are emitted as synthetic POST args. Works for JSON, XML, form-encoded, and plain bodies. A JSON body is scanned by the strings it holds, so a blob written with \uXXXX escapes is found too, and URL-encoded JSON strings are also decoded. | Disable for endpoints where bodies legitimately embed base64 (file-upload metadata, signed payloads, multipart inline images) and the false-positive cost is real. |
 | `base64-decoding-flood` | on | CWE-400 | native | Blocks requests that contain more than 50 successfully-decoded base64 values across the path, parameters, and body. Bounds the cost of the decoding stage and catches obvious decoder-flood DoS attempts. | Disable only on routes that legitimately receive many small base64-encoded values per request (rare) and where the per-request decoding work is acceptable. |
-

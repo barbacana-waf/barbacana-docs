@@ -1,6 +1,6 @@
 # Audit log
 
-Barbacana writes one structured JSON entry per inspected request to stdout. Pick it up with any log shipper.
+Barbacana writes one structured JSON entry to stdout for each request that matches a protection. Pick it up with any log shipper.
 
 Stdout emission is **always on** — there is no off switch and no per-route override. What you choose with `audit_log.format` is the *wire schema* of the JSON document.
 
@@ -13,10 +13,10 @@ Audit logs ship in one of two industry-standard schemas:
 | `ocsf` (default) | OCSF v1.2.0 — Open Cybersecurity Schema Framework, HTTP Activity event class (`class_uid: 4002`) |
 | `ecs` | ECS 8.x — Elastic Common Schema |
 
-The format is process-wide and decided once at startup. Switching formats requires a config reload; one running process never mixes the two.
+The format is process-wide and decided once at startup. Switching formats requires a restart (a reload logs a warning and keeps the old format); one running process never mixes the two.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 
 audit_log:
   format: ocsf       # default; or "ecs"
@@ -60,15 +60,15 @@ Blocked SQL injection, OCSF v1.2.0:
   },
   "attacks": [
     {
-      "name": "sql-injection-auth-bypass",
+      "name": "sql-injection-generic",
       "category": "sql-injection",
       "classification": [{"taxonomy": "CWE", "category": "CWE-89", "category_id": "CWE-89"}]
     }
   ],
-  "firewall_rule": {"uid": "942100", "match_details": ["942100", "942110"], "category": "sql-injection-auth-bypass"},
+  "firewall_rule": {"uid": "942100", "match_details": ["942100", "942101"], "category": "sql-injection-generic"},
   "barbacana": {
-    "matched_protections": ["sql-injection-auth-bypass"],
-    "matched_rules": ["942100", "942110"],
+    "matched_protections": ["sql-injection-generic"],
+    "matched_rules": ["942100", "942101"],
     "cwe": ["CWE-89"]
   }
 }
@@ -92,10 +92,10 @@ The same event in ECS 8.x:
   },
   "rule": {
     "ruleset": "owasp-crs",
-    "name": "sql-injection-auth-bypass",
-    "category": "sql-injection-auth-bypass",
+    "name": "sql-injection-generic",
+    "category": "sql-injection-generic",
     "id": "942100",
-    "reference": ["942100", "942110"]
+    "reference": ["942100", "942101"]
   },
   "vulnerability": {"classification": ["CWE-89"]},
   "client": {"ip": "203.0.113.7", "address": "203.0.113.7", "port": 54321},
@@ -107,8 +107,8 @@ The same event in ECS 8.x:
   "trace": {"id": "4bf92f3577b34da6a3ce929d0e0e4736"},
   "span": {"id": "00f067aa0ba902b7"},
   "barbacana": {
-    "matched_protections": ["sql-injection-auth-bypass"],
-    "matched_rules": ["942100", "942110"],
+    "matched_protections": ["sql-injection-generic"],
+    "matched_rules": ["942100", "942101"],
     "cwe": ["CWE-89"]
   }
 }
@@ -144,8 +144,8 @@ Both OCSF and ECS permit additional top-level attributes outside the standard sc
 
 ```json
 "barbacana": {
-  "matched_protections": ["sql-injection-auth-bypass"],
-  "matched_rules": ["942100", "942110"],
+  "matched_protections": ["sql-injection-generic"],
+  "matched_rules": ["942100", "942101"],
   "cwe": ["CWE-89"]
 }
 ```
@@ -156,15 +156,16 @@ It is not a substitute for the schema-mapped fields — SIEM rules should target
 docker logs barbacana | jq -r '.barbacana.matched_protections[]?' | sort | uniq -c | sort -rn
 ```
 
-## `blocked` vs `detected` vs `allowed`
+## `blocked` vs `detected`
 
 | Disposition | Meaning |
 |---|---|
 | `blocked` | Request matched a protection and was rejected. Upstream never saw it. Status code is typically `403`. |
-| `detected` | Request matched a protection but the route is in [`detect_only` mode](../reference/detect-only.md). Forwarded to the upstream. |
-| `allowed` | No protection matched. Forwarded normally. Allowed entries are omitted by default unless audit verbosity is raised. |
+| `detected` | Request matched a protection but was forwarded to the upstream: the route is in [`detect_only` mode](../reference/detect-only.md), or the matches stayed below the blocking threshold. |
 
-In OCSF, this maps to `disposition` / `disposition_id` (`Blocked` = `2`, `Allowed` = `1`). In ECS, the same fact is encoded as `event.action` (`block` / `detect` / `allow`) with `event.outcome` (`failure` for blocks, `success` for allows).
+A request that matches no protection is not logged.
+
+In OCSF, this maps to `disposition` / `disposition_id`: `Blocked` = `2` for blocked requests, `Allowed` = `1` for detected ones. In ECS, it is `event.action` (`block` or `allow`) with `event.outcome` (`failure` or `success`). A detected request is the one marked allowed whose matched protections are filled in.
 
 ## Trace correlation
 

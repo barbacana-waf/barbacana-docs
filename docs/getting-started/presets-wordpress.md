@@ -7,7 +7,7 @@
 Covers a standard WordPress installation. The login page and `xmlrpc.php` are rate-limited. The Gutenberg editor sends raw HTML that can trigger XSS and PHP detection rules, so the admin area starts in detect-only mode.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 host: example.com
 data_dir: /data/barbacana
 
@@ -63,7 +63,7 @@ The `wp-xmlrpc` route is rate-limited rather than blocked because Barbacana forw
 Extends the standard preset with separate routes for the WooCommerce REST API and checkout flow. The checkout route starts in detect-only mode because payment gateway plugins inject non-standard fields that are a common source of false positives.
 
 ```yaml title="waf.yaml"
-version: v1alpha1
+version: v1beta1
 host: example.com
 data_dir: /data/barbacana
 

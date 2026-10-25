@@ -5,7 +5,7 @@ Barbacana is configured with a single YAML file. You never write Caddy config �
 ## Top-level structure
 
 ```yaml
-version: v1alpha1              # schema version, required
+version: v1beta1               # schema version, required
 host: "api.example.com"        # Mode 1: single host or list of hosts, auto-TLS
 port: 8080                     # Mode 3: behind LB (mutually exclusive with host)
 data_dir: "/data/barbacana"    # optional, default "/data/barbacana"
@@ -29,7 +29,7 @@ routes:
 
 | Field | Required | Default | Validation |
 |---|---|---|---|
-| `version` | yes | — | must equal `v1alpha1` |
+| `version` | yes | — | must be `v1beta1`. `v1alpha1` is still accepted but deprecated, and logs a warning at startup |
 | `host` | no | — | string or list of strings; each a valid hostname; list must be non-empty with no duplicates; mutually exclusive with `port` and with any route-level `match.hosts` |
 | `port` | no | `8080` (only when no `host` and no route has `match.hosts`) | integer 1–65535; mutually exclusive with `host` and with any route-level `match.hosts` |
 | `data_dir` | no | `/data/barbacana` | directory must be writable; stores TLS certificates and ACME state — mount as a persistent volume in containers |
@@ -60,7 +60,7 @@ Exactly one of three mutually exclusive modes is selected by the combination of 
 **Mode 1 — Single host, auto-TLS.** Set top-level `host`. Barbacana serves HTTPS on `:443`, redirects HTTP on `:80`, and provisions a Let's Encrypt certificate automatically. Routes must not set `match.hosts`, and `port` must not be set.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 host: api.example.com
 routes:
   - upstream: http://api:8000
@@ -69,7 +69,7 @@ routes:
 `host` also accepts a list of hostnames. Every route then serves all of them identically — this is not per-hostname routing, just multiple aliases for the same routes. Barbacana provisions one certificate per hostname; each hostname's DNS must resolve to this instance before startup.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 host: [example.com, example.io]
 routes:
   - upstream: http://api:8000
@@ -80,7 +80,7 @@ See [Hostnames & HTTPS](../operations/hostnames.md#choosing-between-a-host-list-
 **Mode 2 — Multi-host, auto-TLS.** Omit `host`. Every route supplies `match.hosts`. Barbacana provisions one certificate per hostname. If any route has `match.hosts`, **every** route must have `match.hosts`. `port` must not be set.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 routes:
   - match:
       hosts: [api.example.com]
@@ -93,7 +93,7 @@ routes:
 **Mode 3 — Behind a load balancer, plain HTTP.** Set `port` (or leave both `host` and `port` unset to default `port` to `8080`). Barbacana serves plain HTTP on the configured port; there is no TLS and no certificate provisioning.
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 port: 8080
 routes:
   - upstream: http://api:8000
@@ -165,9 +165,9 @@ global:
   # ── Wire-level behavior ──────────────────────────────────
   protocol:
     slow_request_header_timeout: 10s
-    slow_request_min_rate_bps: 1024
+    slow_request_min_rate_bps: 1024       # not applied yet
     http2_max_concurrent_streams: 100
-    http2_max_continuation_frames: 32
+    http2_max_continuation_frames: 32     # not applied yet
     http2_max_decoded_header_bytes: 65536
 
   # ── What the response carries ─────────────────────────────
@@ -220,9 +220,9 @@ global:
 | `global.multipart.allowed_types` | []string | `[]` (all) | MIME type syntax |
 | `global.multipart.double_extension` | bool | `true` | — |
 | `global.protocol.slow_request_header_timeout` | duration | `10s` | `>= 1s` |
-| `global.protocol.slow_request_min_rate_bps` | int | `1024` | `>= 0` |
+| `global.protocol.slow_request_min_rate_bps` | int | `1024` | `>= 0`. **Not applied yet**: accepted and validated, but slow request bodies are not limited |
 | `global.protocol.http2_max_concurrent_streams` | int | `100` | `>= 1` |
-| `global.protocol.http2_max_continuation_frames` | int | `32` | `>= 1` |
+| `global.protocol.http2_max_continuation_frames` | int | `32` | `>= 1`. **Not applied yet**: accepted and validated, but the Go HTTP/2 server's own CONTINUATION limit applies |
 | `global.protocol.http2_max_decoded_header_bytes` | int | `65536` | `>= 4096` |
 | `global.response_headers.inject` | map[string]string | `{}` | keys must be canonical `response-headers-add-*` names from the [protection catalog](catalog.md) |
 | `global.response_headers.strip_extra` | []string | `[]` | valid HTTP header names |
@@ -370,7 +370,7 @@ audit_log:
 |---|---|---|
 | `audit_log.format` | `ocsf` | `ocsf`, `ecs` |
 
-The choice is process-wide and applies to every audit document for the lifetime of the process. Switching formats at runtime requires a config reload; one running process never mixes the two.
+The choice is process-wide and applies to every audit document for the lifetime of the process. Switching formats requires a restart (a reload logs a warning and keeps the old format); one running process never mixes the two.
 
 `ocsf` emits OCSF v1.2.0 (HTTP Activity event class, `class_uid: 4002`). `ecs` emits ECS 8.x. Both formats also carry a vendor `barbacana.*` namespace with `matched_protections`, `matched_rules`, and `cwe` — see the [audit log reference](../operations/audit-log.md) for full document examples and the field-mapping table.
 
@@ -432,7 +432,7 @@ Path matching uses glob syntax: `*` matches a single segment, `**` matches any n
 ## Example 1: minimal (Mode 3, plain HTTP behind a load balancer)
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 
 routes:
   - upstream: http://app:8000
@@ -443,7 +443,7 @@ Everything else is defaulted. `port` defaults to `8080` because no `host` is set
 ## Example 2: multi-route with per-team overrides (Mode 1, single host auto-TLS)
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 host: example.com                    # single host, auto-TLS on :443 and :80→:443 redirect
 data_dir: /var/lib/barbacana         # persistent TLS/ACME state
 metrics_port: 9090                   # opt-in: expose Prometheus /metrics
@@ -498,7 +498,7 @@ routes:
 ## Example 3: extensive overrides (Mode 2, multi-host auto-TLS)
 
 ```yaml
-version: v1alpha1
+version: v1beta1
 data_dir: /var/lib/barbacana         # persistent TLS/ACME state
 metrics_port: 9090                   # opt-in: expose Prometheus /metrics
 health_port: 8081                    # opt-in: expose /healthz and /readyz

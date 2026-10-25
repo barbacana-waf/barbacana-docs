@@ -2,7 +2,7 @@
 
 This section shares starting-point configurations for common self-hosted applications.
 
-In case application stops working, switch to `detect_only` mode, it will work again, add normal traffic flow and read the [audit log](../operations/audit-log.md) for `action: detected` entries. Each entry is a false positive, add them into the `disable:` entries, then switch back the detect mode to enable blocking. See [Detect-only mode](../reference/detect-only.md).
+In case application stops working, switch to `detect_only` mode, it will work again, add normal traffic flow and read the [audit log](../operations/audit-log.md) for entries with `barbacana.matched_protections`. Each entry is a false positive, add them into the `disable:` entries, then switch back the detect mode to enable blocking. See [Detect-only mode](../reference/detect-only.md).
 
 !!! info "Rate limiting behind a proxy"
     Each preset rate-limits login endpoints with `source.type: ip`, which is correct when the client connects directly to Barbacana. If Barbacana runs behind a load balancer or reverse proxy, every connection appears to come from the proxy — switch to `source.type: header` and name the forwarded header your proxy injects (typically `X-Forwarded-For` or `X-Real-IP`). See [Rate limiting — Identifying the client](../reference/rate-limit.md#identifying-the-client).
