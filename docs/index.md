@@ -40,10 +40,6 @@ Sizing your deployment? 1 vCPU and ~130 MB of memory handles ~125 requests per s
 
 Prefer to let an AI coding agent set it up? Install the Barbacana skills, then ask your agent to put Barbacana in front of your app. [AI coding agents →](getting-started/ai-agents.md)
 
-```bash
-npx skills add barbacana-waf/skills
-```
-
 ## Beyond the defaults
 
 The defaults cover the happy path. When you need to tune a noisy route, terminate TLS, or roll out a new endpoint without blocking traffic — the config stays just as small.
@@ -52,9 +48,9 @@ The defaults cover the happy path. When you need to tune a noisy route, terminat
 <div class="feature-text" markdown>
 :material-shield-check:{ .feature-icon }
 
-### 182 protections on by default, 30 more opt-in
+### 187 protections on by default, 30 more opt-in
 
-182 protections activate the moment you start Barbacana — no config required. A further 30 are available as opt-in: aggressive detection variants that need per-app tuning. For example, `sql-injection-comments-in-json` detects MySQL space-obfuscation, but can block ordinary JSON when active. The [protection catalog](reference/catalog.md) details each protection, why they should be on or off, and how to tune them.
+187 protections activate the moment you start Barbacana — no config required. A further 30 are available as opt-in: aggressive detection variants that need per-app tuning. For example, `sql-injection-comments-in-json` detects MySQL space-obfuscation, but can block ordinary JSON when active. The [protection catalog](reference/catalog.md) details each protection, why they should be on or off, and how to tune them.
 </div>
 <div class="feature-code" markdown>
 ```yaml
