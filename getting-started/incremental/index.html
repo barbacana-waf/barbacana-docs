@@ -18,7 +18,7 @@
         <link rel="prev" href="../binary/">
       
       
-        <link rel="next" href="../presets/">
+        <link rel="next" href="../ai-agents/">
       
       
       <link rel="icon" href="../../assets/logo.png">
@@ -426,6 +426,8 @@
       
         
       
+        
+      
     
     
       
@@ -766,6 +768,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -794,10 +817,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -808,8 +831,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -939,10 +962,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -953,8 +976,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2231,7 +2254,7 @@
 <p>By the end you'll have the full multi-route deployment from the <a href="https://github.com/barbacana-waf/barbacana">project README</a>.</p>
 <hr />
 <h2 id="step-1-the-minimum-viable-waf">Step 1 — The minimum viable WAF<a class="headerlink" href="#step-1-the-minimum-viable-waf" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
@@ -2247,7 +2270,7 @@
 <hr />
 <h2 id="step-2-split-traffic-into-routes">Step 2 — Split traffic into routes<a class="headerlink" href="#step-2-split-traffic-into-routes" title="Permanent link">&para;</a></h2>
 <p>A real app has several backends. Add one route per backend, matched by path:</p>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
@@ -2321,7 +2344,7 @@
 <hr />
 <h2 id="step-6-silence-a-specific-false-positive">Step 6 — Silence a specific false positive<a class="headerlink" href="#step-6-silence-a-specific-false-positive" title="Permanent link">&para;</a></h2>
 <p>One of your endpoints accepts search input that looks like a SQL <code>UNION</code> to the CRS. The <a href="../../operations/audit-log/">audit log</a> tells you exactly which leaf is firing:</p>
-<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">],</span><span class="w"> </span><span class="nt">&quot;route&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;api&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">&quot;disposition&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Blocked&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;barbacana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <p>Turn off just that leaf — only on this route:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>
@@ -2357,7 +2380,7 @@
 <hr />
 <h2 id="step-8-put-it-on-the-public-internet-with-auto-tls">Step 8 — Put it on the public internet with auto-TLS<a class="headerlink" href="#step-8-put-it-on-the-public-internet-with-auto-tls" title="Permanent link">&para;</a></h2>
 <p>When you're ready for production, add a hostname at the top level:</p>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="hll"><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span>
 </span></span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">routes</span><span class="p">:</span>
@@ -2389,7 +2412,7 @@
 </span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">everything-else</span>
 </span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span></code></pre></div>
-<p><code>host: example.com</code> switches Barbacana into <strong>Mode 1</strong>: HTTPS on <code>:443</code>, HTTP on <code>:80</code>, automatic HTTP→HTTPS redirect, and a Let's Encrypt certificate provisioned on first request. Certificate renewal is automatic.</p>
+<p><code>host: example.com</code> switches Barbacana into <strong>Mode 1</strong>: HTTPS on <code>:443</code>, HTTP on <code>:80</code>, automatic HTTP→HTTPS redirect, and a Let's Encrypt certificate provisioned at startup. Certificate renewal is automatic.</p>
 <div class="admonition warning">
 <p class="admonition-title">Persist <code>data_dir</code> in containers</p>
 <p>ACME state (certificates, keys, account) lives in <code>/data/barbacana</code> by default. Mount it as a persistent volume — without it you re-request certificates on every restart and will hit <a href="https://letsencrypt.org/docs/rate-limits/">Let's Encrypt's rate limits</a>.</p>
@@ -2402,10 +2425,10 @@
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">global</span><span class="p">:</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span>
 </span></code></pre></div>
-<p>In <code>detect_only</code>, Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of what <em>would</em> have been blocked. Study the <a href="../../operations/audit-log/">audit log</a>, add targeted <code>disable</code> entries, then remove the <code>global.mode</code> override (blocking is the default). See <a href="../../reference/detect-only/">Detect-only mode</a>.</p>
+<p>In <code>detect_only</code>, Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of what <em>would</em> have been blocked, except <a href="../../reference/detect-only/#exception-oversized-chunked-bodies">oversized chunked bodies</a>. Study the <a href="../../operations/audit-log/">audit log</a>, add targeted <code>disable</code> entries, then remove the <code>global.mode</code> override (blocking is the default). See <a href="../../reference/detect-only/">Detect-only mode</a>.</p>
 <h3 id="multi-host">Multi-host<a class="headerlink" href="#multi-host" title="Permanent link">&para;</a></h3>
 <p>If you serve several hostnames from one Barbacana, omit top-level <code>host</code> and give every route its own <code>match.hosts</code>:</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api</span>

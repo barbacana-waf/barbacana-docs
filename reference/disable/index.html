@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2069,7 +2092,7 @@
 <p>The two lists are not adversarial — they describe one effective set per route.</p>
 <h2 id="workflow-for-a-false-positive">Workflow for a false positive<a class="headerlink" href="#workflow-for-a-false-positive" title="Permanent link">&para;</a></h2>
 <ol>
-<li>Run the affected route in <a href="../detect-only/"><code>detect_only: true</code></a> so the request is logged but not blocked.</li>
+<li>Run the affected route in <a href="../detect-only/"><code>mode: detect_only</code></a> so the request is logged but not blocked.</li>
 <li>Reproduce the false positive.</li>
 <li>Read <code>matched_protections</code> from the audit log — those are the names you can put under <code>disable:</code>.</li>
 <li>Find the leaf in the <a href="../catalog/">WAF Protection Catalog</a>. The <strong>When to toggle</strong> column shows the rationale (and warns when disabling would lose meaningful coverage).</li>
@@ -2084,7 +2107,7 @@
 <ul>
 <li><a href="../catalog/">WAF Protection Catalog</a> — every leaf, default state, and toggle rationale.</li>
 <li><a href="../enable/">Enabling protections</a> — the opposite list, for opting into off-by-default leaves.</li>
-<li><code>barbacana --catalog show &lt;leaf-name&gt;</code> — print the rationale for one leaf at the CLI.</li>
+<li><code>barbacana --catalog-leaf &lt;leaf-name&gt;</code> — print the rationale for one leaf at the CLI.</li>
 </ul>
 
 

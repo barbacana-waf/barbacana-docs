@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2350,7 +2373,7 @@
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">{</span><span class="nt">&quot;error&quot;</span><span class="p">:</span><span class="s2">&quot;blocked&quot;</span><span class="p">,</span><span class="nt">&quot;request_id&quot;</span><span class="p">:</span><span class="s2">&quot;01HXYZ...&quot;</span><span class="p">}</span>
 </span></code></pre></div>
 <p><code>Retry-After</code> is required by <a href="https://datatracker.ietf.org/doc/html/rfc6585#section-4">RFC 6585 §4</a> for <code>429</code> responses. The value (in seconds) matches the configured <code>window</code> — by the time the client retries, the oldest slot in the window will have freed up. The example above uses <code>window: 1s</code>, so the response carries <code>Retry-After: 1</code>.</p>
-<p>The block is recorded in the audit log with <code>protection: rate-limit</code> and CWE references <code>CWE-400</code> (uncontrolled resource consumption) and <code>CWE-770</code> (allocation of resources without limits). See <a href="../../security/logs/">Logs &amp; SIEM</a>.</p>
+<p>The block is recorded in the audit log with <code>rate-limit</code> in <code>barbacana.matched_protections</code> and CWE references <code>CWE-400</code> (uncontrolled resource consumption) and <code>CWE-770</code> (allocation of resources without limits). See <a href="../../security/logs/">Logs &amp; SIEM</a>.</p>
 <h2 id="identifying-the-client">Identifying the client<a class="headerlink" href="#identifying-the-client" title="Permanent link">&para;</a></h2>
 <p><code>source.type</code> selects how the rate-limit key is derived from the request.</p>
 <h3 id="ip-client-ip-from-the-connection"><code>ip</code> — client IP from the connection<a class="headerlink" href="#ip-client-ip-from-the-connection" title="Permanent link">&para;</a></h3>
@@ -2477,11 +2500,11 @@
 </span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ip</span>
 </span></code></pre></div>
 <h2 id="detect-only-mode">Detect-only mode<a class="headerlink" href="#detect-only-mode" title="Permanent link">&para;</a></h2>
-<p>When the route is in <code>detect_only</code> mode (or the whole instance via <code>global.mode: detect_only</code>), a request that would have been blocked is <strong>forwarded to the upstream</strong> and an audit entry is emitted with <code>action: detected</code>. Use this when you need to measure traffic against a candidate rate before turning blocking on. See <a href="../detect-only/">Detect-only mode</a>.</p>
+<p>When the route is in <code>detect_only</code> mode (or the whole instance via <code>global.mode: detect_only</code>), a request that would have been blocked is <strong>forwarded to the upstream</strong> and an audit entry lists <code>rate-limit</code> in <code>barbacana.matched_protections</code>. Use this when you need to measure traffic against a candidate rate before turning blocking on. See <a href="../detect-only/">Detect-only mode</a>.</p>
 <h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
 <h3 id="login-throttle-at-the-edge">Login throttle at the edge<a class="headerlink" href="#login-throttle-at-the-edge" title="Permanent link">&para;</a></h3>
 <p>Barbacana terminates TLS, so <code>r.RemoteAddr</code> is the real client IP. Two login attempts per second per IP — enough for a real user who mistypes, far too few to brute-force a password.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">app.example.com</span>
 </span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 </span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">routes</span><span class="p">:</span>
@@ -2495,7 +2518,7 @@
 </span></code></pre></div>
 <h3 id="login-throttle-behind-a-load-balancer">Login throttle behind a load balancer<a class="headerlink" href="#login-throttle-behind-a-load-balancer" title="Permanent link">&para;</a></h3>
 <p>Barbacana runs behind a reverse proxy. Using <code>source.type: ip</code> would key on the load balancer's address (a single bucket for every login attempt from every user), so read the forwarded header instead.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>
 </span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="nt">routes</span><span class="p">:</span>
@@ -2535,7 +2558,7 @@
 </span></code></pre></div>
 <h3 id="per-api-key-limit">Per-API-key limit<a class="headerlink" href="#per-api-key-limit" title="Permanent link">&para;</a></h3>
 <p>A different shape: rate-limit each authenticated tenant regardless of which IP they call from. Useful for an API where you publish per-customer quotas.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
 </span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nt">routes</span><span class="p">:</span>

@@ -426,6 +426,8 @@
       
         
       
+        
+      
     
     
       
@@ -592,6 +594,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -622,10 +645,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -636,8 +659,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -816,10 +839,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -830,8 +853,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1983,7 +2006,7 @@
 <h1 id="nextcloud">Nextcloud<a class="headerlink" href="#nextcloud" title="Permanent link">&para;</a></h1>
 <p><a href="https://nextcloud.com">Nextcloud</a> is an open-source platform for self-hosted file sync, calendar, contacts, and collaboration. It speaks WebDAV for file access and CalDAV/CardDAV for calendar and contacts, which means its traffic mix is significantly different from a standard web application — the WAF must allow additional HTTP methods and handle XML request bodies from desktop and mobile sync clients.</p>
 <p>Nextcloud traffic includes standard web requests, WebDAV file sync, and CalDAV and CardDAV for calendar and contacts. The WebDAV routes require additional HTTP methods beyond the default set and accept XML request bodies.</p>
-<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><span class="filename">waf.yaml</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data/barbacana</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
@@ -2005,21 +2028,23 @@
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">      </span><span class="nt">methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">GET</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">POST</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">PUT</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">DELETE</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">HEAD</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">OPTIONS</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">PROPFIND</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">MKCOL</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">COPY</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">MOVE</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">LOCK</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">UNLOCK</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">PROPPATCH</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">REPORT</span><span class="p p-Indicator">]</span>
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">      </span><span class="nt">max_body_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1GB</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nc-ocs</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">/ocs/v1.php/*</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">/ocs/v2.php/*</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://nextcloud:80</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">content_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">application/json</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">application/xml</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">text/xml</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">GET</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">POST</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">PUT</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">DELETE</span><span class="p p-Indicator">]</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://nextcloud:80</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">resource-limits-max-inspection-size</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nc-ocs</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">/ocs/v1.php/*</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">/ocs/v2.php/*</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://nextcloud:80</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">      </span><span class="nt">content_types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">application/json</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">application/xml</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">text/xml</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="nt">methods</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">GET</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">POST</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">PUT</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">DELETE</span><span class="p p-Indicator">]</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">frontend</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://nextcloud:80</span>
 </span></code></pre></div>
 <h2 id="tuning-notes">Tuning notes<a class="headerlink" href="#tuning-notes" title="Permanent link">&para;</a></h2>
 <p>The WebDAV route is set to detect-only because CalDAV and CardDAV payloads contain free-text fields — DESCRIPTION and SUMMARY in iCalendar, NOTE and ADR in vCard — whose content can match SQL injection and XSS rules. After collecting audit events from real sync traffic, disable specific leaves on the <code>nc-webdav</code> route.</p>
+<p><code>resource-limits-max-inspection-size</code> is disabled because desktop and mobile clients upload files with a raw <code>PUT</code>, not as multipart. A raw body larger than <code>max_inspect_size</code> (128KB by default) would otherwise be rejected with <code>413</code>. With the leaf disabled, the first 128KB of each upload is inspected and the rest is forwarded without inspection. Browser uploads through the web interface are multipart and are not affected, because the contents of uploaded files do not count against that limit.</p>
 <p>The <code>max_body_size</code> cap of 1 GB is the maximum the schema allows. Nextcloud supports files larger than 1 GB — uploads beyond that limit will be blocked. For deployments that sync large files, consider terminating those requests at a load balancer that proxies the WebDAV path directly to Nextcloud, bypassing Barbacana for file content only.</p>
 <p>If Nextcloud authenticates through LDAP, SAML, or an external SSO provider, the login redirect path may differ from <code>/login</code>. Adjust the <code>nc-login</code> match to cover the actual authentication endpoint.</p>
 

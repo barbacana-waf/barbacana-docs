@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2331,7 +2354,7 @@
 <h1 id="config-schema">Config schema<a class="headerlink" href="#config-schema" title="Permanent link">&para;</a></h1>
 <p>Barbacana is configured with a single YAML file. You never write Caddy config — the YAML is compiled internally.</p>
 <h2 id="top-level-structure">Top-level structure<a class="headerlink" href="#top-level-structure" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span><span class="w">              </span><span class="c1"># schema version, required</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span><span class="w">               </span><span class="c1"># schema version, required</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;api.example.com&quot;</span><span class="w">        </span><span class="c1"># Mode 1: single host or list of hosts, auto-TLS</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span><span class="w">                     </span><span class="c1"># Mode 3: behind LB (mutually exclusive with host)</span>
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;/data/barbacana&quot;</span><span class="w">    </span><span class="c1"># optional, default &quot;/data/barbacana&quot;</span>
@@ -2365,7 +2388,7 @@
 <td><code>version</code></td>
 <td>yes</td>
 <td>—</td>
-<td>must equal <code>v1alpha1</code></td>
+<td>must be <code>v1beta1</code>. <code>v1alpha1</code> is still accepted but deprecated, and logs a warning at startup</td>
 </tr>
 <tr>
 <td><code>host</code></td>
@@ -2433,20 +2456,20 @@
 <h3 id="deployment-modes">Deployment modes<a class="headerlink" href="#deployment-modes" title="Permanent link">&para;</a></h3>
 <p>Exactly one of three mutually exclusive modes is selected by the combination of <code>host</code>, <code>port</code>, and route-level <code>match.hosts</code>. See <a href="../../operations/hostnames/">Hostnames &amp; HTTPS</a> for the full picture.</p>
 <p><strong>Mode 1 — Single host, auto-TLS.</strong> Set top-level <code>host</code>. Barbacana serves HTTPS on <code>:443</code>, redirects HTTP on <code>:80</code>, and provisions a Let's Encrypt certificate automatically. Routes must not set <code>match.hosts</code>, and <code>port</code> must not be set.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">api.example.com</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
 </span></code></pre></div>
 <p><code>host</code> also accepts a list of hostnames. Every route then serves all of them identically — this is not per-hostname routing, just multiple aliases for the same routes. Barbacana provisions one certificate per hostname; each hostname's DNS must resolve to this instance before startup.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">example.com</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">example.io</span><span class="p p-Indicator">]</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
 </span></code></pre></div>
 <p>See <a href="../../operations/hostnames/#choosing-between-a-host-list-and-per-route-matchhosts">Hostnames &amp; HTTPS</a> for guidance on choosing a <code>host</code> list over per-route <code>match.hosts</code> (Mode 2).</p>
 <p><strong>Mode 2 — Multi-host, auto-TLS.</strong> Omit <code>host</code>. Every route supplies <code>match.hosts</code>. Barbacana provisions one certificate per hostname. If any route has <code>match.hosts</code>, <strong>every</strong> route must have <code>match.hosts</code>. <code>port</code> must not be set.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">match</span><span class="p">:</span>
 </span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">      </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">api.example.com</span><span class="p p-Indicator">]</span>
@@ -2456,7 +2479,7 @@
 </span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://admin:8000</span>
 </span></code></pre></div>
 <p><strong>Mode 3 — Behind a load balancer, plain HTTP.</strong> Set <code>port</code> (or leave both <code>host</code> and <code>port</code> unset to default <code>port</code> to <code>8080</code>). Barbacana serves plain HTTP on the configured port; there is no TLS and no certificate provisioning.</p>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8080</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://api:8000</span>
@@ -2517,9 +2540,9 @@
 </span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">  </span><span class="c1"># ── Wire-level behavior ──────────────────────────────────</span>
 </span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">  </span><span class="nt">protocol</span><span class="p">:</span>
 </span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">    </span><span class="nt">slow_request_header_timeout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10s</span>
-</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">    </span><span class="nt">slow_request_min_rate_bps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">    </span><span class="nt">slow_request_min_rate_bps</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1024</span><span class="w">       </span><span class="c1"># not applied yet</span>
 </span><span id="__span-8-39"><a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">    </span><span class="nt">http2_max_concurrent_streams</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
-</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">    </span><span class="nt">http2_max_continuation_frames</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span>
+</span><span id="__span-8-40"><a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">    </span><span class="nt">http2_max_continuation_frames</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32</span><span class="w">     </span><span class="c1"># not applied yet</span>
 </span><span id="__span-8-41"><a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">    </span><span class="nt">http2_max_decoded_header_bytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">65536</span>
 </span><span id="__span-8-42"><a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a>
 </span><span id="__span-8-43"><a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="w">  </span><span class="c1"># ── What the response carries ─────────────────────────────</span>
@@ -2697,7 +2720,7 @@
 <td><code>global.protocol.slow_request_min_rate_bps</code></td>
 <td>int</td>
 <td><code>1024</code></td>
-<td><code>&gt;= 0</code></td>
+<td><code>&gt;= 0</code>. <strong>Not applied yet</strong>: accepted and validated, but slow request bodies are not limited</td>
 </tr>
 <tr>
 <td><code>global.protocol.http2_max_concurrent_streams</code></td>
@@ -2709,7 +2732,7 @@
 <td><code>global.protocol.http2_max_continuation_frames</code></td>
 <td>int</td>
 <td><code>32</code></td>
-<td><code>&gt;= 1</code></td>
+<td><code>&gt;= 1</code>. <strong>Not applied yet</strong>: accepted and validated, but the Go HTTP/2 server's own CONTINUATION limit applies</td>
 </tr>
 <tr>
 <td><code>global.protocol.http2_max_decoded_header_bytes</code></td>
@@ -3071,7 +3094,7 @@
 </tr>
 </tbody>
 </table>
-<p>The choice is process-wide and applies to every audit document for the lifetime of the process. Switching formats at runtime requires a config reload; one running process never mixes the two.</p>
+<p>The choice is process-wide and applies to every audit document for the lifetime of the process. Switching formats requires a restart (a reload logs a warning and keeps the old format); one running process never mixes the two.</p>
 <p><code>ocsf</code> emits OCSF v1.2.0 (HTTP Activity event class, <code>class_uid: 4002</code>). <code>ecs</code> emits ECS 8.x. Both formats also carry a vendor <code>barbacana.*</code> namespace with <code>matched_protections</code>, <code>matched_rules</code>, and <code>cwe</code> — see the <a href="../../operations/audit-log/">audit log reference</a> for full document examples and the field-mapping table.</p>
 <h2 id="tracing">Tracing<a class="headerlink" href="#tracing" title="Permanent link">&para;</a></h2>
 <p>Distributed tracing is opt-in. With the block absent or <code>enabled: false</code>, no exporter is created and no OTLP traffic ever leaves the process.</p>
@@ -3165,14 +3188,14 @@
 </ul>
 <p>Path matching uses glob syntax: <code>*</code> matches a single segment, <code>**</code> matches any number of segments. Trailing slashes are normalized.</p>
 <h2 id="example-1-minimal-mode-3-plain-http-behind-a-load-balancer">Example 1: minimal (Mode 3, plain HTTP behind a load balancer)<a class="headerlink" href="#example-1-minimal-mode-3-plain-http-behind-a-load-balancer" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
 </span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span></code></pre></div>
 <p>Everything else is defaulted. <code>port</code> defaults to <code>8080</code> because no <code>host</code> is set and no route uses <code>match.hosts</code>. <code>metrics_port</code> and <code>health_port</code> stay at <code>0</code> (disabled) — audit logs on stdout are the only observability. Every protection is active in blocking mode. The five default-on security headers are injected with their built-in values. All canonical strip headers removed. All content types accepted. All parsers active.</p>
 <h2 id="example-2-multi-route-with-per-team-overrides-mode-1-single-host-auto-tls">Example 2: multi-route with per-team overrides (Mode 1, single host auto-TLS)<a class="headerlink" href="#example-2-multi-route-with-per-team-overrides-mode-1-single-host-auto-tls" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">example.com</span><span class="w">                    </span><span class="c1"># single host, auto-TLS on :443 and :80→:443 redirect</span>
 </span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/barbacana</span><span class="w">         </span><span class="c1"># persistent TLS/ACME state</span>
 </span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nt">metrics_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9090</span><span class="w">                   </span><span class="c1"># opt-in: expose Prometheus /metrics</span>
@@ -3224,7 +3247,7 @@
 </span><span id="__span-13-50"><a id="__codelineno-13-50" name="__codelineno-13-50" href="#__codelineno-13-50"></a><span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span><span class="w">                </span><span class="c1"># keep logging but don&#39;t break the legacy app</span>
 </span></code></pre></div>
 <h2 id="example-3-extensive-overrides-mode-2-multi-host-auto-tls">Example 3: extensive overrides (Mode 2, multi-host auto-TLS)<a class="headerlink" href="#example-3-extensive-overrides-mode-2-multi-host-auto-tls" title="Permanent link">&para;</a></h2>
-<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1alpha1</span>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1beta1</span>
 </span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="nt">data_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/barbacana</span><span class="w">         </span><span class="c1"># persistent TLS/ACME state</span>
 </span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nt">metrics_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9090</span><span class="w">                   </span><span class="c1"># opt-in: expose Prometheus /metrics</span>
 </span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nt">health_port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8081</span><span class="w">                    </span><span class="c1"># opt-in: expose /healthz and /readyz</span>

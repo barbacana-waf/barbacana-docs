@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2015,7 +2038,7 @@
 <h2 id="key-concepts">Key concepts<a class="headerlink" href="#key-concepts" title="Permanent link">&para;</a></h2>
 <p><strong>TLS is provisioned automatically.</strong> Set a public hostname and Barbacana requests a Let's Encrypt certificate via ACME, renews it before expiry, and handles the HTTP→HTTPS redirect. No certificate management, no reload on renewal. For <code>.localhost</code> hostnames a local CA is used instead — no public ACME requests needed in development. See <a href="../hostnames/">Hostnames &amp; HTTPS</a>.</p>
 <p><strong>Observability is opt-in.</strong> Metrics (<code>metrics_port</code>), health endpoints (<code>health_port</code>), and distributed tracing (<code>tracing.enabled</code>) are all off by default. Each is a one-field change to enable. The off-by-default stance keeps the network surface minimal for deployments that don't need them.</p>
-<p><strong>The audit log is always on.</strong> One structured JSON entry per inspected request, written to stdout, no off switch. Schema: OCSF v1.2.0 by default, ECS 8.x available. Pick it up with any standard log shipper — Fluent Bit, Vector, Filebeat — and no normalization layer is required. See <a href="../audit-log/">Audit log</a>.</p>
+<p><strong>The audit log is always on.</strong> One structured JSON entry per request that matches a protection, written to stdout, no off switch. Schema: OCSF v1.2.0 by default, ECS 8.x available. Pick it up with any standard log shipper — Fluent Bit, Vector, Filebeat — and no normalization layer is required. See <a href="../audit-log/">Audit log</a>.</p>
 <p><strong>Traces carry context end to end.</strong> When tracing is enabled, Barbacana propagates W3C <code>traceparent</code> to your upstream. The same trace ID appears in the audit log entry, the WAF span, and your application's spans — one pivot from alert to trace. See <a href="../tracing/">Distributed tracing</a>.</p>
 <h2 id="in-this-section">In this section<a class="headerlink" href="#in-this-section" title="Permanent link">&para;</a></h2>
 <table>

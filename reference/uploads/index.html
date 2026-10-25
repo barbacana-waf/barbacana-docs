@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1181,6 +1204,15 @@
   <a href="#why-double_extension-matters" class="md-nav__link">
     <span class="md-ellipsis">
       Why double_extension matters
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#large-uploads-and-the-inspection-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large uploads and the inspection window
     </span>
   </a>
   
@@ -1986,6 +2018,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#large-uploads-and-the-inspection-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large uploads and the inspection window
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2057,6 +2098,19 @@
 <p class="admonition-title">Be specific with <code>allowed_types</code></p>
 <p>An empty <code>allowed_types</code> accepts any MIME type. For an image-upload endpoint, list the formats you actually serve — anything else is almost certainly an attack or a misconfiguration.</p>
 </div>
+<h2 id="large-uploads-and-the-inspection-window">Large uploads and the inspection window<a class="headerlink" href="#large-uploads-and-the-inspection-window" title="Permanent link">&para;</a></h2>
+<p><code>inspection.max_inspect_size</code> (default 128KB) is how much of a request body the rules read. For a multipart upload it does not count the contents of uploaded files: the rules never read them. A 100MB upload with a small form around it is inspected in full, as long as it is within <code>accept.max_body_size</code> and <code>multipart.file_size</code>. Every part header and every non-file field is still inspected, wherever in the body it sits.</p>
+<p>If the non-file part of a request is larger than the window (a huge text field, or any body that is not multipart), the request is blocked with <code>413</code>, under <code>resource-limits-max-inspection-size</code>.</p>
+<p>Routes that must accept large bodies that are not multipart, such as raw <code>PUT</code> uploads, can disable that leaf. The first <code>max_inspect_size</code> bytes are then inspected and the request is forwarded. That trades coverage for availability: anything past the window is not inspected, so an attacker who can pad a request can place a payload there. Prefer raising <code>max_inspect_size</code> (up to 10MB) where that is enough.</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">routes</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">files</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">match</span><span class="p">:</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">      </span><span class="nt">paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="s">&quot;/files/*&quot;</span><span class="p p-Indicator">]</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://files:8000</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nt">accept</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">      </span><span class="nt">max_body_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1GB</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="nt">disable</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">resource-limits-max-inspection-size</span><span class="p p-Indicator">]</span>
+</span></code></pre></div>
 
 
 

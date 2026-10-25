@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2252,12 +2275,11 @@
 <h3 id="why-six-are-off-by-default">Why six are off by default<a class="headerlink" href="#why-six-are-off-by-default" title="Permanent link">&para;</a></h3>
 <p>Each default-off header shares the same property: any value strict enough to protect users breaks at least one common app pattern, and no value loose enough to be universally safe is worth injecting.</p>
 <ul>
-<li><strong>CSP</strong> — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a route-level <code>csp.policy</code> value before enabling.</li>
+<li><strong>CSP</strong> — every app's safe policy differs (inline scripts, third-party origins, frame ancestors). A weak default CSP is worse than none. Pair the leaf with a <code>response_headers.inject</code> value tuned for your app before enabling.</li>
 <li><strong>COOP / COEP / CORP</strong> — strict cross-origin isolation breaks OAuth popups, cross-origin embedding, <code>window.opener</code> integrations, and any cross-origin asset that hasn't opted in via CORP/CORS.</li>
 <li><strong>Permissions-Policy</strong> — any policy strict enough to matter blocks legitimate features (camera, microphone, geolocation, USB, payment).</li>
 <li><strong>Cache-Control</strong> — cache policy is route-specific. A static asset, a personalized page, and a sensitive API need three different policies; inject from your app or CDN, not the WAF.</li>
 </ul>
-<p>If you'd rather observe what your upstream is sending without modifying it, the catalog's response-inspection family flags missing or misconfigured headers without injecting.</p>
 <h2 id="headers-stripped">Headers stripped<a class="headerlink" href="#headers-stripped" title="Permanent link">&para;</a></h2>
 <p>All eleven are on by default — removing identifying server headers is rarely controversial. Disable per-header via <code>disable:</code> (e.g. <code>disable: [response-headers-remove-server]</code> keeps the upstream's <code>Server</code> value).</p>
 <table>

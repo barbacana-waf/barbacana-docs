@@ -426,6 +426,8 @@
       
         
       
+        
+      
     
     
       
@@ -594,6 +596,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -622,10 +645,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -636,8 +659,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -767,10 +790,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -781,8 +804,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -928,13 +951,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-fix-403s-from-request-validation" class="md-nav__link">
+  <a href="#step-6-fix-rejections-from-request-validation" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6 — Fix 403s from request validation
+      Step 6 — Fix rejections from request validation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 6 — Fix 403s from request validation">
+    <nav class="md-nav" aria-label="Step 6 — Fix rejections from request validation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2203,13 +2226,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-6-fix-403s-from-request-validation" class="md-nav__link">
+  <a href="#step-6-fix-rejections-from-request-validation" class="md-nav__link">
     <span class="md-ellipsis">
-      Step 6 — Fix 403s from request validation
+      Step 6 — Fix rejections from request validation
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Step 6 — Fix 403s from request validation">
+    <nav class="md-nav" aria-label="Step 6 — Fix rejections from request validation">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -2342,8 +2365,8 @@
 <p>On startup, look for error-level entries. A malformed <code>waf.yaml</code> — missing required fields, wrong types, invalid YAML syntax — will produce clear error messages in the log and Barbacana will refuse to start or start in a degraded state.</p>
 <hr />
 <h2 id="step-3-verify-traffic-reaches-the-waf">Step 3 — Verify traffic reaches the WAF<a class="headerlink" href="#step-3-verify-traffic-reaches-the-waf" title="Permanent link">&para;</a></h2>
-<p>If Barbacana starts but you see <strong>no log entries at all when you send requests</strong>, traffic is not reaching the WAF. Bypass DNS and any intermediaries by hitting the machine's IP directly:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-v<span class="w"> </span>http://&lt;barbacana-ip&gt;
+<p>Barbacana writes an audit entry only for requests that match a protection, so a normal request leaves no log line. To check that traffic reaches the WAF, bypass DNS and any intermediaries and send a request that Barbacana blocks to the machine's IP directly:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-v<span class="w"> </span><span class="s2">&quot;http://&lt;barbacana-ip&gt;/?q=1&#39;%20OR%201=1--&quot;</span>
 </span></code></pre></div>
 <p>Replace <code>&lt;barbacana-ip&gt;</code> with the IP address and port of the machine running Barbacana. If this request shows up in the logs, the WAF is reachable and the problem is upstream of it. If not, common causes include:</p>
 <ul>
@@ -2369,7 +2392,7 @@
 <p>If you are not using auto-TLS (e.g. TLS terminates at a load balancer in front of Barbacana), skip this step.</p>
 <hr />
 <h2 id="step-5-identify-what-is-being-blocked">Step 5 — Identify what is being blocked<a class="headerlink" href="#step-5-identify-what-is-being-blocked" title="Permanent link">&para;</a></h2>
-<p>Now that you know traffic reaches Barbacana and the upstream, enable <a href="../../reference/detect-only/">mode: detect_only</a> so Barbacana inspects but never blocks:</p>
+<p>Now that you know traffic reaches Barbacana and the upstream, enable <a href="../../reference/detect-only/">mode: detect_only</a> so Barbacana inspects requests and logs what it finds instead of blocking:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">global</span><span class="p">:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">detect_only</span>
 </span></code></pre></div>
@@ -2377,13 +2400,12 @@
 <p>Navigate through the application. In this mode Barbacana acts as a transparent reverse proxy — every request is forwarded regardless of its content. If the application still does not work, the routing may be wrong. Check the <code>upstream</code> value: is the IP address (or hostname) and port correct? Can Barbacana reach that address from its network?</p>
 <p>Exercise the application thoroughly: navigate every page, submit forms, upload files, and call all API endpoints. The more interactions, the more data the <a href="../../operations/audit-log/">audit log</a> will capture.</p>
 <h3 id="read-the-audit-log">Read the audit log<a class="headerlink" href="#read-the-audit-log" title="Permanent link">&para;</a></h3>
-<p>Barbacana writes one JSON entry per inspected request to stdout. Look for entries with <code>"action": "detected"</code> — these are the requests that <em>would</em> be blocked in normal mode:</p>
+<p>Barbacana writes one JSON entry to stdout for each request that matches a protection. In detect-only mode these are the requests that <em>would</em> be blocked in blocking mode. The names to look at are in <code>barbacana.matched_protections</code>:</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;detected&quot;</span><span class="p">,</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">],</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/search&quot;</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="p">}</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;disposition&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Allowed&quot;</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">&quot;http_request&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;http_method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;POST&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;url&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/search&quot;</span><span class="p">}},</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">&quot;barbacana&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;matched_protections&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sql-injection-union-select&quot;</span><span class="p">]}</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="p">}</span>
 </span></code></pre></div>
 <h3 id="add-targeted-exceptions">Add targeted exceptions<a class="headerlink" href="#add-targeted-exceptions" title="Permanent link">&para;</a></h3>
 <p>Follow the <strong>least-privilege principle</strong>: disable the most specific leaf, not the whole bucket or family.</p>
@@ -2397,14 +2419,9 @@
 </thead>
 <tbody>
 <tr>
-<td><code>["sql", "sql-injection", "sql-injection-union-select"]</code></td>
+<td><code>["sql-injection-union-select"]</code></td>
 <td><code>sql-injection-union-select</code></td>
-<td>Only disables UNION-based detection; all other SQL-injection rules stay active.</td>
-</tr>
-<tr>
-<td><code>["sql", "sql-injection"]</code></td>
-<td><em>(prefer the most specific leaf if you can identify it)</em></td>
-<td>Disabling <code>sql-injection</code> removes every SQLi technique on the route. Disabling <code>sql</code> removes data-leakage detection too.</td>
+<td>Only disables UNION-based detection; all other SQL-injection rules stay active. Disabling <code>sql-injection</code> would remove every SQLi technique on the route, and <code>sql</code> would remove data-leakage detection too.</td>
 </tr>
 </tbody>
 </table>
@@ -2425,8 +2442,8 @@
 <h3 id="switch-back-to-blocking-mode">Switch back to blocking mode<a class="headerlink" href="#switch-back-to-blocking-mode" title="Permanent link">&para;</a></h3>
 <p>Once the false positives are resolved, remove <code>mode: detect_only</code> (blocking is the default), reload and verify the application works end-to-end.</p>
 <hr />
-<h2 id="step-6-fix-403s-from-request-validation">Step 6 — Fix 403s from request validation<a class="headerlink" href="#step-6-fix-403s-from-request-validation" title="Permanent link">&para;</a></h2>
-<p>If a request returns 403 but the audit log entry has <strong>no <code>matched_protections</code></strong>, the block is likely coming from request validation rather than a protection rule. Check the following configuration areas:</p>
+<h2 id="step-6-fix-rejections-from-request-validation">Step 6 — Fix rejections from request validation<a class="headerlink" href="#step-6-fix-rejections-from-request-validation" title="Permanent link">&para;</a></h2>
+<p>If a request is rejected with <code>400</code>, <code>405</code>, <code>413</code>, <code>414</code>, <code>415</code> or <code>431</code> and the audit log entry names a <code>request-validation-*</code> protection, the block comes from request validation rather than a detection rule. OpenAPI validation uses <code>404</code>, <code>405</code>, <code>415</code> and <code>422</code>. Check the following configuration areas:</p>
 <h3 id="common-causes">Common causes<a class="headerlink" href="#common-causes" title="Permanent link">&para;</a></h3>
 <table>
 <thead>

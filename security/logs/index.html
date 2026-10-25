@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2047,11 +2070,11 @@
 
 
 <h1 id="logs-siem">Logs &amp; SIEM<a class="headerlink" href="#logs-siem" title="Permanent link">&para;</a></h1>
-<p>Barbacana writes structured JSON audit entries to stdout — one entry per inspected request. Pick them up with any standard log shipper and feed them to your Security Information and Event Management (SIEM) or detection and response (D&amp;R) platform.</p>
+<p>Barbacana writes structured JSON audit entries to stdout — one entry for each request that matches a protection. Pick them up with any standard log shipper and feed them to your Security Information and Event Management (SIEM) or detection and response (D&amp;R) platform.</p>
 <p>For the field reference and full document examples, see <a href="../../operations/audit-log/">audit log</a>.</p>
 <h2 id="log-shape">Log shape<a class="headerlink" href="#log-shape" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Format</strong>: JSON, one entry per line, one entry per inspected request — never one per matched protection</li>
+<li><strong>Format</strong>: JSON, one entry per line, one entry per request that matches a protection — never one per matched protection</li>
 <li><strong>Schema</strong>: OCSF v1.2.0 by default, switchable to ECS 8.x via <code>audit_log.format</code></li>
 <li><strong>Destination</strong>: stdout (Barbacana writes nothing to disk)</li>
 <li><strong>Compatible shippers</strong>: Fluent Bit, Vector, Filebeat, Promtail, Fluentd, the Datadog/Splunk forwarders — no plugin required</li>
@@ -2086,7 +2109,7 @@
 </table>
 <p>The output is already in the schema your platform expects, so no normalization layer is required. If you previously maintained Logstash or Vector mappings to translate Barbacana's flat fields into ECS, those translation rules should now be empty passthroughs.</p>
 <h2 id="severity-guidance">Severity guidance<a class="headerlink" href="#severity-guidance" title="Permanent link">&para;</a></h2>
-<p>Barbacana does not write a severity field — derive it in your SIEM from the disposition and the anomaly score. For OCSF the score lives at <code>risk_score</code>; for ECS at <code>risk.static_score</code>.</p>
+<p>OCSF entries carry a coarse <code>severity_id</code> (<code>4</code> when blocked, <code>1</code> otherwise); ECS entries carry none. Derive a finer severity in your SIEM from the disposition and the anomaly score. For OCSF the score lives at <code>risk_score</code>; for ECS at <code>risk.static_score</code>.</p>
 <table>
 <thead>
 <tr>
@@ -2107,22 +2130,18 @@
 <td><strong>High</strong></td>
 </tr>
 <tr>
-<td>disposition <code>Detected</code> and <code>risk_score &gt;= 15</code></td>
-<td><code>event.action == "detect"</code> and <code>risk.static_score &gt;= 15</code></td>
+<td><code>disposition_id == 1</code> and <code>risk_score &gt;= 15</code></td>
+<td><code>event.action == "allow"</code> and <code>risk.static_score &gt;= 15</code></td>
 <td><strong>Medium</strong></td>
 </tr>
 <tr>
-<td>disposition <code>Detected</code></td>
-<td><code>event.action == "detect"</code></td>
-<td><strong>Low</strong></td>
-</tr>
-<tr>
-<td><code>disposition_id == 1</code> (allowed)</td>
+<td><code>disposition_id == 1</code></td>
 <td><code>event.action == "allow"</code></td>
-<td><strong>Info</strong> (most platforms drop these by default)</td>
+<td><strong>Low</strong></td>
 </tr>
 </tbody>
 </table>
+<p>An entry with <code>disposition_id == 1</code> (<code>event.action == "allow"</code>) is a request that matched protections but was forwarded: the route is in <a href="../../reference/detect-only/">detect-only mode</a>, or the matches stayed below the blocking threshold. Requests that match nothing are not logged.</p>
 <h2 id="trace-aware-correlation">Trace-aware correlation<a class="headerlink" href="#trace-aware-correlation" title="Permanent link">&para;</a></h2>
 <p>When <a href="../../operations/tracing/">distributed tracing</a> is enabled, every audit document carries the active trace and span IDs:</p>
 <ul>

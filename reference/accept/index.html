@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1160,6 +1183,15 @@
   <a href="#fields" class="md-nav__link">
     <span class="md-ellipsis">
       Fields
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webdav-and-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebDAV and locking
     </span>
   </a>
   
@@ -1986,6 +2018,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#webdav-and-locking" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebDAV and locking
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2033,7 +2074,7 @@
 <tr>
 <td><code>methods</code></td>
 <td><code>[GET, POST, PUT, DELETE, PATCH, HEAD, OPTIONS]</code></td>
-<td>List of allowed HTTP methods</td>
+<td>List of allowed HTTP methods. Besides the common ones, <code>TRACE</code>, <code>CONNECT</code> and the WebDAV methods <code>PROPFIND</code>, <code>PROPPATCH</code>, <code>MKCOL</code>, <code>COPY</code>, <code>MOVE</code>, <code>LOCK</code>, <code>UNLOCK</code> and <code>REPORT</code> are accepted.</td>
 </tr>
 <tr>
 <td><code>content_types</code></td>
@@ -2042,17 +2083,17 @@
 </tr>
 <tr>
 <td><code>max_body_size</code></td>
-<td>1MB</td>
-<td>Reject requests with larger bodies</td>
+<td><code>10MB</code></td>
+<td>Reject requests with larger bodies with <code>413</code>. Maximum <code>1GB</code>. See <a href="../../security/request-lifecycle/#request-body">how the request body is handled</a></td>
 </tr>
 <tr>
 <td><code>max_url_length</code></td>
-<td>8KB</td>
-<td>Reject requests with longer URLs</td>
+<td><code>8192</code></td>
+<td>Reject requests with longer URLs, in characters</td>
 </tr>
 <tr>
 <td><code>max_header_size</code></td>
-<td>8KB</td>
+<td><code>16KB</code></td>
 <td>Reject any single header longer than this</td>
 </tr>
 <tr>
@@ -2071,6 +2112,8 @@
 <p class="admonition-title">JSON-only API</p>
 <p>Setting <code>content_types: [application/json]</code> shuts down a whole class of attacks (XML bombs, multipart smuggling) without writing a single rule.</p>
 </div>
+<h2 id="webdav-and-locking">WebDAV and locking<a class="headerlink" href="#webdav-and-locking" title="Permanent link">&para;</a></h2>
+<p>A route that lists <code>LOCK</code> or <code>UNLOCK</code> in <code>methods</code> also lets the <code>If</code> and <code>Lock-Token</code> request headers through, because WebDAV locking cannot work without them. Every other restricted header stays blocked, and routes without <code>LOCK</code>/<code>UNLOCK</code> keep blocking both. <code>Expect</code> is never blocked: clients send <code>Expect: 100-continue</code> ahead of larger uploads.</p>
 
 
 

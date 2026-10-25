@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2055,13 +2078,13 @@
 </span></code></pre></div>
 <p><code>enable:</code> accepts canonical names from the <a href="../catalog/">WAF Protection Catalog</a> at any of the three levels (L1 family, L2 bucket, leaf). The catalog's <strong>When to toggle</strong> column gives the per-leaf rationale for opting in.</p>
 <h2 id="what-ships-off-by-default">What ships off by default<a class="headerlink" href="#what-ships-off-by-default" title="Permanent link">&para;</a></h2>
-<p>Two groups of leaves are off until you opt in:</p>
+<p>Three groups of leaves are off until you opt in:</p>
 <ul>
 <li><strong>Aggressive variants</strong> of an on-by-default detector. They catch more attacks but fire on legitimate inputs. Examples: <code>sql-injection-quotes-in-text</code> (auth-bypass shapes that also flag <code>O'Brien</code>), <code>command-injection-english-words</code> (triggers on plain text containing <code>echo</code>, <code>curl</code>, <code>bash</code>), <code>cross-site-scripting-angular-templates</code> (only useful if the server actually renders Angular templates).</li>
 <li><strong>Response-side hardening that requires per-app tuning.</strong> <code>response-headers-add-csp</code>, <code>response-headers-add-coop</code>, <code>response-headers-add-coep</code>, <code>response-headers-add-corp</code>, <code>response-headers-add-permissions-policy</code>, <code>response-headers-add-cache-control</code>. There's no value strict enough to matter that's safe to apply universally — see the <a href="../headers/">security headers reference</a> for how to enable each one.</li>
 <li><strong>HTTP-compliance checks that flag automation more than attack.</strong> <code>http-compliance-accept-header</code>, <code>http-compliance-user-agent-header</code>, <code>http-compliance-method-override-param</code>, <code>http-compliance-double-url-encoding</code>, <code>http-attacks-duplicate-parameters</code>. Enable when the route is for browser traffic only and you want stricter shape enforcement.</li>
 </ul>
-<p>Browse the <a href="../catalog/">WAF Protection Catalog</a> for the full list and each leaf's rationale. <code>barbacana --catalog show &lt;leaf-name&gt;</code> prints the same information for one leaf at the CLI.</p>
+<p>Browse the <a href="../catalog/">WAF Protection Catalog</a> for the full list and each leaf's rationale. <code>barbacana --catalog-leaf &lt;leaf-name&gt;</code> prints the same information for one leaf at the CLI.</p>
 <h2 id="precedence-most-specific-wins">Precedence — most specific wins<a class="headerlink" href="#precedence-most-specific-wins" title="Permanent link">&para;</a></h2>
 <p>When <code>enable:</code> and <code>disable:</code> reference overlapping levels, the <strong>more specific name wins</strong>.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">enable</span><span class="p">:</span>
@@ -2074,7 +2097,7 @@
 <ol>
 <li>Find the leaf in the <a href="../catalog/">WAF Protection Catalog</a>. The <strong>When to toggle</strong> column states the extra coverage and the FP cost.</li>
 <li>Add it to <code>enable:</code> on the route. Start with one route, not globally.</li>
-<li>Switch the route to <a href="../detect-only/"><code>detect_only: true</code></a> for a few days so any FPs surface in the audit log without breaking traffic.</li>
+<li>Switch the route to <a href="../detect-only/"><code>mode: detect_only</code></a> for a few days so any FPs surface in the audit log without breaking traffic.</li>
 <li>Once the audit log is clean, switch back to blocking mode.</li>
 </ol>
 <p>For response-header leaves (<code>response-headers-add-*</code>), <code>enable:</code> causes Barbacana to inject the header with its <a href="../headers/#headers-injected">built-in default value</a>. Supply <code>response_headers.inject:</code> to override.</p>

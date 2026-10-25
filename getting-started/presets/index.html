@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://barbacana.dev/getting-started/presets/">
       
       
-        <link rel="prev" href="../incremental/">
+        <link rel="prev" href="../ai-agents/">
       
       
         <link rel="next" href="../presets-wordpress/">
@@ -426,6 +426,8 @@
       
         
       
+        
+      
     
     
       
@@ -592,6 +594,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -622,10 +645,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -636,8 +659,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -777,10 +800,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -791,8 +814,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -1926,7 +1949,7 @@
 
 <h1 id="application-presets">Application presets<a class="headerlink" href="#application-presets" title="Permanent link">&para;</a></h1>
 <p>This section shares starting-point configurations for common self-hosted applications.</p>
-<p>In case application stops working, switch to <code>detect_only</code> mode, it will work again, add normal traffic flow and read the <a href="../../operations/audit-log/">audit log</a> for <code>action: detected</code> entries. Each entry is a false positive, add them into the <code>disable:</code> entries, then switch back the detect mode to enable blocking. See <a href="../../reference/detect-only/">Detect-only mode</a>.</p>
+<p>In case application stops working, switch to <code>detect_only</code> mode, it will work again, add normal traffic flow and read the <a href="../../operations/audit-log/">audit log</a> for entries with <code>barbacana.matched_protections</code>. Each entry is a false positive, add them into the <code>disable:</code> entries, then switch back the detect mode to enable blocking. See <a href="../../reference/detect-only/">Detect-only mode</a>.</p>
 <div class="admonition info">
 <p class="admonition-title">Rate limiting behind a proxy</p>
 <p>Each preset rate-limits login endpoints with <code>source.type: ip</code>, which is correct when the client connects directly to Barbacana. If Barbacana runs behind a load balancer or reverse proxy, every connection appears to come from the proxy — switch to <code>source.type: header</code> and name the forwarded header your proxy injects (typically <code>X-Forwarded-For</code> or <code>X-Real-IP</code>). See <a href="../../reference/rate-limit/#identifying-the-client">Rate limiting — Identifying the client</a>.</p>

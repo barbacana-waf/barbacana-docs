@@ -424,6 +424,8 @@
       
         
       
+        
+      
     
     
       
@@ -591,6 +593,27 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../getting-started/ai-agents/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AI coding agents
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -616,10 +639,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
         
           
-          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -630,8 +653,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_7">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
             <span class="md-nav__icon md-icon"></span>
             Application presets
           </label>
@@ -758,10 +781,10 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_9" >
         
           
-          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -772,8 +795,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_8">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
             <span class="md-nav__icon md-icon"></span>
             Troubleshooting
           </label>
@@ -2070,9 +2093,19 @@
 <td>Inspection that exceeded the per-request timeout</td>
 </tr>
 <tr>
+<td><code>waf_detected_threats_total</code></td>
+<td><code>route</code>, <code>protection</code></td>
+<td>Threats observed in both modes, once per matched leaf. A request that matches several protections counts several times</td>
+</tr>
+<tr>
+<td><code>waf_body_inspection_skipped_total</code></td>
+<td><code>route</code></td>
+<td>Requests forwarded without body inspection because the body could not be read. Expected to stay at <code>0</code>; alert on any sustained rate</td>
+</tr>
+<tr>
 <td><code>waf_body_spooled_total</code></td>
 <td><code>route</code></td>
-<td>Requests whose body had to spool to disk (large bodies)</td>
+<td>Not incremented in this version: request bodies are held in memory, not spooled to disk. See <a href="../../security/request-lifecycle/#memory">Request lifecycle</a></td>
 </tr>
 <tr>
 <td><code>waf_decompression_rejected_total</code></td>
@@ -2088,6 +2121,11 @@
 <td><code>waf_config_reload_total</code></td>
 <td><code>result</code></td>
 <td>Config reload attempts (<code>success</code>, <code>error</code>)</td>
+</tr>
+<tr>
+<td><code>waf_upstream_errors_total</code></td>
+<td><code>route</code>, <code>kind</code></td>
+<td>Proxy-side failures: <code>timeout</code>, <code>connection_refused</code>, <code>5xx</code> (upstream returned a status of 500 or above), <code>other</code>. Tells an upstream failure apart from a WAF block</td>
 </tr>
 </tbody>
 </table>
@@ -2116,6 +2154,16 @@
 <td>—</td>
 <td>Number of detection rules loaded</td>
 </tr>
+<tr>
+<td><code>waf_mode_info</code></td>
+<td><code>route</code>, <code>mode</code></td>
+<td>Always <code>1</code>. The <code>mode</code> label is <code>blocking</code> or <code>detect_only</code>. Use it to show the active mode or to alert when a route runs in <code>detect_only</code></td>
+</tr>
+<tr>
+<td><code>waf_requests_in_flight</code></td>
+<td>—</td>
+<td>Requests being evaluated right now. Rising while the <code>waf_requests_total</code> rate stays flat points to a stuck pipeline</td>
+</tr>
 </tbody>
 </table>
 <h2 id="histograms">Histograms<a class="headerlink" href="#histograms" title="Permanent link">&para;</a></h2>
@@ -2132,6 +2180,11 @@
 <td><code>waf_request_duration_overhead_seconds</code></td>
 <td><code>route</code></td>
 <td>Time spent in WAF inspection per request</td>
+</tr>
+<tr>
+<td><code>waf_anomaly_score_histogram</code></td>
+<td><code>route</code></td>
+<td>Distribution of CRS anomaly scores per request</td>
 </tr>
 </tbody>
 </table>
