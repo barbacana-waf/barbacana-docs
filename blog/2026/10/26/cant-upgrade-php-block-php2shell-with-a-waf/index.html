@@ -1992,6 +1992,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#let-your-ai-agent-set-it-up" class="md-nav__link">
+    <span class="md-ellipsis">
+      Let your AI agent set it up
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#final-thoughts" class="md-nav__link">
     <span class="md-ellipsis">
       Final thoughts
@@ -2088,7 +2097,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
                           <span class="md-ellipsis">
                             
-                              6 min read
+                              7 min read
                             
                           </span>
                         </div>
@@ -2242,6 +2251,9 @@
 <h2 id="how-we-tested-this">How we tested this<a class="headerlink" href="#how-we-tested-this" title="Permanent link">&para;</a></h2>
 <p>We validated the protections against the public proof-of-concept lab, <a href="https://github.com/ikow/php2shell-poc">ikow/php2shell-poc</a>, running the repository's own exploit and verifier scripts unmodified. The lab runs the vulnerable PHP 8.2.34, the end-of-life 7.4.33 (which has no official fix), and Apache mod_php 8.2.34, with Barbacana in front in blocking mode. Everything ran on <code>127.0.0.1</code> only, in containers without extra privileges.</p>
 <h3 id="every-vector-was-blocked-before-it-reached-php">Every vector was blocked before it reached PHP<a class="headerlink" href="#every-vector-was-blocked-before-it-reached-php" title="Permanent link">&para;</a></h3>
+<p>The recording below runs the chain-A exploit twice against the same unpatched PHP 7.4.33: once directly, once through Barbacana.</p>
+<p><img alt="Side-by-side terminal recording: the PHP2Shell chain-A exploit prints RCE CONFIRMED with the command output against PHP 7.4.33 without a WAF, and gets HTTP 403 Forbidden behind Barbacana" loading="lazy" src="../../../../assets/php2shell-waf-demo.gif" /></p>
+<p><em>Same public exploit, same end-of-life PHP: <code>RCE CONFIRMED</code> without a WAF; every request blocked with <code>HTTP 403</code> behind Barbacana. (<a href="../../../../assets/php2shell-waf-demo.gif">open full-size</a>)</em></p>
 <ul>
 <li>Without Barbacana, the session-file exploits ran code on PHP 8.2.34 and 7.4.33. With Barbacana in front, they did nothing.</li>
 <li>Barbacana rejected the memory-exhaustion requests.</li>
@@ -2254,6 +2266,16 @@
 <li><strong>Large bodies that are not multipart.</strong> A multipart upload of any size up to <code>accept.max_body_size</code> is inspected, because the contents of uploaded files do not count against <code>max_inspect_size</code> (128 KB by default). A body that is not multipart, such as a raw <code>PUT</code> upload, is rejected with <code>413</code> when it is larger than <code>max_inspect_size</code>. For routes that need such bodies, raise the limit or disable <code>resource-limits-max-inspection-size</code> on that route. With the protection disabled, only the first <code>max_inspect_size</code> bytes are inspected.</li>
 <li><strong>Application-level flaws.</strong> An unsafe <code>unserialize()</code> call and the file inclusion step of the session-file attack happen in your application code, not in the request. A WAF cannot see them. Only upgrading PHP and fixing the file inclusion flaw close them.</li>
 </ol>
+<h2 id="let-your-ai-agent-set-it-up">Let your AI agent set it up<a class="headerlink" href="#let-your-ai-agent-set-it-up" title="Permanent link">&para;</a></h2>
+<p>The PHP2Shell protections are on by default, so a default Barbacana install in front of your application already blocks the request shapes described in this post. Barbacana is open source (Apache 2.0) and runs on your own server, so your traffic does not pass through a third party.</p>
+<p>The <a href="../../../../../getting-started/ai-agents/">Barbacana skills</a> let an AI coding agent, such as Claude Code, Codex, or Cursor, do the install for you. Install them:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>npx<span class="w"> </span>skills<span class="w"> </span>add<span class="w"> </span>barbacana-waf/skills
+</span></code></pre></div>
+<p>Then open your agent in the directory of your PHP application and ask, for example:</p>
+<blockquote>
+<p>Put Barbacana in front of the PHP application in this directory to protect it against PHP2Shell. Read https://barbacana.dev/blog/2026/10/26/cant-upgrade-php-block-php2shell-with-a-waf/ first. Start in detect-only mode so we can check for false positives.</p>
+</blockquote>
+<p>The agent proposes each step, validates the configuration with <code>barbacana --validate</code> before it runs anything, pins a release version, and finishes with a smoke test. When the audit log shows no false positives, ask the agent to switch the route to blocking mode.</p>
 <h2 id="final-thoughts">Final thoughts<a class="headerlink" href="#final-thoughts" title="Permanent link">&para;</a></h2>
 <p>The most effective step is to upgrade PHP to a fixed version. The steps below are for applications that cannot do that yet.</p>
 <ol>
@@ -2264,7 +2286,7 @@
 <li>On PHP 8.5, AWS also recommends setting <code>fatal_error_backtraces=0</code>. Check the AWS post for the reason and the exact scope.</li>
 <li>Add alerts for <code>Allowed memory size ... exhausted</code> and <code>Session object destruction failed</code> in your application logs, and for bursts of HTTP 502 responses from PHP-FPM.</li>
 <li>Plan the upgrade to a fixed version, or a vendor backport for versions without official support.</li>
-<li>To get help with these steps, ask your AI coding agent. Install the <a href="../../../../../getting-started/ai-agents/">Barbacana skills</a> and give the agent the link to this post.</li>
+<li>To get help with these steps, ask your AI coding agent. See <a href="#let-your-ai-agent-set-it-up">Let your AI agent set it up</a>.</li>
 </ol>
 <h2 id="sources">Sources<a class="headerlink" href="#sources" title="Permanent link">&para;</a></h2>
 <ul>
