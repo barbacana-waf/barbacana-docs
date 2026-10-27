@@ -100,6 +100,12 @@ We validated the protections against the public proof-of-concept lab, [ikow/php2
 
 ### Every vector was blocked before it reached PHP
 
+The recording below runs the chain-A exploit twice against the same unpatched PHP 7.4.33: once directly, once through Barbacana.
+
+![Side-by-side terminal recording: the PHP2Shell chain-A exploit prints RCE CONFIRMED with the command output against PHP 7.4.33 without a WAF, and gets HTTP 403 Forbidden behind Barbacana](assets/php2shell-waf-demo.gif){ loading=lazy }
+
+*Same public exploit, same end-of-life PHP: `RCE CONFIRMED` without a WAF; every request blocked with `HTTP 403` behind Barbacana. ([open full-size](assets/php2shell-waf-demo.gif))*
+
 - Without Barbacana, the session-file exploits ran code on PHP 8.2.34 and 7.4.33. With Barbacana in front, they did nothing.
 - Barbacana rejected the memory-exhaustion requests.
 
@@ -113,6 +119,22 @@ We list the limits here so that you can decide what else to put in place. Each i
 2. **Large bodies that are not multipart.** A multipart upload of any size up to `accept.max_body_size` is inspected, because the contents of uploaded files do not count against `max_inspect_size` (128 KB by default). A body that is not multipart, such as a raw `PUT` upload, is rejected with `413` when it is larger than `max_inspect_size`. For routes that need such bodies, raise the limit or disable `resource-limits-max-inspection-size` on that route. With the protection disabled, only the first `max_inspect_size` bytes are inspected.
 3. **Application-level flaws.** An unsafe `unserialize()` call and the file inclusion step of the session-file attack happen in your application code, not in the request. A WAF cannot see them. Only upgrading PHP and fixing the file inclusion flaw close them.
 
+## Let your AI agent set it up
+
+The PHP2Shell protections are on by default, so a default Barbacana install in front of your application already blocks the request shapes described in this post. Barbacana is open source (Apache 2.0) and runs on your own server, so your traffic does not pass through a third party.
+
+The [Barbacana skills](../../getting-started/ai-agents.md) let an AI coding agent, such as Claude Code, Codex, or Cursor, do the install for you. Install them:
+
+```bash
+npx skills add barbacana-waf/skills
+```
+
+Then open your agent in the directory of your PHP application and ask, for example:
+
+> Put Barbacana in front of the PHP application in this directory to protect it against PHP2Shell. Read https://barbacana.dev/blog/2026/10/26/cant-upgrade-php-block-php2shell-with-a-waf/ first. Start in detect-only mode so we can check for false positives.
+
+The agent proposes each step, validates the configuration with `barbacana --validate` before it runs anything, pins a release version, and finishes with a smoke test. When the audit log shows no false positives, ask the agent to switch the route to blocking mode.
+
 ## Final thoughts
 
 The most effective step is to upgrade PHP to a fixed version. The steps below are for applications that cannot do that yet.
@@ -124,7 +146,7 @@ The most effective step is to upgrade PHP to a fixed version. The steps below ar
 5. On PHP 8.5, AWS also recommends setting `fatal_error_backtraces=0`. Check the AWS post for the reason and the exact scope.
 6. Add alerts for `Allowed memory size ... exhausted` and `Session object destruction failed` in your application logs, and for bursts of HTTP 502 responses from PHP-FPM.
 7. Plan the upgrade to a fixed version, or a vendor backport for versions without official support.
-8. To get help with these steps, ask your AI coding agent. Install the [Barbacana skills](../../getting-started/ai-agents.md) and give the agent the link to this post.
+8. To get help with these steps, ask your AI coding agent. See [Let your AI agent set it up](#let-your-ai-agent-set-it-up).
 
 ## Sources
 
