@@ -86,6 +86,13 @@
     var url = "https://barbacana-docs-analytics.morales-carlos.workers.dev";
     if (!navigator.sendBeacon || navigator.doNotTrack === "1") return;
     var id = crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now();
+    // Owner flag: open any page with ?me=1 once to mark this browser, ?me=0 to unmark. Stays in this browser only.
+    var me = 0;
+    try {
+      var q = location.search.match(/[?&]me=([01])(&|$)/);
+      if (q) { if (q[1] === "1") localStorage.setItem("bb-me", "1"); else localStorage.removeItem("bb-me"); }
+      me = localStorage.getItem("bb-me") === "1" ? 1 : 0;
+    } catch (e) {}
     var shown = 0, since = document.visibilityState === "visible" ? performance.now() : null, scroll = 0, touched = 0;
     function touch() { touched = 1; }
     ["pointerdown", "keydown", "touchstart"].forEach(function (e) { addEventListener(e, touch, { passive: true, once: true }); });
@@ -97,7 +104,7 @@
     function hide() {
       if (since === null) return;
       shown += performance.now() - since; since = null;
-      navigator.sendBeacon(url, JSON.stringify({ id: id, path: location.pathname, ref: document.referrer, v: Math.round(shown), s: scroll, i: touched }));
+      navigator.sendBeacon(url, JSON.stringify({ id: id, path: location.pathname, ref: document.referrer, v: Math.round(shown), s: scroll, i: touched, m: me }));
     }
     document.addEventListener("visibilitychange", function () {
       if (document.visibilityState === "hidden") hide(); else if (since === null) since = performance.now();
@@ -2319,7 +2326,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0
+      Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0 &middot; <a href="/privacy/">Privacy</a>
     </div>
   
   
