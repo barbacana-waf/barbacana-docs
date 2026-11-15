@@ -74,6 +74,32 @@
   <meta name="twitter:image:alt" content="Barbacana logo, a white castle gate with two towers on a blue hexagon, next to the text: Barbacana, open-source WAF and API security gateway. Secure by default, configured in plain YAML, one container.">
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "15489db793944dc8a42c626a84db8287"}'></script>
   
+  
+  <script>
+  (function () {
+    var url = "https://barbacana-docs-analytics.morales-carlos.workers.dev";
+    if (!navigator.sendBeacon || navigator.doNotTrack === "1") return;
+    var id = crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now();
+    var shown = 0, since = document.visibilityState === "visible" ? performance.now() : null, scroll = 0, touched = 0;
+    function touch() { touched = 1; }
+    ["pointerdown", "keydown", "touchstart"].forEach(function (e) { addEventListener(e, touch, { passive: true, once: true }); });
+    addEventListener("scroll", function () {
+      touched = 1;
+      var h = document.documentElement.scrollHeight - innerHeight;
+      if (h > 0) scroll = Math.max(scroll, Math.min(100, Math.round(100 * scrollY / h)));
+    }, { passive: true });
+    function hide() {
+      if (since === null) return;
+      shown += performance.now() - since; since = null;
+      navigator.sendBeacon(url, JSON.stringify({ id: id, path: location.pathname, ref: document.referrer, v: Math.round(shown), s: scroll, i: touched }));
+    }
+    document.addEventListener("visibilitychange", function () {
+      if (document.visibilityState === "hidden") hide(); else if (since === null) since = performance.now();
+    });
+    addEventListener("pagehide", hide);
+  })();
+  </script>
+  
 
   </head>
   
