@@ -7,7 +7,7 @@ repo_url: https://github.com/barbacana-waf/barbacana
 repo_name: barbacana-waf/barbacana
 edit_uri: https://github.com/barbacana-waf/barbacana-docs/edit/main/docs/
 
-copyright: Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0
+copyright: Copyright &copy; 2026 Barbacana authors &middot; Apache-2.0 &middot; <a href="/privacy/">Privacy</a>
 
 theme:
   name: material
@@ -56,6 +56,7 @@ extra_css:
 
 extra:
   generator: false
+  analytics_endpoint: https://barbacana-docs-analytics.morales-carlos.workers.dev
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/barbacana-waf/barbacana

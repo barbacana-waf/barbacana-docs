@@ -1,0 +1,12 @@
+# Copy to wrangler.toml (git-ignored) and fill in the placeholders.
+name = "barbacana-docs-analytics"
+main = "worker.ts"
+compatibility_date = "2026-11-01"
+
+[vars]
+ALLOWED_ORIGINS = "https://barbacana.dev"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "barbacana-docs-analytics"
+database_id = "<your D1 database id>"
