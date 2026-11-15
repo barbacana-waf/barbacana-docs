@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Open-source WAF and API security gateway. Secure by default. Simple by design.">
+        <meta name="description" content="Open-source WAF and API security gateway. Secure by default, configured in plain YAML, one container.">
       
       
         <meta name="author" content="Barbacana authors">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Security headers - Barbacana</title>
+        <title>Security headers - Barbacana WAF</title>
       
     
     
@@ -61,6 +61,21 @@
     
     
     
+  
+  
+  
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Barbacana WAF">
+  <meta property="og:title" content="Security headers - Barbacana WAF">
+  <meta property="og:description" content="Open-source WAF and API security gateway. Secure by default, configured in plain YAML, one container.">
+  <meta property="og:url" content="https://barbacana.dev/reference/headers/">
+  <meta property="og:image" content="https://barbacana.dev/assets/social.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Security headers - Barbacana WAF">
+  <meta name="twitter:description" content="Open-source WAF and API security gateway. Secure by default, configured in plain YAML, one container.">
+  <meta name="twitter:image" content="https://barbacana.dev/assets/social.png">
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "15489db793944dc8a42c626a84db8287"}'></script>
 
   </head>
@@ -96,7 +111,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../.." title="Barbacana" class="md-header__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../.." title="Barbacana WAF" class="md-header__button md-logo" aria-label="Barbacana WAF" data-md-component="logo">
       
   <img src="../../assets/logo.png" alt="logo">
 
@@ -109,7 +124,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            Barbacana
+            Barbacana WAF
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -357,12 +372,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="Barbacana" class="md-nav__button md-logo" aria-label="Barbacana" data-md-component="logo">
+    <a href="../.." title="Barbacana WAF" class="md-nav__button md-logo" aria-label="Barbacana WAF" data-md-component="logo">
       
   <img src="../../assets/logo.png" alt="logo">
 
     </a>
-    Barbacana
+    Barbacana WAF
   </label>
   
     <div class="md-nav__source">
@@ -2180,7 +2195,7 @@
 <h1 id="security-headers">Security headers<a class="headerlink" href="#security-headers" title="Permanent link">&para;</a></h1>
 <p>Barbacana injects security response headers and strips leaky ones before responses reach the client. Defaults are tuned to be safe for any app; stricter values are opt-in because they break common patterns when applied blindly.</p>
 <h2 id="quickstart">Quickstart<a class="headerlink" href="#quickstart" title="Permanent link">&para;</a></h2>
-<p>No configuration needed for the safe defaults — just route traffic through Barbacana:</p>
+<p>The safe defaults need no configuration. Route traffic through Barbacana:</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">routes</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">upstream</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">http://app:8000</span>
 </span></code></pre></div>
