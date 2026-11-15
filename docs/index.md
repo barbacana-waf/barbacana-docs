@@ -11,7 +11,7 @@ hide:
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/barbacana-waf/barbacana)](https://github.com/barbacana-waf/barbacana/releases)
 
-Barbacana is an open-source WAF and API security gateway. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.
+Barbacana is an open-source WAF and API security gateway: secure by default, configured in plain YAML, one container. It sits between the internet and your application, inspects every HTTP request for known attack patterns — SQL injection, XSS, command injection, path traversal, and hundreds more — and blocks malicious requests before they reach your server.
 
 ![How a WAF works](assets/architecture-layout.jpg)
 
@@ -30,9 +30,11 @@ docker run --rm -p 8080:8080 \
   ghcr.io/barbacana-waf/barbacana:latest
 ```
 
+![Terminal demo: validate a three-line config, start Barbacana, a normal request returns 200 while SQL injection and XSS return 403](assets/demo.gif)
+
 Every protection is on by default. [Full quickstart →](getting-started/quickstart.md)
 
-And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.5.0 scored **93.65%** on [GoTestWAF](https://github.com/wallarm/gotestwaf), an open-source WAF benchmark: it blocked 84% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes **99.75%** of [go-ftw](https://github.com/coreruleset/go-ftw), the official test suite from the OWASP CRS authors.
+And that minimalistic configuration works. Out of the box, with no extra tuning, Barbacana v0.10.2 scored **93.46%** on [GoTestWAF](https://github.com/wallarm/gotestwaf), an open-source WAF benchmark: it blocked 83% of attacks while allowing 91% of normal traffic, a strong balance between security and false positives. It also passes **99.75%** of [go-ftw](https://github.com/coreruleset/go-ftw), the official test suite from the OWASP CRS authors.
 
 Sizing your deployment? 1 vCPU and ~130 MB of memory handles ~125 requests per second, with p99 latency under 40 ms for typical traffic. [Full benchmark details →](blog/posts/v060-performance-benchmark.md)
 

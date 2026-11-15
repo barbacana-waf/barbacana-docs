@@ -146,7 +146,7 @@ barbacana --version
 ```
 
 ```text
-barbacana v0.4.0
-go        go1.22.3
-crs       4.7.0
+barbacana v0.10.2 (f2edf62)
+go        go1.27.4
+crs       v4.30.0
 ```

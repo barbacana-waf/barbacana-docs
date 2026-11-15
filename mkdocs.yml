@@ -1,6 +1,6 @@
-site_name: Barbacana
+site_name: Barbacana WAF
 site_url: https://barbacana.dev
-site_description: Open-source WAF and API security gateway. Secure by default. Simple by design.
+site_description: Open-source WAF and API security gateway. Secure by default, configured in plain YAML, one container.
 site_author: Barbacana authors
 
 repo_url: https://github.com/barbacana-waf/barbacana

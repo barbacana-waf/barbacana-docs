@@ -13,37 +13,37 @@ For a container-based setup, see [Installation](installation.md).
 
 Go to the [Releases page](https://github.com/barbacana-waf/barbacana/releases/latest) and find the latest version. Download the archive for your platform, extract it, and place the binary on your `PATH`.
 
-Replace `0.6.0` in the commands below with the version you are installing.
+Replace `0.10.2` in the commands below with the version you are installing.
 
 === "Linux (amd64)"
 
     ```bash
-    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_linux_amd64.tar.gz
-    tar -xzf barbacana_0.6.0_linux_amd64.tar.gz
+    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.10.2/barbacana_0.10.2_linux_amd64.tar.gz
+    tar -xzf barbacana_0.10.2_linux_amd64.tar.gz
     sudo install -m 0755 barbacana /usr/local/bin/barbacana
     ```
 
 === "Linux (arm64)"
 
     ```bash
-    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_linux_arm64.tar.gz
-    tar -xzf barbacana_0.6.0_linux_arm64.tar.gz
+    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.10.2/barbacana_0.10.2_linux_arm64.tar.gz
+    tar -xzf barbacana_0.10.2_linux_arm64.tar.gz
     sudo install -m 0755 barbacana /usr/local/bin/barbacana
     ```
 
 === "macOS (Apple Silicon)"
 
     ```bash
-    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_darwin_arm64.tar.gz
-    tar -xzf barbacana_0.6.0_darwin_arm64.tar.gz
+    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.10.2/barbacana_0.10.2_darwin_arm64.tar.gz
+    tar -xzf barbacana_0.10.2_darwin_arm64.tar.gz
     sudo install -m 0755 barbacana /usr/local/bin/barbacana
     ```
 
 === "macOS (Intel)"
 
     ```bash
-    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.6.0/barbacana_0.6.0_darwin_amd64.tar.gz
-    tar -xzf barbacana_0.6.0_darwin_amd64.tar.gz
+    curl -LO https://github.com/barbacana-waf/barbacana/releases/download/v0.10.2/barbacana_0.10.2_darwin_amd64.tar.gz
+    tar -xzf barbacana_0.10.2_darwin_amd64.tar.gz
     sudo install -m 0755 barbacana /usr/local/bin/barbacana
     ```
 
@@ -53,9 +53,9 @@ Confirm the binary is on your `PATH`:
 
 ```console
 $ barbacana --version
-barbacana v0.6.0 (973a47b)
-go        go1.26.3
-crs       v4.26.0
+barbacana v0.10.2 (f2edf62)
+go        go1.27.4
+crs       v4.30.0
 ```
 
 !!! tip "Verify before you run"

@@ -4,7 +4,7 @@ Barbacana injects security response headers and strips leaky ones before respons
 
 ## Quickstart
 
-No configuration needed for the safe defaults — just route traffic through Barbacana:
+The safe defaults need no configuration. Route traffic through Barbacana:
 
 ```yaml
 routes:

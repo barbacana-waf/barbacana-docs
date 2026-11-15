@@ -29,8 +29,8 @@ Barbacana ships as a single container image. Pick a runtime:
 
     The image reads `/etc/barbacana/waf.yaml` by default, so mounting the file at that path is enough — no `--config` flag needed.
 
-    !!! tip "Using Podman?"
-        The same command works under Podman — just replace `docker` with `podman`.
+    !!! tip "Using Podman or containerd?"
+        The same command works under Podman (replace `docker` with `podman`) and under containerd (replace `docker` with `nerdctl`).
 
 === "Docker Compose"
 
